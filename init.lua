@@ -16,16 +16,13 @@ return {
       --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
     },
   },
-
   -- Set colorscheme to use
-  colorscheme = "astrodark",
-
+  colorscheme = "tokyonight-moon",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
     underline = true,
   },
-
   lsp = {
     -- customize lsp formatting options
     formatting = {
@@ -53,7 +50,6 @@ return {
       -- "pyright"
     },
   },
-
   -- Configure require("lazy").setup() options
   lazy = {
     defaults = { lazy = true },
@@ -64,7 +60,6 @@ return {
       },
     },
   },
-
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
@@ -80,6 +75,24 @@ return {
     --   pattern = {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
-    -- }
+    --
+    vim.api.nvim_create_augroup("im-select", { clear = true })
+
+    vim.api.nvim_create_autocmd("InsertLeave", {
+      group = "im-select",
+      callback = require("user.utils.im-select").macInsertLeave,
+    })
+    vim.api.nvim_create_autocmd("InsertEnter", {
+      group = "im-select",
+      callback = require("user.utils.im-select").macInsertEnter,
+    })
+    vim.api.nvim_create_autocmd("FocusGained", {
+      group = "im-select",
+      callback = require("user.utils.im-select").macFocusGained,
+    })
+    vim.api.nvim_create_autocmd("FocusLost", {
+      group = "im-select",
+      callback = require("user.utils.im-select").macFocusLost,
+    })
   end,
 }

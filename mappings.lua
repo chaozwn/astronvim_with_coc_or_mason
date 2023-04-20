@@ -90,14 +90,14 @@ maps.v["n"] = { "nzz", desc = "show next and center" }
 maps.v["N"] = { "Nzz", desc = "show next and center" }
 
 -- Comment
-if is_available "Comment.nvim" then
-  maps.n["<C-/>"] = {
-    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-    desc = "Comment line",
-  }
-  maps.v["<C-/>"] =
-  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
-end
+-- if is_available "Comment.nvim" then
+--   maps.n["<C-/>"] = {
+--     function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+--     desc = "Comment line",
+--   }
+--   maps.v["<C-/>"] =
+--   { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+-- end
 
 -- Hop
 maps.n["<leader>s"] = { "<Plug>(leap-from-window)", desc = "leap search from all window" }

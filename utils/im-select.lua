@@ -1,25 +1,42 @@
 local M = {}
 local Windows = {}
+local Mac = {}
 
 -- 使用这个autocmd的条件是使用mac输入法
-M.sougouIM = "com.sogou.inputmethod.sogou.pinyin"
-M.defaultIM = "com.apple.keylayout.ABC"
-M.leaveVimIM = M.defaultIM
+local sougouIM = "com.sogou.inputmethod.sogou.pinyin"
+local squirrelIM = "im.rime.inputmethod.Squirrel.Hans"
+local defaultIM = "com.apple.keylayout.ABC"
+Mac.zhCN = squirrelIM
+Mac.en = defaultIM
 
 Windows.pingyinIM = "2052"
 Windows.englishIM = "1033"
 Windows.leaveVimIM = Windows.englishIM
 
-M.macFocusGained = function() vim.cmd(":silent :!im-select" .. " " .. M.leaveVimIM) end
-
-M.macFocusLost = function()
-  M.leaveVimIM = vim.fn.system { "im-select" }
-  vim.cmd(":silent :!im-select" .. " " .. M.sougouIM)
+local getChangeIM = function()
+  local mode = vim.fn.mode()
+  if mode == "n" then
+    -- 当前是 normal 模式
+    return Mac.en
+  elseif mode == "i" then
+    -- 当前是 insert 模式
+    return Mac.zhCN
+  elseif mode == "v" then
+    -- 当前是 visual 模式
+    return Mac.en
+  else
+    -- 当前不是 normal、insert 或 visual 模式
+    return Mac.en
+  end
 end
 
-M.macInsertLeave = function() vim.cmd(":silent :!im-select" .. " " .. M.defaultIM) end
+M.macFocusGained = function() vim.cmd(":silent :!im-select" .. " " .. getChangeIM()) end
 
-M.macInsertEnter = function() vim.cmd(":silent :!im-select" .. " " .. M.sougouIM) end
+M.macFocusLost = function() vim.cmd(":silent :!im-select" .. " " .. Mac.zhCN) end
+
+M.macInsertLeave = function() vim.cmd(":silent :!im-select" .. " " .. Mac.en) end
+
+M.macInsertEnter = function() vim.cmd(":silent :!im-select" .. " " .. Mac.zhCN) end
 
 M.windowsFocusGained = function() vim.cmd(":silent :!~/.config/nvim/im-select.exe" .. " " .. Windows.leaveVimIM) end
 

@@ -99,10 +99,24 @@ maps.v["N"] = { "Nzz", desc = "show next and center" }
 --   { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 -- end
 
--- Hop
-maps.n["<leader>s"] = { "<Plug>(leap-from-window)", desc = "leap search from all window" }
-maps.n["<leader>;"] = { "<Plug>(leap-forward-to)", desc = "leap search forword" }
-maps.n["<leader>,"] = { "<Plug>(leap-backward-to)", desc = "leap search backward" }
+-- leap
+maps.n["<leader>s"] = {
+  function()
+    local current_window = vim.fn.win_getid()
+    require("leap").leap { target_windows = { current_window } }
+  end,
+  desc = "Bidirectional search",
+}
+maps.n["<leader>a"] = {
+  function()
+    local focusable_windows_on_tabpage = vim.tbl_filter(
+      function(win) return vim.api.nvim_win_get_config(win).focusable end,
+      vim.api.nvim_tabpage_list_wins(0)
+    )
+    require("leap").leap { target_windows = focusable_windows_on_tabpage }
+  end,
+  desc = "Search in all windows",
+}
 
 -- substitute, 交换和替换插件, 寄存器中的值，将会替换到s位置, s{motion}
 maps.n["s"] = { require("substitute").operator, desc = "replace with {motion}" }

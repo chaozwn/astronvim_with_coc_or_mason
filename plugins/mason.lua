@@ -7,7 +7,20 @@ return {
     "williamboman/mason-lspconfig.nvim",
     -- overrides `require("mason-lspconfig").setup(...)`
     opts = {
-      ensure_installed = { "lua_ls" },
+      automatic_installation = true,
+      ensure_installed = {
+        "lua_ls",
+        "clangd",
+        "cssls",
+        "html",
+        "marksman",
+        "jsonls",
+        "pyright",
+        "sqls",
+        "sumneko_lua",
+        "tsserver",
+        "yamlls",
+      },
     },
   },
   -- :NullLSInstall stylua

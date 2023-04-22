@@ -6,6 +6,7 @@ return {
     "p00f/nvim-ts-rainbow",
   },
   opts = {
+    auto_install = true,
     ensure_installed = { "json", "html", "css", "vim", "lua", "javascript", "typescript", "tsx", "python", "java" },
     sync_intsall = true,
     rainbow = {

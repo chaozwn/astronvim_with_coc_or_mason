@@ -7,6 +7,9 @@ local utils = require "astronvim.utils"
 local is_available = utils.is_available
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {} }
+
+maps.n["s"] = "<Nop>"
+
 -- $跳到行尾不带空格(交换$和g_)
 maps.n["$"] = { "g_", desc = "Go to end without blank" }
 maps.n["g_"] = { "$", desc = "Go to end" }
@@ -90,14 +93,15 @@ maps.v["n"] = { "nzz", desc = "show next and center" }
 maps.v["N"] = { "Nzz", desc = "show next and center" }
 
 -- Comment
--- if is_available "Comment.nvim" then
---   maps.n["<C-/>"] = {
---     function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
---     desc = "Comment line",
---   }
---   maps.v["<C-/>"] =
---   { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
--- end
+if is_available "Comment.nvim" then
+  maps.n["<C-/>"] = {
+    function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+    desc = "Comment line",
+  }
+  maps.v["<C-/>"] =
+    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+end
+maps.n["<leader>/"] = false
 
 -- leap
 maps.n["<leader>s"] = {

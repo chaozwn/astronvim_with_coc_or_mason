@@ -77,4 +77,9 @@ return {
     "mattn/emmet-vim",
     event = "User AstroFile",
   },
+  ---------------------- copilot --------------------------
+  {
+    "github/copilot.vim",
+    lazy = false,
+  },
 }

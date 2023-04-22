@@ -20,6 +20,17 @@ return {
       return opts
     end,
   },
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      timeout = 0,
+    },
+  },
+  {
+    "mrjones2014/smart-splits.nvim",
+    build = "./kitty/install-kittens.bash",
+    opts = function(_, opts) opts.at_edge = require("smart-splits.types").AtEdgeBehavior.stop end,
+  },
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --

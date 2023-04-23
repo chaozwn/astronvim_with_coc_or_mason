@@ -60,6 +60,7 @@ return {
         { name = "buffer", priority = 250 },
       },
       mapping = {
+        ["<CR>"] = cmp.config.disable,
         ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
         ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
         ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },

@@ -77,4 +77,44 @@ return {
     "mattn/emmet-vim",
     event = "User AstroFile",
   },
+  ----------------------- synthwave84 ----------------------
+  {
+    "lunarvim/synthwave84.nvim",
+    opts = {
+      glow = {
+        error_msg = true,
+        type2 = true,
+        func = true,
+        keyword = true,
+        operator = true,
+        buffer_current_target = true,
+        buffer_visible_target = true,
+        buffer_inactive_target = true,
+      },
+    },
+  },
+  --------------------- rainbow2 -------------------------
+  {
+    "HiPhish/nvim-ts-rainbow2",
+    event = "User AstroFile",
+    config = function()
+      local rainbow = require "ts-rainbow"
+      require("nvim-treesitter.configs").setup {
+        rainbow = {
+          enable = true,
+          query = "rainbow-parens",
+          strategy = rainbow.strategy.global,
+          hlgroups = {
+            "TSRainbowRed",
+            "TSRainbowYellow",
+            "TSRainbowBlue",
+            "TSRainbowOrange",
+            "TSRainbowGreen",
+            "TSRainbowViolet",
+            "TSRainbowCyan",
+          },
+        },
+      }
+    end,
+  },
 }

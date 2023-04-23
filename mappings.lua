@@ -25,10 +25,7 @@ maps.v["^"] = { "0", desc = "Go to start" }
 --maps.c["<C-k>"] = { "<C-p>", desc = "Prev option" }
 
 -- 保存文件
-maps.n["<leader>w"] = { ":w<CR>", desc = "Save" }
-maps.n["<leader>q"] = { ":qa!<CR>", desc = "Exit" }
-maps.n["<leader>n"] = { "<cmd>enew<CR>", desc = "New File" }
-maps.n["<leader>wq"] = { ":wqa!<CR>", desc = "Save and Exit" }
+-- maps.n["<leader>wq"] = { ":wqa!<CR>", desc = "Save and Exit" }
 
 -- 上下滚动5行
 -- maps.n["<C-j>"] = { "5j", desc = "Move down 5 lines" }

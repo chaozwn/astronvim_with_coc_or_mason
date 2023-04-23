@@ -45,19 +45,20 @@ return {
         },
       },
       completion = {
-        completeopt = "menu,menuone,noinsert",
+        -- 自动选中第一条
+        -- completeopt = "menu,menuone,noinsert",
       },
       sources = cmp.config.sources {
         -- Copilot Source
-        { name = "nvim_lsp", priority = 1000 },
-        { name = "copilot", group_index = 999 },
-        { name = "luasnip", priority = 750 },
+        { name = "nvim_lsp",          priority = 1000 },
+        { name = "luasnip",           priority = 900 },
+        { name = "copilot",           group_index = 800 },
         { name = "pandoc_references", priority = 725 },
-        { name = "latex_symbols", priority = 700 },
-        { name = "emoji", priority = 700 },
-        { name = "calc", priority = 650 },
-        { name = "path", priority = 500 },
-        { name = "buffer", priority = 250 },
+        { name = "latex_symbols",     priority = 700 },
+        { name = "emoji",             priority = 700 },
+        { name = "calc",              priority = 650 },
+        { name = "path",              priority = 500 },
+        { name = "buffer",            priority = 250 },
       },
       mapping = {
         ["<CR>"] = cmp.config.disable,
@@ -67,23 +68,23 @@ return {
         ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
         ["<Tab>"] = cmp.mapping(function(fallback)
           -- idea输入方式
-          if cmp.visible() then
-            local entry = cmp.get_selected_entry()
-
-            if not entry then
-              cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-            else
-              cmp.confirm()
-            end
-          else
-            fallback()
-          end
-          -- 默认不支持tab输入
-          -- if luasnip.jumpable(1) then
-          --   luasnip.jump(1)
+          -- if cmp.visible() then
+          --   local entry = cmp.get_selected_entry()
+          --
+          --   if not entry then
+          --     cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+          --   else
+          --     cmp.confirm()
+          --   end
           -- else
           --   fallback()
           -- end
+          -- 默认不支持tab输入
+          if luasnip.jumpable(1) then
+            luasnip.jump(1)
+          else
+            fallback()
+          end
         end, { "i", "s", "c" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then

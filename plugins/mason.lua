@@ -27,7 +27,8 @@ return {
     "jay-babu/mason-null-ls.nvim",
     -- overrides `require("mason-null-ls").setup(...)`
     opts = {
-      ensure_installed = { "prettier", "stylua" },
+      automatic_installation = true,
+      ensure_installed = { "prettier", "stylua", "eslint_d" },
     },
   },
   -- :DapInstall python

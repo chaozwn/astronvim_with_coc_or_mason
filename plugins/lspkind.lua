@@ -3,6 +3,7 @@ return {
   opts = function(_, opts)
     opts.preset = "codicons"
     opts.symbol_map = {
+      Copilot = " ",
       Text = " ",
       Method = " ",
       Function = " ",

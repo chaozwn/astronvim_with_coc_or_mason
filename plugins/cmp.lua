@@ -56,14 +56,16 @@ return {
         completeopt = "menu,menuone,noinsert",
       },
       sources = cmp.config.sources {
-        { name = "nvim_lsp", priority = 1000 },
-        { name = "luasnip", priority = 750 },
+        -- Copilot Source
+        { name = "nvim_lsp",          priority = 1000 },
+        { name = "copilot",           group_index = 999 },
+        { name = "luasnip",           priority = 750 },
         { name = "pandoc_references", priority = 725 },
-        { name = "latex_symbols", priority = 700 },
-        { name = "emoji", priority = 700 },
-        { name = "calc", priority = 650 },
-        { name = "path", priority = 500 },
-        { name = "buffer", priority = 250 },
+        { name = "latex_symbols",     priority = 700 },
+        { name = "emoji",             priority = 700 },
+        { name = "calc",              priority = 650 },
+        { name = "path",              priority = 500 },
+        { name = "buffer",            priority = 250 },
       },
       mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },

@@ -1,6 +1,13 @@
 -- set vim options here (vim.<first_key>.<second_key> = value)
 return {
   opt = {
+    conceallevel = 2, -- enable conceal
+    list = true,      -- show whitespace characters
+    listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
+    showbreak = "↪ ",
+    showtabline = 1,
+    swapfile = false,
+    wrap = true, -- soft wrap lines
     -- set to true or false etc.
     --   relativenumber = true, -- sets vim.opt.relativenumber
     --   number = true,         -- sets vim.opt.number
@@ -65,6 +72,7 @@ return {
     --   fileencoding = "utf-8",
   },
   g = {
+    resession_enabled = true,
     --   mapleader = " ",                 -- sets vim.g.mapleader
     --   autoformat_enabled = true,       -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
     --   cmp_enabled = true,              -- enable completion at start

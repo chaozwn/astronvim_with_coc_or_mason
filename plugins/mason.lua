@@ -28,7 +28,12 @@ return {
     -- overrides `require("mason-null-ls").setup(...)`
     opts = {
       automatic_installation = true,
-      ensure_installed = { "prettier", "stylua", "eslint_d" },
+      ensure_installed = {
+        -- "prettier",
+        "stylua",
+        "eslint_d",
+        "prettierd",
+      },
     },
   },
   -- :DapInstall python

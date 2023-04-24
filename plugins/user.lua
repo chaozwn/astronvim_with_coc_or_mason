@@ -21,9 +21,6 @@ return {
     opts = {},
     event = "User AstroFile",
     cmd = { "TodoQuickFix" },
-    keys = {
-      { "<leader>T", "<cmd>TodoTelescope<cr>", desc = "Open TODOs in Telescope" },
-    },
   },
   ----------------------- 移动插件 --------------------------------------
   {
@@ -78,21 +75,21 @@ return {
     event = "User AstroFile",
   },
   ----------------------- synthwave84 ----------------------
-  {
-    "lunarvim/synthwave84.nvim",
-    opts = {
-      glow = {
-        error_msg = true,
-        type2 = true,
-        func = true,
-        keyword = true,
-        operator = true,
-        buffer_current_target = true,
-        buffer_visible_target = true,
-        buffer_inactive_target = true,
-      },
-    },
-  },
+  -- {
+  --   "lunarvim/synthwave84.nvim",
+  --   opts = {
+  --     glow = {
+  --       error_msg = true,
+  --       type2 = true,
+  --       func = true,
+  --       keyword = true,
+  --       operator = true,
+  --       buffer_current_target = true,
+  --       buffer_visible_target = true,
+  --       buffer_inactive_target = true,
+  --     },
+  --   },
+  -- },
   --------------------- rainbow2 -------------------------
   {
     "HiPhish/nvim-ts-rainbow2",

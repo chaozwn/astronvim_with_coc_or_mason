@@ -43,8 +43,8 @@ maps.v["<Tab>"] = false
 maps.v["<S-Tab>"] = false
 
 -- 上下移动选中文本
-maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move selected one line down" }
-maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move selected one line up" }
+--maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move selected one line down" }
+--maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move selected one line up" }
 
 -- 在visual mode 里粘贴不要复制
 maps.n["x"] = { '"_x', desc = "Cut without copy" }

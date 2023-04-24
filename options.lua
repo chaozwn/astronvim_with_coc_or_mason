@@ -5,7 +5,6 @@ return {
     list = true,      -- show whitespace characters
     listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
     showbreak = "↪ ",
-    showtabline = 1,
     swapfile = false,
     wrap = true, -- soft wrap lines
     -- set to true or false etc.

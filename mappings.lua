@@ -113,14 +113,6 @@ maps.n["<leader>bD"] = {
   desc = "Pick to close",
 }
 
--- neogen
-maps.n["<leader>a"] = { desc = "󰏫 Annotate" }
-maps.n["<leader>a<cr>"] = { function() require("neogen").generate {} end, desc = "Current" }
-maps.n["<leader>ac"] = { function() require("neogen").generate { type = "class" } end, desc = "Class" }
-maps.n["<leader>af"] = { function() require("neogen").generate { type = "func" } end, desc = "Function" }
-maps.n["<leader>at"] = { function() require("neogen").generate { type = "type" } end, desc = "Type" }
-maps.n["<leader>aF"] = { function() require("neogen").generate { type = "file" } end, desc = "File" }
-
 -- trouble
 maps.n["<leader>x"] = { desc = "裂Trouble" }
 maps.n["<leader>xx"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" }
@@ -144,5 +136,8 @@ maps.n["<Tab>"] = {
   end,
   desc = "Switch Buffers",
 }
+
+-- zen mode
+maps.n["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" }
 
 return maps

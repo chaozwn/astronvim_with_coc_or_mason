@@ -37,19 +37,6 @@ return {
     },
   },
   {
-    "danymat/neogen",
-    cmd = "Neogen",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    opts = {
-      snippet_engine = "luasnip",
-      languages = {
-        lua = { template = { annotation_convention = "emmylua" } },
-        typescript = { template = { annotation_convention = "tsdoc" } },
-        typescriptreact = { template = { annotation_convention = "tsdoc" } },
-      },
-    },
-  },
-  {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
     opts = {
@@ -60,6 +47,7 @@ return {
       },
     },
   },
+  -- 可以让你在终端中打开文件
   { "willothy/flatten.nvim", lazy = false, priority = 1001, opts = { window = { open = "vsplit" } } },
   {
     "ahmedkhalf/project.nvim",

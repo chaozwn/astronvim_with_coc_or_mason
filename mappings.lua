@@ -22,7 +22,6 @@ maps.v["0"] = { "^", desc = "Go to start without blank" }
 maps.v["^"] = { "0", desc = "Go to start" }
 
 -- telescope plugin mappings
-maps.n["<leader>fB"] = { "<cmd>Telescope bibtex<cr>", desc = "Find BibTeX" }
 maps.n["<leader>fe"] = { "<cmd>Telescope file_browser<cr>", desc = "File explorer" }
 maps.n["<leader>fp"] = { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
 maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
@@ -133,5 +132,17 @@ maps.n["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" }
 -- better increment/decrement
 maps.x["+"] = { "g<C-a>", desc = "Increment number" }
 maps.x["-"] = { "g<C-x>", desc = "Descrement number" }
+
+-- buffer switching
+maps.n["<Tab>"] = {
+  function()
+    if #vim.t.bufs > 1 then
+      require("telescope.builtin").buffers { sort_mru = true, ignore_current_buffer = true }
+    else
+      utils.notify "No other buffers open"
+    end
+  end,
+  desc = "Switch Buffers",
+}
 
 return maps

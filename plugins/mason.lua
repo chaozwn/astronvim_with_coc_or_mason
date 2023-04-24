@@ -18,6 +18,7 @@ return {
         "pyright",
         "tsserver",
         "yamlls",
+        "emmet-ls",
       },
     },
   },

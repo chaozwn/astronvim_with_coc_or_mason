@@ -21,11 +21,6 @@ return {
     event = "WinNew",
     opts = {},
   },
-  ----------------------- emmet ---------------------------
-  {
-    "mattn/emmet-vim",
-    event = "User AstroFile",
-  },
   ----------------------- synthwave84 ----------------------
   -- {
   --   "lunarvim/synthwave84.nvim",

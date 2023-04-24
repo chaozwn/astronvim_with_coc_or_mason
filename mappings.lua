@@ -140,4 +140,7 @@ maps.n["<Tab>"] = {
 -- zen mode
 maps.n["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" }
 
+-- TsInformation
+maps.n["<leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
+
 return maps

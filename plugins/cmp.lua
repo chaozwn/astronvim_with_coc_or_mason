@@ -46,13 +46,13 @@ return {
       },
       completion = {
         -- 自动选中第一条
-        -- completeopt = "menu,menuone,noinsert",
+        completeopt = "menu,menuone,noinsert",
       },
       sources = cmp.config.sources {
         -- Copilot Source
         { name = "nvim_lsp", priority = 1000 },
         { name = "luasnip", priority = 900 },
-        { name = "copilot", group_index = 800 },
+        { name = "copilot", priority = 800 },
         { name = "pandoc_references", priority = 725 },
         { name = "latex_symbols", priority = 700 },
         { name = "emoji", priority = 700 },
@@ -61,30 +61,30 @@ return {
         { name = "buffer", priority = 250 },
       },
       mapping = {
-        -- ["<CR>"] = cmp.config.disable,
+        -- ctrl + e关闭补全窗口
         ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
         ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
         ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
         ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
         ["<Tab>"] = cmp.mapping(function(fallback)
           -- idea输入方式
-          -- if cmp.visible() then
-          --   local entry = cmp.get_selected_entry()
-          --
-          --   if not entry then
-          --     cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-          --   else
-          --     cmp.confirm()
-          --   end
-          -- else
-          --   fallback()
-          -- end
-          -- 默认不支持tab输入
-          if luasnip.jumpable(1) then
-            luasnip.jump(1)
+          if cmp.visible() then
+            local entry = cmp.get_selected_entry()
+
+            if not entry then
+              cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+            else
+              cmp.confirm()
+            end
           else
             fallback()
           end
+          -- 默认不支持tab输入
+          -- if luasnip.jumpable(1) then
+          --   luasnip.jump(1)
+          -- else
+          --   fallback()
+          -- end
         end, { "i", "s", "c" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then
@@ -92,7 +92,7 @@ return {
           else
             fallback()
           end
-        end, { "i", "s" }),
+        end, { "i", "s", "c" }),
       },
     })
   end,

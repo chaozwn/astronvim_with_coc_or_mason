@@ -116,7 +116,7 @@ maps.n["<leader>bD"] = {
 
 -- neogen
 maps.n["<leader>a"] = { desc = "󰏫 Annotate" }
-maps.n["<leader>a<cr>"] = { function() require("neogen").generate() end, desc = "Current" }
+maps.n["<leader>a<cr>"] = { function() require("neogen").generate {} end, desc = "Current" }
 maps.n["<leader>ac"] = { function() require("neogen").generate { type = "class" } end, desc = "Class" }
 maps.n["<leader>af"] = { function() require("neogen").generate { type = "func" } end, desc = "Function" }
 maps.n["<leader>at"] = { function() require("neogen").generate { type = "type" } end, desc = "Type" }

@@ -19,16 +19,16 @@ return {
         },
       },
       suggestion = {
-        enabled = false,
+        enabled = true,
         auto_trigger = true,
         debounce = 75,
         keymap = {
-          accept = "<Tab>",
+          accept = "<C-cr>",
           accept_word = false,
           accept_line = false,
           next = "<C-i>",
           prev = "<C-o>",
-          dismiss = "<C-BackSpace>",
+          dismiss = false,
         },
       },
       filetypes = {

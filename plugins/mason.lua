@@ -34,6 +34,8 @@ return {
         "stylua",
         "eslint_d",
         "prettierd",
+        "black",
+        "isort",
       },
     },
   },
@@ -42,7 +44,8 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = {
-      -- ensure_installed = { "python" },
+      automatic_installation = true,
+      ensure_installed = { "python" },
     },
   },
 }

@@ -11,6 +11,9 @@ local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
 maps.n["s"] = "<Nop>"
 
+maps.n["H"] = { "^", desc = "Go to start without blank" }
+maps.n["L"] = { "$", desc = "Go to end without blank" }
+
 -- $跳到行尾不带空格(交换$和g_)
 maps.n["$"] = { "g_", desc = "Go to end without blank" }
 maps.n["g_"] = { "$", desc = "Go to end" }

@@ -43,7 +43,7 @@ return {
       },
       pickers = {
         find_files = {
-          hidden = true,
+          hidden = false,
         },
         buffers = {
           path_display = { "smart" },

@@ -12,6 +12,23 @@ local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
+maps.n["gp"] = { desc = "Go To Preview" }
+maps.n["gpd"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Show Definition" }
+maps.n["gpt"] = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", desc = "Show Type Definition" }
+maps.n["gpi"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", desc = "Show Implementation" }
+maps.n["gpr"] = { "<cmd>lua require('goto-preview').goto_preview_references()<CR>", desc = "Show References" }
+maps.n["gpc"] = { "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "Close All Win" }
+
+maps.n["m"] = { desc = "Marks" }
+maps.n["m,"] = { "<Plug>(Marks-setnext)<CR>", desc = "Set Next Lowercase Mark" }
+maps.n["m;"] = { "<Plug>(Marks-toggle)<CR>", desc = "Toggle Mark(Set Or Cancel Mark)" }
+maps.n["m]"] = { "<Plug>(Marks-next)<CR>", desc = "Move To Next Mark" }
+maps.n["m["] = { "<Plug>(Marks-prev)<CR>", desc = "Move To Previous Mark" }
+maps.n["m:"] = { "<Plug>(Marks-preview)", desc = "Preview Mark" }
+
+maps.n["dm"] = { "<Plug>(Marks-delete)", desc = "Delete Marks" }
+maps.n["dm-"] = { "<Plug>(Marks-deleteline)<CR>", desc = "Delete All Marks On The Current Line" }
+maps.n["dm<space>"] = { "<Plug>(Marks-deletebuf)<CR>", desc = "Delete All Marks On Current Buffer" }
 
 maps.n["H"] = { "^", desc = "Go to start without blank" }
 maps.n["L"] = { "$", desc = "Go to end without blank" }

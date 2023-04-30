@@ -36,6 +36,22 @@ return {
         "black",
         "isort",
       },
+      -- {
+      --   command = "stylua",
+      -- },
+      -- {
+      --   command = "black",
+      --   filetypes = { "python" },
+      -- },
+      -- {
+      --   command = "eslint_d",
+      --   filetypes = { "typescript", "typescriptreact" },
+      -- },
+      -- {
+      --   command = "prettier",
+      --   extra_args = { "--print-width", "100" },
+      --   filetypes = { "javascript" },
+      -- },
     },
   },
   -- :DapInstall python

@@ -3,7 +3,9 @@ return {
   event = "InsertEnter",
   opts = function(_, opts)
     return require("astronvim.utils").extend_tbl(opts, {
-      enable_moveright = true,
+      enable_check_bracket_line = true,
+      map_c_h = true,
+      map_bs = true,
     })
   end,
 }

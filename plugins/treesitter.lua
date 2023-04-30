@@ -17,7 +17,6 @@ return {
         "python",
         "java",
       },
-      sync_install = true,
     })
   end,
 }

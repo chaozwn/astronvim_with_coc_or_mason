@@ -18,7 +18,6 @@ return {
   },
   -- Set colorscheme to use
   colorscheme = "tokyonight-moon",
-  -- colorscheme = "synthwave84",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
@@ -95,5 +94,5 @@ return {
       group = "im-select",
       callback = require("user.utils.im-select").macFocusLost,
     })
-  end,
+  end
 }

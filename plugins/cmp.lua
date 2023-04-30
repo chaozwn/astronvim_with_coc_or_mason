@@ -43,39 +43,43 @@ return {
           side_padding = 0,
         },
       },
-      sorting = {
-        priority_weight = 2,
-        comparators = {
-          -- require("copilot_cmp.comparators").prioritize,
-
-          -- Below is the default comparitor list and order for nvim-cmp
-          cmp.config.compare.offset,
-          -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-          cmp.config.compare.exact,
-          cmp.config.compare.score,
-          cmp.config.compare.recently_used,
-          cmp.config.compare.locality,
-          cmp.config.compare.kind,
-          cmp.config.compare.sort_text,
-          cmp.config.compare.length,
-          cmp.config.compare.order,
-        },
-      },
+      -- sorting = {
+      --   priority_weight = 2,
+      --   comparators = {
+      --     require("copilot_cmp.comparators").prioritize,
+      --
+      --     -- Below is the default comparitor list and order for nvim-cmp
+      --     cmp.config.compare.offset,
+      --     cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      --     cmp.config.compare.exact,
+      --     cmp.config.compare.score,
+      --     cmp.config.compare.recently_used,
+      --     cmp.config.compare.locality,
+      --     cmp.config.compare.kind,
+      --     cmp.config.compare.sort_text,
+      --     cmp.config.compare.length,
+      --     cmp.config.compare.order,
+      --   },
+      -- },
       completion = {
         -- 自动选中第一条
         completeopt = "menu,menuone,noinsert",
       },
       sources = cmp.config.sources {
         -- Copilot Source
-        { name = "copilot",           group_index = 2 },
-        { name = "nvim_lsp",          group_index = 2 },
-        { name = "path",              group_index = 2 },
-        { name = "luasnip",           group_index = 2 },
+        -- { name = "copilot", group_index = 2 },
+        -- { name = "nvim_lsp", group_index = 2 },
+        -- { name = "path", group_index = 2 },
+        -- { name = "luasnip", group_index = 2 },
+        { name = "nvim_lsp", priority = 1000 },
+        { name = "copilot", priority = 900 },
+        { name = "luasnip", priority = 800 },
+        { name = "path", priority = 750 },
         { name = "pandoc_references", priority = 725 },
-        { name = "latex_symbols",     priority = 700 },
-        { name = "emoji",             priority = 700 },
-        { name = "calc",              priority = 650 },
-        { name = "buffer",            priority = 250 },
+        { name = "latex_symbols", priority = 700 },
+        { name = "emoji", priority = 700 },
+        { name = "calc", priority = 650 },
+        { name = "buffer", priority = 250 },
       },
       mapping = {
         -- ctrl + e关闭补全窗口

@@ -9,6 +9,8 @@ local my_utils = require "user.utils.utils"
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
+maps.n["<leader><leader>"] = { desc = "󰍉 User" }
+maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
 
 maps.n["H"] = { "^", desc = "Go to start without blank" }

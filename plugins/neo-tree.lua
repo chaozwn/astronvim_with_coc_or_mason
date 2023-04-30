@@ -1,4 +1,3 @@
-local get_icon = require("astronvim.utils").get_icon
 return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = {

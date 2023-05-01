@@ -3,6 +3,8 @@ return {
   dependencies = {
     "nvim-telescope/telescope-file-browser.nvim",
     "ahmedkhalf/project.nvim", -- defined in  ./editor.lua
+    "nvim-telescope/telescope-media-files.nvim",
+    "nvim-lua/popup.nvim",
   },
   opts = function(_, opts)
     local actions = require "telescope.actions"
@@ -40,6 +42,17 @@ return {
             },
           },
         },
+        -- Chafa (required for image support) 正常情况下装一个这个就可以了
+        -- ImageMagick (optional, for svg previews)
+        -- fd / rg / find or fdfind in Ubuntu/Debian.
+        -- ffmpegthumbnailer (optional, for video preview support)
+        -- pdftoppm (optional, for pdf preview support. Available in the AUR as poppler package.)
+        -- epub-thumbnailer (optional, for epub preview support.)
+        -- fontpreview (optional, for font preview support)
+        media_files = {
+          filetypes = { "png", "jpg", "gif", "mp4", "webm", "pdf", "svg" },
+          find_cmd = "rg",
+        },
       },
       pickers = {
         find_files = {
@@ -56,9 +69,10 @@ return {
     })
   end,
   config = function(...)
-    require "plugins.configs.telescope"(...)
+    require "plugins.configs.telescope" (...)
     local telescope = require "telescope"
     telescope.load_extension "file_browser"
     telescope.load_extension "projects"
+    telescope.load_extension "media_files"
   end,
 }

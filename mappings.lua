@@ -43,10 +43,22 @@ maps.n["^"] = { "0", desc = "Go to start" }
 maps.v["0"] = { "^", desc = "Go to start without blank" }
 maps.v["^"] = { "0", desc = "Go to start" }
 
+-- visual multi
+vim.g.VM_maps = {
+  ["Find Under"] = "<C-n>",
+  ["Find Subword Under"] = "<C-n>",
+  ["Add Cursor Up"] = "<C-S-k>",
+  ["Add Cursor Down"] = "<C-S-j>",
+  ["Select All"] = "<C-S-n>",
+  ["Skip Region"] = "<C-x>",
+}
+
 -- telescope plugin mappings
 maps.n["<leader>fe"] = { "<cmd>Telescope file_browser<cr>", desc = "File explorer" }
 maps.n["<leader>fp"] = { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
 maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
+maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
+maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
 
 -- 上下滚动10行
 maps.n["<C-u>"] = { "5k", desc = "Move down 5 lines" }
@@ -91,7 +103,7 @@ if is_available "Comment.nvim" then
     desc = "Comment line",
   }
   maps.v["<C-/>"] =
-    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 maps.n["<leader>/"] = false
 

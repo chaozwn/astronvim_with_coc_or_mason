@@ -11,6 +11,5 @@ return {
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.markdown" },
-  { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.colorscheme.tokyonight" },
 }

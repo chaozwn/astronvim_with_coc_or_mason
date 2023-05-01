@@ -1,7 +1,7 @@
 -- :TSInstall lua
 return {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = {},
+  dependencies = { "mrjones2014/nvim-ts-rainbow" },
   opts = function(_, opts)
     return require("astronvim.utils").extend_tbl(opts, {
       auto_install = true,
@@ -16,6 +16,9 @@ return {
         "tsx",
         "python",
         "java",
+      },
+      rainbow = {
+        enable = true,
       },
     })
   end,

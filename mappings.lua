@@ -10,7 +10,7 @@ local my_utils = require "user.utils.utils"
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
 maps.n["<leader><leader>"] = { desc = "󰍉 User" }
-maps.n["<leader>m"] = { desc = "󱂬 Translate" }
+-- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
 maps.n["gp"] = { desc = "Go To Preview" }
 maps.n["gpd"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Show Definition" }
@@ -42,6 +42,9 @@ maps.n["0"] = { "^", desc = "Go to start without blank" }
 maps.n["^"] = { "0", desc = "Go to start" }
 maps.v["0"] = { "^", desc = "Go to start without blank" }
 maps.v["^"] = { "0", desc = "Go to start" }
+
+-- auto save开关
+maps.n["<leader>um"] = {":ASToggle<CR>", desc = "Toggle AutoSave"}
 
 -- visual multi
 vim.g.VM_maps = {
@@ -103,7 +106,7 @@ if is_available "Comment.nvim" then
     desc = "Comment line",
   }
   maps.v["<C-/>"] =
-  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 maps.n["<leader>/"] = false
 

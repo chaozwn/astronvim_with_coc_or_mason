@@ -184,7 +184,7 @@ maps.n["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" }
 -- maps.x["-"] = { "g<C-x>", desc = "Descrement number" }
 
 -- buffer switching
-maps.n["<Tab>"] = {
+maps.n["<leader>bt"] = {
   function()
     if #vim.t.bufs > 1 then
       require("telescope.builtin").buffers { sort_mru = true, ignore_current_buffer = true }
@@ -192,7 +192,7 @@ maps.n["<Tab>"] = {
       utils.notify "No other buffers open"
     end
   end,
-  desc = "Switch Buffers",
+  desc = "Switch Buffers In Telescope",
 }
 
 -- zen mode

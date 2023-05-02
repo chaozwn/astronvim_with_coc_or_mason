@@ -2,7 +2,6 @@
 -- :LSPInstall lua_ls
 -- customize mason plugins
 return {
-  "jose-elias-alvarez/typescript.nvim", -- add lsp plugin
   -- use mason-lspconfig to configure LSP installations
   {
     "williamboman/mason-lspconfig.nvim",

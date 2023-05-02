@@ -5,6 +5,9 @@ return {
     list = true,      -- show whitespace characters
     listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
     showbreak = "↪ ",
+    showtabline = (vim.t.bufs and #vim.t.bufs > 1) and 2 or 1,
+    spellfile = vim.fn.expand "~/.config/nvim/lua/user/spell/en.utf-8.add",
+    thesaurus = vim.fn.expand "~/.config/nvim/lua/user/spell/mthesaur.txt",
     swapfile = false,
     wrap = true, -- soft wrap lines
     -- set to true or false etc.
@@ -84,6 +87,9 @@ return {
     --   -- 自动补全不自动选中
     --   completeopt = "menu,menuone,noselect,noinsert",
   },
+  wo = {
+    spell = true
+  }
 }
 -- If you need more control, you can use the function()...end notation
 -- return function(local_vim)

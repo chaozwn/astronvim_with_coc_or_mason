@@ -1,7 +1,11 @@
 return {
   diagnostics = {
-    virtual_text = true,
+    virtual_text = {
+      prefix = "",
+    },
+    signs = true,
     underline = true,
+    update_in_insert = false,
   },
   lazy = {
     defaults = { lazy = true },

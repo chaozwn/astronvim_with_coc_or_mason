@@ -34,35 +34,38 @@ return {
       },
       extensions = {
         file_browser = {
+          -- You can use telescope's which_key (insert mode: <C-/>, normal mode: ?) to list mappings attached to your picker.
           mappings = {
             i = {
               -- Create file/folder at current path (trailing path separator creates folder)
-              ["A-a"] = fb_actions.create,
+              ["<A-a>"] = fb_actions.create,
               -- Rename multi-selected files/folders
-              ["A-r"] = fb_actions.rename,
+              ["<A-r>"] = fb_actions.rename,
               -- Move multi-selected files/folders to current path
-              ["A-m"] = fb_actions.move,
+              ["<A-m>"] = fb_actions.move,
               -- Copy (multi-)selected files/folders to current path
-              ["A-y"] = fb_actions.copy,
+              ["<A-y>"] = fb_actions.copy,
               -- Delete (multi-)selected files/folders
-              ["A-d"] = fb_actions.remove,
+              ["<A-d>"] = fb_actions.remove,
               -- Open file/folder with default system application
-              ["C-t"] = fb_actions.open,
+              -- ["<C-o>"] = fb_actions.open,
+              ["<C-c>"] = fb_actions.open,
               -- Go to parent directory
-              ["C-g"] = fb_actions.goto_parent_dir,
+              ["<C-g>"] = fb_actions.goto_parent_dir,
               -- Go to home directory
-              ["C-e"] = fb_actions.goto_home_dir,
+              ["<C-e>"] = fb_actions.goto_home_dir,
               -- Go to current working directory (cwd)
-              ["C-w"] = fb_actions.goto_cwd,
+              ["<C-w>"] = fb_actions.goto_cwd,
               -- Change nvim's cwd to selected folder/file(parent)
-              ["C-o"] = fb_actions.change_cwd,
+              ["<C-t>"] = fb_actions.change_cwd,
               -- Toggle between file and folder browser
-              ["C-f"] = fb_actions.toggle_browser,
+              ["<C-f>"] = fb_actions.toggle_browser,
               -- Toggle hidden files/folders
-              ["C-h"] = fb_actions.toggle_hidden,
+              ["<C-h>"] = fb_actions.toggle_hidden,
               -- Toggle all entries ignoring ./ and ../
-              ["C-s"] = fb_actions.toggle_all,
+              ["<C-s>"] = fb_actions.toggle_all,
               ["<bs>"] = fb_actions.backspace,
+              ["<C-o>"] = actions.select_default,
             },
             n = {
               ["a"] = fb_actions.create,
@@ -70,15 +73,16 @@ return {
               ["m"] = fb_actions.move,
               ["y"] = fb_actions.copy,
               ["d"] = fb_actions.remove,
-              ["t"] = fb_actions.open,
+              ["c"] = fb_actions.open,
               ["g"] = fb_actions.goto_parent_dir,
               ["e"] = fb_actions.goto_home_dir,
               ["w"] = fb_actions.goto_cwd,
-              ["o"] = fb_actions.change_cwd,
+              ["t"] = fb_actions.change_cwd,
               ["f"] = fb_actions.toggle_browser,
               ["h"] = fb_actions.toggle_hidden,
               ["s"] = fb_actions.toggle_all,
               ["<bs>"] = fb_actions.backspace,
+              ["<o>"] = actions.select_default,
             },
           },
         },

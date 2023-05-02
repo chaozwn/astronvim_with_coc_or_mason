@@ -88,7 +88,7 @@ return {
     --   completeopt = "menu,menuone,noselect,noinsert",
   },
   wo = {
-    spell = true
+    spell = false
   }
 }
 -- If you need more control, you can use the function()...end notation

@@ -47,7 +47,7 @@ return {
               -- Delete (multi-)selected files/folders
               ["A-d"] = fb_actions.remove,
               -- Open file/folder with default system application
-              ["C-o"] = fb_actions.open,
+              ["C-t"] = fb_actions.open,
               -- Go to parent directory
               ["C-g"] = fb_actions.goto_parent_dir,
               -- Go to home directory
@@ -55,7 +55,7 @@ return {
               -- Go to current working directory (cwd)
               ["C-w"] = fb_actions.goto_cwd,
               -- Change nvim's cwd to selected folder/file(parent)
-              ["C-t"] = fb_actions.change_cwd,
+              ["C-o"] = fb_actions.change_cwd,
               -- Toggle between file and folder browser
               ["C-f"] = fb_actions.toggle_browser,
               -- Toggle hidden files/folders
@@ -70,11 +70,11 @@ return {
               ["m"] = fb_actions.move,
               ["y"] = fb_actions.copy,
               ["d"] = fb_actions.remove,
-              ["o"] = fb_actions.open,
+              ["t"] = fb_actions.open,
               ["g"] = fb_actions.goto_parent_dir,
               ["e"] = fb_actions.goto_home_dir,
               ["w"] = fb_actions.goto_cwd,
-              ["t"] = fb_actions.change_cwd,
+              ["o"] = fb_actions.change_cwd,
               ["f"] = fb_actions.toggle_browser,
               ["h"] = fb_actions.toggle_hidden,
               ["s"] = fb_actions.toggle_all,

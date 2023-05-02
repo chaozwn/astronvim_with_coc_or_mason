@@ -9,6 +9,27 @@ local my_utils = require "user.utils.utils"
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
+local system = vim.loop.os_uname().sysname
+
+if vim.g.neovide then
+  if system == "Darwin" then
+    vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
+    -- Save
+    maps.n["<D-s>"] = ":w<CR>"
+    -- Paste normal mode
+    maps.n["<D-v>"] = '"+P'
+    -- Copy
+    maps.v["<D-c>"] = '"+y'
+    -- Paste visual mode
+    maps.v["<D-v>"] = '"+P'
+    -- Paste command mode
+    maps.c["<D-v>"] = "<C-R>+"
+    -- Paste insert mode
+    maps.i["<D-v>"] = '<esc>"+pli'
+  elseif system == "window" then
+  end
+end
+
 maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
@@ -44,7 +65,7 @@ maps.v["0"] = { "^", desc = "Go to start without blank" }
 maps.v["^"] = { "0", desc = "Go to start" }
 
 -- auto save开关
-maps.n["<leader>um"] = {":ASToggle<CR>", desc = "Toggle AutoSave"}
+maps.n["<leader>um"] = { ":ASToggle<CR>", desc = "Toggle AutoSave" }
 
 -- visual multi
 vim.g.VM_maps = {
@@ -70,8 +91,8 @@ maps.v["<C-u>"] = { "5k", desc = "Move down 5 lines" }
 maps.v["<C-d>"] = { "5j", desc = "Move up 5 lines" }
 
 -- 开启魔术搜索,即可以通过正则来搜索
-maps.n["/"] = { "/\\v", desc = "Magic search" }
-maps.v["/"] = { "/\\v", desc = "Magic search" }
+-- maps.n["/"] = { "/\\v", desc = "Magic search" }
+-- maps.v["/"] = { "/\\v", desc = "Magic search" }
 
 -- visual模式下缩进代码, 缩进后仍然可以继续选中区域
 maps.v["<"] = { "<gv", desc = "Indent to the left" }
@@ -159,8 +180,8 @@ maps.n["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix Lis
 maps.n["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" }
 
 -- better increment/decrement
-maps.x["+"] = { "g<C-a>", desc = "Increment number" }
-maps.x["-"] = { "g<C-x>", desc = "Descrement number" }
+-- maps.x["+"] = { "g<C-a>", desc = "Increment number" }
+-- maps.x["-"] = { "g<C-x>", desc = "Descrement number" }
 
 -- buffer switching
 maps.n["<Tab>"] = {

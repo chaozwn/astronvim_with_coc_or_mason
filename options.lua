@@ -66,7 +66,7 @@ return {
     --   -- 补全最多显示10行
     --   pumheight = 10,
     --   -- 配置剪切板
-    --   clipboard = "unnamed,unnamedplus",
+      -- clipboard = "unnamed,unnamedplus",
     --   -- 文件格式为utf-8
     --   fileencoding = "utf-8",
   },

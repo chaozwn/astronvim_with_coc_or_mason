@@ -17,7 +17,8 @@ return {
     },
   },
   -- Set colorscheme to use
-  colorscheme = "catppuccin",
+  -- colorscheme = "catppuccin",
+  colorscheme = "astrotheme",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,

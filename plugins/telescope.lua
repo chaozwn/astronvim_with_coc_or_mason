@@ -5,6 +5,7 @@ return {
     "ahmedkhalf/project.nvim", -- defined in  ./editor.lua
     "nvim-telescope/telescope-media-files.nvim",
     "nvim-lua/popup.nvim",
+    "nvim-lua/plenary.nvim",
   },
   opts = function(_, opts)
     local actions = require "telescope.actions"
@@ -35,10 +36,49 @@ return {
         file_browser = {
           mappings = {
             i = {
-              ["<C-z>"] = fb_actions.toggle_hidden,
+              -- Create file/folder at current path (trailing path separator creates folder)
+              ["A-a"] = fb_actions.create,
+              -- Rename multi-selected files/folders
+              ["A-r"] = fb_actions.rename,
+              -- Move multi-selected files/folders to current path
+              ["A-m"] = fb_actions.move,
+              -- Copy (multi-)selected files/folders to current path
+              ["A-y"] = fb_actions.copy,
+              -- Delete (multi-)selected files/folders
+              ["A-d"] = fb_actions.remove,
+              -- Open file/folder with default system application
+              ["C-o"] = fb_actions.open,
+              -- Go to parent directory
+              ["C-g"] = fb_actions.goto_parent_dir,
+              -- Go to home directory
+              ["C-e"] = fb_actions.goto_home_dir,
+              -- Go to current working directory (cwd)
+              ["C-w"] = fb_actions.goto_cwd,
+              -- Change nvim's cwd to selected folder/file(parent)
+              ["C-t"] = fb_actions.change_cwd,
+              -- Toggle between file and folder browser
+              ["C-f"] = fb_actions.toggle_browser,
+              -- Toggle hidden files/folders
+              ["C-h"] = fb_actions.toggle_hidden,
+              -- Toggle all entries ignoring ./ and ../
+              ["C-s"] = fb_actions.toggle_all,
+              ["<bs>"] = fb_actions.backspace,
             },
             n = {
-              z = fb_actions.toggle_hidden,
+              ["a"] = fb_actions.create,
+              ["r"] = fb_actions.rename,
+              ["m"] = fb_actions.move,
+              ["y"] = fb_actions.copy,
+              ["d"] = fb_actions.remove,
+              ["o"] = fb_actions.open,
+              ["g"] = fb_actions.goto_parent_dir,
+              ["e"] = fb_actions.goto_home_dir,
+              ["w"] = fb_actions.goto_cwd,
+              ["t"] = fb_actions.change_cwd,
+              ["f"] = fb_actions.toggle_browser,
+              ["h"] = fb_actions.toggle_hidden,
+              ["s"] = fb_actions.toggle_all,
+              ["<bs>"] = fb_actions.backspace,
             },
           },
         },
@@ -70,7 +110,7 @@ return {
     })
   end,
   config = function(...)
-    require "plugins.configs.telescope"(...)
+    require "plugins.configs.telescope" (...)
     local telescope = require "telescope"
     telescope.load_extension "file_browser"
     telescope.load_extension "projects"

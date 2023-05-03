@@ -30,7 +30,7 @@ return {
     opts = {
       -- automatic_installation = true,
       ensure_installed = {
-        "prettier",
+        "prettierd",
         "stylua",
         "eslint_d",
         "black",

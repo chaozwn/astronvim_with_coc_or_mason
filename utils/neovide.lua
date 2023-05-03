@@ -7,6 +7,7 @@ function M.init()
 end
 
 function M.config()
+  vim.o.guifont = "Hack NFM:h15:i"
   -- 没有空闲
   vim.g.neovide_no_idle = true
   -- 退出需要确认
@@ -14,7 +15,7 @@ function M.config()
   -- 是否全屏
   vim.g.neovide_fullscreen = false
   -- 记住以前窗口的大小
-  vim.g.neovide_remember_window_size = true
+  vim.g.neovide_remember_window_size = false
   -- 使用super键位,比如<cmd>
   -- vim.g.neovide_input_use_logo = true
   -- 开启Alt和Meta按键

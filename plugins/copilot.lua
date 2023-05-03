@@ -19,7 +19,7 @@ return {
         },
       },
       suggestion = {
-        enabled = true,
+        enabled = false,
         auto_trigger = true,
         debounce = 200,
         keymap = {
@@ -30,7 +30,7 @@ return {
           prev = "<C-o>",
           dismiss = false,
         },
-      },
+      },    
       filetypes = {
         yaml = false,
         markdown = false,

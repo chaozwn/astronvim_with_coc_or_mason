@@ -2,7 +2,7 @@
 return {
   opt = {
     conceallevel = 2, -- enable conceal
-    list = true,      -- show whitespace characters
+    list = true, -- show whitespace characters
     listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
     showbreak = "↪ ",
     -- showtabline = (vim.t.bufs and #vim.t.bufs > 1) and 2 or 1,
@@ -10,6 +10,11 @@ return {
     thesaurus = vim.fn.expand "~/.config/nvim/lua/user/spell/mthesaur.txt",
     swapfile = false,
     wrap = true, -- soft wrap lines
+    -- Tab
+    tabstop = 2,
+    softtabstop = 2,
+    shiftwidth = 2,
+    expandtab = true,
     -- set to true or false etc.
     --   relativenumber = true, -- sets vim.opt.relativenumber
     --   number = true,         -- sets vim.opt.number
@@ -88,8 +93,8 @@ return {
     --   completeopt = "menu,menuone,noselect,noinsert",
   },
   wo = {
-    spell = false
-  }
+    spell = false,
+  },
 }
 -- If you need more control, you can use the function()...end notation
 -- return function(local_vim)
@@ -99,4 +104,5 @@ return {
 --   local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
 --
 --   return local_vim
+-- end
 -- end

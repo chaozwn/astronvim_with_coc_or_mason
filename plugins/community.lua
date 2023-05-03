@@ -13,4 +13,5 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.colorscheme.tokyonight" },
+  -- { import = "astrocommunity.utility.transparent-nvim" },
 }

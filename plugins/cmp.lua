@@ -17,13 +17,6 @@ return {
     return require("astronvim.utils").extend_tbl(opts, {
       icons = true,
       lspkind_text = true,
-      window = {
-        completion = {
-          border = "rounded",
-          col_offset = -1,
-          side_padding = 0,
-        },
-      },
       completion = {
         -- 自动选中第一条
         completeopt = "menu,menuone,noinsert",
@@ -75,7 +68,7 @@ return {
           --   fallback()
           -- end
         end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.config.disable
+        ["<S-Tab>"] = cmp.config.disable,
       },
     })
   end,

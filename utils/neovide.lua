@@ -2,7 +2,7 @@ local M = {}
 
 function M.init()
   M.config()
-  M.background()
+  -- M.background()
   M.refresh(60, 5)
 end
 
@@ -15,7 +15,7 @@ function M.config()
   -- 是否全屏
   vim.g.neovide_fullscreen = false
   -- 记住以前窗口的大小
-  vim.g.neovide_remember_window_size = false
+  vim.g.neovide_remember_window_size = true
   -- 使用super键位,比如<cmd>
   -- vim.g.neovide_input_use_logo = true
   -- 开启Alt和Meta按键

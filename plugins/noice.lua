@@ -1,16 +1,4 @@
-local utils = require "astronvim.utils"
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if not opts.ensure_installed then opts.ensure_installed = {} end
-      if type(opts.ensure_installed) == "table" then
-        utils.list_insert_unique(opts.ensure_installed, { "bash", "markdown", "markdown_inline", "regex", "vim" })
-      end
-      return opts
-    end,
-  },
-  {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = { "MunifTanjim/nui.nvim" },
@@ -32,5 +20,4 @@ return {
       },
     },
     init = function() vim.g.lsp_handlers_enabled = false end,
-  },
 }

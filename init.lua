@@ -17,10 +17,6 @@ return {
     },
   },
   lsp = {
-    setup_handlers = {
-      -- add custom handler
-      tsserver = function(_, opts) require("typescript").setup { server = opts } end,
-    },
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save

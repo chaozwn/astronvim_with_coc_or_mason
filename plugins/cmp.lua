@@ -1,28 +1,3 @@
--- return {
---   {
---     "hrsh7th/nvim-cmp",
---     event = "InsertEnter",
---     opts = function(_, config)
---       local cmp = require "cmp"
---
---       -- 使用idea的tab逻辑
---       config.mapping["<Tab>"] = cmp.mapping(function(fallback)
---         -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
---         if cmp.visible() then
---           local entry = cmp.get_selected_entry()
---           if not entry then
---             cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
---           else
---             cmp.confirm()
---           end
---         else
---           fallback()
---         end
---       end, { "i", "s", "c" })
---       return config -- return final config table
---     end,
---   },
--- }
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -45,24 +20,6 @@ return {
           side_padding = 0,
         },
       },
-      -- sorting = {
-      --   priority_weight = 2,
-      --   comparators = {
-      --     require("copilot_cmp.comparators").prioritize,
-      --
-      --     -- Below is the default comparitor list and order for nvim-cmp
-      --     cmp.config.compare.offset,
-      --     cmp.config.compare.scopes, --this is commented in nvim-cmp too
-      --     cmp.config.compare.exact,
-      --     cmp.config.compare.score,
-      --     cmp.config.compare.recently_used,
-      --     cmp.config.compare.locality,
-      --     cmp.config.compare.kind,
-      --     cmp.config.compare.sort_text,
-      --     cmp.config.compare.length,
-      --     cmp.config.compare.order,
-      --   },
-      -- },
       completion = {
         -- 自动选中第一条
         completeopt = "menu,menuone,noinsert",
@@ -79,11 +36,6 @@ return {
         end,
       },
       sources = cmp.config.sources {
-        -- Copilot Source
-        -- { name = "copilot", group_index = 2 },
-        -- { name = "nvim_lsp", group_index = 2 },
-        -- { name = "path", group_index = 2 },
-        -- { name = "luasnip", group_index = 2 },
         { name = "nvim_lsp", priority = 1000 },
         { name = "luasnip", priority = 900 },
         { name = "copilot", priority = 800 },

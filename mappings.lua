@@ -42,6 +42,17 @@ maps.n["s"] = "<Nop>"
 -- maps.n["gpr"] = { "<cmd>lua require('goto-preview').goto_preview_references()<CR>", desc = "Show References" }
 -- maps.n["gpc"] = { "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "Close All Win" }
 
+-- mini move
+maps.v["L"] = { "<cmd>lua MiniMove.move_selection('right')<cr>", desc = "Move right" }
+maps.v["H"] = { "<cmd>lua MiniMove.move_selection('left')<cr>", desc = "Move left" }
+maps.v["J"] = { "<cmd>lua MiniMove.move_selection('down')<cr>", desc = "Move down" }
+maps.v["K"] = { "<cmd>lua MiniMove.move_selection('up')<cr>", desc = "Move up" }
+
+maps.n["<M-h>"] = { "<Cmd>lua MiniMove.move_line('left')<CR>", desc = "Move line left" }
+maps.n["<M-l>"] = { "<Cmd>lua MiniMove.move_line('right')<CR>", desc = "Move line right" }
+maps.n["<M-j>"] = { "<Cmd>lua MiniMove.move_line('down')<CR>", desc = "Move line down" }
+maps.n["<M-k>"] = { "<Cmd>lua MiniMove.move_line('up')<CR>", desc = "Move line up" }
+
 maps.n["m"] = { desc = "Marks" }
 maps.n["m,"] = { "<Plug>(Marks-setnext)<CR>", desc = "Set Next Lowercase Mark" }
 maps.n["m;"] = { "<Plug>(Marks-toggle)<CR>", desc = "Toggle Mark(Set Or Cancel Mark)" }
@@ -129,7 +140,7 @@ if is_available "Comment.nvim" then
     desc = "Comment line",
   }
   maps.v["<C-/>"] =
-    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 maps.n["<leader>/"] = false
 

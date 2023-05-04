@@ -33,12 +33,14 @@ end
 maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
-maps.n["gp"] = { desc = "Go To Preview" }
-maps.n["gpd"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Show Definition" }
-maps.n["gpt"] = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", desc = "Show Type Definition" }
-maps.n["gpi"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", desc = "Show Implementation" }
-maps.n["gpr"] = { "<cmd>lua require('goto-preview').goto_preview_references()<CR>", desc = "Show References" }
-maps.n["gpc"] = { "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "Close All Win" }
+
+-- goto preview
+-- maps.n["gp"] = { desc = "Go To Preview" }
+-- maps.n["gpd"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Show Definition" }
+-- maps.n["gpt"] = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", desc = "Show Type Definition" }
+-- maps.n["gpi"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", desc = "Show Implementation" }
+-- maps.n["gpr"] = { "<cmd>lua require('goto-preview').goto_preview_references()<CR>", desc = "Show References" }
+-- maps.n["gpc"] = { "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "Close All Win" }
 
 maps.n["m"] = { desc = "Marks" }
 maps.n["m,"] = { "<Plug>(Marks-setnext)<CR>", desc = "Set Next Lowercase Mark" }

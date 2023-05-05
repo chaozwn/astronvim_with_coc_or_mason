@@ -34,6 +34,23 @@ maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
 
+-- Debug
+maps.n["<leader>ds"] = { function() require("dap").run_to_cursor() end, desc = "Run To Cursor" }
+maps.n["<leader>dC"] =
+{ function() require("dap").set_breakpoint(vim.fn.input "[Condition] > ") end, desc = "Conditional Breakpoint" }
+
+if is_available "nvim-dap-ui" then
+  maps.n["<leader>dE"] =
+---@diagnostic disable-next-line: missing-parameter
+  { function() require("dapui").eval(vim.fn.input "[Expression] > ") end, desc = "Evaluate Input" }
+---@diagnostic disable-next-line: missing-parameter
+  maps.v["<leader>dE"] = { function() require("dapui").eval() end, desc = "Evaluate Input" }
+end
+-- maps.n["<leader>ds"] = { "<cmd>lua require'dap'.run_to_cursor()<cr>", desc = "Run to Cursor" }
+-- maps.n["<leader>dE"] = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", desc = "Evaluate Input" }
+-- maps.n["<leader>dC"] =
+--   { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", desc = "Conditional Breakpoint" }
+
 -- goto preview
 -- maps.n["gp"] = { desc = "Go To Preview" }
 -- maps.n["gpd"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Show Definition" }

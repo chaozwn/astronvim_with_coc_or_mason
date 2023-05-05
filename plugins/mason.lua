@@ -19,6 +19,7 @@ return {
         "tsserver",
         "yamlls",
         "emmet_ls",
+        "ruff_lsp",
       },
     },
   },

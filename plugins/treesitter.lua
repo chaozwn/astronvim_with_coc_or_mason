@@ -16,6 +16,7 @@ return {
         "tsx",
         "python",
         "java",
+        "toml",
       },
       rainbow = {
         enable = true,

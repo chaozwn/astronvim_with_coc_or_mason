@@ -8,10 +8,22 @@ return {
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     config.sources = {
+      null_ls.builtins.code_actions.eslint_d,
       -- Set a formatter
---       null_ls.builtins.formatting.stylua,
---       null_ls.builtins.formatting.prettier,
---       null_ls.builtins.formatting.eslint_d,
+      null_ls.builtins.formatting.eslint_d,
+      null_ls.builtins.formatting.prettierd.with {
+        filetypes = {
+          "css",
+          "scss",
+          "less",
+          "html",
+          "json",
+          "yaml",
+          "markdown",
+          "graphql",
+        },
+      },
+      null_ls.builtins.formatting.stylua,
     }
     return config -- return final config table
   end,

@@ -24,6 +24,9 @@ return {
         },
       },
       null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.isort.with {
+        filetypes = { "python" },
+      },
     }
     return config -- return final config table
   end,

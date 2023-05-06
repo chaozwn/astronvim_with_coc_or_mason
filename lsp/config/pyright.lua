@@ -1,17 +1,18 @@
 local util = require "lspconfig/util"
 
-local root_files = {
-  'pyproject.toml',
-  'setup.py',
-  'setup.cfg',
-  'requirements.txt',
-  'Pipfile',
-  'pyrightconfig.json',
-  'main.py'
-}
-
 return {
-  root_dir = function(fname) return util.find_git_ancestor(fname) or util.root_pattern(root_files) end,
+  root_dir = function(fname)
+    local root_files = {
+      "pyproject.toml",
+      "setup.py",
+      "setup.cfg",
+      "requirements.txt",
+      "Pipfile",
+      "pyrightconfig.json",
+      "main.py",
+    }
+    return util.find_git_ancestor(fname) or util.root_pattern(unpack(root_files))(fname)
+  end,
   settings = {
     python = {
       analysis = {
@@ -19,6 +20,7 @@ return {
         diagnosticMode = "workspace",
         useLibraryCodeForTypes = true,
         autoImportCompletions = true,
+        typeCheckingMode = "on",
       },
     },
   },

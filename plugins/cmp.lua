@@ -51,7 +51,7 @@ return {
         },
       },
       sources = cmp.config.sources {
-        { name = "nvim_lsp", priority = 1000, trigger_characters = { "-" } },
+        { name = "nvim_lsp", priority = 1000},
         { name = "luasnip", priority = 900 },
         { name = "copilot", priority = 800 },
         { name = "path", priority = 750 },

@@ -1,11 +1,10 @@
 return {
   diagnostics = {
-    virtual_text = {
-      prefix = "",
-    },
-    signs = true,
     underline = true,
     update_in_insert = false,
+    virtual_text = { spacing = 4, prefix = "●" },
+    severity_sort = true,
+    signs = true,
   },
   lazy = {
     defaults = { lazy = true },

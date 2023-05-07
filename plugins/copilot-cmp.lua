@@ -19,8 +19,24 @@ return {
       },
       mapping = {
         ["<Tab>"] = vim.schedule_wrap(function(fallback)
-          if cmp.visible() and has_words_before() then
-            cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+          -- if cmp.visible() and has_words_before() then
+          if cmp.visible() then
+            local entry = cmp.get_selected_entry()
+            if not entry then
+              cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+            else
+              if has_words_before() then
+                cmp.confirm {
+                  behavior = cmp.ConfirmBehavior.Replace,
+                  select = false,
+                }
+              else
+                cmp.confirm {
+                  behavior = cmp.ConfirmBehavior.Insert,
+                  select = false,
+                }
+              end
+            end
           else
             fallback()
           end

@@ -94,7 +94,6 @@ maps.n["^"] = { "0", desc = "Go to start" }
 maps.v["0"] = { "^", desc = "Go to start without blank" }
 maps.v["^"] = { "0", desc = "Go to start" }
 
-
 -- auto save开关
 maps.n["<leader>um"] = { ":ASToggle<CR>", desc = "Toggle AutoSave" }
 
@@ -158,7 +157,7 @@ if is_available "Comment.nvim" then
     desc = "Comment line",
   }
   maps.v["<C-/>"] =
-  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 maps.n["<leader>/"] = false
 

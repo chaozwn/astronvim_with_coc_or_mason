@@ -2,4 +2,4 @@
 -- colorscheme = "catppuccin",
 -- colorscheme = "astrotheme",
 -- return "tokyonight"
-return "tokyonight-moon"
+return "tokyonight"

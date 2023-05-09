@@ -34,6 +34,40 @@ maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
 
+maps.n["<leader>r"] = { desc = " Refactor" }
+maps.v["<leader>r"] = { desc = " Refactor" }
+-- refactoring
+-- Remaps for the refactoring operations currently offered by the plugin
+maps.v["<leader>rf"] = {
+  "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>",
+  desc = "Extract Function",
+}
+maps.v["<leader>rF"] = {
+  "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
+  desc = "Extract Function To File",
+}
+maps.v["<leader>rv"] = {
+  "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
+  desc = "Extract Variable",
+}
+maps.v["<leader>ri"] =
+{ "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
+
+-- Extract block doesn't need visual mode
+maps.n["<leader>rb"] = {
+  "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>",
+  desc = "Extract Block",
+}
+maps.n["<leader>rB"] = {
+  "<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>",
+  desc = "Extract Block To File",
+}
+-- Inline variable can also pick up the identifier currently under the cursor without visual mode
+maps.n["<leader>ri"] = {
+  "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+  desc = "Inline Variable",
+}
+
 -- Debug
 -- maps.n["<leader>ds"] = { function() require("dap").run_to_cursor() end, desc = "Run To Cursor" }
 -- maps.n["<leader>dC"] =
@@ -108,11 +142,15 @@ vim.g.VM_maps = {
 }
 
 -- telescope plugin mappings
+maps.v["<leader>f"] = { desc = "󰍉 Find" }
 maps.n["<leader>fe"] = { "<cmd>Telescope file_browser<cr>", desc = "File explorer" }
 maps.n["<leader>fp"] = { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
 maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
 maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
 maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
+maps.v["<leader>fr"] =
+{ "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
+-- maps.n["<leader>fR"] = { function() require("telescope.builtin").registers() end, desc = "Find registers" }
 
 -- 上下滚动10行
 maps.n["<C-u>"] = { "5k", desc = "Move down 5 lines" }
@@ -146,9 +184,12 @@ maps.n["<leader>bo"] = { "<C-w>o", desc = "Close other screen" }
 -- 多个窗口之间跳转
 maps.n["<leader>b="] = { "<C-w>=", desc = "Make all window equal" }
 
---     -- better search
+-- better search
 maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
 maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
+
+-- lsp restart
+maps.n["<leader>lm"] = { ":LspRestart<CR>", desc = "Lsp restart" }
 
 -- Comment
 if is_available "Comment.nvim" then
@@ -157,9 +198,10 @@ if is_available "Comment.nvim" then
     desc = "Comment line",
   }
   maps.v["<C-/>"] =
-    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 maps.n["<leader>/"] = false
+maps.v["<leader>/"] = false
 
 -- leap
 maps.n["<leader>s"] = {

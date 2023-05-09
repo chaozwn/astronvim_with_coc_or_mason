@@ -10,6 +10,7 @@ return {
     thesaurus = vim.fn.expand "~/.config/nvim/lua/user/spell/mthesaur.txt",
     swapfile = false,
     wrap = true, -- soft wrap lines
+    termguicolors = true,
     -- set to true or false etc.
     --   relativenumber = true, -- sets vim.opt.relativenumber
     --   number = true,         -- sets vim.opt.number

@@ -1,4 +1,10 @@
 return {
+  heirline = {
+    separators = {
+      breadcrumbs = "  ",
+      path = "  ",
+    },
+  },
   diagnostics = {
     underline = true,
     update_in_insert = false,

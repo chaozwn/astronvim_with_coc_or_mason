@@ -8,7 +8,7 @@ return {
     -- highlight for Window separator
     highlight = {
       bg = "#16161E",
-      fg = "#a7a6cb",
+      fg = "#30cfd0",
     },
   },
 }

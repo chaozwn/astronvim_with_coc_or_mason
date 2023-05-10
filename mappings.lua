@@ -99,6 +99,17 @@ maps.v["H"] = { "<cmd>lua MiniMove.move_selection('left')<cr>", desc = "Move lef
 maps.v["J"] = { "<cmd>lua MiniMove.move_selection('down')<cr>", desc = "Move down" }
 maps.v["K"] = { "<cmd>lua MiniMove.move_selection('up')<cr>", desc = "Move up" }
 
+-- tmux
+maps.n["<C-h>"] = { "<cmd>lua require'tmux'.move_left()<cr>", desc = "Go to left window" }
+maps.n["<C-l>"] = { "<cmd>lua require'tmux'.move_right()<cr>", desc = "Go to right window" }
+maps.n["<C-j>"] = { "<cmd>lua require'tmux'.move_bottom()<cr>", desc = "Go to bottom window" }
+maps.n["<C-k>"] = { "<cmd>lua require'tmux'.move_top()<cr>", desc = "Go to top window" }
+
+maps.n["<C-Up>"] = { "<cmd>lua require'tmux'.resize_top()<cr>", desc = "Resize split up" }
+maps.n["<C-Down>"] = { "<cmd>lua require'tmux'.resize_bottom()<cr>", desc = "Resize split down" }
+maps.n["<C-Left>"] = { "<cmd>lua require'tmux'.resize_left()<cr>", desc = "Resize split left" }
+maps.n["<C-Right>"] = { "<cmd>lua require'tmux'.resize_right()<cr>", desc = "Resize split right" }
+
 maps.n["<M-h>"] = { "<Cmd>lua MiniMove.move_line('left')<CR>", desc = "Move line left" }
 maps.n["<M-l>"] = { "<Cmd>lua MiniMove.move_line('right')<CR>", desc = "Move line right" }
 maps.n["<M-j>"] = { "<Cmd>lua MiniMove.move_line('down')<CR>", desc = "Move line down" }

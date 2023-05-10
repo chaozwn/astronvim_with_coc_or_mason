@@ -38,18 +38,18 @@ return {
           mappings = {
             i = {
               -- Create file/folder at current path (trailing path separator creates folder)
-              ["<A-a>"] = fb_actions.create,
+              ["<M-c>"] = fb_actions.create,
               -- Rename multi-selected files/folders
-              ["<A-r>"] = fb_actions.rename,
+              ["<M-r>"] = fb_actions.rename,
               -- Move multi-selected files/folders to current path
-              ["<A-m>"] = fb_actions.move,
+              ["<M-m>"] = fb_actions.move,
               -- Copy (multi-)selected files/folders to current path
-              ["<A-y>"] = fb_actions.copy,
+              ["<M-y>"] = fb_actions.copy,
               -- Delete (multi-)selected files/folders
-              ["<A-d>"] = fb_actions.remove,
+              ["<M-d>"] = fb_actions.remove,
               -- Open file/folder with default system application
               -- ["<C-o>"] = fb_actions.open,
-              ["<C-c>"] = fb_actions.open,
+              ["<C-p>"] = fb_actions.open,
               -- Go to parent directory
               ["<C-g>"] = fb_actions.goto_parent_dir,
               -- Go to home directory
@@ -68,12 +68,12 @@ return {
               ["<C-o>"] = actions.select_default,
             },
             n = {
-              ["a"] = fb_actions.create,
+              ["c"] = fb_actions.create,
               ["r"] = fb_actions.rename,
               ["m"] = fb_actions.move,
               ["y"] = fb_actions.copy,
               ["d"] = fb_actions.remove,
-              ["c"] = fb_actions.open,
+              ["p"] = fb_actions.open,
               ["g"] = fb_actions.goto_parent_dir,
               ["e"] = fb_actions.goto_home_dir,
               ["w"] = fb_actions.goto_cwd,
@@ -82,7 +82,7 @@ return {
               ["h"] = fb_actions.toggle_hidden,
               ["s"] = fb_actions.toggle_all,
               ["<bs>"] = fb_actions.backspace,
-              ["<o>"] = actions.select_default,
+              ["o"] = actions.select_default,
             },
           },
         },

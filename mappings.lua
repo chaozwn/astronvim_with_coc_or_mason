@@ -93,12 +93,6 @@ maps.n["<leader>ri"] = {
 -- maps.n["gpr"] = { "<cmd>lua require('goto-preview').goto_preview_references()<CR>", desc = "Show References" }
 -- maps.n["gpc"] = { "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "Close All Win" }
 
--- mini move
-maps.v["L"] = { "<cmd>lua MiniMove.move_selection('right')<cr>", desc = "Move right" }
-maps.v["H"] = { "<cmd>lua MiniMove.move_selection('left')<cr>", desc = "Move left" }
-maps.v["J"] = { "<cmd>lua MiniMove.move_selection('down')<cr>", desc = "Move down" }
-maps.v["K"] = { "<cmd>lua MiniMove.move_selection('up')<cr>", desc = "Move up" }
-
 -- tmux
 maps.n["<C-h>"] = { "<cmd>lua require'tmux'.move_left()<cr>", desc = "Go to left window" }
 maps.n["<C-l>"] = { "<cmd>lua require'tmux'.move_right()<cr>", desc = "Go to right window" }
@@ -110,10 +104,6 @@ maps.n["<C-Down>"] = { "<cmd>lua require'tmux'.resize_bottom()<cr>", desc = "Res
 maps.n["<C-Left>"] = { "<cmd>lua require'tmux'.resize_left()<cr>", desc = "Resize split left" }
 maps.n["<C-Right>"] = { "<cmd>lua require'tmux'.resize_right()<cr>", desc = "Resize split right" }
 
-maps.n["<M-h>"] = { "<Cmd>lua MiniMove.move_line('left')<CR>", desc = "Move line left" }
-maps.n["<M-l>"] = { "<Cmd>lua MiniMove.move_line('right')<CR>", desc = "Move line right" }
-maps.n["<M-j>"] = { "<Cmd>lua MiniMove.move_line('down')<CR>", desc = "Move line down" }
-maps.n["<M-k>"] = { "<Cmd>lua MiniMove.move_line('up')<CR>", desc = "Move line up" }
 
 maps.n["m"] = { desc = "Marks" }
 maps.n["m,"] = { "<Plug>(Marks-setnext)<CR>", desc = "Set Next Lowercase Mark" }

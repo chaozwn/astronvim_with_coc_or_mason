@@ -69,6 +69,19 @@ return {
     "echasnovski/mini.move",
     config = function(_, opts)
       require("mini.move").setup {
+        mappings = {
+          -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+          left = "H",
+          right = "L",
+          down = "J",
+          up = "K",
+
+          -- Move current line in Normal mode
+          line_left = "",
+          line_right = "",
+          line_down = "",
+          line_up = "",
+        },
         -- Options which control moving behavior
         options = {
           -- Automatically reindent selection during linewise vertical move

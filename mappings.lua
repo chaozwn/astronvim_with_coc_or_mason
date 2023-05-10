@@ -51,7 +51,7 @@ maps.v["<leader>rv"] = {
   desc = "Extract Variable",
 }
 maps.v["<leader>ri"] =
-{ "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
+  { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
 
 -- Extract block doesn't need visual mode
 maps.n["<leader>rb"] = {
@@ -85,14 +85,6 @@ maps.n["<leader>ri"] = {
 -- maps.n["<leader>dC"] =
 --   { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", desc = "Conditional Breakpoint" }
 
--- goto preview
--- maps.n["gp"] = { desc = "Go To Preview" }
--- maps.n["gpd"] = { "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Show Definition" }
--- maps.n["gpt"] = { "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", desc = "Show Type Definition" }
--- maps.n["gpi"] = { "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", desc = "Show Implementation" }
--- maps.n["gpr"] = { "<cmd>lua require('goto-preview').goto_preview_references()<CR>", desc = "Show References" }
--- maps.n["gpc"] = { "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "Close All Win" }
-
 -- tmux
 maps.n["<C-h>"] = { "<cmd>lua require'tmux'.move_left()<cr>", desc = "Go to left window" }
 maps.n["<C-l>"] = { "<cmd>lua require'tmux'.move_right()<cr>", desc = "Go to right window" }
@@ -103,7 +95,6 @@ maps.n["<C-Up>"] = { "<cmd>lua require'tmux'.resize_top()<cr>", desc = "Resize s
 maps.n["<C-Down>"] = { "<cmd>lua require'tmux'.resize_bottom()<cr>", desc = "Resize split down" }
 maps.n["<C-Left>"] = { "<cmd>lua require'tmux'.resize_left()<cr>", desc = "Resize split left" }
 maps.n["<C-Right>"] = { "<cmd>lua require'tmux'.resize_right()<cr>", desc = "Resize split right" }
-
 
 maps.n["m"] = { desc = "Marks" }
 maps.n["m,"] = { "<Plug>(Marks-setnext)<CR>", desc = "Set Next Lowercase Mark" }
@@ -144,13 +135,12 @@ vim.g.VM_maps = {
 
 -- telescope plugin mappings
 maps.v["<leader>f"] = { desc = "󰍉 Find" }
-maps.n["<leader>fe"] = { "<cmd>Telescope file_browser<cr>", desc = "File explorer" }
 maps.n["<leader>fp"] = { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
 maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
 maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
 maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
 maps.v["<leader>fr"] =
-{ "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
+  { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
 -- maps.n["<leader>fR"] = { function() require("telescope.builtin").registers() end, desc = "Find registers" }
 
 -- 上下滚动10行
@@ -170,8 +160,8 @@ maps.v["<Tab>"] = false
 maps.v["<S-Tab>"] = false
 
 -- 上下移动选中文本
---maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move selected one line down" }
---maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move selected one line up" }
+-- maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move selected one line down" }
+-- maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move selected one line up" }
 
 -- 在visual mode 里粘贴不要复制
 maps.n["x"] = { '"_x', desc = "Cut without copy" }
@@ -199,7 +189,7 @@ if is_available "Comment.nvim" then
     desc = "Comment line",
   }
   maps.v["<C-/>"] =
-  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 maps.n["<leader>/"] = false
 maps.v["<leader>/"] = false

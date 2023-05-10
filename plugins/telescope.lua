@@ -1,7 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    "nvim-telescope/telescope-file-browser.nvim",
     "ahmedkhalf/project.nvim", -- defined in  ./editor.lua
     "nvim-telescope/telescope-media-files.nvim",
     "nvim-lua/popup.nvim",
@@ -9,7 +8,6 @@ return {
   },
   opts = function(_, opts)
     local actions = require "telescope.actions"
-    local fb_actions = require("telescope").extensions.file_browser.actions
     return require("astronvim.utils").extend_tbl(opts, {
       defaults = {
         selection_caret = "  ",
@@ -33,59 +31,6 @@ return {
         },
       },
       extensions = {
-        file_browser = {
-          -- You can use telescope's which_key (insert mode: <C-/>, normal mode: ?) to list mappings attached to your picker.
-          mappings = {
-            i = {
-              -- Create file/folder at current path (trailing path separator creates folder)
-              ["<M-c>"] = fb_actions.create,
-              -- Rename multi-selected files/folders
-              ["<M-r>"] = fb_actions.rename,
-              -- Move multi-selected files/folders to current path
-              ["<M-m>"] = fb_actions.move,
-              -- Copy (multi-)selected files/folders to current path
-              ["<M-y>"] = fb_actions.copy,
-              -- Delete (multi-)selected files/folders
-              ["<M-d>"] = fb_actions.remove,
-              -- Open file/folder with default system application
-              -- ["<C-o>"] = fb_actions.open,
-              ["<C-p>"] = fb_actions.open,
-              -- Go to parent directory
-              ["<C-g>"] = fb_actions.goto_parent_dir,
-              -- Go to home directory
-              ["<C-e>"] = fb_actions.goto_home_dir,
-              -- Go to current working directory (cwd)
-              ["<C-w>"] = fb_actions.goto_cwd,
-              -- Change nvim's cwd to selected folder/file(parent)
-              ["<C-t>"] = fb_actions.change_cwd,
-              -- Toggle between file and folder browser
-              ["<C-f>"] = fb_actions.toggle_browser,
-              -- Toggle hidden files/folders
-              ["<C-h>"] = fb_actions.toggle_hidden,
-              -- Toggle all entries ignoring ./ and ../
-              ["<C-s>"] = fb_actions.toggle_all,
-              ["<bs>"] = fb_actions.backspace,
-              ["<C-o>"] = actions.select_default,
-            },
-            n = {
-              ["c"] = fb_actions.create,
-              ["r"] = fb_actions.rename,
-              ["m"] = fb_actions.move,
-              ["y"] = fb_actions.copy,
-              ["d"] = fb_actions.remove,
-              ["p"] = fb_actions.open,
-              ["g"] = fb_actions.goto_parent_dir,
-              ["e"] = fb_actions.goto_home_dir,
-              ["w"] = fb_actions.goto_cwd,
-              ["t"] = fb_actions.change_cwd,
-              ["f"] = fb_actions.toggle_browser,
-              ["h"] = fb_actions.toggle_hidden,
-              ["s"] = fb_actions.toggle_all,
-              ["<bs>"] = fb_actions.backspace,
-              ["o"] = actions.select_default,
-            },
-          },
-        },
         -- Chafa (required for image support) 正常情况下装一个这个就可以了
         -- ImageMagick (optional, for svg previews)
         -- fd / rg / find or fdfind in Ubuntu/Debian.
@@ -116,7 +61,6 @@ return {
   config = function(...)
     require "plugins.configs.telescope" (...)
     local telescope = require "telescope"
-    telescope.load_extension "file_browser"
     telescope.load_extension "projects"
     telescope.load_extension "media_files"
     telescope.load_extension "refactoring"

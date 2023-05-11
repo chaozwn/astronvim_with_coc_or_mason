@@ -7,6 +7,7 @@ local utils = require "astronvim.utils"
 local is_available = utils.is_available
 local my_utils = require "user.utils.utils"
 
+local a = 1
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
 local system = vim.loop.os_uname().sysname

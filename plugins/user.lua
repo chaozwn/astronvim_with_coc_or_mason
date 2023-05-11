@@ -12,4 +12,6 @@ return {
   --   event = "BufRead",
   --   config = function() require("lsp_signature").setup() end,
   -- },
+  { "mrjones2014/smart-splits.nvim", enabled = false },
+  { "max397574/better-escape.nvim",  enabled = false },
 }

@@ -144,10 +144,10 @@ maps.v["<leader>fr"] =
 -- maps.n["<leader>fR"] = { function() require("telescope.builtin").registers() end, desc = "Find registers" }
 
 -- 上下滚动10行
-maps.n["<C-u>"] = { "5k", desc = "Move down 5 lines" }
-maps.n["<C-d>"] = { "5j", desc = "Move up 5 lines" }
-maps.v["<C-u>"] = { "5k", desc = "Move down 5 lines" }
-maps.v["<C-d>"] = { "5j", desc = "Move up 5 lines" }
+-- maps.n["<C-u>"] = { "5k", desc = "Move down 5 lines" }
+-- maps.n["<C-d>"] = { "5j", desc = "Move up 5 lines" }
+-- maps.v["<C-u>"] = { "5k", desc = "Move down 5 lines" }
+-- maps.v["<C-d>"] = { "5j", desc = "Move up 5 lines" }
 
 -- 开启魔术搜索,即可以通过正则来搜索
 -- maps.n["/"] = { "/\\v", desc = "Magic search" }

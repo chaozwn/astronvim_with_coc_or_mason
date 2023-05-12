@@ -17,6 +17,8 @@ return {
         "python",
         "java",
         "toml",
+        "markdown",
+        "markdown_inline",
       },
       rainbow = {
         enable = true,

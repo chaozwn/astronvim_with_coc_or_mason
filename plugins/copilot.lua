@@ -30,7 +30,7 @@ return {
           prev = "<C-o>",
           dismiss = false,
         },
-      },    
+      },
       filetypes = {
         yaml = false,
         markdown = false,

@@ -12,7 +12,6 @@ return {
   },
   opts = function(_, opts)
     local cmp = require "cmp"
-    local luasnip = require "luasnip"
 
     return require("astronvim.utils").extend_tbl(opts, {
       icons = true,

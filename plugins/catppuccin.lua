@@ -5,7 +5,7 @@ return {
     dim_inactive = { enabled = true, percentage = 0.25 },
     integrations = {
       nvimtree = false,
-      ts_rainbow = false,
+      ts_rainbow = true,
       aerial = true,
       dap = { enabled = true, enable_ui = true },
       headlines = true,

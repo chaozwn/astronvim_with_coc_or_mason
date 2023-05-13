@@ -98,11 +98,13 @@ return {
       ensure_installed = { "python" },
     },
   },
+  -- <leader>lh触发
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function()
       require("lsp_signature").setup {
+        noice = true,
         hint_prefix = " ",
       }
     end,

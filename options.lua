@@ -2,7 +2,7 @@
 return {
   opt = {
     conceallevel = 2, -- enable conceal
-    list = true, -- show whitespace characters
+    list = true,      -- show whitespace characters
     listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
     showbreak = "↪ ",
     -- showtabline = (vim.t.bufs and #vim.t.bufs > 1) and 2 or 1,
@@ -100,5 +100,6 @@ return {
 --   local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
 --
 --   return local_vim
+-- end
 -- end
 -- end

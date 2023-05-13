@@ -6,6 +6,8 @@ return {
       enable_check_bracket_line = true,
       map_c_h = true,
       map_bs = true,
+      check_ts = true,
+      enable_abbr = true,
     })
   end,
 }

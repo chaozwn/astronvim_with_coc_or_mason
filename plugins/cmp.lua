@@ -51,8 +51,8 @@ return {
       },
       sources = cmp.config.sources {
         { name = "nvim_lsp", priority = 1000 },
+        { name = "copilot", group_index = 2 },
         { name = "luasnip", priority = 900 },
-        { name = "copilot", priority = 800 },
         { name = "path", priority = 750 },
         { name = "pandoc_references", priority = 725 },
         { name = "latex_symbols", priority = 700 },

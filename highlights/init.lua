@@ -6,6 +6,10 @@ return function()
     GitSignsCurrentLineBlame = { fg = nontext.fg, italic = true }, -- italicize git blame virtual text
     HighlightURL = { underline = true }, -- always underline URLs
     OctoEditable = { fg = "NONE", bg = "NONE" }, -- use treesitter for octo.nvim highlighting
+    -- leap
+    LeapMatch = { bg = "#ff007c", fg = "#c8d3f5", bold = true },
+    LeapLabelPrimary = { fg = "#ff007c", bold = true },
+    LeapLabelSecondary = { fg = "#4fd6be", bold = true },
+    LeapBackdrop = { fg = "#545c7e" },
   }
 end
-

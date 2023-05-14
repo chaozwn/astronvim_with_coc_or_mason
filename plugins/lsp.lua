@@ -11,10 +11,4 @@ return {
     ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
     opts = function() return { server = require("astronvim.utils.lsp").config "clangd" } end,
   },
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   dependencies = {
-  --     { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-  --   },
-  -- },
 }

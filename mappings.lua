@@ -30,6 +30,12 @@ if vim.g.neovide then
   end
 end
 
+-- lsp inlayhints
+maps.n["<leader>uh"] = {
+  function() require("lsp-inlayhints").toggle() end,
+  desc = "Toggle lspInlayHints",
+}
+
 maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
@@ -51,7 +57,7 @@ maps.v["<leader>rv"] = {
   desc = "Extract Variable",
 }
 maps.v["<leader>ri"] =
-{ "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
+  { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
 
 -- Extract block doesn't need visual mode
 maps.n["<leader>rb"] = {
@@ -140,7 +146,7 @@ maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
 maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
 maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
 maps.v["<leader>fr"] =
-{ "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
+  { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
 -- maps.n["<leader>fR"] = { function() require("telescope.builtin").registers() end, desc = "Find registers" }
 
 -- 上下滚动10行
@@ -189,7 +195,7 @@ if is_available "Comment.nvim" then
     desc = "Comment line",
   }
   maps.v["<C-/>"] =
-  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 maps.n["<leader>/"] = false
 maps.v["<leader>/"] = false

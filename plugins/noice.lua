@@ -39,6 +39,7 @@ return {
       { filter = { event = "msg_show", find = "^%d+ more lines$" }, opts = { skip = true } }, -- skip paste notifications
       { filter = { event = "msg_show", find = "^%d+ fewer lines$" }, opts = { skip = true } }, -- skip delete notifications
       { filter = { event = "msg_show", find = "^%d+ lines yanked$" }, opts = { skip = true } }, -- skip yank notifications
+      { filter = { event = "msg_show", find = "AutoSave: saved at%s" }, opts = { skip = true } },
     },
   },
   -- init = function() vim.g.lsp_handlers_enabled = false end,

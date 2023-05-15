@@ -4,7 +4,7 @@ return {
   event = "WinNew",
   opts = {
     -- This plugin will not be activated for filetype in the following table.
-    no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree" },
+    no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree", "alpha" },
     -- highlight for Window separator
     highlight = {
       bg = "#16161E",

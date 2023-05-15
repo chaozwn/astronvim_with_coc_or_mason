@@ -66,7 +66,7 @@ return {
   {
     "echasnovski/mini.indentscope",
     version = false, -- wait till new 0.7.0 release to put it back on semver
-    event = { "BufEnter" },
+    event = "User AstroFile",
     opts = {
       symbol = "╎",
       options = { try_as_border = false, indent_at_cursor = true },
@@ -81,7 +81,7 @@ return {
   -- indent guides for Neovim
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "User AstroFile",
     opts = function(_, opts)
       return require("astronvim.utils").extend_tbl(opts, {
         char = "│",

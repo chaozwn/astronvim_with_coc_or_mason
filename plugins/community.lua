@@ -13,4 +13,5 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.java" },
+  { import = "astrocommunity.pack.vue" },
 }

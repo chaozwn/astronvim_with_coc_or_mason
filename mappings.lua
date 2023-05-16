@@ -194,6 +194,7 @@ maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
 
 -- lsp restart
 maps.n["<leader>lm"] = { ":LspRestart<CR>", desc = "Lsp restart" }
+maps.n["<leader>lg"] = { ":LspLog<CR>", desc = "Show lsp log" }
 
 -- Comment
 if is_available "Comment.nvim" then

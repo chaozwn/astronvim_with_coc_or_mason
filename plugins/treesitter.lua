@@ -19,6 +19,7 @@ return {
         "toml",
         "markdown",
         "markdown_inline",
+        "vue",
       },
       rainbow = {
         enable = true,

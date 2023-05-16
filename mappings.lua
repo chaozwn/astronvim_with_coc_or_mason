@@ -176,10 +176,17 @@ maps.n["x"] = { '"_x', desc = "Cut without copy" }
 maps.n["<leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
 
 -- 分屏快捷键
-maps.n["<leader>bw"] = { "<C-w>c", desc = "Close current screen" }
-maps.n["<leader>bo"] = { "<C-w>o", desc = "Close other screen" }
+maps.n["<leader>w"] = { desc = "󱂬 Window" }
+maps.n["<leader>wc"] = { "<C-w>c", desc = "Close current screen" }
+maps.n["<leader>wo"] = { "<C-w>o", desc = "Close other screen" }
 -- 多个窗口之间跳转
-maps.n["<leader>b="] = { "<C-w>=", desc = "Make all window equal" }
+maps.n["<leader>w="] = { "<C-w>=", desc = "Make all window equal" }
+
+maps.n["<leader>bo"] =
+  { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
+maps.n["<leader>ba"] = { function() require("astronvim.utils.buffer").close_all() end, desc = "Close all buffers" }
+maps.n["<leader>bc"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
+maps.n["<leader>bC"] = { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
 
 -- better search
 maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }

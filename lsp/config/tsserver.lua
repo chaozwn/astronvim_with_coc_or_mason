@@ -1,6 +1,9 @@
 return {
   settings = {
     javascript = {
+      updateImportsOnFileMove = {
+        enabled = "always"
+      },
       inlayHints = {
         includeInlayEnumMemberValueHints = true,
         includeInlayFunctionLikeReturnTypeHints = true,
@@ -12,6 +15,9 @@ return {
       },
     },
     typescript = {
+      updateImportsOnFileMove = {
+        enabled = "always"
+      },
       inlayHints = {
         includeInlayEnumMemberValueHints = true,
         includeInlayFunctionLikeReturnTypeHints = true,

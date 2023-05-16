@@ -28,6 +28,19 @@ return {
     },
     capabilities = {
       workspace = {
+        applyEdit = true,
+        workspaceEdit = {
+          documentChanges = true,
+          resourceOperations = {
+            "create",
+            "rename",
+            "delete",
+          },
+          failureHandling = "textOnlyTransactional",
+        },
+        didChangeConfiguration = {
+          dynamicRegistration = true,
+        },
         didChangeWatchedFiles = {
           dynamicRegistration = true,
         },

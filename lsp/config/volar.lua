@@ -1,5 +1,6 @@
 local lspconfig_util = require "lspconfig.util"
 
+-- brew install watchman
 return {
   filetypes = {
     "typescript",
@@ -12,6 +13,14 @@ return {
     "typescript.tsx",
   },
   settings = {
+    volar = {
+      codeLens = {
+        references = true,
+        pugTools = true,
+        scriptSetupTools = true,
+      },
+      vueserver = { fullCompletionList = true },
+    },
     javascript = {
       updateImportsOnFileMove = {
         enabled = "always",
@@ -27,14 +36,11 @@ return {
       },
     },
     typescript = {
-      tsdk = {
-        tsdk = lspconfig_util.path.join(vim.fn.getcwd(), "node_modules", "typescript", "lib", "tsserverlibrary.js"),
-      },
       updateImportsOnFileMove = {
         enabled = "always",
       },
       preferences = {
-        importModuleSpecifier = "non-relative"
+        importModuleSpecifier = "non-relative",
       },
       inlayHints = {
         includeInlayEnumMemberValueHints = true,
@@ -57,6 +63,7 @@ return {
         petiteVue = {
           supportHtmlFile = true,
         },
+        fullCompletionList = true,
       },
       inlayHints = {
         inlineHandlerLeading = true,
@@ -67,6 +74,38 @@ return {
         pugTools = true,
         scriptSetupTools = true,
       },
+      useWorkspaceDependencies = true,
+    },
+  },
+  init_options = {
+    typescript = {
+      tsdk = lspconfig_util.path.join(vim.fn.getcwd(), "node_modules", "typescript", "lib"),
+    },
+    languageFeatures = {
+      references = true,
+      definition = true,
+      typeDefinition = true,
+      callHierarchy = true,
+      hover = false,
+      rename = true,
+      signatureHelp = true,
+      codeAction = true,
+      completion = {
+        defaultTagNameCase = "both",
+        defaultAttrNameCase = "kebabCase",
+      },
+      schemaRequestService = true,
+      documentHighlight = true,
+      codeLens = true,
+      semanticTokens = true,
+      diagnostics = true,
+    },
+    documentFeatures = {
+      selectionRange = true,
+      foldingRange = true,
+      linkedEditingRange = true,
+      documentSymbol = true,
+      documentColor = true,
     },
   },
 }

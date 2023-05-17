@@ -23,6 +23,7 @@ return {
         "jdtls",
         "lemminx",
         "volar",
+        "tailwindcss"
       },
     },
   },

@@ -23,7 +23,7 @@ return {
       formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
-          local kind = require("lspkind").cmp_format { mode = "symbol_text", maxwidth = 50 }(entry, vim_item)
+          local kind = require("lspkind").cmp_format { mode = "symbol_text", maxwidth = 50 } (entry, vim_item)
           local strings = vim.split(kind.kind, "%s", { trimempty = true })
           kind.kind = " " .. (strings[1] or "") .. " "
           kind.menu = "    (" .. (strings[2] or "") .. ")"
@@ -50,15 +50,15 @@ return {
         },
       },
       sources = cmp.config.sources {
-        { name = "nvim_lsp", priority = 1000 },
-        { name = "copilot", group_index = 2 },
-        { name = "luasnip", priority = 900 },
-        { name = "path", priority = 750 },
+        { name = "nvim_lsp",          priority = 1000 },
+        { name = "copilot",           group_index = 2 },
+        { name = "luasnip",           priority = 900 },
+        { name = "path",              priority = 750 },
         { name = "pandoc_references", priority = 725 },
-        { name = "latex_symbols", priority = 700 },
-        { name = "emoji", priority = 700 },
-        { name = "calc", priority = 650 },
-        { name = "buffer", priority = 250 },
+        { name = "latex_symbols",     priority = 700 },
+        { name = "emoji",             priority = 700 },
+        { name = "calc",              priority = 650 },
+        { name = "buffer",            priority = 250 },
       },
       mapping = {
         -- ["<CR>"] = cmp.mapping.confirm({

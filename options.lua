@@ -1,6 +1,13 @@
 -- set vim options here (vim.<first_key>.<second_key> = value)
 return {
   opt = {
+    -- coc
+    backup = false,
+    writebackup = false,
+    updatetime = 300,
+    signcolumn = "yes",
+
+    -- other configuration
     conceallevel = 2, -- enable conceal
     list = true,      -- show whitespace characters
     listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
@@ -86,6 +93,31 @@ return {
     --   encoding = "utf-8",
     --   -- 自动补全不自动选中
     --   completeopt = "menu,menuone,noselect,noinsert",
+    coc_global_extensions = {
+      "coc-marketplace",
+      "@yaegassy/coc-volar",
+      "coc-emmet",
+      "coc-tsserver",
+      "coc-json",
+      "coc-html",
+      "coc-css",
+      "coc-clangd",
+      "coc-go",
+      "coc-sumneko-lua",
+      "coc-vimlsp",
+      "coc-sh",
+      "coc-db",
+      "coc-pyright",
+      "coc-toml",
+      "coc-solidity",
+      "coc-prettier",
+      "coc-snippets",
+      "coc-pairs",
+      "coc-word",
+      "coc-translator",
+      "coc-git",
+      "coc-yank",
+    },
   },
   wo = {
     spell = false,

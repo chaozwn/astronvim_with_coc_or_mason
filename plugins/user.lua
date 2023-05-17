@@ -12,6 +12,7 @@ return {
   --   event = "BufRead",
   --   config = function() require("lsp_signature").setup() end,
   -- },
+  {  "hrsh7th/nvim-cmp", enabled = false },
   { "max397574/better-escape.nvim", enabled = false },
   {
     "akinsho/toggleterm.nvim",

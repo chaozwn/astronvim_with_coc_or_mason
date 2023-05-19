@@ -14,7 +14,6 @@ return {
         ["cmp.entry.get_documentation"] = true,
       },
       progress = { enabled = false },
-      hover = { enabled = false },
       signature = { enabled = false },
       notify = {
         enabled = true,
@@ -42,5 +41,5 @@ return {
       { filter = { event = "msg_show", find = "AutoSave: saved at%s" }, opts = { skip = true } },
     },
   },
-  -- init = function() vim.g.lsp_handlers_enabled = false end,
+  init = function() vim.g.lsp_handlers_enabled = false end,
 }

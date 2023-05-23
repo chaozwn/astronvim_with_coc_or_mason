@@ -1,4 +1,4 @@
-if vim.g.neovide then return {} end
+-- if vim.g.neovide then return {} end
 return {
   "folke/noice.nvim",
   event = "VeryLazy",

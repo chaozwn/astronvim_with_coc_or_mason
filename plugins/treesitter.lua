@@ -20,6 +20,7 @@ return {
         "markdown",
         "markdown_inline",
         "vue",
+        "prisma",
       },
       rainbow = {
         enable = true,

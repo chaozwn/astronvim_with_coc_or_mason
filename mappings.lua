@@ -6,6 +6,7 @@
 local utils = require "astronvim.utils"
 local is_available = utils.is_available
 local my_utils = require "user.utils.utils"
+local lsp_type = require("user.config.lsp_type").lsp_type
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
@@ -40,39 +41,47 @@ maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
 
-maps.n["<leader>r"] = { desc = " Refactor" }
-maps.v["<leader>r"] = { desc = " Refactor" }
--- refactoring
--- Remaps for the refactoring operations currently offered by the plugin
-maps.v["<leader>rf"] = {
-  "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>",
-  desc = "Extract Function",
-}
-maps.v["<leader>rF"] = {
-  "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
-  desc = "Extract Function To File",
-}
-maps.v["<leader>rv"] = {
-  "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
-  desc = "Extract Variable",
-}
-maps.v["<leader>ri"] =
-{ "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
+-- close mason
+if lsp_type == 'coc' then
+  maps.n["<leader>pa"] = false
+end
 
--- Extract block doesn't need visual mode
-maps.n["<leader>rb"] = {
-  "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>",
-  desc = "Extract Block",
-}
-maps.n["<leader>rB"] = {
-  "<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>",
-  desc = "Extract Block To File",
-}
--- Inline variable can also pick up the identifier currently under the cursor without visual mode
-maps.n["<leader>ri"] = {
-  "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
-  desc = "Inline Variable",
-}
+
+if lsp_type ~= 'coc' then
+  maps.n["<leader>r"] = { desc = " Refactor" }
+  maps.v["<leader>r"] = { desc = " Refactor" }
+  -- refactoring
+  -- Remaps for the refactoring operations currently offered by the plugin
+  maps.v["<leader>rf"] = {
+    "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>",
+    desc = "Extract Function",
+  }
+  maps.v["<leader>rF"] = {
+    "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
+    desc = "Extract Function To File",
+  }
+  maps.v["<leader>rv"] = {
+    "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
+    desc = "Extract Variable",
+  }
+  maps.v["<leader>ri"] =
+  { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
+
+  -- Extract block doesn't need visual mode
+  maps.n["<leader>rb"] = {
+    "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>",
+    desc = "Extract Block",
+  }
+  maps.n["<leader>rB"] = {
+    "<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>",
+    desc = "Extract Block To File",
+  }
+  -- Inline variable can also pick up the identifier currently under the cursor without visual mode
+  maps.n["<leader>ri"] = {
+    "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+    desc = "Inline Variable",
+  }
+end
 
 -- Debug
 -- maps.n["<leader>ds"] = { function() require("dap").run_to_cursor() end, desc = "Run To Cursor" }
@@ -193,8 +202,10 @@ maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
 maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
 
 -- lsp restart
-maps.n["<leader>lm"] = { ":LspRestart<CR>", desc = "Lsp restart" }
-maps.n["<leader>lg"] = { ":LspLog<CR>", desc = "Show lsp log" }
+if lsp_type ~= 'coc' then
+  maps.n["<leader>lm"] = { ":LspRestart<CR>", desc = "Lsp restart" }
+  maps.n["<leader>lg"] = { ":LspLog<CR>", desc = "Show lsp log" }
+end
 
 -- Comment
 if is_available "Comment.nvim" then
@@ -277,5 +288,73 @@ maps.n["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" }
 
 -- TsInformation
 maps.n["<leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
+
+-- coc lsp keymapping
+if lsp_type == 'coc' then
+  -- Autocomplete
+  function _G.check_back_space()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+  end
+
+  maps.i["<TAB>"] = { "coc#pum#visible() ? coc#pum#confirm() :  \"\\<TAB>\"", expr = true }
+  maps.i["<C-j>"] = { "coc#pum#visible() ? coc#pum#next(1) : \"\\<C-j>\" ", expr = true, nowait = true }
+  maps.i["<C-k>"] = { "coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-k>\"", expr = true, nowait = true }
+  -- maps.i["<C-j>"] = { "<Plug>(coc-snippets-expand-jump)" }
+  maps.n["[d"] = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
+  maps.n["]d"] = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
+  maps.n["gD"] = { "<Plug>(coc-definition)", desc = "Show the definition of current symbol" }
+  maps.n["gd"] = { "<Plug>(coc-definition)", desc = "Show the definition of current symbol" }
+  maps.n["gT"] = { "<Plug>(coc-type-definition)", desc = "Definition of current type" }
+  maps.n["gI"] = { "<Plug>(coc-implementation)", desc = "Implementation of current symbol" }
+  maps.n["gr"] = { "<Plug>(coc-references)", desc = "References of current symbol" }
+  -- Use K to show documentation in preview window
+  function _G.show_docs()
+    local cw = vim.fn.expand('<cword>')
+    if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
+      vim.api.nvim_command('h ' .. cw)
+    elseif vim.api.nvim_eval('coc#rpc#ready()') then
+      vim.fn.CocActionAsync('doHover')
+    else
+      vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+    end
+  end
+
+  maps.n["K"] = { "<CMD>lua _G.show_docs()<CR>", desc = "Hover symbol details" }
+  maps.n["<leader>lr"] = { "<Plug>(coc-rename)", desc = "Rename current symbol" }
+  maps.n["<leader>lf"] = { ":call CocActionAsync('format')<CR>", desc = "Format buffer" }
+  maps.x["<leader>lf"] = { ":call CocActionAsync('format')<CR>", desc = "Format buffer" }
+  maps.n["<leader>la"] = { "<Plug>(coc-codeaction)", desc = "LSP code action" }
+  maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "LSP code action" }
+  maps.n["<leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }
+  maps.n["<leader>r"] = { desc = " Refactor" }
+  maps.v["<leader>r"] = { desc = " Refactor" }
+  maps.n["<leader>re"] = { "<Plug>(coc-codeaction-refactor)", desc = "Code refactor" }
+  maps.x["<leader>rs"] = { "<Plug>coc-codeaction-refactor-selected)", desc = "Code refactor selected" }
+  maps.n["<leader>rs"] = { "<Plug>coc-codeaction-refactor-selected)", desc = "Code refactor selected" }
+
+  -- text object
+  maps.x["if"] = { "<Plug>(coc-funcobj-i)" }
+  maps.o["if"] = { "<Plug>(coc-funcobj-i)" }
+  maps.x["af"] = { "<Plug>(coc-funcobj-a)" }
+  maps.o["af"] = { "<Plug>(coc-funcobj-a)" }
+  maps.x["ic"] = { "<Plug>(coc-classobj-i)" }
+  maps.o["ic"] = { "<Plug>(coc-classobj-i)" }
+  maps.x["ac"] = { "<Plug>(coc-classobj-a)" }
+  maps.o["ac"] = { "<Plug>(coc-classobj-a)" }
+
+  maps.n["<C-f>"] = { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', expr = true }
+  maps.n["<C-b>"] = { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', expr = true }
+  maps.i["<C-f>"] = { 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', expr = true }
+  maps.i["<C-b>"] = { 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', expr = true }
+  maps.v["<C-f>"] = { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', expr = true }
+  maps.v["<C-b>"] = { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', expr = true }
+
+  maps.n["<leader>lS"] = { ":<C-u>CocList outline<cr>", desc = "Symbols outline" }
+  maps.n["<leader>ld"] = { ":<C-u>CocList diagnostics<cr>", desc = "Show all diagnostics" }
+  maps.n["<leader>pe"] = { ":<C-u>CocList extensions<cr>", desc = "Manage extensions" }
+  maps.n["<leader>pc"] = { ":<C-u>CocList commands<cr>", desc = "Show commands" }
+  maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }
+end
 
 return maps

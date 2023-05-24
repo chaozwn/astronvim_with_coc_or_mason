@@ -59,10 +59,14 @@ return {
     })
   end,
   config = function(...)
+    local lsp_type = require("user.config.lsp_type").lsp_type
+
     require "plugins.configs.telescope" (...)
     local telescope = require "telescope"
     telescope.load_extension "projects"
     telescope.load_extension "media_files"
-    telescope.load_extension "refactoring"
+    if lsp_type ~= 'coc' then
+      telescope.load_extension "refactoring"
+    end
   end,
 }

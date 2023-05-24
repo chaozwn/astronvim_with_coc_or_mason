@@ -18,27 +18,62 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
-  vim.api.nvim_create_augroup("im-select", { clear = true })
+vim.api.nvim_create_augroup("im-select", { clear = true })
 
-  vim.api.nvim_create_autocmd("InsertLeave", {
-    group = "im-select",
-    callback = require("user.utils.im-select").macInsertLeave,
-  })
-  vim.api.nvim_create_autocmd("InsertEnter", {
-    group = "im-select",
-    callback = require("user.utils.im-select").macInsertEnter,
-  })
-  vim.api.nvim_create_autocmd("FocusGained", {
-    group = "im-select",
-    callback = require("user.utils.im-select").macFocusGained,
-  })
-  vim.api.nvim_create_autocmd("FocusLost", {
-    group = "im-select",
-    callback = require("user.utils.im-select").macFocusLost,
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = "im-select",
+  callback = require("user.utils.im-select").macInsertLeave,
+})
+vim.api.nvim_create_autocmd("InsertEnter", {
+  group = "im-select",
+  callback = require("user.utils.im-select").macInsertEnter,
+})
+vim.api.nvim_create_autocmd("FocusGained", {
+  group = "im-select",
+  callback = require("user.utils.im-select").macFocusGained,
+})
+vim.api.nvim_create_autocmd("FocusLost", {
+  group = "im-select",
+  callback = require("user.utils.im-select").macFocusLost,
+})
+
+if vim.g.neovide then
+  local neovide = require "user.utils.neovide"
+  neovide.init()
+end
+
+local lsp_type = require("user.config.lsp_type").lsp_type
+if lsp_type == 'coc' then
+  vim.api.nvim_create_augroup("CocGroup", {})
+
+  vim.api.nvim_create_autocmd("CursorHold", {
+    group = "CocGroup",
+    command = "silent call CocActionAsync('highlight')",
+    desc = "Highlight symbol under cursor on CursorHold"
   })
 
-  if vim.g.neovide then
-    local neovide = require "user.utils.neovide"
-    neovide.init()
-  end
+  -- Setup formatexpr specified filetype(s)
+  vim.api.nvim_create_autocmd("FileType", {
+    group = "CocGroup",
+    pattern = "typescript,json",
+    command = "setl formatexpr=CocAction('formatSelected')",
+    desc = "Setup formatexpr specified filetype(s)."
+  })
 
+  -- Update signature help on jump placeholder
+  vim.api.nvim_create_autocmd("User", {
+    group = "CocGroup",
+    pattern = "CocJumpPlaceholder",
+    command = "call CocActionAsync('showSignatureHelp')",
+    desc = "Update signature help on jump placeholder"
+  })
+
+  -- Add `:Format` command to format current buffer
+  vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
+
+  -- " Add `:Fold` command to fold current buffer
+  vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = '?' })
+
+  -- Add `:OR` command for organize imports of the current buffer
+  vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
+end

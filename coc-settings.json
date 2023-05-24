@@ -1,0 +1,96 @@
+
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "suggest.noselect": false,
+  "suggest.enablePreselect": true,
+  "suggest.autoTrigger": "always",
+  "suggest.timeout": 5000,
+  "suggest.detailField": "preview",
+  "suggest.snippetIndicator": "",
+  "suggest.triggerCompletionWait": 50,
+  "suggest.completionItemKindLabels": {
+    "class": "\uf0e8",
+    "color": "\ue22b",
+    "constant": "\uf8fe",
+    "default": "\uf29c",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "event": "\ufacd",
+    "field": "\uf93d",
+    "file": "\uf723",
+    "folder": "\uf115",
+    "function": "\u0192",
+    "interface": "\uf417",
+    "keyword": "\uf1de",
+    "method": "\uf6a6",
+    "module": "\uf40d",
+    "operator": "\uf915",
+    "property": "\ue624",
+    "reference": "\ufa46",
+    "snippet": "\ue60b",
+    "struct": "\ufb44",
+    "text": "\ue612",
+    "typeParameter": "\uf728",
+    "unit": "\uf475",
+    "value": "\uf89f",
+    "variable": "\ue71b"
+  },
+  "diagnostic.errorSign": "\uf467",
+  "diagnostic.warningSign": "\uf071",
+  "diagnostic.infoSign": "\uf129",
+  "diagnostic.hintSign": "\uf864",
+  "diagnostic.displayByAle": false,
+  "diagnostic.refreshOnInsertMode": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+  "diagnostic.virtualText": true,
+  "codeLens.enable": true,
+  "list.previewHighlightGroup": "Statement",
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "git.enableGutters": true,
+  "git.floatConfig": {
+    "border": true
+  },
+  "diagnostic.floatConfig": {
+    "border": true
+  },
+  "signature.floatConfig": {
+    "border": true
+  },
+  "hover.floatConfig": {
+    "border": true
+  },
+  "suggest.floatConfig": {
+    "border": true
+  },
+  "coc.preferences.formatOnSave": true,
+  "snippets.ultisnips.directories": [
+    "$HOME/.vim/plugged/vim-snippets/UltiSnips"
+  ],
+  "python.formatting.provider": "black",
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"]
+    }
+  },
+  "tsserver.locale": "zh-CN",
+  "emmet.showExpandedAbbreviation": "always",
+  "emmet.showAbbreviationSuggestions": true,
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact"
+  },
+  "emmet.excludeLanguages": ["markdown"],
+  "colors.enable": false,
+  "pairs.disableLanguages": [],
+  "pairs.enableCharacters": ["(", "[", "{", "<", "'", "\"", "`"],
+  "pairs.enableBackspace": true,
+  "yank.highlight.enable": true,
+  "yank.highlight.duration": 500,
+  "yank.list.maxsize": 300,
+  "yank.enableCompletion": true,
+  "yank.priority": 90,
+  "yank.limit": 20
+}
+

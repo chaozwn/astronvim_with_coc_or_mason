@@ -88,6 +88,10 @@ if lsp_type == 'coc' then
       enabled = false
     },
     {
+      "folke/trouble.nvim",
+      enabled = false
+    },
+    {
       "neoclide/coc.nvim",
       branch = "release",
       event = "BufEnter"

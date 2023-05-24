@@ -11,7 +11,9 @@ return {
   dependencies = { "miversen33/netman.nvim" },
   opts = function(_, opts)
     local events = require "neo-tree.events"
-    return require("astronvim.utils").extend_tbl(opts, {
+    local lsp_type = require("user.config.lsp_type").lsp_type
+    local event_handlers = {}
+    if lsp_type == "coc" then
       event_handlers = {
         {
           event = events.FILE_MOVED,
@@ -21,7 +23,10 @@ return {
           event = events.FILE_RENAMED,
           handler = on_file_remove,
         },
-      },
+      }
+    end
+    return require("astronvim.utils").extend_tbl(opts, {
+      event_handlers = event_handlers,
       close_if_last_window = true,
       sources = {
         "filesystem",

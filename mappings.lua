@@ -260,12 +260,15 @@ maps.n["<leader>bD"] = {
 }
 
 -- trouble
-maps.n["<leader>x"] = { desc = "裂Trouble" }
-maps.n["<leader>xx"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" }
-maps.n["<leader>xX"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" }
-maps.n["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" }
-maps.n["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" }
-maps.n["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" }
+if lsp_type ~= "coc" then
+  maps.n["<leader>x"] = { desc = "裂Trouble" }
+  maps.n["<leader>xx"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" }
+  maps.n["<leader>xX"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" }
+  maps.n["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" }
+  maps.n["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" }
+  maps.n["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" }
+end
+
 
 -- better increment/decrement
 -- maps.x["+"] = { "g<C-a>", desc = "Increment number" }
@@ -297,6 +300,7 @@ if lsp_type == 'coc' then
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
   end
 
+  maps.n["<leader>lD"] = false
   maps.i["<TAB>"] = { "coc#pum#visible() ? coc#pum#confirm() :  \"\\<TAB>\"", expr = true }
   maps.i["<C-j>"] = { "coc#pum#visible() ? coc#pum#next(1) : \"\\<C-j>\" ", expr = true, nowait = true }
   maps.i["<C-k>"] = { "coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-k>\"", expr = true, nowait = true }
@@ -325,7 +329,7 @@ if lsp_type == 'coc' then
   maps.n["<leader>lf"] = { ":call CocActionAsync('format')<CR>", desc = "Format buffer" }
   maps.x["<leader>lf"] = { ":call CocActionAsync('format')<CR>", desc = "Format buffer" }
   maps.n["<leader>la"] = { "<Plug>(coc-codeaction)", desc = "LSP code action" }
-  maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "LSP code action" }
+  maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "Code action whole buffer" }
   maps.n["<leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }
   maps.n["<leader>r"] = { desc = " Refactor" }
   maps.v["<leader>r"] = { desc = " Refactor" }
@@ -356,7 +360,6 @@ if lsp_type == 'coc' then
   maps.n["<leader>pc"] = { ":<C-u>CocList commands<cr>", desc = "Show commands" }
   maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }
   maps.n["<leader>lm"] = { ":silent CocRestart<cr>", desc = "Coc restart" }
-
 end
 
 return maps

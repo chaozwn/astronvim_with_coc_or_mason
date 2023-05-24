@@ -33,6 +33,7 @@ if lsp_type == 'coc' then
     },
     {
       "lvimuser/lsp-inlayhints.nvim",
+      config = false,
       enabled = false
     },
     -- dap

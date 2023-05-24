@@ -355,6 +355,8 @@ if lsp_type == 'coc' then
   maps.n["<leader>pe"] = { ":<C-u>CocList extensions<cr>", desc = "Manage extensions" }
   maps.n["<leader>pc"] = { ":<C-u>CocList commands<cr>", desc = "Show commands" }
   maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }
+  maps.n["<leader>lm"] = { ":silent CocRestart<cr>", desc = "Coc restart" }
+
 end
 
 return maps

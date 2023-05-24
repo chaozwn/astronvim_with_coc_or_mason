@@ -1,25 +1,18 @@
 local lsp_type = require("user.config.lsp_type").lsp_type
-local community = {
- "AstroNvim/astrocommunity",
-}
-if lsp_type == 'coc' then
-else
- community = {
-  -- Add the community repository of plugin specifications
-  -- example of imporing a plugin, comment out to use it or add your own
-  -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
-  -- { import = "astrocommunity.colorscheme.catppuccin" },
-  -- { import = "astrocommunity.completion.copilot-lua-cmp" },
-  { import = "astrocommunity.pack.typescript" },
-  { import = "astrocommunity.pack.prisma" },
-  { import = "astrocommunity.pack.json" },
-  { import = "astrocommunity.pack.tailwindcss" },
-  { import = "astrocommunity.pack.markdown" },
-  { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.pack.java" },
- }
+local plugins = {
+  "AstroNvim/astrocommunity",
+}
+
+if lsp_type ~= 'coc' then
+  plugins.insert(plugins, { import = "astrocommunity.pack.typescript" })
+  plugins.insert(plugins, { import = "astrocommunity.pack.prisma" })
+  plugins.insert(plugins, { import = "astrocommunity.pack.json" })
+  plugins.insert(plugins, { import = "astrocommunity.pack.tailwindcss" })
+  plugins.insert(plugins, { import = "astrocommunity.pack.markdown" })
+  plugins.insert(plugins, { import = "astrocommunity.pack.python" })
+  plugins.insert(plugins, { import = "astrocommunity.pack.java" })
 end
 
+return plugins
 
-return community

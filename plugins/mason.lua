@@ -4,7 +4,7 @@
 local lsp_type = require("user.config.lsp_type").lsp_type
 
 local getEvent = function()
-  if lsp_type == 'coc' then
+  if lsp_type == "coc" then
     return "User AstroFile"
   else
     return "LspAttach"
@@ -12,6 +12,13 @@ local getEvent = function()
 end
 
 return {
+  {
+    -- This is needed for pylint to work in a virtualenv. See https://github.com/williamboman/mason.nvim/issues/668#issuecomment-1320859097
+    "williamboman/mason.nvim",
+    opts = {
+      PATH = "append",
+    },
+  },
   -- use mason-lspconfig to configure LSP installations
   {
     "williamboman/mason-lspconfig.nvim",
@@ -34,7 +41,7 @@ return {
         "lemminx",
         "volar",
         "tailwindcss",
-        "prismals"
+        "prismals",
       },
     },
   },
@@ -52,6 +59,7 @@ return {
         "black",
         "isort",
         "clang_format",
+        "pylint",
       },
       handlers = {
         -- for prettier

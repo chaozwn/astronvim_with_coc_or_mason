@@ -15,6 +15,7 @@ return {
   end,
   settings = {
     python = {
+      pythonPath = "~/miniconda3/envs/python38/bin/python",
       analysis = {
         autoSearchPaths = true,
         diagnosticMode = "workspace",

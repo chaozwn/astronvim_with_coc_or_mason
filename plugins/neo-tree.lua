@@ -1,31 +1,10 @@
 local get_icon = require("astronvim.utils").get_icon
 
-local function on_file_remove(args)
-end
-
-local function on_file_rename(args)
-end
-
 return {
   "nvim-neo-tree/neo-tree.nvim",
   dependencies = { "miversen33/netman.nvim" },
   opts = function(_, opts)
-    local events = require "neo-tree.events"
-    local lsp_type = require("user.config.lsp_type").lsp_type
     local event_handlers = {}
-    -- TODO: 排查这边的问题
-    if lsp_type == "coc" then
-      event_handlers = {
-        {
-          event = events.FILE_MOVED,
-          handler = on_file_remove,
-        },
-        {
-          event = events.FILE_RENAMED,
-          handler = on_file_remove,
-        },
-      }
-    end
     return require("astronvim.utils").extend_tbl(opts, {
       event_handlers = event_handlers,
       close_if_last_window = true,

@@ -35,6 +35,7 @@ return {
         "TelescopePrompt",
         "alpha",
         "netrw",
+        'neo-tree'
       },
       bookmark_0 = {
         sign = "⚑",

@@ -1,6 +1,6 @@
 M = {}
 
 -- lsp default
-M.lsp_type = "lsp"
+M.lsp_type = "coc"
 
 return M

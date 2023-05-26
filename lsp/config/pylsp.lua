@@ -15,21 +15,10 @@ return {
   end,
   settings = {
     pylsp = {
-      configurationSources = { "pycodestyle" },
       plugins = {
         rope_autoimport = { enabled = true, memory = true },
         rope_completion = { enabled = true, eager = true },
       },
     },
-  },
-  plugins = {
-    -- If this plugin does not work try running MyPy from the
-    -- command line first
-    pylsp_mypy = {
-      enabled = true,
-      live_mode = true,
-    },
-    rope_autoimport = { enabled = true, memory = true },
-    rope_completion = { enabled = true, eager = true },
   },
 }

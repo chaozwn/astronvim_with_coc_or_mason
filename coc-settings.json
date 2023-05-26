@@ -68,7 +68,6 @@
 	"yank.enableCompletion": false,
 	"typescript.suggestionActions.enabled": true,
 	"pyright.enable": true,
-	"python.autoComplete.addBrackets": true,
 	"python.formatting.provider": "yapf",
 	"python.formatting.yapfArgs": [
 		"--style",

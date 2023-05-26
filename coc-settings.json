@@ -25,7 +25,7 @@
 		"$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
 	],
 	"suggest.detailMaxLength": 60,
-	"suggest.noselect": true,
+	"suggest.noselect": false,
 	"suggest.enablePreselect": true,
 	"suggest.triggerAfterInsertEnter": true,
 	"suggest.autoTrigger": "always",

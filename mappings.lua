@@ -308,36 +308,36 @@ if lsp_type == 'coc' then
   end
 
   -- TODO: 修复这边使用提示的配置
-  maps.i["<TAB>"]   = {
-    'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
+  maps.i["<TAB>"] = {
+    "coc#pum#visible() ? coc#pum#confirm() :  \"\\<TAB>\"",
     expr = true,
     silent = true,
     replace_keycodes = false,
     nowait = true
   }
-  maps.i["<S-TAB>"] = {
-    [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
-    expr = true,
-    silent = true,
-    replace_keycodes = false,
-    nowait = true
-  }
+  -- maps.i["<S-TAB>"] = {
+  --   [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
+  --   expr = true,
+  --   silent = true,
+  --   replace_keycodes = false,
+  --   nowait = true
+  -- }
 
-  maps.i["<C-j>"]   = {
+  maps.i["<C-j>"] = {
     "coc#pum#visible() ? coc#pum#next(1) : \"\\<C-j>\"",
     expr = true,
     replace_keycodes = false,
     silent = true,
     nowait = true
   }
-  maps.i["<C-k>"]   = {
+  maps.i["<C-k>"] = {
     "coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-k>\"",
     expr = true,
     replace_keycodes = false,
     silent = true,
     nowait = true
   }
-  maps.i["<CR>"]    = {
+  maps.i["<CR>"]  = {
     [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
     expr = true,
     replace_keycodes = false,
@@ -346,13 +346,13 @@ if lsp_type == 'coc' then
   }
 
   -- maps.i["<C-j>"] = { "<Plug>(coc-snippets-expand-jump)" }
-  maps.n["[d"]      = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
-  maps.n["]d"]      = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
-  maps.n["gD"]      = { "<cmd>Telescope coc declarations<CR>", desc = "Declaration of current symbol" }
-  maps.n["gd"]      = { "<cmd>Telescope coc definitions<CR>", desc = "Show the definition of current symbol" }
-  maps.n["gT"]      = { "<cmd>Telescope coc type_definitions<CR>", desc = "Definition of current type" }
-  maps.n["gI"]      = { "<cmd>Telescope coc implementations<CR>", desc = "Implementation of current symbol" }
-  maps.n["gr"]      = { "<cmd>Telescope coc references<CR>", desc = "References of current symbol" }
+  maps.n["[d"]    = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
+  maps.n["]d"]    = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
+  maps.n["gD"]    = { "<cmd>Telescope coc declarations<CR>", desc = "Declaration of current symbol" }
+  maps.n["gd"]    = { "<cmd>Telescope coc definitions<CR>", desc = "Show the definition of current symbol" }
+  maps.n["gT"]    = { "<cmd>Telescope coc type_definitions<CR>", desc = "Definition of current type" }
+  maps.n["gI"]    = { "<cmd>Telescope coc implementations<CR>", desc = "Implementation of current symbol" }
+  maps.n["gr"]    = { "<cmd>Telescope coc references<CR>", desc = "References of current symbol" }
   -- Use K to show documentation in preview window
   function _G.show_docs()
     local cw = vim.fn.expand('<cword>')

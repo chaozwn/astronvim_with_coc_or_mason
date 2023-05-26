@@ -1,13 +1,12 @@
 -- NOTE: Install watchman
--- NOTE: ln -s coc-settings.json ~/.config/nvim
 local lsp_type = require("user.config.lsp_type").lsp_type
 
 if lsp_type == 'coc' then
   return {
-    {
-      "williamboman/mason.nvim",
-      enabled = false
-    },
+    -- {
+    --   "williamboman/mason.nvim",
+    --   enabled = false
+    -- },
     -- coc
     {
       "jose-elias-alvarez/null-ls.nvim",
@@ -39,26 +38,26 @@ if lsp_type == 'coc' then
       enabled = false
     },
     -- dap
-    {
-      "mfussenegger/nvim-dap",
-      enabled = false
-    },
-    {
-      "jay-babu/mason-nvim-dap.nvim",
-      enabled = false,
-    },
-    {
-      "mfussenegger/nvim-dap-python",
-      enabled = false
-    },
-    {
-      "rcarriga/nvim-dap-ui",
-      enabled = false
-    },
-    {
-      "theHamsta/nvim-dap-virtual-text",
-      enabled = false
-    },
+    -- {
+    --   "mfussenegger/nvim-dap",
+    --   enabled = false
+    -- },
+    -- {
+    --   "jay-babu/mason-nvim-dap.nvim",
+    --   enabled = false,
+    -- },
+    -- {
+    --   "mfussenegger/nvim-dap-python",
+    --   enabled = false
+    -- },
+    -- {
+    --   "rcarriga/nvim-dap-ui",
+    --   enabled = false
+    -- },
+    -- {
+    --   "theHamsta/nvim-dap-virtual-text",
+    --   enabled = false
+    -- },
     -- refactor
     {
       "ThePrimeagen/refactoring.nvim",

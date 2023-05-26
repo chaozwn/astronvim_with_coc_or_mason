@@ -65,6 +65,7 @@ return {
   end,
   config = function(...)
     local lsp_type = require("user.config.lsp_type").lsp_type
+    -- TODO: add telescope dap ui https://github.com/nvim-telescope/telescope-dap.nvim
 
     require "plugins.configs.telescope" (...)
     local telescope = require "telescope"

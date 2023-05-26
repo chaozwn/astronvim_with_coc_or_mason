@@ -307,13 +307,6 @@ if lsp_type == 'coc' then
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
   end
 
-  maps.n["<leader>lD"] = false
-  -- Autocomplete
-  function _G.check_back_space()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-  end
-
   -- TODO: 修复这边使用提示的配置
   maps.i["<TAB>"]   = {
     'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
@@ -374,7 +367,7 @@ if lsp_type == 'coc' then
 
   maps.n["K"] = { "<CMD>lua _G.show_docs()<CR>", desc = "Hover symbol details" }
   maps.n["<leader>lr"] = { "<Plug>(coc-rename)", desc = "Rename current symbol" }
-  maps.n["<leader>lf"] = { "<cmd>call CocActionAsync('format')<CR>", desc = "Format buffer" }
+  maps.n["<leader>lf"] = { "<CMD>Format<CR>", desc = "Format buffer" }
   maps.x["<leader>lf"] = { "<cmd>call CocActionAsync('format')<CR>", desc = "Format buffer" }
   maps.n["<leader>la"] = { "<cmd>Telescope coc code_actions<CR>", desc = "LSP code action" }
   maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "Code action whole buffer" }
@@ -397,12 +390,22 @@ if lsp_type == 'coc' then
   maps.x["ac"] = { "<Plug>(coc-classobj-a)" }
   maps.o["ac"] = { "<Plug>(coc-classobj-a)" }
 
-  maps.n["<C-f>"] = { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', expr = true }
-  maps.n["<C-b>"] = { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', expr = true }
-  maps.i["<C-f>"] = { 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', expr = true }
-  maps.i["<C-b>"] = { 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', expr = true }
-  maps.v["<C-f>"] = { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', expr = true }
-  maps.v["<C-b>"] = { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', expr = true }
+  maps.n["<C-u>"] = { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
+  maps.n["<C-d>"] = { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
+  maps.i["<C-u>"] = {
+    'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-u>"',
+    expr = true,
+    silent = true,
+    nowait = true
+  }
+  maps.i["<C-d>"] = {
+    'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<C-d>"',
+    expr = true,
+    silent = true,
+    nowait = true
+  }
+  maps.v["<C-u>"] = { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
+  maps.v["<C-d>"] = { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
 
   -- maps.n["<leader>li"] = { ":<C-u>CocList --normal gstatus<CR>", desc = "LSP status" }
   maps.n["<leader>lS"] = { "<cmd>CocOutline<CR>", desc = "Symbols outline" }

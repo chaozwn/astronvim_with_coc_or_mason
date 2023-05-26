@@ -4,15 +4,17 @@ local plugins = {
   "AstroNvim/astrocommunity",
 }
 
-if lsp_type ~= 'coc' then
-  plugins.insert(plugins, { import = "astrocommunity.pack.typescript" })
-  plugins.insert(plugins, { import = "astrocommunity.pack.prisma" })
-  plugins.insert(plugins, { import = "astrocommunity.pack.json" })
-  plugins.insert(plugins, { import = "astrocommunity.pack.tailwindcss" })
-  plugins.insert(plugins, { import = "astrocommunity.pack.markdown" })
-  plugins.insert(plugins, { import = "astrocommunity.pack.python" })
-  plugins.insert(plugins, { import = "astrocommunity.pack.java" })
+if lsp_type ~= "coc" then
+  plugins = {
+    "AstroNvim/astrocommunity",
+    { import = "astrocommunity.pack.typescript" },
+    { import = "astrocommunity.pack.prisma" },
+    { import = "astrocommunity.pack.json" },
+    { import = "astrocommunity.pack.tailwindcss" },
+    { import = "astrocommunity.pack.markdown" },
+    { import = "astrocommunity.pack.python" },
+    { import = "astrocommunity.pack.java" },
+  }
 end
 
 return plugins
-

@@ -1,6 +1,16 @@
 -- :e 重新加载语言分析服务
 -- :LSPInstall lua_ls
 -- customize mason plugins
+local lsp_type = require("user.config.lsp_type").lsp_type
+
+local getEvent = function()
+  if lsp_type == 'coc' then
+    return "User AstroFile"
+  else
+    return "LspAttach"
+  end
+end
+
 return {
   -- use mason-lspconfig to configure LSP installations
   {
@@ -119,7 +129,7 @@ return {
   {
     "theHamsta/nvim-dap-virtual-text",
     dependencies = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
-    event = "LspAttach",
+    event = getEvent(),
     opts = {
       commented = true,
       enabled = true,          -- enable this plugin (the default)
@@ -128,7 +138,8 @@ return {
   },
   {
     "mfussenegger/nvim-dap-python",
-    event = "LspAttach",
+    dependencies = { "mfussenegger/nvim-dap" },
+    event = getEvent(),
     config = function() require("dap-python").setup("python", {}) end,
   },
   {

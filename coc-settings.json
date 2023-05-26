@@ -67,11 +67,14 @@
 	"signature.target": "float",
 	"yank.enableCompletion": false,
 	"typescript.suggestionActions.enabled": true,
+	"pyright.enable": true,
+	"python.autoComplete.addBrackets": true,
 	"python.formatting.provider": "yapf",
 	"python.formatting.yapfArgs": [
 		"--style",
 		"{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
 	],
+	"python.pythonPath": "~/miniconda3/envs/python38/bin/python",
 	"html.format.enable": true,
 	"javascript.showUnused": true,
 	"javascript.suggest.names": true,

@@ -307,7 +307,6 @@ if lsp_type == 'coc' then
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
   end
 
-  -- TODO: 修复这边使用提示的配置
   maps.i["<TAB>"] = {
     "coc#pum#visible() ? coc#pum#confirm() :  \"\\<TAB>\"",
     expr = true,

@@ -13,6 +13,7 @@ return {
     local events = require "neo-tree.events"
     local lsp_type = require("user.config.lsp_type").lsp_type
     local event_handlers = {}
+    -- TODO: 排查这边的问题
     if lsp_type == "coc" then
       event_handlers = {
         {

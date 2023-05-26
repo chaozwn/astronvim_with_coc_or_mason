@@ -1,4 +1,8 @@
--- if vim.g.neovide then return {} end
+local lsp_type = require("user.config.lsp_type").lsp_type
+
+-- if lsp_type == "coc" then
+--   return {}
+-- else
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
@@ -50,3 +54,8 @@ return {
   },
   init = function() vim.g.lsp_handlers_enabled = false end,
 }
+-- end
+
+-- if vim.g.neovide then return {} end
+-- return {
+-- }

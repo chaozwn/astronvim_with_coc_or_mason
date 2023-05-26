@@ -5,6 +5,7 @@ return {
     "nvim-telescope/telescope-media-files.nvim",
     "nvim-lua/popup.nvim",
     "nvim-lua/plenary.nvim",
+    'fannheyward/telescope-coc.nvim'
   },
   opts = function(_, opts)
     local actions = require "telescope.actions"
@@ -42,6 +43,10 @@ return {
           filetypes = { "png", "jpg", "gif", "mp4", "webm", "pdf", "svg" },
           find_cmd = "rg",
         },
+        coc = {
+          theme = "dropdown",
+          prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
+        }
       },
       pickers = {
         find_files = {
@@ -67,6 +72,8 @@ return {
     telescope.load_extension "media_files"
     if lsp_type ~= 'coc' then
       telescope.load_extension "refactoring"
+    else
+      telescope.load_extension "coc"
     end
   end,
 }

@@ -1,3 +1,4 @@
+-- NOTE: Install watchman
 local lsp_type = require("user.config.lsp_type").lsp_type
 
 if lsp_type == 'coc' then
@@ -96,7 +97,7 @@ if lsp_type == 'coc' then
       "neoclide/coc.nvim",
       branch = "release",
       event = "BufEnter"
-    }
+    },
   }
 else
   return {}

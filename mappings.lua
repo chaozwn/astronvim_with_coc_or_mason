@@ -294,6 +294,13 @@ maps.n["<leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Informati
 
 -- coc lsp keymapping
 if lsp_type == 'coc' then
+  maps.n["<leader>ue"] = {
+    "get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'",
+    desc = "Toggle Coc",
+    expr = true
+  }
+  maps.n["<leader>ui"] = { ":CocCommand document.toggleInlayHint<CR>", desc = "Toggle Inlayhints" }
+
   -- Autocomplete
   function _G.check_back_space()
     local col = vim.fn.col('.') - 1
@@ -301,17 +308,58 @@ if lsp_type == 'coc' then
   end
 
   maps.n["<leader>lD"] = false
-  maps.i["<TAB>"] = { "coc#pum#visible() ? coc#pum#confirm() :  \"\\<TAB>\"", expr = true }
-  maps.i["<C-j>"] = { "coc#pum#visible() ? coc#pum#next(1) : \"\\<C-j>\" ", expr = true, nowait = true }
-  maps.i["<C-k>"] = { "coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-k>\"", expr = true, nowait = true }
+  -- Autocomplete
+  function _G.check_back_space()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+  end
+
+  -- TODO: 修复这边使用提示的配置
+  maps.i["<TAB>"]   = {
+    'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
+    expr = true,
+    silent = true,
+    replace_keycodes = false,
+    nowait = true
+  }
+  maps.i["<S-TAB>"] = {
+    [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
+    expr = true,
+    silent = true,
+    replace_keycodes = false,
+    nowait = true
+  }
+
+  maps.i["<C-j>"]   = {
+    "coc#pum#visible() ? coc#pum#next(1) : \"\\<C-j>\"",
+    expr = true,
+    replace_keycodes = false,
+    silent = true,
+    nowait = true
+  }
+  maps.i["<C-k>"]   = {
+    "coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-k>\"",
+    expr = true,
+    replace_keycodes = false,
+    silent = true,
+    nowait = true
+  }
+  maps.i["<CR>"]    = {
+    [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
+    expr = true,
+    replace_keycodes = false,
+    silent = true,
+    nowait = true
+  }
+
   -- maps.i["<C-j>"] = { "<Plug>(coc-snippets-expand-jump)" }
-  maps.n["[d"] = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
-  maps.n["]d"] = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
-  maps.n["gD"] = { "<Plug>(coc-definition)", desc = "Show the definition of current symbol" }
-  maps.n["gd"] = { "<Plug>(coc-definition)", desc = "Show the definition of current symbol" }
-  maps.n["gT"] = { "<Plug>(coc-type-definition)", desc = "Definition of current type" }
-  maps.n["gI"] = { "<Plug>(coc-implementation)", desc = "Implementation of current symbol" }
-  maps.n["gr"] = { "<Plug>(coc-references)", desc = "References of current symbol" }
+  maps.n["[d"]      = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
+  maps.n["]d"]      = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
+  maps.n["gD"]      = { "<cmd>Telescope coc declarations<CR>", desc = "Declaration of current symbol" }
+  maps.n["gd"]      = { "<cmd>Telescope coc definitions<CR>", desc = "Show the definition of current symbol" }
+  maps.n["gT"]      = { "<cmd>Telescope coc type_definitions<CR>", desc = "Definition of current type" }
+  maps.n["gI"]      = { "<cmd>Telescope coc implementations<CR>", desc = "Implementation of current symbol" }
+  maps.n["gr"]      = { "<cmd>Telescope coc references<CR>", desc = "References of current symbol" }
   -- Use K to show documentation in preview window
   function _G.show_docs()
     local cw = vim.fn.expand('<cword>')
@@ -326,11 +374,13 @@ if lsp_type == 'coc' then
 
   maps.n["K"] = { "<CMD>lua _G.show_docs()<CR>", desc = "Hover symbol details" }
   maps.n["<leader>lr"] = { "<Plug>(coc-rename)", desc = "Rename current symbol" }
-  maps.n["<leader>lf"] = { ":call CocActionAsync('format')<CR>", desc = "Format buffer" }
-  maps.x["<leader>lf"] = { ":call CocActionAsync('format')<CR>", desc = "Format buffer" }
-  maps.n["<leader>la"] = { "<Plug>(coc-codeaction)", desc = "LSP code action" }
+  maps.n["<leader>lf"] = { "<cmd>call CocActionAsync('format')<CR>", desc = "Format buffer" }
+  maps.x["<leader>lf"] = { "<cmd>call CocActionAsync('format')<CR>", desc = "Format buffer" }
+  maps.n["<leader>la"] = { "<cmd>Telescope coc code_actions<CR>", desc = "LSP code action" }
   maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "Code action whole buffer" }
   maps.n["<leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }
+  -- TODO: 增加手动signture提示
+  -- maps.n["<leader>lh"] = { "<cmd>call CocAction('showSignatureHelp')<CR>", desc = "Signature help" }
   maps.n["<leader>r"] = { desc = " Refactor" }
   maps.v["<leader>r"] = { desc = " Refactor" }
   maps.n["<leader>re"] = { "<Plug>(coc-codeaction-refactor)", desc = "Code refactor" }
@@ -354,12 +404,21 @@ if lsp_type == 'coc' then
   maps.v["<C-f>"] = { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', expr = true }
   maps.v["<C-b>"] = { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', expr = true }
 
-  maps.n["<leader>lS"] = { ":<C-u>CocList outline<cr>", desc = "Symbols outline" }
-  maps.n["<leader>ld"] = { ":<C-u>CocList diagnostics<cr>", desc = "Show all diagnostics" }
+  -- maps.n["<leader>li"] = { ":<C-u>CocList --normal gstatus<CR>", desc = "LSP status" }
+  maps.n["<leader>lS"] = { "<cmd>CocOutline<CR>", desc = "Symbols outline" }
+  maps.n["<leader>ls"] = { "<cmd>Telescope coc document_symbols<CR>", desc = "Search symbols" }
+  maps.n["<leader>lD"] = { "<cmd>Telescope coc diagnostics<CR>", desc = "Show current file diagnostics" }
+  maps.n["<leader>lW"] = { "<cmd>Telescope coc workspace_diagnostics<cr>", desc = "Show workspace diagnostics" }
+  maps.n["<leader>lG"] = { "<cmd>Telescope coc workspace_symbols<CR>", desc = "Search workspace symbols" }
   maps.n["<leader>pe"] = { ":<C-u>CocList extensions<cr>", desc = "Manage extensions" }
-  maps.n["<leader>pc"] = { ":<C-u>CocList commands<cr>", desc = "Show commands" }
-  maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }
-  maps.n["<leader>lm"] = { ":silent CocRestart<cr>", desc = "Coc restart" }
+  maps.n["<leader>pc"] = { "<cmd>Telescope coc commands<CR>", desc = "Show commands" }
+  maps.n["<leader>lm"] = { "<cmd>CocRestart<cr>", desc = "Coc restart" }
+  -- maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }
+  -- maps.n["<C-k>"] = { ":<C-u>CocPrev<cr>", desc = "Coc previous" }
+  -- maps.n["<C-j>"] = { ":<C-u>CocNext<cr>", desc = "Coc next" }
+
+  maps.n["mm"] = { "<Plug>(coc-translator-p)", desc = "Translate word" }
+  maps.v["mm"] = { "<Plug>(coc-translator-pv)", desc = "Translate word" }
 end
 
 return maps

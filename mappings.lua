@@ -367,7 +367,7 @@ if lsp_type == "coc" then
   maps.n["<leader>la"] = { "<cmd>Telescope coc code_actions<CR>", desc = "LSP code action" }
   maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "Code action whole buffer" }
   maps.n["<leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }
-  maps.n["<leader>li"] = { "<Plug>(coc-fix-current)", desc = "LSP fix current" }
+  -- maps.n["<leader>li"] = { "<Plug>(coc-fix-current)", desc = "LSP fix current" }
   -- TODO: 增加手动signture提示
   -- maps.n["<leader>lh"] = { "<cmd>call CocAction('showSignatureHelp')<CR>", desc = "Signature help" }
   maps.n["<leader>r"] = { desc = " Refactor" }

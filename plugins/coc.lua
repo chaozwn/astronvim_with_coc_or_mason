@@ -86,10 +86,6 @@ if lsp_type == 'coc' then
       enabled = false
     },
     {
-      "zbirenbaum/copilot-cmp",
-      enabled = false
-    },
-    {
       "folke/trouble.nvim",
       enabled = false
     },

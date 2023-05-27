@@ -42,12 +42,9 @@ maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 maps.n["s"] = "<Nop>"
 
 -- close mason
-if lsp_type == 'coc' then
-  maps.n["<leader>pa"] = false
-end
+if lsp_type == "coc" then maps.n["<leader>pa"] = false end
 
-
-if lsp_type ~= 'coc' then
+if lsp_type ~= "coc" then
   maps.n["<leader>r"] = { desc = " Refactor" }
   maps.v["<leader>r"] = { desc = " Refactor" }
   -- refactoring
@@ -202,7 +199,7 @@ maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
 maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
 
 -- lsp restart
-if lsp_type ~= 'coc' then
+if lsp_type ~= "coc" then
   maps.n["<leader>lm"] = { ":LspRestart<CR>", desc = "Lsp restart" }
   maps.n["<leader>lg"] = { ":LspLog<CR>", desc = "Show lsp log" }
 end
@@ -269,7 +266,6 @@ if lsp_type ~= "coc" then
   maps.n["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" }
 end
 
-
 -- better increment/decrement
 -- maps.x["+"] = { "g<C-a>", desc = "Increment number" }
 -- maps.x["-"] = { "g<C-x>", desc = "Descrement number" }
@@ -293,26 +289,26 @@ maps.n["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" }
 maps.n["<leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
 
 -- coc lsp keymapping
-if lsp_type == 'coc' then
+if lsp_type == "coc" then
   maps.n["<leader>ue"] = {
     "get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'",
     desc = "Toggle Coc",
-    expr = true
+    expr = true,
   }
   maps.n["<leader>ui"] = { ":CocCommand document.toggleInlayHint<CR>", desc = "Toggle Inlayhints" }
 
   -- Autocomplete
   function _G.check_back_space()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+    local col = vim.fn.col "." - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s" ~= nil
   end
 
   maps.i["<TAB>"] = {
-    "coc#pum#visible() ? coc#pum#confirm() :  \"\\<TAB>\"",
+    'coc#pum#visible() ? coc#pum#confirm() :  "\\<TAB>"',
     expr = true,
     silent = true,
     replace_keycodes = false,
-    nowait = true
+    nowait = true,
   }
   -- maps.i["<S-TAB>"] = {
   --   [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
@@ -323,44 +319,44 @@ if lsp_type == 'coc' then
   -- }
 
   maps.i["<C-j>"] = {
-    "coc#pum#visible() ? coc#pum#next(1) : \"\\<C-j>\"",
+    'coc#pum#visible() ? coc#pum#next(1) : "\\<C-j>"',
     expr = true,
     replace_keycodes = false,
     silent = true,
-    nowait = true
+    nowait = true,
   }
   maps.i["<C-k>"] = {
-    "coc#pum#visible() ? coc#pum#prev(1) : \"\\<C-k>\"",
+    'coc#pum#visible() ? coc#pum#prev(1) : "\\<C-k>"',
     expr = true,
     replace_keycodes = false,
     silent = true,
-    nowait = true
+    nowait = true,
   }
-  maps.i["<CR>"]  = {
+  maps.i["<CR>"] = {
     [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
     expr = true,
     replace_keycodes = false,
     silent = true,
-    nowait = true
+    nowait = true,
   }
 
   -- maps.i["<C-j>"] = { "<Plug>(coc-snippets-expand-jump)" }
-  maps.n["[d"]    = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
-  maps.n["]d"]    = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
-  maps.n["gD"]    = { "<cmd>Telescope coc declarations<CR>", desc = "Declaration of current symbol" }
-  maps.n["gd"]    = { "<cmd>Telescope coc definitions<CR>", desc = "Show the definition of current symbol" }
-  maps.n["gT"]    = { "<cmd>Telescope coc type_definitions<CR>", desc = "Definition of current type" }
-  maps.n["gI"]    = { "<cmd>Telescope coc implementations<CR>", desc = "Implementation of current symbol" }
-  maps.n["gr"]    = { "<cmd>Telescope coc references<CR>", desc = "References of current symbol" }
+  maps.n["[d"] = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
+  maps.n["]d"] = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
+  maps.n["gD"] = { "<cmd>Telescope coc declarations<CR>", desc = "Declaration of current symbol" }
+  maps.n["gd"] = { "<cmd>Telescope coc definitions<CR>", desc = "Show the definition of current symbol" }
+  maps.n["gT"] = { "<cmd>Telescope coc type_definitions<CR>", desc = "Definition of current type" }
+  maps.n["gI"] = { "<cmd>Telescope coc implementations<CR>", desc = "Implementation of current symbol" }
+  maps.n["gr"] = { "<cmd>Telescope coc references<CR>", desc = "References of current symbol" }
   -- Use K to show documentation in preview window
   function _G.show_docs()
-    local cw = vim.fn.expand('<cword>')
-    if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
-      vim.api.nvim_command('h ' .. cw)
-    elseif vim.api.nvim_eval('coc#rpc#ready()') then
-      vim.fn.CocActionAsync('doHover')
+    local cw = vim.fn.expand "<cword>"
+    if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
+      vim.api.nvim_command("h " .. cw)
+    elseif vim.api.nvim_eval "coc#rpc#ready()" then
+      vim.fn.CocActionAsync "doHover"
     else
-      vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+      vim.api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
     end
   end
 
@@ -390,22 +386,26 @@ if lsp_type == 'coc' then
   maps.x["ac"] = { "<Plug>(coc-classobj-a)" }
   maps.o["ac"] = { "<Plug>(coc-classobj-a)" }
 
-  maps.n["<C-u>"] = { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
-  maps.n["<C-d>"] = { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
+  maps.n["<C-u>"] =
+  { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
+  maps.n["<C-d>"] =
+  { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
   maps.i["<C-u>"] = {
     'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-u>"',
     expr = true,
     silent = true,
-    nowait = true
+    nowait = true,
   }
   maps.i["<C-d>"] = {
     'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<C-d>"',
     expr = true,
     silent = true,
-    nowait = true
+    nowait = true,
   }
-  maps.v["<C-u>"] = { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
-  maps.v["<C-d>"] = { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
+  maps.v["<C-u>"] =
+  { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
+  maps.v["<C-d>"] =
+  { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
 
   -- maps.n["<leader>li"] = { ":<C-u>CocList --normal gstatus<CR>", desc = "LSP status" }
   maps.n["<leader>lS"] = { "<cmd>CocOutline<CR>", desc = "Symbols outline" }

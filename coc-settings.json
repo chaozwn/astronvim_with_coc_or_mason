@@ -68,6 +68,7 @@
 	"yank.enableCompletion": false,
 	"typescript.suggestionActions.enabled": true,
 	"pyright.enable": true,
+	"python.pythonPath": "/Users/mac/miniconda3/envs/python38/bin/python ",
 	"python.formatting.provider": "yapf",
 	"python.formatting.yapfArgs": [
 		"--style",

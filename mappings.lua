@@ -41,6 +41,10 @@ maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"
 
+-- terminal
+maps.t["<C-[>"] = { [[<C-\><C-n>]], desc = "Exit Terminal Mode" }
+
+
 -- close mason
 if lsp_type == "coc" then maps.n["<leader>pa"] = false end
 

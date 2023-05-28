@@ -367,7 +367,7 @@ if lsp_type == "coc" then
   maps.n["K"] = { "<CMD>lua _G.show_docs()<CR>", desc = "Hover symbol details" }
   maps.n["<leader>lr"] = { "<Plug>(coc-rename)", desc = "Rename current symbol" }
   maps.n["<leader>lf"] = { "<CMD>Format<CR>", desc = "Format buffer" }
-  maps.x["<leader>lf"] = { "<CMD>Format<CR>", desc = "Format buffer" }
+  maps.x["<leader>lf"] = { "<cmd>call CocActionAsync('format')<CR>", desc = "Format buffer" }
   maps.n["<leader>la"] = { "<cmd>Telescope coc code_actions<CR>", desc = "LSP code action" }
   maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "Code action whole buffer" }
   maps.n["<leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }

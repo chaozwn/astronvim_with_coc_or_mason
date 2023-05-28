@@ -213,8 +213,8 @@ if is_available "Comment.nvim" then
   maps.v["<C-/>"] =
   { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
-maps.n["<leader>/"] = false
 maps.v["<leader>/"] = false
+maps.n["<leader>/"] = false
 
 -- leap
 maps.n["<leader>s"] = {
@@ -364,7 +364,8 @@ if lsp_type == "coc" then
   maps.n["<leader>lr"] = { "<Plug>(coc-rename)", desc = "Rename current symbol" }
   maps.n["<leader>lf"] = { "<CMD>Format<CR>", desc = "Format buffer" }
   maps.x["<leader>lf"] = { "<cmd>call CocActionAsync('format')<CR>", desc = "Format buffer" }
-  maps.n["<leader>la"] = { "<cmd>Telescope coc code_actions<CR>", desc = "LSP code action" }
+  -- TODO: 解决coc-tsserver tsserver.reloadProjects导致后续请求cancel的问题
+  maps.n["<leader>la"] = { "<Plug>(coc-codeaction)", desc = "LSP code action" }
   maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "Code action whole buffer" }
   maps.n["<leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }
   -- maps.n["<leader>li"] = { "<Plug>(coc-fix-current)", desc = "LSP fix current" }

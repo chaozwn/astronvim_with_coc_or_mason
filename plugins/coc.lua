@@ -58,6 +58,11 @@ if lsp_type == 'coc' then
     --   "theHamsta/nvim-dap-virtual-text",
     --   enabled = false
     -- },
+    -- NOTE: 新update的包
+    {
+      "rcarriga/cmp-dap",
+      enabled = false
+    },
     -- refactor
     {
       "ThePrimeagen/refactoring.nvim",

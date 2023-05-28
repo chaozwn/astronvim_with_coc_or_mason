@@ -15,7 +15,6 @@ local opt = {
 local g = {}
 
 local lsp_type = require("user.config.lsp_type").lsp_type
--- TODO: 将coc信息集成到heirline
 if lsp_type == 'coc' then
   opt["backup"] = false
   opt["writebackup"] = false
@@ -43,7 +42,8 @@ if lsp_type == 'coc' then
     'coc-word',
     'coc-translator',
     'coc-yank',
-    'coc-highlight'
+    'coc-highlight',
+    'coc-eslint',
   }
 end
 

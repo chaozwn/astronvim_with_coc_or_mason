@@ -1,18 +1,30 @@
 {
-	"hover.floatConfig": { "border": true, "rounded": true, "focusable": true },
+	"hover.floatConfig": {
+		"border": true,
+		"rounded": true,
+		"focusable": true
+	},
 	"hover.target": "float",
-	"suggest.floatConfig": { "border": true, "rounded": true },
-	"diagnostic.floatConfig": { "border": true, "rounded": true },
-	"signature.floatConfig": { "border": true, "rounded": true },
-	"coc.source.file.enable": true,
+	"suggest.floatConfig": {
+		"border": true,
+		"rounded": true
+	},
+	"diagnostic.floatConfig": {
+		"border": true,
+		"rounded": true
+	},
+	"signature.floatConfig": {
+		"border": true,
+		"rounded": true
+	},
 	"suggest.triggerAfterInsertEnter": true,
 	"suggest.autoTrigger": "always",
 	"suggest.timeout": 5000,
-	"inlayHint.enable": false,
+	"inlayHint.enable": true,
 	"diagnostic.signOffset": 1,
-	"diagnostic.errorSign": "✘",
-	"diagnostic.warningSign": "",
-	"diagnostic.infoSign": "",
+	"diagnostic.errorSign": "",
+	"diagnostic.warningSign": "",
+	"diagnostic.infoSign": "",
 	"diagnostic.hintSign": "\uf864",
 	"diagnostic.displayByAle": false,
 	"diagnostic.refreshOnInsertMode": false,
@@ -66,7 +78,6 @@
 	"coc.preferences.formatOnSave": false,
 	"signature.target": "float",
 	"yank.enableCompletion": false,
-	"typescript.suggestionActions.enabled": true,
 	"pyright.enable": true,
 	"python.pythonPath": "/Users/mac/miniconda3/envs/python38/bin/python ",
 	"python.formatting.provider": "yapf",
@@ -86,14 +97,6 @@
 	"prettier.useTabs": true,
 	"prettier.trailingComma": "all",
 	"prettier.singleQuote": false,
-	"languageserver": {
-		"bash": {
-			"command": "bash-language-server",
-			"args": ["start"],
-			"filetypes": ["sh"],
-			"ignoredRootPaths": []
-		}
-	},
 	"emmet.includeLanguages": {
 		"vue-html": "html",
 		"javascript": "javascriptreact"
@@ -102,5 +105,22 @@
 	"html.completion.attributeDefaultValue": "empty",
 	"Lua.diagnostics.globals": ["vim"],
 	"tsserver.enable": true,
-	"tsserver.log": "normal"
+	"tsserver.log": "normal",
+	"tsserver.trace.server": "messages",
+	"tsserver.enableJavascript": true,
+	"typescript.inlayHints": true,
+	"javascript.inlayHints": true,
+	"typescript.suggestionActions.enabled": true,
+	"typescript.format.enabled": true,
+	"javascript.format.enabled": true,
+	"typescript.suggest.autoImports": true,
+	"tsserver.maxTsServerMemory": 4096,
+	"typescript.implementationsCodeLens.enabled": true,
+	"typescript.referencesCodeLens.enabled": true,
+	"typescript.referencesCodeLens.showOnAllFunctions": true,
+	"typescript.preferences.includePackageJsonAutoImports": "on",
+	"tslint.autoFixOnSave": false,
+	"pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
+	"pairs.enableBackspace": true,
+	"translator.engines": ["youdao", "google"]
 }

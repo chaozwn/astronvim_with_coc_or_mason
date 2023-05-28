@@ -1,33 +1,10 @@
 {
-	"hover.floatConfig": {
-		"border": true,
-		"rounded": true,
-		"focusable": true
-	},
-	"hover.target": "float",
-	"suggest.floatConfig": {
-		"border": true,
-		"rounded": true
-	},
-	"diagnostic.floatConfig": {
-		"border": true,
-		"rounded": true
-	},
-	"signature.floatConfig": {
-		"border": true,
-		"rounded": true
-	},
-	"suggest.triggerAfterInsertEnter": true,
-	"suggest.autoTrigger": "always",
-	"suggest.timeout": 5000,
 	"inlayHint.enable": true,
 	"diagnostic.signOffset": 1,
 	"diagnostic.errorSign": "",
 	"diagnostic.warningSign": "",
 	"diagnostic.infoSign": "",
 	"diagnostic.hintSign": "\uf864",
-	"diagnostic.displayByAle": false,
-	"diagnostic.refreshOnInsertMode": false,
 	"diagnostic.checkCurrentLine": true,
 	"diagnostic.virtualTextPrefix": " ❯❯❯ ",
 	"diagnostic.virtualText": false,
@@ -43,11 +20,6 @@
 	"suggest.autoTrigger": "always",
 	"suggest.timeout": 5000,
 	"suggest.enablePreview": true,
-	"suggest.floatEnable": true,
-	"suggest.detailField": "preview",
-	"suggest.snippetIndicator": "",
-	"suggest.triggerCompletionWait": 100,
-	"suggest.echodocSupport": true,
 	"suggest.completionItemKindLabels": {
 		"method": "   Method ",
 		"function": "   Function ",
@@ -76,8 +48,6 @@
 		"enumMember": "  EnumMember "
 	},
 	"coc.preferences.formatOnSave": false,
-	"signature.target": "float",
-	"yank.enableCompletion": false,
 	"pyright.enable": true,
 	"python.pythonPath": "/Users/mac/miniconda3/envs/python38/bin/python ",
 	"python.formatting.provider": "yapf",

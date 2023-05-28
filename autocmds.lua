@@ -47,6 +47,7 @@ if lsp_type == 'coc' then
   vim.api.nvim_create_augroup("CocGroup", {})
 
   vim.cmd("command! -nargs=? Fold :call CocAction('fold', <f-args>)")
+  -- NOTE: 这边一定要用这个，coc的menu有渲染问题
   vim.cmd("hi! link CocPum Pmenu")
   vim.cmd("hi! link CocMenuSel PmenuSel")
   vim.cmd("hi CocFloating ctermbg=235 guibg=#13354A")

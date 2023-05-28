@@ -390,25 +390,25 @@ if lsp_type == "coc" then
   maps.x["ac"] = { "<Plug>(coc-classobj-a)" }
   maps.o["ac"] = { "<Plug>(coc-classobj-a)" }
 
-  maps.n["<C-u>"] =
-  { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
   maps.n["<C-d>"] =
+  { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
+  maps.n["<C-u>"] =
   { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
-  maps.i["<C-u>"] = {
+  maps.i["<C-d>"] = {
     'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-u>"',
     expr = true,
     silent = true,
     nowait = true,
   }
-  maps.i["<C-d>"] = {
+  maps.i["<C-u>"] = {
     'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<C-d>"',
     expr = true,
     silent = true,
     nowait = true,
   }
-  maps.v["<C-u>"] =
-  { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
   maps.v["<C-d>"] =
+  { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
+  maps.v["<C-u>"] =
   { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
 
   -- maps.n["<leader>li"] = { ":<C-u>CocList --normal gstatus<CR>", desc = "LSP status" }

@@ -13,7 +13,6 @@
 		"$HOME/.config/nvim/Ultisnips/",
 		"$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
 	],
-	"suggest.detailMaxLength": 60,
 	"suggest.noselect": false,
 	"suggest.enablePreselect": true,
 	"suggest.triggerAfterInsertEnter": true,
@@ -47,9 +46,7 @@
 		"value": "  Value ",
 		"enumMember": "  EnumMember "
 	},
-	"coc.preferences.formatOnSave": false,
 	"pyright.enable": true,
-	"python.pythonPath": "/Users/mac/miniconda3/envs/python38/bin/python ",
 	"python.formatting.provider": "yapf",
 	"python.formatting.yapfArgs": [
 		"--style",
@@ -60,7 +57,6 @@
 	"javascript.showUnused": true,
 	"javascript.suggest.names": true,
 	"javascript.suggestionActions.enabled": true,
-	"json.format.enable": true,
 	"prettier.printWidth": 100,
 	"prettier.disableLanguages": [],
 	"prettier.formatterPriority": 1,
@@ -71,12 +67,10 @@
 		"vue-html": "html",
 		"javascript": "javascriptreact"
 	},
-	"css.format.enable": true,
 	"html.completion.attributeDefaultValue": "empty",
 	"Lua.diagnostics.globals": ["vim"],
 	"tsserver.enable": true,
 	"tsserver.log": "normal",
-	"tsserver.trace.server": "messages",
 	"tsserver.enableJavascript": true,
 	"typescript.inlayHints": true,
 	"javascript.inlayHints": true,
@@ -89,7 +83,6 @@
 	"typescript.referencesCodeLens.enabled": true,
 	"typescript.referencesCodeLens.showOnAllFunctions": true,
 	"typescript.preferences.includePackageJsonAutoImports": "on",
-	"tslint.autoFixOnSave": false,
 	"pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
 	"pairs.enableBackspace": true,
 	"translator.engines": ["youdao", "google"]

@@ -1,6 +1,6 @@
 -- set vim options here (vim.<first_key>.<second_key> = value)
 local opt = {
-  conceallevel = 2, -- enable conceal
+  -- conceallevel = 2, -- enable conceal
   list = true,      -- show whitespace characters
   listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
   showbreak = "↪ ",

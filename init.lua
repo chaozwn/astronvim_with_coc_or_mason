@@ -1,3 +1,4 @@
+-- TODO: add codeium
 return {
   heirline = {
     separators = {

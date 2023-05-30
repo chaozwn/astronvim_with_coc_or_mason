@@ -1,5 +1,5 @@
 {
-	"inlayHint.enable": true,
+	"inlayHint.enable": false,
 	"diagnostic.signOffset": 1,
 	"diagnostic.errorSign": "",
 	"diagnostic.warningSign": "",

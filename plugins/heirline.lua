@@ -3,39 +3,32 @@ local lsp_type = require("user.config.lsp_type").lsp_type
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
+    local status = require "astronvim.utils.status"
+    opts.statusline[3] = status.component.file_info { filetype = {}, filename = false }
+
+    function StatusDiagnostic()
+      local info = vim.b.coc_diagnostic_info or {}
+      if next(info) == nil then return '' end
+      local msgs = {}
+      if info.error and info.error > 0 then
+        table.insert(msgs, 'E' .. info.error)
+      end
+      if info.warning and info.warning > 0 then
+        table.insert(msgs, 'W' .. info.warning)
+      end
+      return table.concat(msgs, ' ') .. ' ' .. (vim.g.coc_status or '')
+    end
+
     if lsp_type == "coc" then
       local LSPActive = {
-        provider = function() return "%{coc#status()}%{get(b:,'coc_current_function','')}" end,
+        provider = function()
+          return StatusDiagnostic()
+        end,
         hl = { fg = "green", bold = true },
       }
       opts.statusline[9] = LSPActive
     end
 
-    local status = require "astronvim.utils.status"
-    opts.statusline[3] = status.component.file_info { filetype = {}, filename = false }
-
-    -- if lsp_type == 'coc' then
-    --   opts.winbar = nil
-    -- else
-      opts.winbar[1][1] = status.component.separated_path { path_func = status.provider.filename { modify = ":.:h" } }
-      opts.winbar[2] = {
-        status.component.separated_path { path_func = status.provider.filename { modify = ":.:h" } },
-        status.component.file_info { -- add file_info to breadcrumbs
-          file_icon = { hl = status.hl.filetype_color, padding = { left = 0 } },
-          file_modified = false,
-          file_read_only = false,
-          hl = status.hl.get_attributes("winbar", true),
-          surround = false,
-          update = "BufEnter",
-        },
-        status.component.breadcrumbs {
-          icon = { hl = true },
-          hl = status.hl.get_attributes("winbar", true),
-          prefix = true,
-          padding = { left = 0 },
-        },
-      }
-    -- end
     return opts
   end,
 }

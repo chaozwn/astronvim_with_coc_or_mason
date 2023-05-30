@@ -417,8 +417,8 @@ if lsp_type == "coc" then
   -- maps.n["<leader>li"] = { ":<C-u>CocList --normal gstatus<CR>", desc = "LSP status" }
   maps.n["<leader>lS"] = { "<cmd>CocOutline<CR>", desc = "Symbols outline" }
   maps.n["<leader>ls"] = { "<cmd>Telescope coc document_symbols<CR>", desc = "Search symbols" }
-  maps.n["<leader>lD"] = { "<cmd>Telescope coc diagnostics<CR>", desc = "Show current file diagnostics" }
-  maps.n["<leader>lW"] = { "<cmd>Telescope coc workspace_diagnostics<cr>", desc = "Show workspace diagnostics" }
+      maps.n["<leader>lD"] = { "<cmd>Telescope coc diagnostics<CR>", desc = "Show current file diagnostics" }
+    maps.n["<leader>lW"] = { "<cmd>Telescope coc workspace_diagnostics<cr>", desc = "Show workspace diagnostics" }
   maps.n["<leader>lG"] = { "<cmd>Telescope coc workspace_symbols<CR>", desc = "Search workspace symbols" }
   maps.n["<leader>pe"] = { ":<C-u>CocList extensions<cr>", desc = "Manage extensions" }
   maps.n["<leader>pc"] = { "<cmd>Telescope coc commands<CR>", desc = "Show coc commands" }

@@ -4,6 +4,7 @@
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
 local utils = require "astronvim.utils"
+local get_icon = utils.get_icon
 local is_available = utils.is_available
 local my_utils = require "user.utils.utils"
 local lsp_type = require("user.config.lsp_type").lsp_type
@@ -344,7 +345,8 @@ if lsp_type == "coc" then
     nowait = true,
   }
 
-  -- maps.i["<C-j>"] = { "<Plug>(coc-snippets-expand-jump)" }
+  maps.i["<C-j>"] = { "<Plug>(coc-snippets-expand-jump)" }
+
   maps.n["[d"] = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
   maps.n["]d"] = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
   maps.n["gD"] = { "<cmd>Telescope coc declarations<CR>", desc = "Declaration of current symbol" }
@@ -365,11 +367,12 @@ if lsp_type == "coc" then
   end
 
   maps.n["K"] = { "<CMD>lua _G.show_docs()<CR>", desc = "Hover symbol details" }
+  maps.v["<leader>l"] = { desc = get_icon("ActiveLSP", 1, true) .. "LSP" }
   maps.n["<leader>lr"] = { "<Plug>(coc-rename)", desc = "Rename current symbol" }
   maps.n["<leader>lf"] = { "<CMD>Format<CR>", desc = "Format buffer" }
   maps.x["<leader>lf"] = { "<cmd>call CocActionAsync('format')<CR>", desc = "Format buffer" }
   maps.n["<leader>la"] = { "<cmd>Telescope coc code_actions<CR>", desc = "LSP code action" }
-  maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "Code action whole buffer" }
+  -- maps.n["<leader>lA"] = { "<Plug>(coc-codeaction-source)", desc = "Code action whole buffer" }
   maps.n["<leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }
   -- maps.n["<leader>li"] = { "<Plug>(coc-fix-current)", desc = "LSP fix current" }
   -- TODO: 增加手动signture提示

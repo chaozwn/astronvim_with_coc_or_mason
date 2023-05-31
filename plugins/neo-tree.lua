@@ -1,5 +1,6 @@
 local get_icon = require("astronvim.utils").get_icon
 
+-- TODO:限制启动的高度
 return {
   "nvim-neo-tree/neo-tree.nvim",
   dependencies = { "miversen33/netman.nvim" },

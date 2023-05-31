@@ -345,7 +345,7 @@ if lsp_type == "coc" then
     nowait = true,
   }
 
-  maps.i["<C-j>"] = { "<Plug>(coc-snippets-expand-jump)" }
+  -- maps.i["<C-j>"] = { "<Plug>(coc-snippets-expand-jump)" }
 
   maps.n["[d"] = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
   maps.n["]d"] = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }

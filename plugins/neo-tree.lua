@@ -5,9 +5,7 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   dependencies = { "miversen33/netman.nvim" },
   opts = function(_, opts)
-    local event_handlers = {}
     return require("astronvim.utils").extend_tbl(opts, {
-      event_handlers = event_handlers,
       close_if_last_window = true,
       sources = {
         "filesystem",
@@ -22,6 +20,7 @@ return {
         },
       },
       filesystem = {
+        hijack_netrw_behavior = "open_default",
         filtered_items = {
           always_show = { ".github", ".gitignore" },
           hide_dotfiles = false,

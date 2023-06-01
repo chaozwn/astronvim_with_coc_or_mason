@@ -44,7 +44,7 @@ return {
           find_cmd = "rg",
         },
         coc = {
-          theme = "dropdown",
+          -- theme = "dropdown",
           initial_mode = "normal",
           prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
         }

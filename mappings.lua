@@ -38,8 +38,12 @@ maps.n["<leader>uh"] = {
   desc = "Toggle lspInlayHints",
 }
 
+-- 关闭搜索高亮
+maps.n["<leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
+
 -- chatgpt
--- maps.n["<leader>i"] = { desc = "󰚩 Chatgpt" }
+maps.n["<leader>n"] = { "<cmd><cr>", desc = "󰚩 Chatgpt" }
+maps.v["<leader>n"] = { desc = "󰚩 Chatgpt" }
 -- maps.n["<leader>io"] = {
 --   function()
 --     local chatgpt = require "chatgpt"
@@ -47,6 +51,13 @@ maps.n["<leader>uh"] = {
 --   end,
 --   desc = "Edit with instructions"
 -- }
+-- neoai
+-- NOTE: note that the plugin has a feature where the output from the model automatically gets saved to the g register and all code snippets get saved to the c register. These can be changed in the config.
+maps.n["<leader>no"] = { "<cmd>NeoAIToggle<CR>", desc = "Toggle NeoAI" }
+maps.n["<leader>na"] = { "<cmd>NeoAIContext<CR>", desc = "Choose all code" }
+maps.v["<leader>nf"] = { ":NeoAIContext<CR>", desc = "Select code" }
+maps.n["<leader>ni"] = { ":NeoAIInject", desc = "Inject code with prompt" }
+
 
 maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
@@ -193,11 +204,9 @@ maps.v["<S-Tab>"] = false
 -- 在visual mode 里粘贴不要复制
 maps.n["x"] = { '"_x', desc = "Cut without copy" }
 
--- 关闭搜索高亮
-maps.n["<leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
 
 -- 分屏快捷键
-maps.n["<leader>w"] = { desc = "󱂬 Window" }
+maps.n["<leader>w"] = { "<cmd><cr>", desc = "󱂬 Window" }
 maps.n["<leader>wc"] = { "<C-w>c", desc = "Close current screen" }
 maps.n["<leader>wo"] = { "<C-w>o", desc = "Close other screen" }
 -- 多个窗口之间跳转

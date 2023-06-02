@@ -38,6 +38,16 @@ maps.n["<leader>uh"] = {
   desc = "Toggle lspInlayHints",
 }
 
+-- chatgpt
+-- maps.n["<leader>i"] = { desc = "󰚩 Chatgpt" }
+-- maps.n["<leader>io"] = {
+--   function()
+--     local chatgpt = require "chatgpt"
+--     chatgpt.edit_with_instructions()
+--   end,
+--   desc = "Edit with instructions"
+-- }
+
 maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
 maps.n["s"] = "<Nop>"

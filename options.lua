@@ -10,6 +10,8 @@ local opt = {
   swapfile = false,
   wrap = true, -- soft wrap lines
   termguicolors = true,
+  wildmenu = true,
+  wildmode = "longest:list,full",
 }
 
 local g = {}

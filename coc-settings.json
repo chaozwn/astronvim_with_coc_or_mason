@@ -3,7 +3,7 @@
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"inlayHint.enable": false,
 	"diagnostic.enableSign": true,
-	"diagnostic.level": "error",
+	"diagnostic.level": "warn",
 	"diagnostic.virtualTextCurrentLineOnly": true,
 	"diagnostic.errorSign": "",
 	"diagnostic.warningSign": "",

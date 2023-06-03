@@ -8,16 +8,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- auto hide tabline
-vim.api.nvim_create_autocmd("User", {
-  pattern = "AstroBufsUpdated",
-  group = vim.api.nvim_create_augroup("autohidetabline", { clear = true }),
-  callback = function()
-    local new_showtabline = #vim.t.bufs > 1 and 2 or 1
-    if new_showtabline ~= vim.opt.showtabline:get() then vim.opt.showtabline = new_showtabline end
-  end,
-})
-
 vim.api.nvim_create_augroup("im-select", { clear = true })
 
 vim.api.nvim_create_autocmd("InsertLeave", {

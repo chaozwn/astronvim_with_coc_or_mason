@@ -38,6 +38,18 @@ maps.n["<leader>uh"] = {
   desc = "Toggle lspInlayHints",
 }
 
+-- marks
+maps.n["m"] = { desc = "Marks" }
+maps.n["m,"] = { "<Plug>(Marks-setnext)<CR>", desc = "Set Next Lowercase Mark" }
+maps.n["m;"] = { "<Plug>(Marks-toggle)<CR>", desc = "Toggle Mark(Set Or Cancel Mark)" }
+maps.n["m]"] = { "<Plug>(Marks-next)<CR>", desc = "Move To Next Mark" }
+maps.n["m["] = { "<Plug>(Marks-prev)<CR>", desc = "Move To Previous Mark" }
+maps.n["m:"] = { "<Plug>(Marks-preview)", desc = "Preview Mark" }
+
+maps.n["dm"] = { "<Plug>(Marks-delete)", desc = "Delete Marks" }
+maps.n["dm-"] = { "<Plug>(Marks-deleteline)<CR>", desc = "Delete All Marks On The Current Line" }
+maps.n["dm<space>"] = { "<Plug>(Marks-deletebuf)<CR>", desc = "Delete All Marks On Current Buffer" }
+
 -- 关闭搜索高亮
 maps.n["<leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
 

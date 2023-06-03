@@ -1,5 +1,3 @@
-local lsp_type = require("user.config.lsp_type").lsp_type
-
 if vim.g.neovide then
   return {}
 else

@@ -1,6 +1,5 @@
 -- set vim options here (vim.<first_key>.<second_key> = value)
 local opt = {
-  -- conceallevel = 2, -- enable conceal
   list = true, -- show whitespace characters
   listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
   showbreak = "↪ ",
@@ -14,7 +13,9 @@ local opt = {
   wildmode = "longest:list,full",
 }
 
-local g = {}
+local g = {
+  resession_enabled = true
+}
 
 local lsp_type = require("user.config.lsp_type").lsp_type
 if lsp_type == 'coc' then
@@ -56,14 +57,3 @@ return {
     spell = false,
   },
 }
--- If you need more control, you can use the function()...end notation
--- return function(local_vim)
---   local_vim.opt.relativenumber = true
---   local_vim.g.mapleader = " "
---   local_vim.opt.whichwrap = vim.opt.whichwrap - { 'b', 's' } -- removing option from list
---   local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
---
---   return local_vim
--- end
--- end
--- end

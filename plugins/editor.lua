@@ -59,7 +59,7 @@ return {
   { "willothy/flatten.nvim", lazy = false, priority = 1001, opts = { window = { open = "vsplit" } } },
   {
     "echasnovski/mini.move",
-    config = function(_, opts)
+    config = function()
       require("mini.move").setup {
         mappings = {
           -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.

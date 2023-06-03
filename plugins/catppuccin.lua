@@ -1,14 +1,3 @@
-local lsp_type = require("user.config.lsp_type").lsp_type
-if lsp_type == 'coc' then
-  -- You NEED to override nvim-dap's default highlight groups, AFTER requiring nvim-dap
-  require "dap"
-
-  local sign = vim.fn.sign_define
-
-  sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-  sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
-  sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
-end
 return {
   "catppuccin/nvim",
   name = "catppuccin",
@@ -16,7 +5,7 @@ return {
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     term_colors = true,
     dim_inactive = {
-      enabled = false,
+      enabled = true,
       shade = "dark",
       percentage = 0.15,
     },
@@ -35,10 +24,6 @@ return {
       operators = {},
     },
     color_overrides = {
-      mocha = {
-        base = "#181825",
-        mantle = "#181825",
-      },
     },
     custom_highlights = {},
     integrations = {

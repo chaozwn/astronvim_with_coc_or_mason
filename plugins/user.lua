@@ -20,15 +20,6 @@ return {
     },
   },
   {
-    "lewis6991/gitsigns.nvim",
-    opts = {
-      signcolumn = false,
-      numhl = true,
-      current_line_blame_opts = { ignore_whitespace = true },
-    },
-  },
-  { "lvimuser/lsp-inlayhints.nvim", config = true },
-  {
     "karb94/neoscroll.nvim",
     event = "User AstroFile",
     config = function()

@@ -15,9 +15,6 @@ return {
   {
     -- This is needed for pylint to work in a virtualenv. See https://github.com/williamboman/mason.nvim/issues/668#issuecomment-1320859097
     "williamboman/mason.nvim",
-    opts = {
-      PATH = "append",
-    },
   },
   -- use mason-lspconfig to configure LSP installations
   {
@@ -101,22 +98,6 @@ return {
           })
         end,
       },
-      -- {
-      --   command = "stylua",
-      -- },
-      -- {
-      --   command = "black",
-      --   filetypes = { "python" },
-      -- },
-      -- {
-      --   command = "eslint_d",
-      --   filetypes = { "typescript", "typescriptreact" },
-      -- },
-      -- {
-      --   command = "prettier",
-      --   extra_args = { "--print-width", "100" },
-      --   filetypes = { "javascript" },
-      -- },
     },
   },
   -- :DapInstall python
@@ -128,7 +109,6 @@ return {
       ensure_installed = { "python", "javadbg", "javatest", "js" },
     },
   },
-  -- <leader>lh触发
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
@@ -164,4 +144,5 @@ return {
     },
     config = function() require("refactoring").setup {} end,
   },
+  { "lvimuser/lsp-inlayhints.nvim", config = true },
 }

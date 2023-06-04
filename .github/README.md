@@ -2,11 +2,11 @@
 
 A user configuration template for [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
-now this config can support `Coc` or `Mason`, you can modify in `config/lsp_type.lua`
+now this config can support `Coc` or `Mason`, you can modify in `options.lua`
 
 ```
-M.lsp_type = "coc"
--- M.lsp_type = "lsp"
+vim.g.lsp_type = "coc" -- use coc as lsp server
+vim.g.lsp_type = "lsp" -- use mason as lsp server
 ```
 
 ## 🛠️ Installation

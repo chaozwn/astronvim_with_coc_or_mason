@@ -15,7 +15,8 @@ local opt = {
 
 local g = {
   resession_enabled = true,
-  lsp_type = "coc",
+  lsp_type = "lsp",
+  -- lsp_type = "coc",
 }
 
 if g.lsp_type == "coc" then

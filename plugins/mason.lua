@@ -36,7 +36,7 @@ return {
         "lemminx",
         "volar",
         "tailwindcss",
-        -- "prismals",
+        "prismals",
       },
     },
   },

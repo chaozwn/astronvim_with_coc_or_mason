@@ -6,6 +6,10 @@ return {
     return require("astronvim.utils").extend_tbl(opts, {
       auto_install = true,
       ensure_installed = {
+        "regex",
+        "bash",
+        "markdown",
+        "markdown_inline",
         "json",
         "html",
         "css",

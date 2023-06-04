@@ -1,5 +1,3 @@
-local lsp_type = require("user.config.lsp_type").lsp_type
-
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
@@ -8,22 +6,16 @@ return {
 
     function StatusDiagnostic()
       local info = vim.b.coc_diagnostic_info or {}
-      if next(info) == nil then return '' end
+      if next(info) == nil then return "" end
       local msgs = {}
-      if info.error and info.error > 0 then
-        table.insert(msgs, 'E' .. info.error)
-      end
-      if info.warning and info.warning > 0 then
-        table.insert(msgs, 'W' .. info.warning)
-      end
-      return table.concat(msgs, ' ') .. ' ' .. (vim.g.coc_status or '')
+      if info.error and info.error > 0 then table.insert(msgs, "E" .. info.error) end
+      if info.warning and info.warning > 0 then table.insert(msgs, "W" .. info.warning) end
+      return table.concat(msgs, " ") .. " " .. (vim.g.coc_status or "")
     end
 
-    if lsp_type == "coc" then
+    if vim.g.lsp_type == "coc" then
       local LSPActive = {
-        provider = function()
-          return StatusDiagnostic()
-        end,
+        provider = function() return StatusDiagnostic() end,
         hl = { fg = "green", bold = true },
       }
       opts.statusline[9] = LSPActive

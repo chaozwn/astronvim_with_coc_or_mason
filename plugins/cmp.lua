@@ -2,6 +2,7 @@ local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
+
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -42,11 +43,6 @@ return {
         { name = "buffer", priority = 250 },
       },
       mapping = {
-        -- ["<CR>"] = cmp.mapping.confirm({
-        --   -- this is the important line
-        --   behavior = cmp.ConfirmBehavior.Replace,
-        --   select = false,
-        -- }),
         ["<CR>"] = cmp.config.disable,
         -- ctrl + e关闭补全窗口
         ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
@@ -76,12 +72,6 @@ return {
           else
             fallback()
           end
-          -- 默认不支持tab输入
-          -- if luasnip.jumpable(1) then
-          --   luasnip.jump(1)
-          -- else
-          --   fallback()
-          -- end
         end, { "i", "s" }),
         ["<S-Tab>"] = cmp.config.disable,
       },

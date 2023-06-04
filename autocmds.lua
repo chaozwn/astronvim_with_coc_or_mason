@@ -32,20 +32,18 @@ if vim.g.neovide then
   neovide.init()
 end
 
-local lsp_type = require("user.config.lsp_type").lsp_type
-if lsp_type == 'coc' then
+if vim.g.lsp_type == "coc" then
   vim.api.nvim_create_augroup("CocGroup", {})
 
-  vim.cmd("command! -nargs=? Fold :call CocAction('fold', <f-args>)")
-  vim.cmd("hi! link CocPum Pmenu")
-  vim.cmd("hi! link CocMenuSel PmenuSel")
-  vim.cmd("hi CocFloating ctermbg=235 guibg=#13354A")
+  vim.cmd "hi! link CocPum Pmenu"
+  vim.cmd "hi! link CocMenuSel PmenuSel"
+  vim.cmd "hi CocFloating ctermbg=235 guibg=#13354A"
   -- vim.cmd("hi CocMenuSel ctermbg=237 guibg=#13354A")
-  vim.cmd("highlight CocHighlightText guibg=#545c7e")
+  vim.cmd "highlight CocHighlightText guibg=#545c7e"
   vim.api.nvim_create_autocmd("CursorHold", {
     group = "CocGroup",
     command = "silent call CocActionAsync('highlight')",
-    desc = "Highlight symbol under cursor on CursorHold"
+    desc = "Highlight symbol under cursor on CursorHold",
   })
 
   -- Setup formatexpr specified filetype(s)
@@ -53,7 +51,7 @@ if lsp_type == 'coc' then
     group = "CocGroup",
     pattern = "typescript,json",
     command = "setl formatexpr=CocAction('formatSelected')",
-    desc = "Setup formatexpr specified filetype(s)."
+    desc = "Setup formatexpr specified filetype(s).",
   })
 
   -- Update signature help on jump placeholder
@@ -61,15 +59,33 @@ if lsp_type == 'coc' then
     group = "CocGroup",
     pattern = "CocJumpPlaceholder",
     command = "call CocActionAsync('showSignatureHelp')",
-    desc = "Update signature help on jump placeholder"
+    desc = "Update signature help on jump placeholder",
   })
 
   -- Add `:Format` command to format current buffer
   vim.api.nvim_create_user_command("Format", "call CocActionAsync('format')", {})
 
   -- " Add `:Fold` command to fold current buffer
-  vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = '?' })
+  vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = "?" })
 
   -- Add `:OR` command for organize imports of the current buffer
   vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
 end
+
+local resession = require "resession"
+vim.api.nvim_del_augroup_by_name "alpha_autostart" -- disable alpha auto start
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Only load the session if nvim was started with no args
+    if vim.fn.argc(-1) == 0 then
+      -- Save these to a different directory, so our manual sessions don't get polluted
+      resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+    end
+  end,
+})
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    resession.save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
+  end,
+})

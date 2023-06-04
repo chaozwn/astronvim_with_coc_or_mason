@@ -8,6 +8,17 @@ return function()
   local green = get_hlgroup("String").fg
   local red = get_hlgroup("Error").fg
 
+  if vim.g.lsp_type == "coc" then
+    -- You NEED to override nvim-dap's default highlight groups, AFTER requiring nvim-dap
+    require "dap"
+
+    local sign = vim.fn.sign_define
+
+    sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+    sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+    sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+  end
+
   return {
     TelescopeBorder = { fg = bg_alt, bg = bg },
     TelescopeNormal = { bg = bg },
@@ -21,9 +32,9 @@ return function()
     TelescopeResultsBorder = { fg = bg, bg = bg },
     TelescopeResultsNormal = { bg = bg },
     TelescopeResultsTitle = { fg = bg, bg = bg },
-    CursorLineFold = { link = "CursorLineNr" },                    -- highlight fold indicator as well as line number
+    CursorLineFold = { link = "CursorLineNr" }, -- highlight fold indicator as well as line number
     GitSignsCurrentLineBlame = { fg = nontext.fg, italic = true }, -- italicize git blame virtual text
-    HighlightURL = { underline = true },                           -- always underline URLs
+    HighlightURL = { underline = true }, -- always underline URLs
     -- leap
     LeapMatch = { bg = "#ff007c", fg = "#c8d3f5", bold = true },
     LeapLabelPrimary = { fg = "#ff007c", bold = true },

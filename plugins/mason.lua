@@ -1,10 +1,8 @@
 -- :e 重新加载语言分析服务
 -- :LSPInstall lua_ls
 -- customize mason plugins
-local lsp_type = require("user.config.lsp_type").lsp_type
-
 local getEvent = function()
-  if lsp_type == "coc" then
+  if vim.g.lsp_type == "coc" then
     return "User AstroFile"
   else
     return "LspAttach"
@@ -15,9 +13,6 @@ return {
   {
     -- This is needed for pylint to work in a virtualenv. See https://github.com/williamboman/mason.nvim/issues/668#issuecomment-1320859097
     "williamboman/mason.nvim",
-    opts = {
-      PATH = "append",
-    },
   },
   -- use mason-lspconfig to configure LSP installations
   {
@@ -103,22 +98,6 @@ return {
           })
         end,
       },
-      -- {
-      --   command = "stylua",
-      -- },
-      -- {
-      --   command = "black",
-      --   filetypes = { "python" },
-      -- },
-      -- {
-      --   command = "eslint_d",
-      --   filetypes = { "typescript", "typescriptreact" },
-      -- },
-      -- {
-      --   command = "prettier",
-      --   extra_args = { "--print-width", "100" },
-      --   filetypes = { "javascript" },
-      -- },
     },
   },
   -- :DapInstall python
@@ -130,7 +109,6 @@ return {
       ensure_installed = { "python", "javadbg", "javatest", "js" },
     },
   },
-  -- <leader>lh触发
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
@@ -166,4 +144,5 @@ return {
     },
     config = function() require("refactoring").setup {} end,
   },
+  { "lvimuser/lsp-inlayhints.nvim", config = true },
 }

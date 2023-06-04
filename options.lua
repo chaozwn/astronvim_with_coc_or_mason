@@ -14,39 +14,39 @@ local opt = {
 }
 
 local g = {
-  resession_enabled = true
+  resession_enabled = true,
+  lsp_type = "coc",
 }
 
-local lsp_type = require("user.config.lsp_type").lsp_type
-if lsp_type == 'coc' then
+if g.lsp_type == "coc" then
   opt["backup"] = false
   opt["writebackup"] = false
   opt["updatetime"] = 300
   opt["signcolumn"] = "yes"
   g["coc_global_extensions"] = {
-    'coc-marketplace',
-    '@yaegassy/coc-volar',
-    'coc-emmet',
-    'coc-tsserver',
-    'coc-json',
-    'coc-html',
-    'coc-css',
-    'coc-clangd',
-    'coc-go',
-    'coc-sumneko-lua',
-    'coc-vimlsp',
-    'coc-sh',
-    'coc-db',
-    'coc-pyright',
-    'coc-toml',
-    'coc-prettier',
-    'coc-snippets',
-    'coc-pairs',
-    'coc-word',
-    'coc-translator',
-    'coc-yank',
-    'coc-highlight',
-    'coc-eslint',
+    "coc-marketplace",
+    "@yaegassy/coc-volar",
+    "coc-emmet",
+    "coc-tsserver",
+    "coc-json",
+    "coc-html",
+    "coc-css",
+    "coc-clangd",
+    "coc-go",
+    "coc-sumneko-lua",
+    "coc-vimlsp",
+    "coc-sh",
+    "coc-db",
+    "coc-pyright",
+    "coc-toml",
+    "coc-prettier",
+    "coc-snippets",
+    "coc-pairs",
+    "coc-word",
+    "coc-translator",
+    "coc-yank",
+    "coc-highlight",
+    "coc-eslint",
   }
 end
 

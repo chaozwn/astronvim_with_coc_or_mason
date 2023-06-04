@@ -7,7 +7,6 @@ local utils = require "astronvim.utils"
 local get_icon = utils.get_icon
 local is_available = utils.is_available
 local my_utils = require "user.utils.utils"
-local lsp_type = require("user.config.lsp_type").lsp_type
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
@@ -70,9 +69,9 @@ maps.n["s"] = "<Nop>"
 maps.t["<C-[>"] = { [[<C-\><C-n>]], desc = "Exit Terminal Mode" }
 
 -- close mason
-if lsp_type == "coc" then maps.n["<leader>pa"] = false end
+if vim.g.lsp_type == "coc" then maps.n["<leader>pa"] = false end
 
-if lsp_type ~= "coc" then
+if vim.g.lsp_type ~= "coc" then
   maps.n["<leader>r"] = { desc = " Refactor" }
   maps.v["<leader>r"] = { desc = " Refactor" }
   -- refactoring
@@ -169,7 +168,12 @@ maps.n["<leader>wc"] = { "<C-w>c", desc = "Close current screen" }
 maps.n["<leader>wo"] = { "<C-w>o", desc = "Close other screen" }
 -- 多个窗口之间跳转
 maps.n["<leader>w="] = { "<C-w>=", desc = "Make all window equal" }
-
+maps.n["<TAB>"] =
+  { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
+maps.n["<S-TAB>"] = {
+  function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+  desc = "Previous buffer",
+}
 maps.n["<leader>bo"] =
   { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
 maps.n["<leader>ba"] = { function() require("astronvim.utils.buffer").close_all() end, desc = "Close all buffers" }
@@ -201,7 +205,7 @@ maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
 maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
 
 -- lsp restart
-if lsp_type ~= "coc" then
+if vim.g.lsp_type ~= "coc" then
   maps.n["<leader>lm"] = { ":LspRestart<CR>", desc = "Lsp restart" }
   maps.n["<leader>lg"] = { ":LspLog<CR>", desc = "Show lsp log" }
 end
@@ -249,7 +253,7 @@ maps.n["sxc"] = { require("substitute.exchange").cancel, desc = "Exchange exchan
 maps.v["X"] = { require("substitute.exchange").visual, desc = "Exchange in visual" }
 
 -- trouble
-if lsp_type ~= "coc" then
+if vim.g.lsp_type ~= "coc" then
   maps.n["<leader>x"] = { desc = "裂Trouble" }
   maps.n["<leader>xx"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" }
   maps.n["<leader>xX"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" }
@@ -265,7 +269,7 @@ maps.n["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" }
 maps.n["<leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
 
 -- coc lsp keymapping
-if lsp_type == "coc" then
+if vim.g.lsp_type == "coc" then
   maps.n["<leader>ue"] = {
     "get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'",
     desc = "Toggle Coc",

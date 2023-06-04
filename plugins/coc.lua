@@ -1,6 +1,4 @@
-local lsp_type = require("user.config.lsp_type").lsp_type
-
-if lsp_type == 'coc' then
+if vim.g.lsp_type == 'coc' then
   return {
     -- {
     --   "williamboman/mason.nvim",

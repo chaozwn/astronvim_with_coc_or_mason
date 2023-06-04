@@ -1,10 +1,8 @@
 -- :e 重新加载语言分析服务
 -- :LSPInstall lua_ls
 -- customize mason plugins
-local lsp_type = require("user.config.lsp_type").lsp_type
-
 local getEvent = function()
-  if lsp_type == "coc" then
+  if vim.g.lsp_type == "coc" then
     return "User AstroFile"
   else
     return "LspAttach"
@@ -38,7 +36,7 @@ return {
         "lemminx",
         "volar",
         "tailwindcss",
-        "prismals",
+        -- "prismals",
       },
     },
   },

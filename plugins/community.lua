@@ -1,5 +1,3 @@
-local lsp_type = require("user.config.lsp_type").lsp_type
-
 local plugins = {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },
@@ -9,7 +7,7 @@ local plugins = {
   { import = "astrocommunity.workflow.hardtime-nvim" },
 }
 
-if lsp_type ~= "coc" then
+if vim.g.lsp_type ~= "coc" then
   local lsp_plugins = {
     { import = "astrocommunity.pack.prisma" },
     { import = "astrocommunity.pack.typescript" },

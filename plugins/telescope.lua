@@ -5,7 +5,7 @@ return {
     "nvim-telescope/telescope-media-files.nvim",
     "nvim-lua/popup.nvim",
     "nvim-lua/plenary.nvim",
-    'fannheyward/telescope-coc.nvim'
+    "fannheyward/telescope-coc.nvim",
   },
   opts = function(_, opts)
     local actions = require "telescope.actions"
@@ -26,7 +26,7 @@ return {
           -- theme = "dropdown",
           initial_mode = "normal",
           prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
-        }
+        },
       },
       pickers = {
         find_files = {
@@ -44,14 +44,12 @@ return {
     })
   end,
   config = function(...)
-    local lsp_type = require("user.config.lsp_type").lsp_type
     -- TODO: add telescope dap ui https://github.com/nvim-telescope/telescope-dap.nvim
-
-    require "plugins.configs.telescope" (...)
+    require "plugins.configs.telescope"(...)
     local telescope = require "telescope"
     telescope.load_extension "projects"
     telescope.load_extension "media_files"
-    if lsp_type ~= 'coc' then
+    if vim.g.lsp_type ~= "coc" then
       telescope.load_extension "refactoring"
     else
       telescope.load_extension "coc"

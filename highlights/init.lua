@@ -8,8 +8,7 @@ return function()
   local green = get_hlgroup("String").fg
   local red = get_hlgroup("Error").fg
 
-  local lsp_type = require("user.config.lsp_type").lsp_type
-  if lsp_type == "coc" then
+  if vim.g.lsp_type == "coc" then
     -- You NEED to override nvim-dap's default highlight groups, AFTER requiring nvim-dap
     require "dap"
 

@@ -26,6 +26,7 @@ return {
     opts = {
       -- automatic_installation = true,
       ensure_installed = {
+        "astro",
         "lua_ls",
         "clangd",
         "cssls",
@@ -53,6 +54,7 @@ return {
     opts = {
       -- automatic_installation = true,
       ensure_installed = {
+        "astro",
         "prettierd",
         "stylua",
         "eslint_d",

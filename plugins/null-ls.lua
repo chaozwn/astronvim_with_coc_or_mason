@@ -30,6 +30,8 @@ return {
       null_ls.builtins.formatting.prettierd.with {
         filetypes = {
           "css",
+          "astro",
+          "tsx",
           "scss",
           "less",
           "html",

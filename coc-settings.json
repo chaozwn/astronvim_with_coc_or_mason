@@ -73,7 +73,8 @@
   "prettier.singleQuote": false,
   "emmet.includeLanguages": {
     "vue-html": "html",
-    "javascript": "javascriptreact"
+    "svelte-html": "html",
+    "javascript": "javascript"
   },
   "html.completion.attributeDefaultValue": "empty",
   "Lua.diagnostics.globals": ["vim"],

@@ -72,6 +72,7 @@ if vim.g.lsp_type == "coc" then
   vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
 end
 
+local resession = require "resession"
 vim.api.nvim_del_augroup_by_name "alpha_autostart" -- disable alpha auto start
 
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -79,15 +80,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
     -- Only load the session if nvim was started with no args
     if vim.fn.argc(-1) == 0 then
       -- Save these to a different directory, so our manual sessions don't get polluted
-      require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+      resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
     end
   end,
 })
 vim.api.nvim_create_autocmd("VimLeavePre", {
   callback = function()
-    -- 获得当前项目的根目录
-    local project_root = vim.fn.getcwd()
-    -- Always save a special session named "last"
-    require("resession").save(project_root)
+    resession.save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
   end,
 })

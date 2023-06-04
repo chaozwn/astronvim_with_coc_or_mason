@@ -56,10 +56,11 @@ maps.n["<leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
 maps.n["<leader>n"] = { "<cmd><cr>", desc = "󰚩 Chatgpt" }
 maps.v["<leader>n"] = { desc = "󰚩 Chatgpt" }
 -- NOTE: note that the plugin has a feature where the output from the model automatically gets saved to the g register and all code snippets get saved to the c register. These can be changed in the config.
-maps.n["<leader>no"] = { "<cmd>NeoAIToggle<CR>", desc = "Toggle NeoAI" }
+maps.n["<leader>no"] = { "<cmd>NeoAI<CR>", desc = "Toggle NeoAI" }
+maps.n["<leader>ne"] = { "<cmd>NeoAIToggle<CR>", desc = "Toggle NeoAI" }
 maps.n["<leader>na"] = { "<cmd>NeoAIContext<CR>", desc = "Choose all code" }
 maps.v["<leader>nf"] = { ":NeoAIContext<CR>", desc = "Select code" }
-maps.n["<leader>ni"] = { ":NeoAIInject", desc = "Inject code with prompt" }
+maps.n["<leader>ni"] = { ":NeoAIInject ", desc = "Inject code with prompt" }
 
 maps.n["<leader><leader>"] = { desc = "󰍉 User" }
 -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }

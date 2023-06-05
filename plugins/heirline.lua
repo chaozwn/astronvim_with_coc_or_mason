@@ -5,6 +5,7 @@ return {
     opts.statusline[3] = status.component.file_info { filetype = {}, filename = false }
 
     function StatusDiagnostic()
+      ---@diagnostic disable-next-line: undefined-field
       local info = vim.b.coc_diagnostic_info or {}
       if next(info) == nil then return "" end
       local msgs = {}

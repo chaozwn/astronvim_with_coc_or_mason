@@ -6,12 +6,19 @@
 local utils = require "astronvim.utils"
 local get_icon = utils.get_icon
 local is_available = utils.is_available
-local my_utils = require "user.utils.utils"
+
 -- print(require "astronvim.utils".is_available("substitute.nvim"))
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
 local system = vim.loop.os_uname().sysname
+
+local util_is_avaliable, my_utils = pcall(require, "user.utils.utils")
+if util_is_avaliable then
+  -- better search
+  maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
+  maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
+end
 
 if vim.g.neovide then
   if system == "Darwin" then
@@ -208,9 +215,6 @@ maps.n["<leader>bD"] = {
   desc = "Pick to close",
 }
 
--- better search
-maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
-maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
 
 -- lsp restart
 if vim.g.lsp_type ~= "coc" then

@@ -94,6 +94,8 @@ if vim.g.lsp_type == 'coc' then
     {
       "neoclide/coc.nvim",
       branch = "release",
+      -- commit = "c743d88d65c2ca819ddb704f5768ceda8fde95b4",
+      -- optional = true,
       event = "BufEnter"
     },
   }

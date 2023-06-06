@@ -17,6 +17,9 @@ local g = {
   resession_enabled = true,
   -- lsp_type = "lsp",
   lsp_type = "coc",
+  -- fix coc补全的问题
+  coc_snippet_next = "<C-n>",
+  coc_snippet_prev = "<C-p>",
 }
 
 if g.lsp_type == "coc" then
@@ -26,7 +29,6 @@ if g.lsp_type == "coc" then
   opt["signcolumn"] = "yes"
   g["coc_global_extensions"] = {
     "coc-marketplace",
-    "@yaegassy/coc-volar",
     "coc-emmet",
     "coc-tsserver",
     "coc-json",
@@ -42,10 +44,8 @@ if g.lsp_type == "coc" then
     "coc-toml",
     "coc-prettier",
     "coc-snippets",
-    "coc-pairs",
     "coc-word",
     "coc-translator",
-    "coc-yank",
     "coc-highlight",
     "coc-eslint",
     "@yaegassy/coc-tailwindcss3"

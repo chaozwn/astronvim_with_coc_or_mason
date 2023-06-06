@@ -7,7 +7,7 @@ local utils = require "astronvim.utils"
 local get_icon = utils.get_icon
 local is_available = utils.is_available
 
--- print(require "astronvim.utils".is_available("substitute.nvim"))
+-- print(require "astronvim.utils".is_available("nvim-autopairs"))
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
@@ -299,16 +299,7 @@ if vim.g.lsp_type == "coc" then
     'coc#pum#visible() ? coc#pum#confirm() :  "\\<TAB>"',
     expr = true,
     silent = true,
-    -- replace_keycodes = false,
-    -- nowait = true,
   }
-  -- maps.i["<S-TAB>"] = {
-  --   [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
-  --   expr = true,
-  --   silent = true,
-  --   replace_keycodes = false,
-  --   nowait = true
-  -- }
 
   maps.i["<C-j>"] = {
     'coc#pum#visible() ? coc#pum#next(0) : "\\<C-j>"',

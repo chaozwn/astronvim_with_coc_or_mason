@@ -294,14 +294,14 @@ if vim.g.lsp_type == "coc" then
   -- }
 
   maps.i["<C-j>"] = {
-    'coc#pum#visible() ? coc#pum#next(1) : "\\<C-j>"',
+    'coc#pum#visible() ? coc#pum#next(0) : "\\<C-j>"',
     expr = true,
     replace_keycodes = false,
     silent = true,
     nowait = true,
   }
   maps.i["<C-k>"] = {
-    'coc#pum#visible() ? coc#pum#prev(1) : "\\<C-k>"',
+    'coc#pum#visible() ? coc#pum#prev(0) : "\\<C-k>"',
     expr = true,
     replace_keycodes = false,
     silent = true,

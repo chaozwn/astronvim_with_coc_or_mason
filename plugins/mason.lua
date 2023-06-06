@@ -28,7 +28,7 @@ return {
         "html",
         "marksman",
         "jsonls",
-        "pyright",
+        -- "pyright",
         "tsserver",
         "yamlls",
         "emmet_ls",
@@ -56,14 +56,26 @@ return {
         "black",
         "isort",
         "clang_format",
-        "pylint",
+        "rustywind",
+        -- "pylint",
       },
       handlers = {
-        pylint = function()
-          require("null-ls").register(require("null-ls").builtins.diagnostics.pylint.with {
-            condition = function(utils) return nil end,
+        rustywind = function()
+          require("null-ls").register(require("null-ls").builtins.formatting.rustywind.with {
+            filetypes = { "astro", "svelte", "javascript", "typescript", "html" },
+            condition = function(utils)
+              return utils.root_has_file "tailwind.config.js"
+                or utils.root_has_file "tailwind.config.cjs"
+                or utils.root_has_file "tailwind.config.ts"
+                or utils.root_has_file "tailwind.config.json"
+            end,
           })
         end,
+        -- pylint = function()
+        --   require("null-ls").register(require("null-ls").builtins.diagnostics.pylint.with {
+        --     condition = function(utils) return nil end,
+        --   })
+        -- end,
         -- for prettier
         prettier = function()
           require("null-ls").register(require("null-ls").builtins.formatting.prettier.with {
@@ -79,6 +91,7 @@ return {
         -- for prettierd
         prettierd = function()
           require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with {
+            filetypes = { "astro", "javascript", "typescript", "svelte" },
             condition = function(utils)
               return utils.root_has_file "package.json"
                 or utils.root_has_file ".prettierrc"
@@ -90,6 +103,7 @@ return {
         -- For eslint_d:
         eslint_d = function()
           require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with {
+            filetypes = { "astro", "javascript", "typescript", "svelte" },
             condition = function(utils)
               return utils.root_has_file ".eslintrc.cjs"
                 or utils.root_has_file ".eslintrc.json"
@@ -106,7 +120,7 @@ return {
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = {
       automatic_installation = true,
-      ensure_installed = { "python", "javadbg", "javatest", "js" },
+      ensure_installed = { "javatest", "js", "ts", "typescript", "astro", "svelte" },
     },
   },
   {
@@ -129,12 +143,12 @@ return {
       enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
     },
   },
-  {
-    "mfussenegger/nvim-dap-python",
-    dependencies = { "mfussenegger/nvim-dap" },
-    event = getEvent(),
-    config = function() require("dap-python").setup("python", {}) end,
-  },
+  -- {
+  --   "mfussenegger/nvim-dap-python",
+  --   dependencies = { "mfussenegger/nvim-dap" },
+  --   event = getEvent(),
+  --   config = function() require("dap-python").setup("python", {}) end,
+  -- },
   {
     "ThePrimeagen/refactoring.nvim",
     event = "LspAttach",

@@ -15,8 +15,8 @@ local opt = {
 
 local g = {
   resession_enabled = true,
-  lsp_type = "lsp",
-  -- lsp_type = "coc",
+  -- lsp_type = "lsp",
+  lsp_type = "coc",
 }
 
 if g.lsp_type == "coc" then
@@ -48,6 +48,7 @@ if g.lsp_type == "coc" then
     "coc-yank",
     "coc-highlight",
     "coc-eslint",
+    "@yaegassy/coc-tailwindcss3"
   }
 end
 

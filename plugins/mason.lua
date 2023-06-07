@@ -91,7 +91,7 @@ return {
         -- for prettierd
         prettierd = function()
           require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with {
-            filetypes = { "astro", "javascript", "typescript", "svelte" },
+            filetypes = {"md", "mdx", "astro", "javascript", "typescript", "svelte" },
             condition = function(utils)
               return utils.root_has_file "package.json"
                 or utils.root_has_file ".prettierrc"

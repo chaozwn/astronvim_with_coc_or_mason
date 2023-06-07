@@ -7,6 +7,7 @@
 -- keymap("n", cfg.typescript.keys.ts_fix_all, ":TypescriptFixAll<CR>", bufopts)
 -- keymap("n", cfg.typescript.keys.ts_goto_source, ":TypescriptGoToSourceDefinition<CR>", bufopts)
 return {
+  filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   settings = {
     javascript = {
       updateImportsOnFileMove = {

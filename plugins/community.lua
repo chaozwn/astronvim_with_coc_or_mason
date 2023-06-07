@@ -1,3 +1,7 @@
+-- NOTE: insert mode :
+-- <C-h> : delete previous character
+-- <C-w> : delete previous word
+-- <C-u> : delete to beginning of line
 local plugins = {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },

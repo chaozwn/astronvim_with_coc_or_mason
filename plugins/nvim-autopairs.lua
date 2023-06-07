@@ -8,6 +8,7 @@ return {
       map_bs = true,
       check_ts = true,
       enable_abbr = true,
+      map_cr = false
     })
   end,
 }

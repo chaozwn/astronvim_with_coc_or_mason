@@ -6,11 +6,19 @@
 local utils = require "astronvim.utils"
 local get_icon = utils.get_icon
 local is_available = utils.is_available
-local my_utils = require "user.utils.utils"
+
+-- print(require "astronvim.utils".is_available("nvim-autopairs"))
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
 local system = vim.loop.os_uname().sysname
+
+local util_is_avaliable, my_utils = pcall(require, "user.utils.utils")
+if util_is_avaliable then
+  -- better search
+  maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
+  maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
+end
 
 if vim.g.neovide then
   if system == "Darwin" then
@@ -73,51 +81,55 @@ maps.t["<C-[>"] = { [[<C-\><C-n>]], desc = "Exit Terminal Mode" }
 if vim.g.lsp_type == "coc" then maps.n["<leader>pa"] = false end
 
 if vim.g.lsp_type ~= "coc" then
-  maps.n["<leader>r"] = { desc = " Refactor" }
-  maps.v["<leader>r"] = { desc = " Refactor" }
-  -- refactoring
-  -- Remaps for the refactoring operations currently offered by the plugin
-  maps.v["<leader>rf"] = {
-    "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>",
-    desc = "Extract Function",
-  }
-  maps.v["<leader>rF"] = {
-    "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
-    desc = "Extract Function To File",
-  }
-  maps.v["<leader>rv"] = {
-    "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
-    desc = "Extract Variable",
-  }
-  maps.v["<leader>ri"] =
+  if is_available "refactoring.nvim" then
+    maps.n["<leader>r"] = { desc = " Refactor" }
+    maps.v["<leader>r"] = { desc = " Refactor" }
+    -- refactoring
+    -- Remaps for the refactoring operations currently offered by the plugin
+    maps.v["<leader>rf"] = {
+      "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>",
+      desc = "Extract Function",
+    }
+    maps.v["<leader>rF"] = {
+      "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
+      desc = "Extract Function To File",
+    }
+    maps.v["<leader>rv"] = {
+      "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
+      desc = "Extract Variable",
+    }
+    maps.v["<leader>ri"] =
     { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
 
-  -- Extract block doesn't need visual mode
-  maps.n["<leader>rb"] = {
-    "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>",
-    desc = "Extract Block",
-  }
-  maps.n["<leader>rB"] = {
-    "<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>",
-    desc = "Extract Block To File",
-  }
-  -- Inline variable can also pick up the identifier currently under the cursor without visual mode
-  maps.n["<leader>ri"] = {
-    "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
-    desc = "Inline Variable",
-  }
+    -- Extract block doesn't need visual mode
+    maps.n["<leader>rb"] = {
+      "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>",
+      desc = "Extract Block",
+    }
+    maps.n["<leader>rB"] = {
+      "<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>",
+      desc = "Extract Block To File",
+    }
+    -- Inline variable can also pick up the identifier currently under the cursor without visual mode
+    maps.n["<leader>ri"] = {
+      "<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+      desc = "Inline Variable",
+    }
+  end
 end
 
 -- tmux
-maps.n["<C-h>"] = { "<cmd>lua require'tmux'.move_left()<cr>", desc = "Go to left window" }
-maps.n["<C-l>"] = { "<cmd>lua require'tmux'.move_right()<cr>", desc = "Go to right window" }
-maps.n["<C-j>"] = { "<cmd>lua require'tmux'.move_bottom()<cr>", desc = "Go to bottom window" }
-maps.n["<C-k>"] = { "<cmd>lua require'tmux'.move_top()<cr>", desc = "Go to top window" }
+if is_available "tmux.nvim" then
+  maps.n["<C-h>"] = { "<cmd>lua require'tmux'.move_left()<cr>", desc = "Go to left window" }
+  maps.n["<C-l>"] = { "<cmd>lua require'tmux'.move_right()<cr>", desc = "Go to right window" }
+  maps.n["<C-j>"] = { "<cmd>lua require'tmux'.move_bottom()<cr>", desc = "Go to bottom window" }
+  maps.n["<C-k>"] = { "<cmd>lua require'tmux'.move_top()<cr>", desc = "Go to top window" }
 
-maps.n["<C-Up>"] = { "<cmd>lua require'tmux'.resize_top()<cr>", desc = "Resize split up" }
-maps.n["<C-Down>"] = { "<cmd>lua require'tmux'.resize_bottom()<cr>", desc = "Resize split down" }
-maps.n["<C-Left>"] = { "<cmd>lua require'tmux'.resize_left()<cr>", desc = "Resize split left" }
-maps.n["<C-Right>"] = { "<cmd>lua require'tmux'.resize_right()<cr>", desc = "Resize split right" }
+  maps.n["<C-Up>"] = { "<cmd>lua require'tmux'.resize_top()<cr>", desc = "Resize split up" }
+  maps.n["<C-Down>"] = { "<cmd>lua require'tmux'.resize_bottom()<cr>", desc = "Resize split down" }
+  maps.n["<C-Left>"] = { "<cmd>lua require'tmux'.resize_left()<cr>", desc = "Resize split left" }
+  maps.n["<C-Right>"] = { "<cmd>lua require'tmux'.resize_right()<cr>", desc = "Resize split right" }
+end
 
 maps.n["H"] = { "^", desc = "Go to start without blank" }
 maps.n["L"] = { "$", desc = "Go to end without blank" }
@@ -146,13 +158,26 @@ vim.g.VM_maps = {
 }
 
 -- telescope plugin mappings
-maps.v["<leader>f"] = { desc = "󰍉 Find" }
-maps.n["<leader>fp"] = { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
-maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
-maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
-maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
-maps.v["<leader>fr"] =
+if is_available "telescope.nvim" then
+  maps.v["<leader>f"] = { desc = "󰍉 Find" }
+  maps.n["<leader>fp"] = { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
+  maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
+  maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
+  maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
+  maps.v["<leader>fr"] =
   { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
+  -- buffer switching
+  maps.n["<leader>bt"] = {
+    function()
+      if #vim.t.bufs > 1 then
+        require("telescope.builtin").buffers { sort_mru = true, ignore_current_buffer = true }
+      else
+        utils.notify "No other buffers open"
+      end
+    end,
+    desc = "Switch Buffers In Telescope",
+  }
+end
 
 -- visual模式下缩进代码, 缩进后仍然可以继续选中区域
 maps.v["<"] = { "<gv", desc = "Indent to the left" }
@@ -170,13 +195,13 @@ maps.n["<leader>wo"] = { "<C-w>o", desc = "Close other screen" }
 -- 多个窗口之间跳转
 maps.n["<leader>w="] = { "<C-w>=", desc = "Make all window equal" }
 maps.n["<TAB>"] =
-  { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
+{ function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
 maps.n["<S-TAB>"] = {
   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
   desc = "Previous buffer",
 }
 maps.n["<leader>bo"] =
-  { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
+{ function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
 maps.n["<leader>ba"] = { function() require("astronvim.utils.buffer").close_all() end, desc = "Close all buffers" }
 maps.n["<leader>bc"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
 maps.n["<leader>bC"] = { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
@@ -189,21 +214,7 @@ maps.n["<leader>bD"] = {
   end,
   desc = "Pick to close",
 }
--- buffer switching
-maps.n["<leader>bt"] = {
-  function()
-    if #vim.t.bufs > 1 then
-      require("telescope.builtin").buffers { sort_mru = true, ignore_current_buffer = true }
-    else
-      utils.notify "No other buffers open"
-    end
-  end,
-  desc = "Switch Buffers In Telescope",
-}
 
--- better search
-maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
-maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
 
 -- lsp restart
 if vim.g.lsp_type ~= "coc" then
@@ -218,43 +229,48 @@ if is_available "Comment.nvim" then
     desc = "Comment line",
   }
   maps.v["<C-/>"] =
-    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+  { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
 end
 maps.v["<leader>/"] = false
 maps.n["<leader>/"] = false
 
 -- leap
-maps.n["<leader>s"] = {
-  function()
-    local current_window = vim.fn.win_getid()
-    require("leap").leap { target_windows = { current_window } }
-  end,
-  desc = "Bidirectional search",
-}
-maps.n["<leader><leader>s"] = {
-  function()
-    local focusable_windows_on_tabpage = vim.tbl_filter(
-      function(win) return vim.api.nvim_win_get_config(win).focusable end,
-      vim.api.nvim_tabpage_list_wins(0)
-    )
-    require("leap").leap { target_windows = focusable_windows_on_tabpage }
-  end,
-  desc = "Search in all windows",
-}
+if is_available "leap.nvim" then
+  maps.n["<leader>s"] = {
+    function()
+      local current_window = vim.fn.win_getid()
+      require("leap").leap { target_windows = { current_window } }
+    end,
+    desc = "Bidirectional search",
+  }
+  maps.n["<leader><leader>s"] = {
+    function()
+      local focusable_windows_on_tabpage = vim.tbl_filter(
+        function(win) return vim.api.nvim_win_get_config(win).focusable end,
+        vim.api.nvim_tabpage_list_wins(0)
+      )
+      require("leap").leap { target_windows = focusable_windows_on_tabpage }
+    end,
+    desc = "Search in all windows",
+  }
+end
 
--- substitute, 交换和替换插件, 寄存器中的值，将会替换到s位置, s{motion}
-maps.n["s"] = { require("substitute").operator, desc = "Replace with {motion}" }
-maps.n["ss"] = { require("substitute").line, desc = "Replace with line" }
-maps.n["S"] = { require("substitute").eol, desc = "Replace until eol" }
-maps.v["p"] = { require("substitute").visual, desc = "Replace in visual" }
--- exchange
-maps.n["sx"] = { require("substitute.exchange").operator, desc = "Exchange with {motion}" }
-maps.n["sxx"] = { require("substitute.exchange").line, desc = "Exchange with line" }
-maps.n["sxc"] = { require("substitute.exchange").cancel, desc = "Exchange exchange" }
-maps.v["X"] = { require("substitute.exchange").visual, desc = "Exchange in visual" }
+if is_available "substitute.nvim" then
+  -- substitute, 交换和替换插件, 寄存器中的值，将会替换到s位置, s{motion}
+  maps.n["s"] = { require("substitute").operator, desc = "Replace with {motion}" }
+  maps.n["ss"] = { require("substitute").line, desc = "Replace with line" }
+  maps.n["S"] = { require("substitute").eol, desc = "Replace until eol" }
+  maps.v["p"] = { require("substitute").visual, desc = "Replace in visual" }
+  -- exchange
+  maps.n["sx"] = { require("substitute.exchange").operator, desc = "Exchange with {motion}" }
+  maps.n["sxx"] = { require("substitute.exchange").line, desc = "Exchange with line" }
+  maps.n["sxc"] = { require("substitute.exchange").cancel, desc = "Exchange exchange" }
+  maps.v["X"] = { require("substitute.exchange").visual, desc = "Exchange in visual" }
+end
 
 -- trouble
-if vim.g.lsp_type ~= "coc" then
+-- if vim.g.lsp_type ~= "coc" then
+if is_available "trouble.nvim" then
   maps.n["<leader>x"] = { desc = "裂Trouble" }
   maps.n["<leader>xx"] = { "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" }
   maps.n["<leader>xX"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" }
@@ -262,6 +278,7 @@ if vim.g.lsp_type ~= "coc" then
   maps.n["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" }
   maps.n["<leader>xT"] = { "<cmd>TodoTrouble<cr>", desc = "TODOs (Trouble)" }
 end
+-- end
 
 -- zen mode
 maps.n["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" }
@@ -282,37 +299,17 @@ if vim.g.lsp_type == "coc" then
     'coc#pum#visible() ? coc#pum#confirm() :  "\\<TAB>"',
     expr = true,
     silent = true,
-    replace_keycodes = false,
-    nowait = true,
   }
-  -- maps.i["<S-TAB>"] = {
-  --   [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
-  --   expr = true,
-  --   silent = true,
-  --   replace_keycodes = false,
-  --   nowait = true
-  -- }
 
   maps.i["<C-j>"] = {
     'coc#pum#visible() ? coc#pum#next(0) : "\\<C-j>"',
     expr = true,
-    replace_keycodes = false,
     silent = true,
-    nowait = true,
   }
   maps.i["<C-k>"] = {
     'coc#pum#visible() ? coc#pum#prev(0) : "\\<C-k>"',
     expr = true,
-    replace_keycodes = false,
     silent = true,
-    nowait = true,
-  }
-  maps.i["<CR>"] = {
-    [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
-    expr = true,
-    replace_keycodes = false,
-    silent = true,
-    nowait = true,
   }
 
   -- maps.i["<C-n>"] = { "<Plug>(coc-snippets-expand-jump)" }
@@ -362,25 +359,25 @@ if vim.g.lsp_type == "coc" then
   maps.o["ac"] = { "<Plug>(coc-classobj-a)" }
 
   maps.n["<C-d>"] =
-    { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
+  { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
   maps.n["<C-u>"] =
-    { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
+  { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
   maps.i["<C-d>"] = {
-    'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-u>"',
+    'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-d>"',
     expr = true,
     silent = true,
     nowait = true,
   }
   maps.i["<C-u>"] = {
-    'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<C-d>"',
+    'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<C-u>"',
     expr = true,
     silent = true,
     nowait = true,
   }
   maps.v["<C-d>"] =
-    { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-u>"', expr = true, silent = true, nowait = true }
+  { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
   maps.v["<C-u>"] =
-    { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-d>"', expr = true, silent = true, nowait = true }
+  { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
 
   -- maps.n["<leader>li"] = { ":<C-u>CocList --normal gstatus<CR>", desc = "LSP status" }
   maps.n["<leader>lS"] = { "<cmd>CocOutline<CR>", desc = "Symbols outline" }

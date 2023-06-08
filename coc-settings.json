@@ -9,6 +9,7 @@
 	"diagnostic.warningSign": "",
 	"diagnostic.infoSign": "",
 	"diagnostic.hintSign": "\uf864",
+	"diagnostic.messageTarget": "echo",
 	"diagnositc.displayByAle": true,
 	"diagnostic.refreshOnInsertMode": false,
 	"diagnostic.checkCurrentLine": true,

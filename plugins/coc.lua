@@ -100,6 +100,13 @@ if vim.g.lsp_type == 'coc' then
       branch = "release",
       event = "BufEnter"
     },
+    {
+      "honza/vim-snippets",
+      dependencies = {
+        "neoclide/coc.nvim",
+      },
+      event = "BufEnter"
+    }
   }
 else
   return {}

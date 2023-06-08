@@ -45,6 +45,8 @@ if g.lsp_type == "coc" then
     "coc-prettier",
     "coc-snippets",
     "coc-word",
+    "coc-pairs",
+    "coc-yank",
     "coc-translator",
     "coc-highlight",
     "coc-eslint",

@@ -5,6 +5,8 @@ return {
 				"astro.config.cjs",
 				"package.json")(fname) end,
 	filetypes={
-	  "astro"
+	  "astro",
+	  "md",
+	  "mdx"
 	}
 }

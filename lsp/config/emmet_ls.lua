@@ -6,6 +6,12 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 return {
   capabilities = capabilities,
   filetypes = {
+    "astro",
+    "astro-markdown",
+    "markdown",
+    "markdown.mdx",
+    "md",
+    "mdx",
     "css",
     "eruby",
     "html",

@@ -87,3 +87,21 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
     resession.save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
   end,
 })
+
+-- Filetypes
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = '*.astro',
+  command = 'set filetype=astro',
+})
+
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = '*.mdx',
+  command = 'set filetype=markdown',
+})
+-- mdx files are markdown
+vim.api.nvim_create_autocmd('BufEnter,BufNewFile,BufRead', {
+  pattern = '*.mdx',
+  callback = function()
+    vim.bo.filetype = 'markdown'
+  end
+})

@@ -60,6 +60,15 @@ return {
         -- "pylint",
       },
       handlers = {
+        remark_js = function()
+          require("null-ls").register(require("null-ls").builtins.formatting.remark_js.with {
+            filetypes = {"markdown", "markdown.mdx", "md", "mdx", "astro", "svelte", "javascript", "typescript", "html" },
+            condition = function(utils)
+              return utils.root_has_file "package.json"
+            end,
+          })
+
+        end,
         rustywind = function()
           require("null-ls").register(require("null-ls").builtins.formatting.rustywind.with {
             filetypes = { "astro", "svelte", "javascript", "typescript", "html" },
@@ -91,7 +100,7 @@ return {
         -- for prettierd
         prettierd = function()
           require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with {
-            filetypes = {"md", "mdx", "astro", "javascript", "typescript", "svelte" },
+            filetypes = {"md", "mdx", "astro", "javascript", "typescript", "svelte", "markdown", "markdown.mdx" },
             condition = function(utils)
               return utils.root_has_file "package.json"
                 or utils.root_has_file ".prettierrc"

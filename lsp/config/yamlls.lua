@@ -1,4 +1,10 @@
 return {
+-- filetypes={
+-- 	  "markdown",
+-- 	  "markdown.mdx",
+-- 	  "md",
+-- 	  "mdx"
+-- 	},
   settings = {
     yaml = {
       schemas = {

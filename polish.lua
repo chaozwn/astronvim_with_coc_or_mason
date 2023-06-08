@@ -4,26 +4,36 @@
 return function()
   vim.filetype.add {
     extension = {
-      mdx = "mdx",
-      md = "markdown",
+      -- mdx = "mdx",
+   		-- mdx = 'markdown.mdx',
+      -- md = "markdown",
+      -- mdx = 'astro-markdown',
+      -- md = "astro-markdown",
     },
   }
   -- local ft_to_parser = require("nvim-treesitter.parsers"). ft_to_parser.mdx = "markdown"
+  -- vim.treesitter
+  -- .language
+  -- .register ( "mdx", "markdown"  )
   vim.treesitter
   .language
-  .register ( "mdx", "markdown"  )
-
+  .register ( "markdown", "mdx"   )
+  --
+  --     vim.treesitter.language.register("astro-markdown", "mdx")
+  --     vim.treesitter.language.register("astro-markdown", "md")
+  -- vim.treesitter.language.register("astro-markdown", "makrdown")
   -- Set up custom filetypes
-  -- vim.filetype.add {
-  --   extension = {
-  --     foo = "fooscript",
-  --   },
-  --   filename = {
-  --     ["Foofile"] = "fooscript",
-  --   },
-  --   pattern = {
-  --     ["~/%.config/foo/.*"] = "fooscript",
-  --   },
+  vim.filetype.add {
+    extension = {
+      md = "markdown",
+    },
+    filename = {
+      ["Markdown"] = "markdown",
+    },
+    pattern = {
+      ["*.md"] = "markdown",
+    },
+  }
   --
   require "user.autocmds"
 end

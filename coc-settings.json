@@ -1,4 +1,5 @@
 {
+	"colors.enable": true,
 	"coc.preferences.snippetStatusText": "Ⓢ ",
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"inlayHint.enable": false,

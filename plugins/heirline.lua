@@ -2,7 +2,6 @@ return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
     local status = require "astronvim.utils.status"
-    opts.statusline[3] = status.component.file_info { filetype = {}, filename = false }
 
     function StatusDiagnostic()
       ---@diagnostic disable-next-line: undefined-field
@@ -14,14 +13,16 @@ return {
       return table.concat(msgs, " ") .. " " .. (vim.g.coc_status or "")
     end
 
-    if vim.g.lsp_type == "coc" then
-      local LSPActive = {
-        provider = function() return StatusDiagnostic() end,
-        hl = { fg = "green", bold = true },
-      }
-      opts.statusline[9] = LSPActive
-    end
+    local coc_lsp = {
+      provider = function() return StatusDiagnostic() end,
+      update = { "User", pattern = { "CocStatusChange", "CocDiagnosticChange" } },
+      init = status.init.update_events { 'User AstroFile' },
+      callback = vim.schedule_wrap(function() vim.cmd.redrawstatus() end),
+      hl = { fg = "green", bold = false },
+    }
 
-    return opts
+    if vim.g.lsp_type == "coc" then
+      opts.statusline[9] = coc_lsp
+    end
   end,
 }

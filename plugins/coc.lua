@@ -98,7 +98,7 @@ if vim.g.lsp_type == 'coc' then
     {
       "neoclide/coc.nvim",
       branch = "release",
-      event = "BufEnter"
+      lazy = false
     },
     {
       "honza/vim-snippets",
@@ -106,7 +106,7 @@ if vim.g.lsp_type == 'coc' then
         "neoclide/coc.nvim",
       },
       event = "BufEnter"
-    }
+    },
   }
 else
   return {}

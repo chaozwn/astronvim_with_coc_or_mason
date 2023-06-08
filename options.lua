@@ -50,7 +50,9 @@ if g.lsp_type == "coc" then
     "coc-translator",
     "coc-highlight",
     "coc-eslint",
-    "@yaegassy/coc-tailwindcss3"
+    "@yaegassy/coc-tailwindcss3",
+    "@yaegassy/coc-volar",
+    "@yaegassy/coc-volar-tools"
   }
 end
 

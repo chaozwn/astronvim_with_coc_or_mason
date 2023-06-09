@@ -20,16 +20,24 @@ return {
     local coc_lsp = {
       provider = StatusDiagnostic(),
       update = { "User", pattern = { "CocStatusChange", "CocDiagnosticChange" } },
-      init = status.init.update_events { 'User AstroFile' },
+      init = status.init.update_events { "User AstroFile" },
       callback = vim.schedule_wrap(function() vim.cmd.redrawstatus() end),
       hl = { fg = "green", bold = false },
       padding = { left = 1, right = 1 },
     }
 
     local file_encoding_component = function(o)
+      o = extend_tbl {
+        hl = status.hl.get_attributes "git_branch",
+        provider = status.provider.file_encoding { padding = { left = 1 } },
+      }
+      return status.component.builder(status.utils.setup_providers(o, {}))
+    end
+
+    local file_format_component = function(o)
       o = extend_tbl({
         hl = status.hl.get_attributes "git_branch",
-        provider = status.provider.file_encoding({ padding = { left = 1 } }),
+        provider = status.provider.file_format { padding = { left = 1 } },
       })
       return status.component.builder(status.utils.setup_providers(o, {}))
     end
@@ -47,6 +55,8 @@ return {
         status.component.fill(),
         coc_lsp,
         file_encoding_component(),
+                file_format_component(),
+
         status.component.treesitter(),
         status.component.nav(),
       }
@@ -62,8 +72,9 @@ return {
         status.component.cmd_info(),
         status.component.fill(),
         status.component.lsp(),
+        file_encoding_component(),
+        file_format_component(),
         status.component.treesitter(),
-        status.component.file_encoding(),
         status.component.nav(),
       }
     end

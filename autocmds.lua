@@ -35,9 +35,18 @@ end
 if vim.g.lsp_type == "coc" then
   vim.api.nvim_create_augroup("CocGroup", {})
 
+
+
+  vim.api.nvim_create_autocmd("User", {
+    group = "CocGroup",
+    pattern = "CocNvimInit",
+    desc = "Initialized coc.nvim for LSP support",
+    command = "lua require('user.utils.utils').init_coc()"
+  })
+
   -- vim.cmd "hi CocFloating ctermbg=235 guibg=#13354A"
   -- vim.cmd("hi CocMenuSel ctermbg=237 guibg=#13354A")
-  -- vim.cmd "highlight CocHighlightText guibg=#545c7e"
+  vim.cmd "highlight CocHighlightText guibg=#545c7e"
   vim.api.nvim_create_autocmd("CursorHold", {
     group = "CocGroup",
     command = "silent call CocActionAsync('highlight')",

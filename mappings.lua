@@ -391,6 +391,7 @@ if vim.g.lsp_type == "coc" then
   -- maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }
   -- maps.n["<C-k>"] = { ":<C-u>CocPrev<cr>", desc = "Coc previous" }
   -- maps.n["<C-j>"] = { ":<C-u>CocNext<cr>", desc = "Coc next" }
+  maps.n["<leader>pV"] = { "<cmd>CocCommand volar.initializeTakeOverMode<CR>", desc = "Volar TakeOverMode" }
 
   maps.n["mm"] = { "<Plug>(coc-translator-p)", desc = "Translate word" }
   maps.v["mm"] = { "<Plug>(coc-translator-pv)", desc = "Translate word" }

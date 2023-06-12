@@ -52,7 +52,7 @@ if g.lsp_type == "coc" then
     "coc-eslint",
     "@yaegassy/coc-tailwindcss3",
     "@yaegassy/coc-volar",
-    "@yaegassy/coc-volar-tools"
+    "@yaegassy/coc-volar-tools",
   }
 end
 

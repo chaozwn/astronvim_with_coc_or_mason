@@ -38,8 +38,8 @@ return {
       local t = {}
       -- Syntax: t[keys] = {function, {function arguments}}
       -- Use the "sine" easing function
-      t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "350", [['sine']] } }
-      t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "350", [['sine']] } }
+      t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "300", [['sine']] } }
+      t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "300", [['sine']] } }
       -- Use the "circular" easing function
       t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "500", [['circular']] } }
       t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "500", [['circular']] } }

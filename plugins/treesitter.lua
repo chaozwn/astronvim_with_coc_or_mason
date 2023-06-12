@@ -1,7 +1,6 @@
 -- :TSInstall lua
 return {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = { "mrjones2014/nvim-ts-rainbow" },
   opts = function(_, opts)
     return require("astronvim.utils").extend_tbl(opts, {
       auto_install = true,
@@ -26,9 +25,6 @@ return {
         "markdown_inline",
         "vue",
         "prisma",
-      },
-      rainbow = {
-        enable = true,
       },
     })
   end,

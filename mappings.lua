@@ -7,7 +7,7 @@ local utils = require "astronvim.utils"
 local get_icon = utils.get_icon
 local is_available = utils.is_available
 
-print(require("astronvim.utils").is_available "substitute.nvim")
+-- print(require("astronvim.utils").is_available "substitute.nvim")
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 

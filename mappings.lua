@@ -68,8 +68,8 @@ if is_available "vim-jukit" then
 
   -- Scroll
   maps.n["<leader>js"] = { desc = "Scroll" }
-  maps.n["<leader>jsj"] = { "<cmd>call jukit#splits#out_hist_scroll(1)<CR>", desc = "Scroll down" }
-  maps.n["<leader>jsk"] = { "<cmd>call jukit#splits#out_hist_scroll(0)<CR>", desc = "Scroll up" }
+  maps.n["<leader>jsj"] = { "<cmd>call jukit#splits#out_hist_scroll(1)<CR>", desc = "Scroll down in history window" }
+  maps.n["<leader>jsk"] = { "<cmd>call jukit#splits#out_hist_scroll(0)<CR>", desc = "Scroll up in history window" }
 
   -- UI autocmd
   maps.n["<leader>ju"] = { desc = "UI" }

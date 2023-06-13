@@ -11,6 +11,7 @@ local opt = {
   termguicolors = true,
   wildmenu = true,
   wildmode = "longest:list,full",
+  cmdheight = 1
 }
 
 local g = {

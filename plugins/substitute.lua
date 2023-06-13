@@ -18,7 +18,7 @@ return {
     },
     exchange = {
       motion = false,
-      use_esc_to_cancel = true,
+      use_esc_to_cancel = false,
     },
   },
   event = "User AstroFile",

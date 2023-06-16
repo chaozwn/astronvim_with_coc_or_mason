@@ -3,7 +3,8 @@ return {
   root_dir = function(fname) return lsp_util.root_pattern("tailwind.config.js", "tailwind.config.ts")(fname) end,
   settings = {
     tailwindCSS = {
-      classAttributes = { "class", "className", "classList", "ngClass" },
+      classAttributes = { "class", "className", "classList", "ngClass", "cva" },
+      emmetCompletions = true,
       lint = {
         cssConflict = "warning",
         invalidApply = "error",

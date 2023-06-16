@@ -8,6 +8,7 @@ local getEvent = function()
     return "LspAttach"
   end
 end
+local utils = require "astronvim.utils"
 
 return {
   {
@@ -37,6 +38,7 @@ return {
         "volar",
         "tailwindcss",
         "prismals",
+        "gopls",
       },
     },
   },
@@ -48,6 +50,11 @@ return {
     opts = {
       -- automatic_installation = true,
       ensure_installed = {
+        "gomodifytags",
+        "gofumpt",
+        "iferr",
+        "impl",
+        "goimports",
         "prettierd",
         "stylua",
         "eslint_d",
@@ -79,9 +86,9 @@ return {
           require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with {
             condition = function(utils)
               return utils.root_has_file "package.json"
-                or utils.root_has_file ".prettierrc"
-                or utils.root_has_file ".prettierrc.json"
-                or utils.root_has_file ".prettierrc.js"
+                  or utils.root_has_file ".prettierrc"
+                  or utils.root_has_file ".prettierrc.json"
+                  or utils.root_has_file ".prettierrc.js"
             end,
           })
         end,
@@ -90,8 +97,8 @@ return {
           require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with {
             condition = function(utils)
               return utils.root_has_file ".eslintrc.cjs"
-                or utils.root_has_file ".eslintrc.json"
-                or utils.root_has_file ".eslintrc.js"
+                  or utils.root_has_file ".eslintrc.json"
+                  or utils.root_has_file ".eslintrc.js"
             end,
           })
         end,
@@ -123,7 +130,7 @@ return {
     event = getEvent(),
     opts = {
       commented = true,
-      enabled = true, -- enable this plugin (the default)
+      enabled = true,          -- enable this plugin (the default)
       enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
     },
   },
@@ -143,4 +150,22 @@ return {
     config = function() require("refactoring").setup {} end,
   },
   { "lvimuser/lsp-inlayhints.nvim", config = true },
+  {
+    "leoluz/nvim-dap-go",
+    ft = "go",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      {
+        "jay-babu/mason-nvim-dap.nvim",
+        opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "delve") end,
+      },
+    },
+    opts = {},
+  },
+  {
+    "olexsmir/gopher.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+    ft = "go",
+    opts = {},
+  },
 }

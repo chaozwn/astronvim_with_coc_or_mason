@@ -19,6 +19,7 @@ if vim.g.lsp_type ~= "coc" then
     { import = "astrocommunity.pack.markdown" },
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.java" },
+    { import = "astrocommunity.pack.go" },
   }
   for _, value in ipairs(lsp_plugins) do
     table.insert(plugins, value)

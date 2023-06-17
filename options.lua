@@ -11,13 +11,13 @@ local opt = {
   termguicolors = true,
   wildmenu = true,
   wildmode = "longest:list,full",
-  cmdheight = 1
+  cmdheight = 1,
 }
 
 local g = {
   resession_enabled = true,
-  lsp_type = "lsp",
-  -- lsp_type = "coc",
+  -- lsp_type
+  lsp_type = "coc",
   -- fix coc补全的问题
   coc_snippet_next = "<C-n>",
   coc_snippet_prev = "<C-p>",

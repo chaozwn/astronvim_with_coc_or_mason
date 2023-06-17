@@ -475,7 +475,7 @@ if vim.g.lsp_type == "coc" then
   maps.n["<leader>lD"] = { "<cmd>Telescope coc diagnostics<CR>", desc = "Show current file diagnostics" }
   maps.n["<leader>lW"] = { "<cmd>Telescope coc workspace_diagnostics<cr>", desc = "Show workspace diagnostics" }
   maps.n["<leader>lG"] = { "<cmd>Telescope coc workspace_symbols<CR>", desc = "Search workspace symbols" }
-  maps.n["<leader>pe"] = { ":<C-u>CocList extensions<cr>", desc = "Manage extensions" }
+  maps.n["<leader>pe"] = { "<cmd>CocList extensions<cr>", desc = "Manage extensions" }
   maps.n["<leader>pc"] = { "<cmd>Telescope coc commands<CR>", desc = "Show coc commands" }
   maps.n["<leader>lm"] = { "<cmd>CocRestart<cr>", desc = "Coc restart" }
   -- maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }

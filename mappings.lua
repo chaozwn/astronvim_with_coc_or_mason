@@ -254,7 +254,7 @@ if is_available "telescope.nvim" then
   maps.n["<leader>fp"] = { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
   maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
   maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
-  maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
+  maps.n["<leader>fm"] = false
   maps.v["<leader>fr"] =
     { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
   -- buffer switching

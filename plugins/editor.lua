@@ -56,7 +56,7 @@ return {
     config = function(_, opts) require("project_nvim").setup(opts) end,
   },
   -- 可以让你在终端中打开文件
-  { "willothy/flatten.nvim", lazy = false, priority = 1001, opts = { window = { open = "vsplit" } } },
+  -- { "willothy/flatten.nvim", lazy = false, priority = 1001, opts = { window = { open = "vsplit" } } },
   {
     "echasnovski/mini.move",
     config = function()

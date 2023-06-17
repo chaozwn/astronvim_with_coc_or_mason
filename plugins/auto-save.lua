@@ -31,5 +31,5 @@ return {
       after_saving = nil,          -- ran after doing the actual save
     },
   },
-  event = "InsertEnter",
+  event = { "User AstroFile", "InsertEnter" },
 }

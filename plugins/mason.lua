@@ -110,7 +110,7 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = {
-      automatic_installation = true,
+      -- automatic_installation = true,
       ensure_installed = { "python", "javadbg", "javatest", "js" },
     },
   },

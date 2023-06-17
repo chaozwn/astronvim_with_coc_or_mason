@@ -15,7 +15,6 @@ if vim.g.lsp_type ~= "coc" then
   local lsp_plugins = {
     { import = "astrocommunity.pack.prisma" },
     { import = "astrocommunity.pack.typescript" },
-    { import = "astrocommunity.pack.typescript-all-in-one" },
     { import = "astrocommunity.pack.tailwindcss" },
     { import = "astrocommunity.pack.markdown" },
     { import = "astrocommunity.pack.python" },

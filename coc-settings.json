@@ -5,7 +5,7 @@
 	"inlayHint.enable": false,
 	"diagnostic.enableSign": true,
 	"diagnostic.level": "warn",
-	"diagnostic.virtualTextCurrentLineOnly": true,
+	"diagnostic.virtualTextCurrentLineOnly": false,
 	"diagnostic.errorSign": "",
 	"diagnostic.warningSign": "",
 	"diagnostic.infoSign": "",

@@ -18,6 +18,7 @@ local g = {
   resession_enabled = true,
   -- lsp_type
   lsp_type = "coc",
+  -- lsp_type = 'lsp',
   -- fix coc补全的问题
   coc_snippet_next = "<C-n>",
   coc_snippet_prev = "<C-p>",

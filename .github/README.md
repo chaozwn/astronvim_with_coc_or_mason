@@ -8,6 +8,10 @@ now this config can support `Coc` or `Mason`, you can modify in `options.lua`
 vim.g.lsp_type = "coc" -- use coc as lsp server
 vim.g.lsp_type = "lsp" -- use mason as lsp server
 ```
+if you use coc.nvim, please run
+```shell
+ln -s ~/.config/nvim/lua/user/coc-settings.json ~/.config/nvim
+```
 
 ## 🛠️ Installation
 

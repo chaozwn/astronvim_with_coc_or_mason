@@ -69,7 +69,7 @@
 	"prettier.printWidth": 100,
 	"prettier.disableLanguages": [],
 	"prettier.formatterPriority": 1,
-	"prettier.useTabs": true,
+	"prettier.useTabs": false,
 	"prettier.trailingComma": "all",
 	"prettier.singleQuote": false,
 	"emmet.includeLanguages": {
@@ -87,7 +87,7 @@
 	"typescript.format.enabled": true,
 	"javascript.format.enabled": true,
 	"typescript.suggest.autoImports": true,
-	"tsserver.maxTsServerMemory": 4096,
+	"tsserver.maxTsServerMemory": 8192,
 	"typescript.implementationsCodeLens.enabled": true,
 	"typescript.referencesCodeLens.enabled": true,
 	"typescript.referencesCodeLens.showOnAllFunctions": true,

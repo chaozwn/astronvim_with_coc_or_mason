@@ -20,6 +20,9 @@ if util_is_avaliable then
   maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
 end
 
+maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up" }
+maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down" }
+
 if vim.g.neovide then
   if system == "Darwin" then
     vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key

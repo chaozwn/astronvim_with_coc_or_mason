@@ -9,6 +9,7 @@ local plugins = {
   -- https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/workflow/hardtime-nvim/hardtime-nvim.lua
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
   { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
+  { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
 }
 
 if vim.g.lsp_type ~= "coc" then

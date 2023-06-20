@@ -7,7 +7,7 @@ local utils = require "astronvim.utils"
 local get_icon = utils.get_icon
 local is_available = utils.is_available
 
--- print(require("astronvim.utils").is_available "neoconf.nvim")
+-- print(require("astronvim.utils").is_available "markdown-preview.nvim")
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
@@ -40,6 +40,10 @@ if vim.g.neovide then
     maps.i["<D-v>"] = '<esc>"+pli'
   elseif system == "window" then
   end
+end
+
+if is_available "markdown-preview.nvim" then
+  maps.n["<leader>ue"] = { "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle Markdown preview" }
 end
 
 if is_available "vim-jukit" then

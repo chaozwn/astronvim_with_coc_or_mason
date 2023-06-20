@@ -33,7 +33,7 @@ You can also just clone this repository directly if you do not want to track you
 #### Clone the repository
 
 ```shell
-git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim/lua/user
+git clone https://github.com/chaozwn/astronvim_with_coc_or_mason ~/.config/nvim/lua/user
 ```
 
 #### Start Neovim
@@ -41,3 +41,27 @@ git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim/lua/us
 ```shell
 nvim
 ```
+
+## General Mappings
+
+| Action                      | Mappings            |
+| --------------------------- | ------------------- |
+| Leader key                  | `Space`             |
+| Resize up                   | `Ctrl + Up`         |
+| Resize Down                 | `Ctrl + Down`       |
+| Resize Left                 | `Ctrl + Left`       |
+| Resize Right                | `Ctrl + Right`      |
+| Up Window                   | `Ctrl + k`          |
+| Down Window                 | `Ctrl + j`          |
+| Left Window                 | `Ctrl + h`          |
+| Right Window                | `Ctrl + l`          |
+| Force Write                 | `Ctrl + s`          |
+| Force Quit                  | `Ctrl + q`          |
+| New File                    | `Leader + n`        |
+| Close Buffer                | `Leader + c`        |
+| Next Tab (real vim tab)     | `]t`                |
+| Previous Tab (real vim tab) | `[t`                |
+| Comment                     | `Leader + /`        |
+| Horizontal Split            | `\`                 |
+| Vertical Split              | <code>&#124;</code> |
+

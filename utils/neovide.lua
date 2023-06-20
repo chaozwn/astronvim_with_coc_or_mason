@@ -7,7 +7,7 @@ function M.init()
 end
 
 function M.config()
-  vim.o.guifont = "Hack NFM:h16"
+  vim.o.guifont = "Fira Code:h16"
   -- 没有空闲
   vim.g.neovide_no_idle = true
   -- 退出需要确认

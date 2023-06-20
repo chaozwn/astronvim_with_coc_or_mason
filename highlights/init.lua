@@ -14,9 +14,11 @@ return function()
 
     local sign = vim.fn.sign_define
 
-    sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-    sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
-    sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+    sign("DapBreakpoint", { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+    sign("DapBreakpointCondition", { text = "", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+    sign("DapLogPoint", { text = ".>", texthl = "DapLogPoint", linehl = "", numhl = "" })
+    sign("DapBreakpointRejected", { text = "", texthl = "DapBreakpointRejected", linehl = "", numhl = "" })
+    sign("DapStopped", { text = "󰁕", texthl = "DapStopped", linehl = "", numhl = "" })
   end
 
   return {
@@ -32,9 +34,9 @@ return function()
     TelescopeResultsBorder = { fg = bg, bg = bg },
     TelescopeResultsNormal = { bg = bg },
     TelescopeResultsTitle = { fg = bg, bg = bg },
-    CursorLineFold = { link = "CursorLineNr" }, -- highlight fold indicator as well as line number
+    CursorLineFold = { link = "CursorLineNr" },                    -- highlight fold indicator as well as line number
     GitSignsCurrentLineBlame = { fg = nontext.fg, italic = true }, -- italicize git blame virtual text
-    HighlightURL = { underline = true }, -- always underline URLs
+    HighlightURL = { underline = true },                           -- always underline URLs
     -- leap
     LeapMatch = { bg = "#ff007c", fg = "#c8d3f5", bold = true },
     LeapLabelPrimary = { fg = "#ff007c", bold = true },

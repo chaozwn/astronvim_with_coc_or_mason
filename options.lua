@@ -14,6 +14,14 @@ local opt = {
   cmdheight = 1,
 }
 
+local is_mac = require("user.utils.utils").is_mac()
+local get_coc_config_home = function()
+  if is_mac then
+    return "~/.config/nvim/lua/user"
+  else
+    return "~/.config/nvim"
+  end
+end
 local g = {
   resession_enabled = true,
   -- lsp_type
@@ -22,6 +30,7 @@ local g = {
   -- fix coc completion problem
   coc_snippet_next = "<C-n>",
   coc_snippet_prev = "<C-p>",
+  coc_config_home = get_coc_config_home(),
 }
 
 if g.lsp_type == "coc" then

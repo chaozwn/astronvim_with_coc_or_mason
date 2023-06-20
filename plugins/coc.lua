@@ -1,4 +1,4 @@
-if vim.g.lsp_type == 'coc' then
+if vim.g.lsp_type == "coc" then
   return {
     -- {
     --   "williamboman/mason.nvim",
@@ -7,7 +7,7 @@ if vim.g.lsp_type == 'coc' then
     -- coc
     {
       "jose-elias-alvarez/null-ls.nvim",
-      enabled = false
+      enabled = false,
     },
     {
       "jay-babu/mason-null-ls.nvim",
@@ -32,7 +32,7 @@ if vim.g.lsp_type == 'coc' then
     {
       "lvimuser/lsp-inlayhints.nvim",
       config = false,
-      enabled = false
+      enabled = false,
     },
     -- dap
     -- {
@@ -58,54 +58,58 @@ if vim.g.lsp_type == 'coc' then
     -- NOTE: 新update的包
     {
       "rcarriga/cmp-dap",
-      enabled = false
+      enabled = false,
     },
     -- refactor
     {
       "ThePrimeagen/refactoring.nvim",
-      enabled = false
+      enabled = false,
     },
     -- luaship
     {
       "L3MON4D3/LuaSnip",
-      enabled = false
+      enabled = false,
     },
     {
       "rafamadriz/friendly-snippets",
-      enabled = false
+      enabled = false,
     },
     -- cmp
     {
       "hrsh7th/nvim-cmp",
-      enabled = false
+      enabled = false,
     },
     {
       "hrsh7th/cmp-buffer",
-      enabled = false
+      enabled = false,
     },
     {
       "hrsh7th/cmp-path",
-      enabled = false
+      enabled = false,
     },
     {
       "saadparwaiz1/cmp_luasnip",
-      enabled = false
+      enabled = false,
     },
     {
       "folke/trouble.nvim",
-      enabled = false
+      enabled = false,
     },
     {
       "neoclide/coc.nvim",
       branch = "release",
-      lazy = false
+      lazy = false,
     },
     {
       "honza/vim-snippets",
       dependencies = {
         "neoclide/coc.nvim",
       },
-      event = "BufEnter"
+      event = "BufEnter",
+    },
+    {
+      "folke/neoconf.nvim",
+      enabled = false,
     },
   }
 else

@@ -8,6 +8,17 @@ function M.better_search(key)
   end
 end
 
+function M.is_mac()
+  return function()
+    local system = vim.loop.os_uname().sysname
+    if system == "Darwin" then
+      return true
+    else
+      return false
+    end
+  end
+end
+
 function M.init_coc()
   require("astronvim.utils").notify('Initialized coc.nvim for LSP support', vim.log.levels.INFO, { title = "LSP Status" })
 end

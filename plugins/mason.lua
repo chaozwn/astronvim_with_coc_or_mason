@@ -149,6 +149,8 @@ return {
     },
     config = function() require("refactoring").setup {} end,
   },
+  -- TODO:support native inlay hints.
+  -- https://github.com/AstroNvim/AstroNvim/pull/2015/commits/9b9d565afb7dfb733e772b4f16dcd1069b0afc71
   { "lvimuser/lsp-inlayhints.nvim", config = true },
   {
     "leoluz/nvim-dap-go",

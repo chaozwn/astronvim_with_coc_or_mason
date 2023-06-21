@@ -9,6 +9,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
     },
+    ft = { "python" },
     opts = {
       -- Can be a list of adapters like what neotest expects,
       -- or a list of adapter names,
@@ -19,7 +20,7 @@ return {
           dap = { justMyCode = false },
           python = "python",
           -- NOTE: pip install pytest
-          runner = 'pytest',
+          runner = "pytest",
           -- is_test_file = function(filename)
           --   return filename:match "^tests?%.?py$" or filename:match "^test_.+%.py$" or filename:match "%.test_.+%.py$"
           -- end,

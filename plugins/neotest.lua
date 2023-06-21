@@ -17,7 +17,12 @@ return {
       adapters = {
         ["neotest-python"] = {
           dap = { justMyCode = false },
-          python = "~/miniconda3/envs/python38/bin/python",
+          python = "python",
+          -- NOTE: pip install pytest
+          runner = 'pytest',
+          -- is_test_file = function(filename)
+          --   return filename:match "^tests?%.?py$" or filename:match "^test_.+%.py$" or filename:match "%.test_.+%.py$"
+          -- end,
         },
       },
       -- Example for loading neotest-go with a custom config

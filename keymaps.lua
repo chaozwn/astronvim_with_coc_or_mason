@@ -11,6 +11,7 @@ function M.mappings(maps)
   local is_available = utils.is_available
 
   -- print(require("astronvim.utils").is_available "neotest")
+  -- print(vim.fn.has "unix" == 1)
 
   local system = vim.loop.os_uname().sysname
 

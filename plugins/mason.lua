@@ -33,8 +33,6 @@ return {
         "yamlls",
         "emmet_ls",
         "ruff_lsp",
-        "jdtls",
-        "lemminx",
         "volar",
         "tailwindcss",
         "prismals",
@@ -60,7 +58,6 @@ return {
         "eslint_d",
         "black",
         "isort",
-        "clang_format",
         "pylint",
       },
       handlers = {
@@ -111,7 +108,7 @@ return {
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = {
       -- automatic_installation = true,
-      ensure_installed = { "python", "javadbg", "javatest", "js" },
+      ensure_installed = { "python", "js" },
     },
   },
   {

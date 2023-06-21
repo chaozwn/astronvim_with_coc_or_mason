@@ -19,7 +19,6 @@ if vim.g.lsp_type ~= "coc" then
     { import = "astrocommunity.pack.tailwindcss" },
     { import = "astrocommunity.pack.markdown" },
     { import = "astrocommunity.pack.python" },
-    { import = "astrocommunity.pack.java" },
     { import = "astrocommunity.pack.docker" },
     { import = "astrocommunity.pack.go" },
     { import = "astrocommunity.pack.yaml" },

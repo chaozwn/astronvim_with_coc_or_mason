@@ -20,7 +20,6 @@ return {
         "typescript",
         "tsx",
         "python",
-        "java",
         "toml",
         "markdown",
         "markdown_inline",

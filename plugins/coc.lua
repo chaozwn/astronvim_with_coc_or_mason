@@ -39,6 +39,7 @@ if vim.g.lsp_type == "coc" then
     --   "mfussenegger/nvim-dap",
     --   enabled = false
     -- },
+    -- WARNING: https://github.com/rcarriga/nvim-dap-ui/issues/260 close resize all buffer
     -- {
     --   "jay-babu/mason-nvim-dap.nvim",
     --   enabled = false,
@@ -55,7 +56,6 @@ if vim.g.lsp_type == "coc" then
     --   "theHamsta/nvim-dap-virtual-text",
     --   enabled = false
     -- },
-    -- NOTE: 新update的包
     {
       "rcarriga/cmp-dap",
       enabled = false,

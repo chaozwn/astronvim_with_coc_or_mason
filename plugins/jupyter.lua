@@ -1,4 +1,3 @@
--- TODO: add jupyter config
 -- Basic jukit options
 -- NOTE: debug :lua print(vim.inspect(vim.api.nvim_get_var("jukit")))
 vim.g.jukit_mappings = 0

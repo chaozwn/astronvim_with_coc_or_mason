@@ -43,7 +43,7 @@ return {
     end
 
     if vim.g.lsp_type == "coc" then
-      -- TODO: 现在coc有bug，开启winbar会导致每次的cmd height + 1
+      -- WARNING: 现在coc有bug，开启winbar会导致每次的cmd height + 1
       -- https://github.com/neoclide/coc.nvim/issues/4555
       -- opts.winbar = false
       opts.statusline = {

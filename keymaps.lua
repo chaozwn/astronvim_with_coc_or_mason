@@ -432,7 +432,7 @@ function M.mappings(maps)
       expr = true,
       silent = true,
     }
-    -- NOTE: wait https://github.com/neoclide/coc.nvim/pull/4642 to merge
+    -- WARNING: wait https://github.com/neoclide/coc.nvim/pull/4642 to merge
     -- maps.n["gl"] = { "<cmd>CocActionAsync('diagnosticInfo')<CR>", desc = "Hover diagnostics" }
     -- maps.n["<leader>ld"] = { "<cmd>CocActionAsync('diagnosticInfo')<CR>", desc = "Hover diagnostics" }
 

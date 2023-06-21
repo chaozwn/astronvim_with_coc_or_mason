@@ -134,6 +134,7 @@ return {
   {
     "mfussenegger/nvim-dap-python",
     dependencies = { "mfussenegger/nvim-dap" },
+    -- NOTE: ft: lazy-load on filetype
     ft = "python",
     event = getEvent(),
     config = function() require("dap-python").setup("python", {}) end,
@@ -147,7 +148,7 @@ return {
     },
     config = function() require("refactoring").setup {} end,
   },
-  -- TODO:support native inlay hints.
+  -- WARNING:support native inlay hints.
   -- https://github.com/AstroNvim/AstroNvim/pull/2015/commits/9b9d565afb7dfb733e772b4f16dcd1069b0afc71
   { "lvimuser/lsp-inlayhints.nvim", config = true },
   {

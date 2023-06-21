@@ -48,6 +48,7 @@ if vim.g.lsp_type == "coc" then
     --   "mfussenegger/nvim-dap-python",
     --   enabled = false
     -- },
+    -- WARNING: https://github.com/rcarriga/nvim-dap-ui/issues/260
     -- {
     --   "rcarriga/nvim-dap-ui",
     --   enabled = false

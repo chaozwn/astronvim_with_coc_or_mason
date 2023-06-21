@@ -25,13 +25,18 @@ function M.mappings(maps)
   maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up" }
   maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down" }
 
+  if is_available "nvim-dap-ui" then
+    maps.n["<leader>dU"] = { function() require("dapui").toggle { reset = true } end, desc = "Toggle Debugger UI and reset layout" }
+  end
+
   if is_available "neotest" then
     local neotest = require "neotest"
     maps.n["<leader>m"] = { desc = "󰇉 Test" }
     maps.n["<leader>mc"] = { function() neotest.run.run() end, desc = "Run nearest" }
     maps.n["<leader>mC"] = { function() neotest.run.run { strategy = "dap" } end, desc = "Run nearest with dap" }
     maps.n["<leader>mt"] = { function() neotest.run.run(vim.fn.expand "%") end, desc = "Run file" }
-    maps.n["<leader>mT"] = { function() neotest.run.run { vim.fn.expand "%", strategy = "dap" } end, desc = "Run file with dap" }
+    maps.n["<leader>mT"] =
+      { function() neotest.run.run { vim.fn.expand "%", strategy = "dap" } end, desc = "Run file with dap" }
     maps.n["<leader>ma"] = { function() neotest.run.run(vim.loop.cwd()) end, desc = "Run all test files" }
     maps.n["<leader>ms"] = { function() neotest.summary.toggle() end, desc = "Toggle summary" }
     maps.n["<leader>mo"] =

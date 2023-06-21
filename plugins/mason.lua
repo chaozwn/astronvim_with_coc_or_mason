@@ -83,9 +83,9 @@ return {
           require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with {
             condition = function(utils)
               return utils.root_has_file "package.json"
-                  or utils.root_has_file ".prettierrc"
-                  or utils.root_has_file ".prettierrc.json"
-                  or utils.root_has_file ".prettierrc.js"
+                or utils.root_has_file ".prettierrc"
+                or utils.root_has_file ".prettierrc.json"
+                or utils.root_has_file ".prettierrc.js"
             end,
           })
         end,
@@ -94,8 +94,8 @@ return {
           require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with {
             condition = function(utils)
               return utils.root_has_file ".eslintrc.cjs"
-                  or utils.root_has_file ".eslintrc.json"
-                  or utils.root_has_file ".eslintrc.js"
+                or utils.root_has_file ".eslintrc.json"
+                or utils.root_has_file ".eslintrc.js"
             end,
           })
         end,
@@ -127,13 +127,14 @@ return {
     event = getEvent(),
     opts = {
       commented = true,
-      enabled = true,          -- enable this plugin (the default)
+      enabled = true, -- enable this plugin (the default)
       enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
     },
   },
   {
     "mfussenegger/nvim-dap-python",
     dependencies = { "mfussenegger/nvim-dap" },
+    ft = "python",
     event = getEvent(),
     config = function() require("dap-python").setup("python", {}) end,
   },

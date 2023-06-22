@@ -14,7 +14,7 @@ return {
         -- "git_status",
       },
       window = {
-        width = 40,
+        width = 35,
       },
       source_selector = {
         winbar = false,

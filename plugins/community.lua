@@ -4,7 +4,6 @@
 -- <C-u> : delete to beginning of line
 local plugins = {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
   -- 这个插件限制了hjkl连按次数和鼠标，强制学习vim操作
   -- https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/workflow/hardtime-nvim/hardtime-nvim.lua
   -- { import = "astrocommunity.workflow.hardtime-nvim" },

@@ -3,7 +3,12 @@ return {
   name = "catppuccin",
   opts = {
     transparent_background = vim.g.transparent_background,
+    show_end_of_buffer = true,
     flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+      light = "latte",
+      dark = "mocha",
+    },
     term_colors = true,
     dim_inactive = {
       enabled = false,

@@ -2,12 +2,12 @@ local M = {}
 
 function M.init()
   M.config()
-  -- M.background()
+  if vim.g.transparent_background then M.background() end
   M.refresh(60, 5)
 end
 
 function M.config()
-  vim.o.guifont = "Fira Code:h16"
+  vim.o.guifont = "JetBrainsMono Nerd Font:h16"
   -- 没有空闲
   vim.g.neovide_no_idle = true
   -- 退出需要确认
@@ -33,7 +33,7 @@ function M.background()
   local alpha = function() return string.format("%x", math.floor((255 * vim.g.transparency) or 0.8)) end
   -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
   vim.g.neovide_transparency = 0.0
-  vim.g.transparency = 0.8
+  vim.g.transparency = 0.9
   vim.g.neovide_background_color = "#0f1117" .. alpha()
 end
 

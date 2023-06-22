@@ -10,8 +10,10 @@ function M.mappings(maps)
   local get_icon = utils.get_icon
   local is_available = utils.is_available
 
-  -- print(require("astronvim.utils").is_available "neotest")
+  -- print(require("astronvim.utils").is_available "coc.nvim")
   -- print(vim.fn.has "unix" == 1)
+  maps.o = {}
+  maps.x = {}
 
   local system = vim.loop.os_uname().sysname
 
@@ -26,7 +28,10 @@ function M.mappings(maps)
   maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down" }
 
   if is_available "nvim-dap-ui" then
-    maps.n["<leader>dU"] = { function() require("dapui").toggle { reset = true } end, desc = "Toggle Debugger UI and reset layout" }
+    maps.n["<leader>dU"] = {
+      function() require("dapui").toggle { reset = true } end,
+      desc = "Toggle Debugger UI and reset layout"
+    }
   end
 
   if is_available "neotest" then
@@ -36,11 +41,11 @@ function M.mappings(maps)
     maps.n["<leader>mC"] = { function() neotest.run.run { strategy = "dap" } end, desc = "Run nearest with dap" }
     maps.n["<leader>mt"] = { function() neotest.run.run(vim.fn.expand "%") end, desc = "Run file" }
     maps.n["<leader>mT"] =
-      { function() neotest.run.run { vim.fn.expand "%", strategy = "dap" } end, desc = "Run file with dap" }
+    { function() neotest.run.run { vim.fn.expand "%", strategy = "dap" } end, desc = "Run file with dap" }
     maps.n["<leader>ma"] = { function() neotest.run.run(vim.loop.cwd()) end, desc = "Run all test files" }
     maps.n["<leader>ms"] = { function() neotest.summary.toggle() end, desc = "Toggle summary" }
     maps.n["<leader>mo"] =
-      { function() neotest.output.open { enter = true, auto_close = true } end, desc = "Show output" }
+    { function() neotest.output.open { enter = true, auto_close = true } end, desc = "Show output" }
     maps.n["<leader>mO"] = { function() neotest.output_panel.toggle() end, desc = "Toggle output panel" }
     maps.n["<leader>mS"] = { function() neotest.run.stop() end, desc = "Stop test" }
   end
@@ -81,7 +86,7 @@ function M.mappings(maps)
     maps.n["<leader>jot"] = { "<cmd>call jukit#splits#term()<CR>", desc = "Open terminal window" }
     maps.n["<leader>joh"] = { "<cmd>call jukit#splits#history()<CR>", desc = "Open history window" }
     maps.n["<leader>joa"] =
-      { "<cmd>call jukit#splits#output_and_history()<CR>", desc = "Open terminal and history window" }
+    { "<cmd>call jukit#splits#output_and_history()<CR>", desc = "Open terminal and history window" }
 
     -- Close
     maps.n["<leader>jc"] = { desc = "Close" }
@@ -93,7 +98,7 @@ function M.mappings(maps)
     -- Show
     maps.n["<leader>jS"] = { desc = "Show" }
     maps.n["<leader>jSc"] =
-      { "<cmd>call jukit#splits#show_last_cell_output(1)<CR>", desc = "Show last cell output in output history window" }
+    { "<cmd>call jukit#splits#show_last_cell_output(1)<CR>", desc = "Show last cell output in output history window" }
 
     -- Scroll
     maps.n["<leader>js"] = { desc = "Scroll" }
@@ -103,10 +108,10 @@ function M.mappings(maps)
     -- UI autocmd
     maps.n["<leader>ju"] = { desc = "UI" }
     maps.n["<leader>juh"] =
-      { "<cmd>call jukit#splits#toggle_auto_hist()", desc = "Toggle auto displaying saved output on CursorHold" }
+    { "<cmd>call jukit#splits#toggle_auto_hist()", desc = "Toggle auto displaying saved output on CursorHold" }
     maps.n["<leader>jul"] = { "<cmd>call jukit#layouts#set_layout()<CR>", desc = "Apply layout to current splits" }
     maps.n["<leader>jup"] =
-      { "<cmd>call jukit#ueberzug#set_default_pos()<CR>", desc = "Set position and dimension of ueberzug window" }
+    { "<cmd>call jukit#ueberzug#set_default_pos()<CR>", desc = "Set position and dimension of ueberzug window" }
 
     -- Execute
     maps.n["<leader>je"] = { desc = "Execute" }
@@ -115,7 +120,7 @@ function M.mappings(maps)
     maps.n["<leader>jel"] = { "<cmd>call jukit#send#line()<CR>", desc = "Execute current line" }
     maps.v["<leader>jer"] = { "<cmd>call jukit#send#selection()<CR>", desc = "Execute selected code" }
     maps.n["<leader>jeu"] =
-      { "<cmd>call jukit#send#until_current_section()<CR>", desc = "Execute all cells until current cell" }
+    { "<cmd>call jukit#send#until_current_section()<CR>", desc = "Execute all cells until current cell" }
     maps.n["<leader>jea"] = { "<cmd>call jukit#send#all()<CR>", desc = "Execute all cells" }
 
     -- Cell
@@ -127,32 +132,32 @@ function M.mappings(maps)
     maps.n["<leader>jjd"] = { "<cmd>call jukit#cells#delete()<CR>", desc = "Delete current cell" }
     maps.n["<leader>jjs"] = { "<cmd>call jukit#cells#split()<CR>", desc = "Split current cell" }
     maps.n["<leader>jjm"] =
-      { "<cmd>call jukit#cells#merge_below()<CR>", desc = "Merge current cell with the cell below" }
+    { "<cmd>call jukit#cells#merge_below()<CR>", desc = "Merge current cell with the cell below" }
     maps.n["<leader>jjM"] =
-      { "<cmd>call jukit#cells#merge_above()<CR>", desc = "Merge current cell with the cell above" }
+    { "<cmd>call jukit#cells#merge_above()<CR>", desc = "Merge current cell with the cell above" }
     maps.n["<leader>jjK"] = { "<cmd>call jukit#cells#move_up()<CR>", desc = "Move current cell up" }
     maps.n["<leader>jjJ"] = { "<cmd>call jukit#cells#move_down()<CR>", desc = "Move current cell down" }
     maps.n["<leader>jjj"] = { "<cmd>call jukit#cells#jump_to_next_cell()<CR>", desc = "Jump to next cell below" }
     maps.n["<leader>jjk"] =
-      { "<cmd>call jukit#cells#jump_to_previous_cell()<CR>", desc = "Jump to previous cell above" }
+    { "<cmd>call jukit#cells#jump_to_previous_cell()<CR>", desc = "Jump to previous cell above" }
     maps.n["<leader>jjc"] = { "<cmd>call jukit#cells#delete_outputs(0)<CR>", desc = "Clear current cell output" }
     maps.n["<leader>jja"] = { "<cmd>call jukit#cells#delete_outputs(1)<CR>", desc = "Clear all cell output" }
 
     -- Conversion
     maps.n["<leader>jm"] = { desc = "Conversion" }
     maps.n["<leader>jmj"] =
-      { "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>", desc = "Convert py to jupyter notebook" }
+    { "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>", desc = "Convert py to jupyter notebook" }
     if vim.g.jukit_html_viewer then
       maps.n["<leader>jmt"] =
-        { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<CR>", desc = "Convert file to html" }
+      { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<CR>", desc = "Convert file to html" }
       maps.n["<leader>jmT"] =
-        { "<cmd>call jukit#convert#save_nb_to_file(1,1,'html')<CR>", desc = "Convert file to html with rerun all code" }
+      { "<cmd>call jukit#convert#save_nb_to_file(1,1,'html')<CR>", desc = "Convert file to html with rerun all code" }
     end
 
     if vim.g.jukit_pdf_viewer then
       maps.n["<leader>jmp"] = { "<cmd>call jukit#convert#save_nb_to_file(0,1,'pdf')<CR>", desc = "Convert file to pdf" }
       maps.n["<leader>jmP"] =
-        { "<cmd>call jukit#convert#save_nb_to_file(1,1,'pdf')<CR>", desc = "Convert file to pdf with rerun all code" }
+      { "<cmd>call jukit#convert#save_nb_to_file(1,1,'pdf')<CR>", desc = "Convert file to pdf with rerun all code" }
     end
 
     -- Env
@@ -223,7 +228,7 @@ function M.mappings(maps)
         desc = "Extract Variable",
       }
       maps.v["<leader>ri"] =
-        { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
+      { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
 
       -- Extract block doesn't need visual mode
       maps.n["<leader>rb"] = {
@@ -285,12 +290,12 @@ function M.mappings(maps)
   if is_available "telescope.nvim" then
     maps.v["<leader>f"] = { desc = "󰍉 Find" }
     maps.n["<leader>fp"] =
-      { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
+    { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
     maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
     maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
     maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
     maps.v["<leader>fr"] =
-      { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
+    { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
     -- buffer switching
     maps.n["<leader>bt"] = {
       function()
@@ -321,17 +326,17 @@ function M.mappings(maps)
   -- 多个窗口之间跳转
   maps.n["<leader>w="] = { "<C-w>=", desc = "Make all window equal" }
   maps.n["<TAB>"] =
-    { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
+  { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
   maps.n["<S-TAB>"] = {
     function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
     desc = "Previous buffer",
   }
   maps.n["<leader>bo"] =
-    { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
+  { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
   maps.n["<leader>ba"] = { function() require("astronvim.utils.buffer").close_all() end, desc = "Close all buffers" }
   maps.n["<leader>bc"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
   maps.n["<leader>bC"] =
-    { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
+  { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
   maps.n["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" }
   maps.n["<leader>bD"] = {
     function()
@@ -355,7 +360,7 @@ function M.mappings(maps)
       desc = "Comment line",
     }
     maps.v["<C-/>"] =
-      { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
   end
   maps.v["<leader>/"] = false
   maps.n["<leader>/"] = false
@@ -413,117 +418,119 @@ function M.mappings(maps)
   maps.n["<leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
 
   -- coc lsp keymapping
-  if vim.g.lsp_type == "coc" then
-    maps.n["<leader>ue"] = {
-      "get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'",
-      desc = "Toggle Coc",
-      expr = true,
-    }
-    maps.n["<leader>ui"] = { ":CocCommand document.toggleInlayHint<CR>", desc = "Toggle Inlayhints" }
+  if is_available "coc.nvim" then
+    if vim.g.lsp_type == "coc" then
+      maps.n["<leader>ue"] = {
+        "get(g:, 'coc_enabled', 0) == 1 ? ':CocDisable<cr>' : ':CocEnable<cr>'",
+        desc = "Toggle Coc",
+        expr = true,
+      }
+      maps.n["<leader>ui"] = { ":CocCommand document.toggleInlayHint<CR>", desc = "Toggle Inlayhints" }
 
-    maps.i["<TAB>"] = {
-      'coc#pum#visible() ? coc#pum#confirm() :  "\\<TAB>"',
-      expr = true,
-      silent = true,
-    }
+      maps.i["<TAB>"] = {
+        'coc#pum#visible() ? coc#pum#confirm() :  "\\<TAB>"',
+        expr = true,
+        silent = true,
+      }
 
-    maps.i["<C-j>"] = {
-      'coc#pum#visible() ? coc#pum#next(0) : "\\<C-j>"',
-      expr = true,
-      silent = true,
-    }
-    maps.i["<C-k>"] = {
-      'coc#pum#visible() ? coc#pum#prev(0) : "\\<C-k>"',
-      expr = true,
-      silent = true,
-    }
-    -- WARNING: wait https://github.com/neoclide/coc.nvim/pull/4642 to merge
-    -- maps.n["gl"] = { "<cmd>CocActionAsync('diagnosticInfo')<CR>", desc = "Hover diagnostics" }
-    -- maps.n["<leader>ld"] = { "<cmd>CocActionAsync('diagnosticInfo')<CR>", desc = "Hover diagnostics" }
+      maps.i["<C-j>"] = {
+        'coc#pum#visible() ? coc#pum#next(0) : "\\<C-j>"',
+        expr = true,
+        silent = true,
+      }
+      maps.i["<C-k>"] = {
+        'coc#pum#visible() ? coc#pum#prev(0) : "\\<C-k>"',
+        expr = true,
+        silent = true,
+      }
+      -- WARNING: wait https://github.com/neoclide/coc.nvim/pull/4642 to merge
+      -- maps.n["gl"] = { "<cmd>CocActionAsync('diagnosticInfo')<CR>", desc = "Hover diagnostics" }
+      -- maps.n["<leader>ld"] = { "<cmd>CocActionAsync('diagnosticInfo')<CR>", desc = "Hover diagnostics" }
 
-    -- maps.i["<C-n>"] = { "<Plug>(coc-snippets-expand-jump)" }
+      -- maps.i["<C-n>"] = { "<Plug>(coc-snippets-expand-jump)" }
 
-    maps.n["[d"] = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
-    maps.n["]d"] = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
-    maps.n["gD"] = { "<cmd>Telescope coc declarations<CR>", desc = "Declaration of current symbol" }
-    maps.n["gd"] = { "<cmd>Telescope coc definitions<CR>", desc = "Show the definition of current symbol" }
-    maps.n["gT"] = { "<cmd>Telescope coc type_definitions<CR>", desc = "Definition of current type" }
-    maps.n["gI"] = { "<cmd>Telescope coc implementations<CR>", desc = "Implementation of current symbol" }
-    maps.n["gr"] = { "<cmd>Telescope coc references<CR>", desc = "References of current symbol" }
-    -- Use K to show documentation in preview window
-    function _G.show_docs()
-      local cw = vim.fn.expand "<cword>"
-      if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
-        vim.api.nvim_command("h " .. cw)
-      elseif vim.api.nvim_eval "coc#rpc#ready()" then
-        vim.fn.CocActionAsync "doHover"
-      else
-        vim.api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
+      maps.n["[d"] = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
+      maps.n["]d"] = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
+      maps.n["gD"] = { "<cmd>Telescope coc declarations<CR>", desc = "Declaration of current symbol" }
+      maps.n["gd"] = { "<cmd>Telescope coc definitions<CR>", desc = "Show the definition of current symbol" }
+      maps.n["gT"] = { "<cmd>Telescope coc type_definitions<CR>", desc = "Definition of current type" }
+      maps.n["gI"] = { "<cmd>Telescope coc implementations<CR>", desc = "Implementation of current symbol" }
+      maps.n["gr"] = { "<cmd>Telescope coc references<CR>", desc = "References of current symbol" }
+      -- Use K to show documentation in preview window
+      function _G.show_docs()
+        local cw = vim.fn.expand "<cword>"
+        if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
+          vim.api.nvim_command("h " .. cw)
+        elseif vim.api.nvim_eval "coc#rpc#ready()" then
+          vim.fn.CocActionAsync "doHover"
+        else
+          vim.api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
+        end
       end
+
+      maps.n["K"] = { "<CMD>lua _G.show_docs()<CR>", desc = "Hover symbol details" }
+      maps.v["<leader>l"] = { desc = get_icon("ActiveLSP", 1, true) .. "LSP" }
+      maps.n["<leader>lr"] = { "<Plug>(coc-rename)", desc = "Rename current symbol" }
+      maps.n["<leader>lf"] = { "<CMD>Format<CR>", desc = "Format buffer" }
+      maps.x["<leader>lf"] = { "<cmd>call CocActionAsync('format')<CR>", desc = "Format buffer" }
+      maps.n["<leader>la"] = { "<cmd>Telescope coc code_actions<CR>", desc = "LSP code action" }
+      maps.n["<leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }
+      -- TODO: 增加手动signture提示
+      -- maps.n["<leader>lh"] = { "<cmd>call CocAction('showSignatureHelp')<CR>", desc = "Signature help" }
+      maps.n["<leader>r"] = { desc = " Refactor" }
+      maps.v["<leader>r"] = { desc = " Refactor" }
+      maps.n["<leader>re"] = { "<Plug>(coc-codeaction-refactor)", desc = "Code refactor" }
+      maps.x["<leader>rs"] = { "<Plug>coc-codeaction-refactor-selected)", desc = "Code refactor selected" }
+      maps.n["<leader>rs"] = { "<Plug>coc-codeaction-refactor-selected)", desc = "Code refactor selected" }
+
+      -- text object
+      maps.x["if"] = { "<Plug>(coc-funcobj-i)" }
+      maps.o["if"] = { "<Plug>(coc-funcobj-i)" }
+      maps.x["af"] = { "<Plug>(coc-funcobj-a)" }
+      maps.o["af"] = { "<Plug>(coc-funcobj-a)" }
+      maps.x["ic"] = { "<Plug>(coc-classobj-i)" }
+      maps.o["ic"] = { "<Plug>(coc-classobj-i)" }
+      maps.x["ac"] = { "<Plug>(coc-classobj-a)" }
+      maps.o["ac"] = { "<Plug>(coc-classobj-a)" }
+
+      maps.n["<C-d>"] =
+      { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
+      maps.n["<C-u>"] =
+      { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
+      maps.i["<C-d>"] = {
+        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-d>"',
+        expr = true,
+        silent = true,
+        nowait = true,
+      }
+      maps.i["<C-u>"] = {
+        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<C-u>"',
+        expr = true,
+        silent = true,
+        nowait = true,
+      }
+      maps.v["<C-d>"] =
+      { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
+      maps.v["<C-u>"] =
+      { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
+
+      -- maps.n["<leader>li"] = { ":<C-u>CocList --normal gstatus<CR>", desc = "LSP status" }
+      maps.n["<leader>lS"] = { "<cmd>CocOutline<CR>", desc = "Symbols outline" }
+      maps.n["<leader>ls"] = { "<cmd>Telescope coc document_symbols<CR>", desc = "Search symbols" }
+      maps.n["<leader>lD"] = { "<cmd>Telescope coc diagnostics<CR>", desc = "Show current file diagnostics" }
+      maps.n["<leader>lW"] = { "<cmd>Telescope coc workspace_diagnostics<cr>", desc = "Show workspace diagnostics" }
+      maps.n["<leader>lG"] = { "<cmd>Telescope coc workspace_symbols<CR>", desc = "Search workspace symbols" }
+      maps.n["<leader>pe"] = { "<cmd>CocList extensions<cr>", desc = "Manage extensions" }
+      maps.n["<leader>pc"] = { "<cmd>Telescope coc commands<CR>", desc = "Show coc commands" }
+      maps.n["<leader>lm"] = { "<cmd>CocRestart<cr>", desc = "Coc restart" }
+      -- maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }
+      -- maps.n["<C-k>"] = { ":<C-u>CocPrev<cr>", desc = "Coc previous" }
+      -- maps.n["<C-j>"] = { ":<C-u>CocNext<cr>", desc = "Coc next" }
+      maps.n["<leader>pV"] = { "<cmd>CocCommand volar.initializeTakeOverMode<CR>", desc = "Volar TakeOverMode" }
+
+      maps.n["mm"] = { "<Plug>(coc-translator-p)", desc = "Translate word" }
+      maps.v["mm"] = { "<Plug>(coc-translator-pv)", desc = "Translate word" }
     end
-
-    maps.n["K"] = { "<CMD>lua _G.show_docs()<CR>", desc = "Hover symbol details" }
-    maps.v["<leader>l"] = { desc = get_icon("ActiveLSP", 1, true) .. "LSP" }
-    maps.n["<leader>lr"] = { "<Plug>(coc-rename)", desc = "Rename current symbol" }
-    maps.n["<leader>lf"] = { "<CMD>Format<CR>", desc = "Format buffer" }
-    maps.x["<leader>lf"] = { "<cmd>call CocActionAsync('format')<CR>", desc = "Format buffer" }
-    maps.n["<leader>la"] = { "<cmd>Telescope coc code_actions<CR>", desc = "LSP code action" }
-    maps.n["<leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }
-    -- TODO: 增加手动signture提示
-    -- maps.n["<leader>lh"] = { "<cmd>call CocAction('showSignatureHelp')<CR>", desc = "Signature help" }
-    maps.n["<leader>r"] = { desc = " Refactor" }
-    maps.v["<leader>r"] = { desc = " Refactor" }
-    maps.n["<leader>re"] = { "<Plug>(coc-codeaction-refactor)", desc = "Code refactor" }
-    maps.x["<leader>rs"] = { "<Plug>coc-codeaction-refactor-selected)", desc = "Code refactor selected" }
-    maps.n["<leader>rs"] = { "<Plug>coc-codeaction-refactor-selected)", desc = "Code refactor selected" }
-
-    -- text object
-    maps.x["if"] = { "<Plug>(coc-funcobj-i)" }
-    maps.o["if"] = { "<Plug>(coc-funcobj-i)" }
-    maps.x["af"] = { "<Plug>(coc-funcobj-a)" }
-    maps.o["af"] = { "<Plug>(coc-funcobj-a)" }
-    maps.x["ic"] = { "<Plug>(coc-classobj-i)" }
-    maps.o["ic"] = { "<Plug>(coc-classobj-i)" }
-    maps.x["ac"] = { "<Plug>(coc-classobj-a)" }
-    maps.o["ac"] = { "<Plug>(coc-classobj-a)" }
-
-    maps.n["<C-d>"] =
-      { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
-    maps.n["<C-u>"] =
-      { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
-    maps.i["<C-d>"] = {
-      'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-d>"',
-      expr = true,
-      silent = true,
-      nowait = true,
-    }
-    maps.i["<C-u>"] = {
-      'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<C-u>"',
-      expr = true,
-      silent = true,
-      nowait = true,
-    }
-    maps.v["<C-d>"] =
-      { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
-    maps.v["<C-u>"] =
-      { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
-
-    -- maps.n["<leader>li"] = { ":<C-u>CocList --normal gstatus<CR>", desc = "LSP status" }
-    maps.n["<leader>lS"] = { "<cmd>CocOutline<CR>", desc = "Symbols outline" }
-    maps.n["<leader>ls"] = { "<cmd>Telescope coc document_symbols<CR>", desc = "Search symbols" }
-    maps.n["<leader>lD"] = { "<cmd>Telescope coc diagnostics<CR>", desc = "Show current file diagnostics" }
-    maps.n["<leader>lW"] = { "<cmd>Telescope coc workspace_diagnostics<cr>", desc = "Show workspace diagnostics" }
-    maps.n["<leader>lG"] = { "<cmd>Telescope coc workspace_symbols<CR>", desc = "Search workspace symbols" }
-    maps.n["<leader>pe"] = { "<cmd>CocList extensions<cr>", desc = "Manage extensions" }
-    maps.n["<leader>pc"] = { "<cmd>Telescope coc commands<CR>", desc = "Show coc commands" }
-    maps.n["<leader>lm"] = { "<cmd>CocRestart<cr>", desc = "Coc restart" }
-    -- maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }
-    -- maps.n["<C-k>"] = { ":<C-u>CocPrev<cr>", desc = "Coc previous" }
-    -- maps.n["<C-j>"] = { ":<C-u>CocNext<cr>", desc = "Coc next" }
-    maps.n["<leader>pV"] = { "<cmd>CocCommand volar.initializeTakeOverMode<CR>", desc = "Volar TakeOverMode" }
-
-    maps.n["mm"] = { "<Plug>(coc-translator-p)", desc = "Translate word" }
-    maps.v["mm"] = { "<Plug>(coc-translator-pv)", desc = "Translate word" }
   end
 
   if is_available "neoconf.nvim" then

@@ -14,7 +14,7 @@
   "diagnositc.displayByAle": true,
   "diagnostic.refreshOnInsertMode": false,
   "diagnostic.checkCurrentLine": true,
-  "diagnostic.virtualTextPrefix": "󰝤",
+  "diagnostic.virtualTextPrefix": "󰝤 ",
   "diagnostic.virtualText": true,
   "codeLens.enable": true,
   "list.previewHighlightGroup": "Statement",

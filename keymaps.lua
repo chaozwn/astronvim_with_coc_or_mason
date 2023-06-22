@@ -14,6 +14,7 @@ function M.mappings(maps)
   -- print(vim.fn.has "unix" == 1)
   maps.o = {}
   maps.x = {}
+  maps.c = {}
 
   local system = vim.loop.os_uname().sysname
 

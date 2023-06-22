@@ -23,6 +23,7 @@ local get_coc_config_home = function()
   end
 end
 local g = {
+  transparent_background = true,
   resession_enabled = true,
   -- lsp_type
   -- lsp_type = "coc",

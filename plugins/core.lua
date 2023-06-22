@@ -32,9 +32,13 @@ return {
   },
   {
     "rcarriga/nvim-notify",
-    opts = {
-      timeout = 0,
-    },
+    opts = function(_, opts)
+      local newOpt = {
+        timeout = 0,
+      }
+      if vim.g.transparent_background then newOpt.background_colour = "#000000" end
+      return require("astronvim.utils").extend_tbl(opts, newOpt)
+    end,
   },
   {
     "mrjones2014/smart-splits.nvim",

@@ -4,7 +4,7 @@
   "coc.preferences.extensionUpdateCheck": "daily",
   "inlayHint.enable": false,
   "diagnostic.enableSign": true,
-  "diagnostic.level": "information",
+  "diagnostic.level": "hint",
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",

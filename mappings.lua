@@ -7,7 +7,7 @@ local utils = require "astronvim.utils"
 local get_icon = utils.get_icon
 local is_available = utils.is_available
 
--- print(require "astronvim.utils".is_available("nvim-autopairs"))
+-- print(require("astronvim.utils").is_available "substitute.nvim")
 
 local maps = { i = {}, n = {}, v = {}, t = {}, c = {}, o = {}, x = {} }
 
@@ -39,23 +39,114 @@ if vim.g.neovide then
   end
 end
 
+if is_available "vim-jukit" then
+  maps.n["<leader>j"] = { desc = " Jupyter" }
+  maps.v["<leader>j"] = { desc = " Jupyter" }
+
+  -- Open
+  maps.n["<leader>jo"] = { desc = "Open" }
+  maps.n["<leader>joo"] = {
+    "<cmd>call jukit#splits#output()<CR>",
+    desc = "Open ipython window",
+  }
+  maps.n["<leader>jot"] = { "<cmd>call jukit#splits#term()<CR>", desc = "Open terminal window" }
+  maps.n["<leader>joh"] = { "<cmd>call jukit#splits#history()<CR>", desc = "Open history window" }
+  maps.n["<leader>joa"] =
+  { "<cmd>call jukit#splits#output_and_history()<CR>", desc = "Open terminal and history window" }
+
+  -- Close
+  maps.n["<leader>jc"] = { desc = "Close" }
+  maps.n["<leader>jch"] = { "<cmd>call jukit#splits#close_history()<CR>", desc = "Close output history window" }
+  maps.n["<leader>jco"] = { "<cmd>call jukit#splits#close_output_split()<CR>", desc = "Close output window" }
+  -- Argument: Whether or not to ask you to confirm before closing
+  maps.n["<leader>jca"] = { "<cmd>call jukit#splits#close_output_and_history(1)<CR>", desc = "Close both windows" }
+
+  -- Show
+  maps.n["<leader>jS"] = { desc = "Show" }
+  maps.n["<leader>jSc"] =
+  { "<cmd>call jukit#splits#show_last_cell_output(1)<CR>", desc = "Show last cell output in output history window" }
+
+  -- Scroll
+  maps.n["<leader>js"] = { desc = "Scroll" }
+  maps.n["<leader>jsj"] = { "<cmd>call jukit#splits#out_hist_scroll(1)<CR>", desc = "Scroll down in history window" }
+  maps.n["<leader>jsk"] = { "<cmd>call jukit#splits#out_hist_scroll(0)<CR>", desc = "Scroll up in history window" }
+
+  -- UI autocmd
+  maps.n["<leader>ju"] = { desc = "UI" }
+  maps.n["<leader>juh"] =
+  { "<cmd>call jukit#splits#toggle_auto_hist()", desc = "Toggle auto displaying saved output on CursorHold" }
+  maps.n["<leader>jul"] = { "<cmd>call jukit#layouts#set_layout()<CR>", desc = "Apply layout to current splits" }
+  maps.n["<leader>jup"] =
+  { "<cmd>call jukit#ueberzug#set_default_pos()<CR>", desc = "Set position and dimension of ueberzug window" }
+
+  -- Execute
+  maps.n["<leader>je"] = { desc = "Execute" }
+  maps.v["<leader>je"] = { desc = "Execute" }
+  maps.n["<leader>jer"] = { "<cmd>call jukit#send#section(0)<CR>", desc = "Execute current cell" }
+  maps.n["<leader>jel"] = { "<cmd>call jukit#send#line()<CR>", desc = "Execute current line" }
+  maps.v["<leader>jer"] = { "<cmd>call jukit#send#selection()<CR>", desc = "Execute selected code" }
+  maps.n["<leader>jeu"] =
+  { "<cmd>call jukit#send#until_current_section()<CR>", desc = "Execute all cells until current cell" }
+  maps.n["<leader>jea"] = { "<cmd>call jukit#send#all()<CR>", desc = "Execute all cells" }
+
+  -- Cell
+  maps.n["<leader>jj"] = { desc = "Cell" }
+  maps.n["<leader>jjo"] = { "<cmd>call jukit#cells#create_below(0)<CR>", desc = "Create code cell below" }
+  maps.n["<leader>jjO"] = { "<cmd>call jukit#cells#create_above(0)<CR>", desc = "Create code cell above" }
+  maps.n["<leader>jjt"] = { "<cmd>call jukit#cells#create_below(1)<CR>", desc = "Create markdown cell below" }
+  maps.n["<leader>jjT"] = { "<cmd>call jukit#cells#create_above(1)<CR>", desc = "Create markdown cell above" }
+  maps.n["<leader>jjd"] = { "<cmd>call jukit#cells#delete()<CR>", desc = "Delete current cell" }
+  maps.n["<leader>jjs"] = { "<cmd>call jukit#cells#split()<CR>", desc = "Split current cell" }
+  maps.n["<leader>jjm"] = { "<cmd>call jukit#cells#merge_below()<CR>", desc = "Merge current cell with the cell below" }
+  maps.n["<leader>jjM"] = { "<cmd>call jukit#cells#merge_above()<CR>", desc = "Merge current cell with the cell above" }
+  maps.n["<leader>jjK"] = { "<cmd>call jukit#cells#move_up()<CR>", desc = "Move current cell up" }
+  maps.n["<leader>jjJ"] = { "<cmd>call jukit#cells#move_down()<CR>", desc = "Move current cell down" }
+  maps.n["<leader>jjj"] = { "<cmd>call jukit#cells#jump_to_next_cell()<CR>", desc = "Jump to next cell below" }
+  maps.n["<leader>jjk"] = { "<cmd>call jukit#cells#jump_to_previous_cell()<CR>", desc = "Jump to previous cell above" }
+  maps.n["<leader>jjc"] = { "<cmd>call jukit#cells#delete_outputs(0)<CR>", desc = "Clear current cell output" }
+  maps.n["<leader>jja"] = { "<cmd>call jukit#cells#delete_outputs(1)<CR>", desc = "Clear all cell output" }
+
+  -- Conversion
+  maps.n["<leader>jm"] = { desc = "Conversion" }
+  maps.n["<leader>jmj"] =
+  { "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>", desc = "Convert py to jupyter notebook" }
+  if vim.g.jukit_html_viewer then
+    maps.n["<leader>jmt"] = { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<CR>", desc = "Convert file to html" }
+    maps.n["<leader>jmT"] =
+    { "<cmd>call jukit#convert#save_nb_to_file(1,1,'html')<CR>", desc = "Convert file to html with rerun all code" }
+  end
+
+  if vim.g.jukit_pdf_viewer then
+    maps.n["<leader>jmp"] = { "<cmd>call jukit#convert#save_nb_to_file(0,1,'pdf')<CR>", desc = "Convert file to pdf" }
+    maps.n["<leader>jmP"] =
+    { "<cmd>call jukit#convert#save_nb_to_file(1,1,'pdf')<CR>", desc = "Convert file to pdf with rerun all code" }
+  end
+
+  -- Env
+  maps.n["<leader>jn"] = { desc = "Env" }
+  maps.n["<leader>jnc"] = { ":JukitOut conda activate ", desc = "Activate conda env" }
+  maps.n["<leader>jnC"] = { ":JukitOutHist conda activate ", desc = "Activate conda env with history window" }
+end
+
 -- lsp inlayhints
 maps.n["<leader>uh"] = {
   function() require("lsp-inlayhints").toggle() end,
   desc = "Toggle lspInlayHints",
 }
 
--- marks
-maps.n["m"] = { desc = "Marks" }
-maps.n["m,"] = { "<Plug>(Marks-setnext)<CR>", desc = "Set Next Lowercase Mark" }
-maps.n["m;"] = { "<Plug>(Marks-toggle)<CR>", desc = "Toggle Mark(Set Or Cancel Mark)" }
-maps.n["m]"] = { "<Plug>(Marks-next)<CR>", desc = "Move To Next Mark" }
-maps.n["m["] = { "<Plug>(Marks-prev)<CR>", desc = "Move To Previous Mark" }
-maps.n["m:"] = { "<Plug>(Marks-preview)", desc = "Preview Mark" }
+if is_available "marks.nvim" then
+  -- marks
+  maps.n["m"] = { desc = "Marks" }
+  maps.n["m,"] = { "<Plug>(Marks-setnext)<CR>", desc = "Set Next Lowercase Mark" }
+  maps.n["m;"] = { "<Plug>(Marks-toggle)<CR>", desc = "Toggle Mark(Set Or Cancel Mark)" }
+  maps.n["m]"] = { "<Plug>(Marks-next)<CR>", desc = "Move To Next Mark" }
+  maps.n["m["] = { "<Plug>(Marks-prev)<CR>", desc = "Move To Previous Mark" }
+  maps.n["m:"] = { "<Plug>(Marks-preview)", desc = "Preview Mark" }
 
-maps.n["dm"] = { "<Plug>(Marks-delete)", desc = "Delete Marks" }
-maps.n["dm-"] = { "<Plug>(Marks-deleteline)<CR>", desc = "Delete All Marks On The Current Line" }
-maps.n["dm<space>"] = { "<Plug>(Marks-deletebuf)<CR>", desc = "Delete All Marks On Current Buffer" }
+  maps.n["dm"] = { "<Plug>(Marks-delete)", desc = "Delete Marks" }
+  maps.n["dm-"] = { "<Plug>(Marks-deleteline)<CR>", desc = "Delete All Marks On The Current Line" }
+  maps.n["dm<space>"] = { "<Plug>(Marks-deletebuf)<CR>", desc = "Delete All Marks On Current Buffer" }
+end
 
 -- 关闭搜索高亮
 maps.n["<leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
@@ -214,7 +305,6 @@ maps.n["<leader>bD"] = {
   end,
   desc = "Pick to close",
 }
-
 
 -- lsp restart
 if vim.g.lsp_type ~= "coc" then
@@ -385,7 +475,7 @@ if vim.g.lsp_type == "coc" then
   maps.n["<leader>lD"] = { "<cmd>Telescope coc diagnostics<CR>", desc = "Show current file diagnostics" }
   maps.n["<leader>lW"] = { "<cmd>Telescope coc workspace_diagnostics<cr>", desc = "Show workspace diagnostics" }
   maps.n["<leader>lG"] = { "<cmd>Telescope coc workspace_symbols<CR>", desc = "Search workspace symbols" }
-  maps.n["<leader>pe"] = { ":<C-u>CocList extensions<cr>", desc = "Manage extensions" }
+  maps.n["<leader>pe"] = { "<cmd>CocList extensions<cr>", desc = "Manage extensions" }
   maps.n["<leader>pc"] = { "<cmd>Telescope coc commands<CR>", desc = "Show coc commands" }
   maps.n["<leader>lm"] = { "<cmd>CocRestart<cr>", desc = "Coc restart" }
   -- maps.n["<leader>pR"] = { ":<C-u>CocListResume<cr>", desc = "Resume latest coc list" }

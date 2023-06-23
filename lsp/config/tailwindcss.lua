@@ -6,7 +6,8 @@ return {
   end,
   settings = {
     tailwindCSS = {
-      classAttributes = { "class", "className", "classList", "ngClass" },
+      classAttributes = { "class", "className", "classList", "ngClass", "cva" },
+      emmetCompletions = true,
       lint = {
         cssConflict = "warning",
         invalidApply = "error",

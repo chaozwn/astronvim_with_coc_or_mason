@@ -11,6 +11,7 @@ local opt = {
   termguicolors = true,
   wildmenu = true,
   wildmode = "longest:list,full",
+  cmdheight = 1,
 }
 
 local g = {
@@ -20,6 +21,8 @@ local g = {
   -- fix coc补全的问题
   -- coc_snippet_next = "<C-n>",
   -- coc_snippet_prev = "<C-p>",
+  -- lsp_type
+  -- fix coc completion problem
 }
 
 if g.lsp_type == "coc" then
@@ -46,13 +49,12 @@ if g.lsp_type == "coc" then
     "coc-snippets",
     "coc-word",
     "coc-pairs",
-    "coc-yank",
     "coc-translator",
     "coc-highlight",
     "coc-eslint",
     "@yaegassy/coc-tailwindcss3",
     "@yaegassy/coc-volar",
-    "@yaegassy/coc-volar-tools"
+    "@yaegassy/coc-volar-tools",
   }
 end
 

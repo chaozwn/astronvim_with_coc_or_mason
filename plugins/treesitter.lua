@@ -1,5 +1,5 @@
 -- :TSInstall lua
--- NOTE: treesitter new textobject. k: block, c: class, ?: conditional, f: function, l: loop, a: parameter
+-- NOTE: treesitter new textobject. k: block, c: class, ?: conditional, f: function, l: loop, a: parameter, ""< | > | a ,f ,k" swap textobject
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = function(_, opts)

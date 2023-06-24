@@ -61,7 +61,7 @@
     "--style",
     "{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
   ],
-  "python.pythonPath": "python",
+  "python.pythonPath": "~/miniconda3/envs/python38/bin/python",
   "html.format.enable": true,
   "javascript.showUnused": true,
   "javascript.suggest.names": true,

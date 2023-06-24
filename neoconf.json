@@ -30,11 +30,11 @@
       "pylsp.plugins.rope_completion.eager": true
     },
     "pyright": {
-      "python.pythonPath": "python",
+      "python.pythonPath": "~/miniconda3/envs/python38/bin/python",
       "python.analysis.autoSearchPaths": true,
       "python.analysis.diagnosticMode": "workspace",
       "python.analysis.useLibraryCodeForTypes": true,
-      "python.analysis.typeCheckingMode": "basic"
+      "python.analysis.typeCheckingMode": "off"
     },
     "tailwindcss": {
       "tailwindCSS.classAttributes": [

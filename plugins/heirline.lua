@@ -26,24 +26,24 @@ return {
       padding = { left = 1, right = 1 },
     }
 
-    local file_encoding_component = function(o)
-      o = extend_tbl {
-        hl = status.hl.get_attributes "git_branch",
-        provider = status.provider.file_encoding { padding = { left = 1 } },
-      }
-      return status.component.builder(status.utils.setup_providers(o, {}))
-    end
+    -- local file_encoding_component = function(o)
+    --   o = extend_tbl {
+    --     hl = status.hl.get_attributes "git_branch",
+    --     provider = status.provider.file_encoding { padding = { left = 1 } },
+    --   }
+    --   return status.component.builder(status.utils.setup_providers(o, {}))
+    -- end
 
-    local file_format_component = function(o)
-      o = extend_tbl({
-        hl = status.hl.get_attributes "git_branch",
-        provider = status.provider.file_format { padding = { left = 1 } },
-      })
-      return status.component.builder(status.utils.setup_providers(o, {}))
-    end
+    -- local file_format_component = function(o)
+    --   o = extend_tbl({
+    --     hl = status.hl.get_attributes "git_branch",
+    --     provider = status.provider.file_format { padding = { left = 1 } },
+    --   })
+    --   return status.component.builder(status.utils.setup_providers(o, {}))
+    -- end
 
     if vim.g.lsp_type == "coc" then
-      -- TODO: 现在coc有bug，开启winbar会导致每次的cmd height + 1
+      -- WARNING: 现在coc有bug，开启winbar会导致每次的cmd height + 1
       -- https://github.com/neoclide/coc.nvim/issues/4555
       -- opts.winbar = false
       opts.statusline = {
@@ -57,8 +57,8 @@ return {
         status.component.cmd_info(),
         status.component.fill(),
         coc_lsp,
-        file_encoding_component(),
-                file_format_component(),
+        -- file_encoding_component(),
+        --         file_format_component(),
 
         status.component.treesitter(),
         status.component.nav(),
@@ -75,8 +75,8 @@ return {
         status.component.cmd_info(),
         status.component.fill(),
         status.component.lsp(),
-        file_encoding_component(),
-        file_format_component(),
+        -- file_encoding_component(),
+        -- file_format_component(),
         status.component.treesitter(),
         status.component.nav(),
       }

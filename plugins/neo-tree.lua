@@ -2,20 +2,27 @@ local get_icon = require("astronvim.utils").get_icon
 
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  dependencies = { "miversen33/netman.nvim" },
+  -- dependencies = { "miversen33/netman.nvim" },
   opts = function(_, opts)
     return require("astronvim.utils").extend_tbl(opts, {
       close_if_last_window = true,
+      enable_diagnostics = true,
       sources = {
         "filesystem",
-        "netman.ui.neo-tree",
-        "git_status",
+        -- "netman.ui.neo-tree",
+        -- "buffers",
+        -- "git_status",
+      },
+      window = {
+        width = 35,
       },
       source_selector = {
+        winbar = false,
         sources = {
-          { source = "filesystem", display_name = get_icon "FolderClosed" .. " File" },
-          { source = "remote",     display_name = "󰒍 Remote" },
-          -- { source = "git_status", display_name = get_icon "Git" .. " Git" },
+          { source = "filesystem", display_name = get_icon("FolderClosed", 1, true) .. "File" },
+          -- { source = "buffers", display_name = get_icon("DefaultFile", 1, true) .. "Bufs" },
+          -- { source = "git_status", display_name = get_icon("Git", 1, true) .. "Git" },
+          -- { source = "remote", display_name = get_icon("Session", 1, true) .. "Remote" },
         },
       },
       filesystem = {
@@ -34,7 +41,6 @@ return {
           },
         },
       },
-
     })
   end,
 }

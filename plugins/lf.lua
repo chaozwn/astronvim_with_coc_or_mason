@@ -13,5 +13,6 @@ return  {
 
         vim.keymap.set("n", "<C-y>", ":Lf<CR>")
     end,
-    requires = {"plenary.nvim", "toggleterm.nvim"}
+    dependencies = {"plenary.nvim", "toggleterm.nvim"}
+    -- requires = {"plenary.nvim", "toggleterm.nvim"}
 }

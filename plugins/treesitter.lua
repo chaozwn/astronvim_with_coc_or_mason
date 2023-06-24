@@ -1,4 +1,5 @@
 -- :TSInstall lua
+-- NOTE: treesitter new textobject. k: block, c: class, ?: conditional, f: function, l: loop, a: parameter
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = function(_, opts)
@@ -20,7 +21,6 @@ return {
         "typescript",
         "tsx",
         "python",
-        "java",
         "toml",
         "markdown",
         "markdown_inline",

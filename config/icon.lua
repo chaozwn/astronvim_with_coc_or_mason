@@ -26,7 +26,7 @@ return {
       Operator = " ",
       Package = " ",
       Property = " ",
-      Reference = " ",
+      Reference = "  ",
       Snippet = " ",
       String = " ",
       Struct = " ",

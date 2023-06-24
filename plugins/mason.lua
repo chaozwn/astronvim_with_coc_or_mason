@@ -34,8 +34,6 @@ return {
         "yamlls",
         "emmet_ls",
         "ruff_lsp",
-        "jdtls",
-        "lemminx",
         "volar",
         "tailwindcss",
         "prismals",
@@ -62,9 +60,7 @@ return {
         "eslint_d",
         "black",
         "isort",
-        "clang_format",
-        "rustywind",
-        -- "pylint",
+        "pylint",
       },
       handlers = {
         remark_js = function()
@@ -162,6 +158,8 @@ return {
   -- {
   --   "mfussenegger/nvim-dap-python",
   --   dependencies = { "mfussenegger/nvim-dap" },
+  --   -- NOTE: ft: lazy-load on filetype
+  --   ft = "python",
   --   event = getEvent(),
   --   config = function() require("dap-python").setup("python", {}) end,
   -- },
@@ -174,6 +172,10 @@ return {
     },
     config = function() require("refactoring").setup {} end,
   },
+  -- WARNING:support native inlay hints.
+  -- https://github.com/AstroNvim/AstroNvim/pull/2015/commits/9b9d565afb7dfb733e772b4f16dcd1069b0afc71
+  -- WARNING: astronvim support native inlay hints
+  -- https://github.com/AstroNvim/AstroNvim/commit/14ba29cec669f8a294fc7ef1ae78ae3f91246940
   { "lvimuser/lsp-inlayhints.nvim", config = true },
   {
     "leoluz/nvim-dap-go",
@@ -187,10 +189,10 @@ return {
     },
     opts = {},
   },
-  {
-    "olexsmir/gopher.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
-    ft = "go",
-    opts = {},
-  },
+  -- {
+  --   "olexsmir/gopher.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+  --   ft = "go",
+  --   opts = {},
+  -- },
 }

@@ -1,5 +1,7 @@
--- TODO: add codeium
 return {
+ mappings = function(maps)
+    return require("user.keymaps").mappings(maps)
+  end,
   heirline = {
     separators = {
       breadcrumbs = "  ",

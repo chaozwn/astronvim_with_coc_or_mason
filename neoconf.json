@@ -1,0 +1,58 @@
+{
+  "lspconfig": {
+    "cssls": {
+      "css.lint.unknownAtRules": "ignore",
+      "less.lint.unknownAtRules": "ignore",
+      "scss.lint.unknownAtRules": "ignore"
+    },
+    "tsserver": {
+      "javascript.updateImportsOnFileMove.enabled": "always",
+      "javascript.inlayHints.includeInlayEnumMemberValueHints": true,
+      "javascript.inlayHints.includeInlayFunctionLikeReturnTypeHints": true,
+      "javascript.inlayHints.includeInlayFunctionParameterTypeHints": true,
+      "javascript.inlayHints.includeInlayParameterNameHints": "all",
+      "javascript.inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+      "javascript.inlayHints.includeInlayPropertyDeclarationTypeHints": true,
+      "javascript.inlayHints.includeInlayVariableTypeHints": true,
+      "typescript.updateImportsOnFileMove.enabled": "always",
+      "typescript.inlayHints.includeInlayEnumMemberValueHints": true,
+      "typescript.inlayHints.includeInlayFunctionLikeReturnTypeHints": true,
+      "typescript.inlayHints.includeInlayFunctionParameterTypeHints": true,
+      "typescript.inlayHints.includeInlayParameterNameHints": "all",
+      "typescript.inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+      "typescript.inlayHints.includeInlayPropertyDeclarationTypeHints": true,
+      "typescript.inlayHints.includeInlayVariableTypeHints": true
+    },
+    "pylsp": {
+      "pylsp.plugins.rope_autoimport.enabled": true,
+      "pylsp.plugins.rope_autoimport.memory": true,
+      "pylsp.plugins.rope_completion.enabled": true,
+      "pylsp.plugins.rope_completion.eager": true
+    },
+    "pyright": {
+      "python.pythonPath": "python",
+      "python.analysis.autoSearchPaths": true,
+      "python.analysis.diagnosticMode": "workspace",
+      "python.analysis.useLibraryCodeForTypes": true,
+      "python.analysis.typeCheckingMode": "basic"
+    },
+    "tailwindcss": {
+      "tailwindCSS.classAttributes": [
+        "class",
+        "className",
+        "ngClass",
+        "classList",
+        "cva"
+      ],
+      "tailwindCSS.emmetCompletions": true,
+      "tailwindCSS.lint.cssConflict": "warning",
+      "tailwindCSS.lint.invalidApply": "error",
+      "tailwindCSS.lint.invalidConfigPath": "error",
+      "tailwindCSS.lint.invalidScreen": "error",
+      "tailwindCSS.lint.invalidTailwindDirective": "error",
+      "tailwindCSS.lint.invalidVariant": "error",
+      "tailwindCSS.lint.recommendedVariantOrder": "warning",
+      "tailwindCSS.validate": true
+    }
+  }
+}

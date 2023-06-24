@@ -1,3 +1,7 @@
+local utils = require "astronvim.utils"
+local is_available = utils.is_available
+local augroup = vim.api.nvim_create_augroup
+
 -- text like documents enable wrap and spell
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "gitcommit", "markdown", "text", "plaintex" },
@@ -32,83 +36,82 @@ if vim.g.neovide then
   neovide.init()
 end
 
-if vim.g.lsp_type == "coc" then
-  vim.api.nvim_create_augroup("CocGroup", {})
+if is_available "coc.nvim" then
+  if vim.g.lsp_type == "coc" then
+    vim.api.nvim_create_augroup("CocGroup", {})
 
-  -- vim.api.nvim_create_autocmd("User", {
-  --   group = "CocGroup",
-  --   pattern = "CocNvimInit",
-  --   desc = "Initialized coc.nvim for LSP support",
-  --   command = "lua require('user.utils.utils').init_coc()"
-  -- })
+    -- vim.api.nvim_create_autocmd("User", {
+    --   group = "CocGroup",
+    --   pattern = "CocNvimInit",
+    --   desc = "Initialized coc.nvim for LSP support",
+    --   command = "lua require('user.utils.utils').init_coc()"
+    -- })
 
-  -- vim.cmd "hi CocFloating ctermbg=235 guibg=#13354A"
-  -- vim.cmd("hi CocMenuSel ctermbg=237 guibg=#13354A")
-  vim.cmd "highlight CocHighlightText guibg=#545c7e"
-  vim.api.nvim_create_autocmd("CursorHold", {
-    group = "CocGroup",
-    command = "silent call CocActionAsync('highlight')",
-    desc = "Highlight symbol under cursor on CursorHold",
-  })
+    -- vim.cmd "hi CocFloating ctermbg=235 guibg=#13354A"
+    -- vim.cmd("hi CocMenuSel ctermbg=237 guibg=#13354A")
+    vim.cmd "highlight CocHighlightText guibg=#545c7e"
+    vim.api.nvim_create_autocmd("CursorHold", {
+      group = "CocGroup",
+      command = "silent call CocActionAsync('highlight')",
+      desc = "Highlight symbol under cursor on CursorHold",
+    })
 
-  -- Setup formatexpr specified filetype(s)
-  vim.api.nvim_create_autocmd("FileType", {
-    group = "CocGroup",
-    pattern = "typescript,json",
-    command = "setl formatexpr=CocAction('formatSelected')",
-    desc = "Setup formatexpr specified filetype(s).",
-  })
+    -- Setup formatexpr specified filetype(s)
+    vim.api.nvim_create_autocmd("FileType", {
+      group = "CocGroup",
+      pattern = "typescript,json",
+      command = "setl formatexpr=CocAction('formatSelected')",
+      desc = "Setup formatexpr specified filetype(s).",
+    })
 
-  -- Update signature help on jump placeholder
-  vim.api.nvim_create_autocmd("User", {
-    group = "CocGroup",
-    pattern = "CocJumpPlaceholder",
-    command = "call CocActionAsync('showSignatureHelp')",
-    desc = "Update signature help on jump placeholder",
-  })
+    -- Update signature help on jump placeholder
+    vim.api.nvim_create_autocmd("User", {
+      group = "CocGroup",
+      pattern = "CocJumpPlaceholder",
+      command = "call CocActionAsync('showSignatureHelp')",
+      desc = "Update signature help on jump placeholder",
+    })
 
-  -- Add `:Format` command to format current buffer
-  vim.api.nvim_create_user_command("Format", "call CocActionAsync('format')", {})
+    -- Add `:Format` command to format current buffer
+    vim.api.nvim_create_user_command("Format", "call CocActionAsync('format')", {})
 
-  -- " Add `:Fold` command to fold current buffer
-  vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = "?" })
+    -- " Add `:Fold` command to fold current buffer
+    vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", { nargs = "?" })
 
-  -- Add `:OR` command for organize imports of the current buffer
-  vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
+    -- Add `:OR` command for organize imports of the current buffer
+    vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
+  end
 end
 
-local resession = require "resession"
-vim.api.nvim_del_augroup_by_name "alpha_autostart" -- disable alpha auto start
+if is_available "resession.nvim" then
+  local resession = require "resession"
+  vim.api.nvim_del_augroup_by_name "alpha_autostart" -- disable alpha auto start
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    -- Only load the session if nvim was started with no args
-    if vim.fn.argc(-1) == 0 then
-      -- Save these to a different directory, so our manual sessions don't get polluted
-      resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
-    end
-  end,
-})
-vim.api.nvim_create_autocmd("VimLeavePre", {
-  callback = function()
-    resession.save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
-  end,
-})
+  vim.api.nvim_create_autocmd("VimEnter", {
+    desc = "Restore session on open",
+    group = augroup("resession_auto_open", { clear = true }),
+    callback = function()
+      -- Only load the session if nvim was started with no args
+      if vim.fn.argc(-1) == 0 then
+        -- Save these to a different directory, so our manual sessions don't get polluted
+        resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+      end
+    end,
+  })
 
--- Filetypes
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = '*.astro',
-  command = 'set filetype=astro',
-})
+  -- Filetypes
+  vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*.astro",
+    command = "set filetype=astro",
+  })
 
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = '*.mdx',
-  command = 'set filetype=markdown',
-})
--- mdx files are markdown
-vim.api.nvim_create_autocmd('BufEnter,BufNewFile,BufRead', {
-  pattern = '*.mdx',
-  callback = function()
-    vim.bo.filetype = 'markdown'
-  end
-})
+  vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*.mdx",
+    command = "set filetype=markdown",
+  })
+  -- mdx files are markdown
+  vim.api.nvim_create_autocmd("BufEnter,BufNewFile,BufRead", {
+    pattern = "*.mdx",
+    callback = function() vim.bo.filetype = "markdown" end,
+  })
+end

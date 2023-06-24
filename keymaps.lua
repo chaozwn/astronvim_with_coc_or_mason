@@ -10,7 +10,7 @@ function M.mappings(maps)
   local get_icon = utils.get_icon
   local is_available = utils.is_available
 
-  -- print(require("astronvim.utils").is_available "coc.nvim")
+  -- print(require("astronvim.utils").is_available "telescope-coc.nvim")
   -- print(vim.fn.has "unix" == 1)
   maps.o = {}
   maps.x = {}
@@ -519,6 +519,7 @@ function M.mappings(maps)
       maps.n["<leader>lS"] = { "<cmd>CocOutline<CR>", desc = "Symbols outline" }
       maps.n["<leader>ls"] = { "<cmd>Telescope coc document_symbols<CR>", desc = "Search symbols" }
       maps.n["<leader>lD"] = { "<cmd>Telescope coc diagnostics<CR>", desc = "Show current file diagnostics" }
+      maps.n["<leader>lR"] = { "<cmd>Telescope coc references<CR>", desc = "Search references" }
       maps.n["<leader>lW"] = { "<cmd>Telescope coc workspace_diagnostics<cr>", desc = "Show workspace diagnostics" }
       maps.n["<leader>lG"] = { "<cmd>Telescope coc workspace_symbols<CR>", desc = "Search workspace symbols" }
       maps.n["<leader>pe"] = { "<cmd>CocList extensions<cr>", desc = "Manage extensions" }

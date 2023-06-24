@@ -31,7 +31,7 @@ function M.mappings(maps)
   if is_available "nvim-dap-ui" then
     maps.n["<leader>dU"] = {
       function() require("dapui").toggle { reset = true } end,
-      desc = "Toggle Debugger UI and reset layout"
+      desc = "Toggle Debugger UI and reset layout",
     }
   end
 
@@ -42,11 +42,11 @@ function M.mappings(maps)
     maps.n["<leader>mC"] = { function() neotest.run.run { strategy = "dap" } end, desc = "Run nearest with dap" }
     maps.n["<leader>mt"] = { function() neotest.run.run(vim.fn.expand "%") end, desc = "Run file" }
     maps.n["<leader>mT"] =
-    { function() neotest.run.run { vim.fn.expand "%", strategy = "dap" } end, desc = "Run file with dap" }
+      { function() neotest.run.run { vim.fn.expand "%", strategy = "dap" } end, desc = "Run file with dap" }
     maps.n["<leader>ma"] = { function() neotest.run.run(vim.loop.cwd()) end, desc = "Run all test files" }
     maps.n["<leader>ms"] = { function() neotest.summary.toggle() end, desc = "Toggle summary" }
     maps.n["<leader>mo"] =
-    { function() neotest.output.open { enter = true, auto_close = true } end, desc = "Show output" }
+      { function() neotest.output.open { enter = true, auto_close = true } end, desc = "Show output" }
     maps.n["<leader>mO"] = { function() neotest.output_panel.toggle() end, desc = "Toggle output panel" }
     maps.n["<leader>mS"] = { function() neotest.run.stop() end, desc = "Stop test" }
   end
@@ -87,7 +87,7 @@ function M.mappings(maps)
     maps.n["<leader>jot"] = { "<cmd>call jukit#splits#term()<CR>", desc = "Open terminal window" }
     maps.n["<leader>joh"] = { "<cmd>call jukit#splits#history()<CR>", desc = "Open history window" }
     maps.n["<leader>joa"] =
-    { "<cmd>call jukit#splits#output_and_history()<CR>", desc = "Open terminal and history window" }
+      { "<cmd>call jukit#splits#output_and_history()<CR>", desc = "Open terminal and history window" }
 
     -- Close
     maps.n["<leader>jc"] = { desc = "Close" }
@@ -99,7 +99,7 @@ function M.mappings(maps)
     -- Show
     maps.n["<leader>jS"] = { desc = "Show" }
     maps.n["<leader>jSc"] =
-    { "<cmd>call jukit#splits#show_last_cell_output(1)<CR>", desc = "Show last cell output in output history window" }
+      { "<cmd>call jukit#splits#show_last_cell_output(1)<CR>", desc = "Show last cell output in output history window" }
 
     -- Scroll
     maps.n["<leader>js"] = { desc = "Scroll" }
@@ -109,10 +109,10 @@ function M.mappings(maps)
     -- UI autocmd
     maps.n["<leader>ju"] = { desc = "UI" }
     maps.n["<leader>juh"] =
-    { "<cmd>call jukit#splits#toggle_auto_hist()", desc = "Toggle auto displaying saved output on CursorHold" }
+      { "<cmd>call jukit#splits#toggle_auto_hist()", desc = "Toggle auto displaying saved output on CursorHold" }
     maps.n["<leader>jul"] = { "<cmd>call jukit#layouts#set_layout()<CR>", desc = "Apply layout to current splits" }
     maps.n["<leader>jup"] =
-    { "<cmd>call jukit#ueberzug#set_default_pos()<CR>", desc = "Set position and dimension of ueberzug window" }
+      { "<cmd>call jukit#ueberzug#set_default_pos()<CR>", desc = "Set position and dimension of ueberzug window" }
 
     -- Execute
     maps.n["<leader>je"] = { desc = "Execute" }
@@ -121,7 +121,7 @@ function M.mappings(maps)
     maps.n["<leader>jel"] = { "<cmd>call jukit#send#line()<CR>", desc = "Execute current line" }
     maps.v["<leader>jer"] = { "<cmd>call jukit#send#selection()<CR>", desc = "Execute selected code" }
     maps.n["<leader>jeu"] =
-    { "<cmd>call jukit#send#until_current_section()<CR>", desc = "Execute all cells until current cell" }
+      { "<cmd>call jukit#send#until_current_section()<CR>", desc = "Execute all cells until current cell" }
     maps.n["<leader>jea"] = { "<cmd>call jukit#send#all()<CR>", desc = "Execute all cells" }
 
     -- Cell
@@ -133,32 +133,32 @@ function M.mappings(maps)
     maps.n["<leader>jjd"] = { "<cmd>call jukit#cells#delete()<CR>", desc = "Delete current cell" }
     maps.n["<leader>jjs"] = { "<cmd>call jukit#cells#split()<CR>", desc = "Split current cell" }
     maps.n["<leader>jjm"] =
-    { "<cmd>call jukit#cells#merge_below()<CR>", desc = "Merge current cell with the cell below" }
+      { "<cmd>call jukit#cells#merge_below()<CR>", desc = "Merge current cell with the cell below" }
     maps.n["<leader>jjM"] =
-    { "<cmd>call jukit#cells#merge_above()<CR>", desc = "Merge current cell with the cell above" }
+      { "<cmd>call jukit#cells#merge_above()<CR>", desc = "Merge current cell with the cell above" }
     maps.n["<leader>jjK"] = { "<cmd>call jukit#cells#move_up()<CR>", desc = "Move current cell up" }
     maps.n["<leader>jjJ"] = { "<cmd>call jukit#cells#move_down()<CR>", desc = "Move current cell down" }
     maps.n["<leader>jjj"] = { "<cmd>call jukit#cells#jump_to_next_cell()<CR>", desc = "Jump to next cell below" }
     maps.n["<leader>jjk"] =
-    { "<cmd>call jukit#cells#jump_to_previous_cell()<CR>", desc = "Jump to previous cell above" }
+      { "<cmd>call jukit#cells#jump_to_previous_cell()<CR>", desc = "Jump to previous cell above" }
     maps.n["<leader>jjc"] = { "<cmd>call jukit#cells#delete_outputs(0)<CR>", desc = "Clear current cell output" }
     maps.n["<leader>jja"] = { "<cmd>call jukit#cells#delete_outputs(1)<CR>", desc = "Clear all cell output" }
 
     -- Conversion
     maps.n["<leader>jm"] = { desc = "Conversion" }
     maps.n["<leader>jmj"] =
-    { "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>", desc = "Convert py to jupyter notebook" }
+      { "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>", desc = "Convert py to jupyter notebook" }
     if vim.g.jukit_html_viewer then
       maps.n["<leader>jmt"] =
-      { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<CR>", desc = "Convert file to html" }
+        { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<CR>", desc = "Convert file to html" }
       maps.n["<leader>jmT"] =
-      { "<cmd>call jukit#convert#save_nb_to_file(1,1,'html')<CR>", desc = "Convert file to html with rerun all code" }
+        { "<cmd>call jukit#convert#save_nb_to_file(1,1,'html')<CR>", desc = "Convert file to html with rerun all code" }
     end
 
     if vim.g.jukit_pdf_viewer then
       maps.n["<leader>jmp"] = { "<cmd>call jukit#convert#save_nb_to_file(0,1,'pdf')<CR>", desc = "Convert file to pdf" }
       maps.n["<leader>jmP"] =
-      { "<cmd>call jukit#convert#save_nb_to_file(1,1,'pdf')<CR>", desc = "Convert file to pdf with rerun all code" }
+        { "<cmd>call jukit#convert#save_nb_to_file(1,1,'pdf')<CR>", desc = "Convert file to pdf with rerun all code" }
     end
 
     -- Env
@@ -229,7 +229,7 @@ function M.mappings(maps)
         desc = "Extract Variable",
       }
       maps.v["<leader>ri"] =
-      { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
+        { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", desc = "Inline Variable" }
 
       -- Extract block doesn't need visual mode
       maps.n["<leader>rb"] = {
@@ -291,12 +291,12 @@ function M.mappings(maps)
   if is_available "telescope.nvim" then
     maps.v["<leader>f"] = { desc = "󰍉 Find" }
     maps.n["<leader>fp"] =
-    { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
+      { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
     maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
     maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
     maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
     maps.v["<leader>fr"] =
-    { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
+      { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
     -- buffer switching
     maps.n["<leader>bt"] = {
       function()
@@ -327,17 +327,17 @@ function M.mappings(maps)
   -- 多个窗口之间跳转
   maps.n["<leader>w="] = { "<C-w>=", desc = "Make all window equal" }
   maps.n["<TAB>"] =
-  { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
+    { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
   maps.n["<S-TAB>"] = {
     function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
     desc = "Previous buffer",
   }
   maps.n["<leader>bo"] =
-  { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
+    { function() require("astronvim.utils.buffer").close_all(true) end, desc = "Close all buffers except current" }
   maps.n["<leader>ba"] = { function() require("astronvim.utils.buffer").close_all() end, desc = "Close all buffers" }
   maps.n["<leader>bc"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
   maps.n["<leader>bC"] =
-  { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
+    { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
   maps.n["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" }
   maps.n["<leader>bD"] = {
     function()
@@ -361,7 +361,7 @@ function M.mappings(maps)
       desc = "Comment line",
     }
     maps.v["<C-/>"] =
-    { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
+      { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
   end
   maps.v["<leader>/"] = false
   maps.n["<leader>/"] = false
@@ -412,8 +412,17 @@ function M.mappings(maps)
   end
   -- end
 
-  -- zen mode
-  maps.n["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" }
+  maps.n["<leader>z"] = { desc = " Tools" }
+  if is_available "ccc.nvim" then
+    maps.n["<leader>zp"] = { "<CMD>CccPick<CR>", desc = "Pick color" }
+    maps.n["<leader>zc"] = { "<CMD>CccConvert<CR>", desc = "Convert color" }
+    maps.n["<leader>uC"] = { "<CMD>CccHighlighterToggle<CR>", desc = "Toggle ccc highlighter" }
+  end
+
+  if is_available "zen-mode.nvim" then
+    -- zen mode
+    maps.n["<leader>zz"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" }
+  end
 
   -- TsInformation
   maps.n["<leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
@@ -495,9 +504,9 @@ function M.mappings(maps)
       maps.o["ac"] = { "<Plug>(coc-classobj-a)" }
 
       maps.n["<C-d>"] =
-      { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
       maps.n["<C-u>"] =
-      { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
       maps.i["<C-d>"] = {
         'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-d>"',
         expr = true,
@@ -511,9 +520,9 @@ function M.mappings(maps)
         nowait = true,
       }
       maps.v["<C-d>"] =
-      { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
       maps.v["<C-u>"] =
-      { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
 
       -- maps.n["<leader>li"] = { ":<C-u>CocList --normal gstatus<CR>", desc = "LSP status" }
       maps.n["<leader>lS"] = { "<cmd>CocOutline<CR>", desc = "Symbols outline" }

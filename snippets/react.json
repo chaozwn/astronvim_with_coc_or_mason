@@ -1,11 +1,11 @@
 {
   "setup": {
-    "prefix": ["rice"],
+    "prefix": ["rf"],
     "body": [
       "import {FC, ReactNode} from 'react'",
       "",
       "interface ${TM_FILENAME_BASE}Props {",
-      " children: ReactNode",
+      " children?: ReactNode",
       "}",
       "",
       "const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = () => {",

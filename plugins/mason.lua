@@ -49,14 +49,6 @@ return {
     },
   },
   {
-    "mfussenegger/nvim-dap-python",
-    dependencies = { "mfussenegger/nvim-dap" },
-    -- NOTE: ft: lazy-load on filetype
-    ft = "python",
-    event = getEvent(),
-    config = function() require("dap-python").setup("python", {}) end,
-  },
-  {
     "ThePrimeagen/refactoring.nvim",
     event = "LspAttach",
     dependencies = {

@@ -8,7 +8,6 @@ local getEvent = function()
     return "LspAttach"
   end
 end
-local utils = require "astronvim.utils"
 
 return {
   {

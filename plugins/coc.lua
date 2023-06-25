@@ -1,4 +1,23 @@
 if vim.g.lsp_type == "coc" then
+  -- You NEED to override nvim-dap's default highlight groups, AFTER requiring nvim-dap
+  require "dap"
+
+  local sign = vim.fn.sign_define
+  local utils = require "astronvim.utils"
+  local get_icon = utils.get_icon
+
+  sign("DapBreakpoint", { text = get_icon "DapBreakpoint", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
+  sign(
+    "DapBreakpointCondition",
+    { text = get_icon "DapBreakpointCondition", texthl = "DiagnosticInfo", linehl = "", numhl = "" }
+  )
+  sign("DapLogPoint", { text = get_icon "DapLogPoint", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
+  sign(
+    "DapBreakpointRejected",
+    { text = get_icon "DapBreakpointRejected", texthl = "DiagnosticError", linehl = "", numhl = "" }
+  )
+  sign("DapStopped", { text = get_icon "DapStopped", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
+
   return {
     -- {
     --   "williamboman/mason.nvim",

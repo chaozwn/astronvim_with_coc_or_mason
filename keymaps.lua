@@ -167,12 +167,6 @@ function M.mappings(maps)
     maps.n["<leader>jnC"] = { ":JukitOutHist conda activate ", desc = "Activate conda env with history window" }
   end
 
-  -- lsp inlayhints
-  maps.n["<leader>uh"] = {
-    function() require("lsp-inlayhints").toggle() end,
-    desc = "Toggle lspInlayHints",
-  }
-
   if is_available "marks.nvim" then
     -- marks
     maps.n["m"] = { desc = "Marks" }

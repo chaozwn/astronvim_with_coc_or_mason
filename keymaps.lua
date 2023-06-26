@@ -10,7 +10,7 @@ function M.mappings(maps)
   local get_icon = utils.get_icon
   local is_available = utils.is_available
 
-  -- print(require("astronvim.utils").is_available "telescope-coc.nvim")
+  -- print(require("astronvim.utils").is_available "persistent-breakpoints.nvim")
   -- print(vim.fn.has "unix" == 1)
   maps.o = {}
   maps.x = {}
@@ -33,6 +33,24 @@ function M.mappings(maps)
       function() require("dapui").toggle { reset = true } end,
       desc = "Toggle Debugger UI and reset layout",
     }
+    if is_available "persistent-breakpoints.nvim" then
+      maps.n["<F9>"] = {
+        function() require("persistent-breakpoints.api").toggle_breakpoint() end,
+        desc = "Debugger: Toggle Breakpoint",
+      }
+      maps.n["<leader>db"] = {
+        function() require("persistent-breakpoints.api").toggle_breakpoint() end,
+        desc = "Toggle Breakpoint (F9)",
+      }
+      maps.n["<leader>dB"] = {
+        function() require("persistent-breakpoints.api").clear_all_breakpoints() end,
+        desc = "Clear Breakpoints",
+      }
+      maps.n["<leader>dC"] = {
+        function() require("persistent-breakpoints.api").set_conditional_breakpoint() end,
+        desc = "Conditional Breakpoint (S-F9)",
+      }
+    end
   end
 
   if is_available "neotest" then

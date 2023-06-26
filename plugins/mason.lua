@@ -28,6 +28,15 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
   },
   {
+    "Weissle/persistent-breakpoints.nvim",
+    event = "BufReadPost",
+    opts = function(_, opts)
+      return require("astronvim.utils").extend_tbl(opts, {
+        load_breakpoints_event = { "BufReadPost" },
+      })
+    end,
+  },
+  {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function()

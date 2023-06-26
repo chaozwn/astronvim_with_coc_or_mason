@@ -50,6 +50,10 @@ function M.mappings(maps)
         function() require("persistent-breakpoints.api").set_conditional_breakpoint() end,
         desc = "Conditional Breakpoint (S-F9)",
       }
+      maps.n["<F21>"] = {
+        function() require("persistent-breakpoints.api").set_conditional_breakpoint() end,
+        desc = "Conditional Breakpoint (S-F9)",
+      }
     end
   end
 

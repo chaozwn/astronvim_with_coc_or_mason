@@ -44,7 +44,7 @@ function M.mappings(maps)
       }
       maps.n["<leader>dB"] = {
         function() require("persistent-breakpoints.api").clear_all_breakpoints() end,
-        desc = "Clear Breakpoints",
+        desc = "Clear All Breakpoints",
       }
       maps.n["<leader>dC"] = {
         function() require("persistent-breakpoints.api").set_conditional_breakpoint() end,

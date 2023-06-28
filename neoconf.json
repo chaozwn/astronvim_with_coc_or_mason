@@ -53,6 +53,9 @@
       "tailwindCSS.lint.invalidVariant": "error",
       "tailwindCSS.lint.recommendedVariantOrder": "warning",
       "tailwindCSS.validate": true
+    },
+    "vue": {
+      "vue.server.fullCompletionList": true
     }
   }
 }

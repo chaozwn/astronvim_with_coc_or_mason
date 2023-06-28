@@ -7,7 +7,7 @@ local plugins = {
   -- 这个插件限制了hjkl连按次数和鼠标，强制学习vim操作
   -- https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/workflow/hardtime-nvim/hardtime-nvim.lua
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
-  { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
+  -- { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
 }
 

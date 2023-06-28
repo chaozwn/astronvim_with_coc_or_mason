@@ -6,4 +6,17 @@
 -- keymap("n", cfg.typescript.keys.ts_remove_unused, ":TypescriptRemoveUnused<CR>", bufopts)
 -- keymap("n", cfg.typescript.keys.ts_fix_all, ":TypescriptFixAll<CR>", bufopts)
 -- keymap("n", cfg.typescript.keys.ts_goto_source, ":TypescriptGoToSourceDefinition<CR>", bufopts)
-return {}
+
+local utils = require "user.utils.utils"
+
+local function get_filetypes()
+  if utils.is_vue_project() then
+    return { "nil" }
+  else
+    return { "typescript", "javascript", "javascriptreact", "typescriptreact" }
+  end
+end
+
+return {
+  filetypes = get_filetypes(),
+}

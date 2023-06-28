@@ -47,6 +47,16 @@ function M.coc_lsp(opts)
       surround = { separator = "right", color = "lsp_bg", condition = condition.coc_lsp_attached },
       hl = hl.get_attributes "lsp",
       update = { "User", pattern = { "CocStatusChange" } },
+      on_click = {
+        name = "coc_status",
+        callback = function()
+          if is_available "coc.nvim" then
+            vim.defer_fn(function()
+              vim.api.nvim_command "CocList services"
+            end, 100)
+          end
+        end,
+      },
     }
   }
   return component.builder(lsp_component)

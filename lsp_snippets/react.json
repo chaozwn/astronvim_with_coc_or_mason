@@ -1,0 +1,19 @@
+{
+  "setup": {
+    "prefix": ["rf"],
+    "body": [
+      "import {FC, ReactNode} from 'react'",
+      "",
+      "interface ${TM_FILENAME_BASE}Props {",
+      " children?: ReactNode",
+      "}",
+      "",
+      "const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = () => {",
+      "return <div>${TM_FILENAME_BASE}</div>",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE}"
+    ],
+    "description": "react tsx function component"
+  }
+}

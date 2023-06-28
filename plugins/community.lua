@@ -23,6 +23,12 @@ if vim.g.lsp_type ~= "coc" then
     { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.json" },
+    -- WARNING:support native inlay hints.
+    -- https://github.com/AstroNvim/AstroNvim/pull/2015/commits/9b9d565afb7dfb733e772b4f16dcd1069b0afc71
+    -- WARNING: astronvim support native inlay hints
+    -- https://github.com/AstroNvim/AstroNvim/commit/14ba29cec669f8a294fc7ef1ae78ae3f91246940
+    -- TODO: wait nvim update to 0.10, we can upgrade this plugin.
+    { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
   }
   for _, value in ipairs(lsp_plugins) do
     table.insert(plugins, value)

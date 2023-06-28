@@ -8,7 +8,7 @@ return {
     if vim.g.lsp_type == "coc" then
       -- WARNING: 现在coc有bug，开启winbar会导致每次的cmd height + 1
       -- https://github.com/neoclide/coc.nvim/issues/4555
-      -- opts.winbar = false
+      opts.winbar = false
       opts.statusline = {
         hl = { fg = "fg", bg = "bg" },
         status.component.mode { mode_text = { padding = { left = 1, right = 1 } } }, -- add the mode text

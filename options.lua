@@ -26,8 +26,8 @@ local g = {
   transparent_background = true,
   resession_enabled = true,
   -- lsp_type
-  -- lsp_type = "coc",
-  lsp_type = "lsp",
+  lsp_type = "coc",
+  -- lsp_type = "lsp",
   -- fix coc completion problem
   coc_snippet_next = "<C-n>",
   coc_snippet_prev = "<C-p>",
@@ -56,14 +56,13 @@ if g.lsp_type == "coc" then
     "coc-toml",
     "coc-prettier",
     "coc-snippets",
-    "coc-word",
     "coc-pairs",
-    "coc-translator",
     "coc-highlight",
     "coc-eslint",
     "@yaegassy/coc-tailwindcss3",
     "@yaegassy/coc-volar",
     "@yaegassy/coc-volar-tools",
+    "@yaegassy/coc-typescript-vue-plugin"
   }
 end
 

@@ -63,10 +63,6 @@ return {
           information = { "underline" },
         },
       },
-      navic = {
-        enabled = true,
-        custom_bg = "None",
-      },
       notify = true,
       semantic_tokens = true,
       treesitter_context = true,

@@ -1,0 +1,4 @@
+{
+  "ignore_vcs": true,
+  "ignore_dirs": ["node_modules"]
+}

@@ -60,9 +60,6 @@ if g.lsp_type == "coc" then
     "coc-highlight",
     "coc-eslint",
     "@yaegassy/coc-tailwindcss3",
-    "@yaegassy/coc-volar",
-    "@yaegassy/coc-volar-tools",
-    "@yaegassy/coc-typescript-vue-plugin"
   }
 end
 

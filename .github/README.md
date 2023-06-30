@@ -17,11 +17,6 @@ vim.g.lsp_type = "lsp" -- use mason as lsp server
 mv ~/.config/nvim ~/.config/nvim.bak
 mv ~/.local/share/nvim ~/.local/share/nvim.bak
 ```
-#### Coc Requirements
-```shell
-brew install watchman
-sudo ln -s ~/.config/nvim/lua/user/watchman.json /etc/watchman.json
-```
 
 #### Clone AstroNvim
 
@@ -69,4 +64,3 @@ nvim
 | Comment                     | `Leader + /`        |
 | Horizontal Split            | `\`                 |
 | Vertical Split              | <code>&#124;</code> |
-

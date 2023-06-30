@@ -23,7 +23,6 @@ if vim.g.lsp_type ~= "coc" then
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.json" },
     { import = "astrocommunity.pack.lua" },
-    { import = "astrocommunity.pack.vue" },
     { import = "astrocommunity.pack.html-css" },
     -- WARNING:support native inlay hints.
     -- https://github.com/AstroNvim/AstroNvim/pull/2015/commits/9b9d565afb7dfb733e772b4f16dcd1069b0afc71

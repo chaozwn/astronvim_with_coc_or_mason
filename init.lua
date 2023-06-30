@@ -1,6 +1,7 @@
 return {
  mappings = function(maps)
     return require("user.keymaps").mappings(maps)
+
   end,
   heirline = {
     separators = {
@@ -8,6 +9,7 @@ return {
       path = "  ",
     },
   },
+
   diagnostics = {
     update_in_insert = false,
   },
@@ -23,34 +25,7 @@ return {
   lsp = {
     -- enable servers that you already have installed without mason
     servers = {
-      "pyright",
-    },
-    capabilities = {
-      workspace = {
-        applyEdit = true,
-        workspaceEdit = {
-          documentChanges = true,
-          resourceOperations = {
-            "create",
-            "rename",
-            "delete",
-          },
-          failureHandling = "textOnlyTransactional",
-        },
-        didChangeConfiguration = {
-          dynamicRegistration = true,
-        },
-        didChangeWatchedFiles = {
-          dynamicRegistration = true,
-        },
-      },
-      textDocument = {
-        completion = {
-          completionItem = {
-            snippetSupport = true,
-          },
-        },
-      },
+      -- "pyright",
     },
   },
 }

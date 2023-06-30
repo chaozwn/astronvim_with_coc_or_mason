@@ -1,6 +1,6 @@
 {
   "colors.enable": true,
-  "coc.preferences.snippetStatusText": "✂",
+  "coc.preferences.snippetStatusText": " ✂",
   "coc.preferences.extensionUpdateCheck": "daily",
   "inlayHint.enable": false,
   "diagnostic.enableSign": true,
@@ -26,7 +26,7 @@
   "suggest.autoTrigger": "always",
   "suggest.timeout": 5000,
   "suggest.detailField": "preview",
-  "suggest.snippetIndicator": " ",
+  "suggest.snippetIndicator": "  ",
   "suggest.triggerCompletionWait": 50,
   "suggest.completionItemKindLabels": {
     "method": " ",
@@ -100,6 +100,5 @@
   "scss.lint.unknownAtRules": "ignore",
   "volar.enable": true,
   "volar.useWorkspaceTsdk": true,
-  "vue.server.fullCompletionList": false,
-  "vue.autoInsert.dotValue": true
+  "vue-semantic-server.trace.server": "verbose"
 }

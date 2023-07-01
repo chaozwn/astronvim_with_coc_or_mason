@@ -49,6 +49,9 @@ return {
       dap = { enabled = true, enable_ui = true },
       native_lsp = {
         enabled = true,
+        inlay_hints = {
+          background = true,
+        },
         virtual_text = {
           errors = { "italic" },
           hints = { "italic" },

@@ -1,3 +1,5 @@
+-- o is operator pending mode
+-- x is visual mode
 local M = {}
 
 function M.mappings(maps)
@@ -10,7 +12,7 @@ function M.mappings(maps)
   local is_available = utils.is_available
   local my_utils = require "user.utils.utils"
 
-  -- print(require("astronvim.utils").is_available "nvim-treesitter")
+  -- print(require("astronvim.utils").is_available "flash.nvim")
   -- print(vim.fn.has "unix" == 1)
   local system = vim.loop.os_uname().sysname
 
@@ -328,38 +330,43 @@ function M.mappings(maps)
   maps.v["<leader>/"] = false
   maps.n["<leader>/"] = false
 
-  -- leap
-  if is_available "leap.nvim" then
-    maps.n["<leader>s"] = {
-      function()
-        local current_window = vim.fn.win_getid()
-        require("leap").leap { target_windows = { current_window } }
-      end,
-      desc = "Bidirectional search",
+  if is_available "flash.nvim" then
+    maps.n["s"] = {
+      function() require("flash").jump() end,
+      desc = "Flash",
     }
-    maps.n["<leader><leader>s"] = {
-      function()
-        local focusable_windows_on_tabpage = vim.tbl_filter(
-          function(win) return vim.api.nvim_win_get_config(win).focusable end,
-          vim.api.nvim_tabpage_list_wins(0)
-        )
-        require("leap").leap { target_windows = focusable_windows_on_tabpage }
-      end,
-      desc = "Search in all windows",
+    maps.x["s"] = {
+      function() require("flash").jump() end,
+      desc = "Flash",
     }
-  end
-
-  if is_available "substitute.nvim" then
-    -- substitute, 交换和替换插件, 寄存器中的值，将会替换到s位置, s{motion}
-    maps.n["s"] = { require("substitute").operator, desc = "Replace with {motion}" }
-    maps.n["ss"] = { require("substitute").line, desc = "Replace with line" }
-    maps.n["S"] = { require("substitute").eol, desc = "Replace until eol" }
-    maps.v["p"] = { require("substitute").visual, desc = "Replace in visual" }
-    -- exchange
-    maps.n["sx"] = { require("substitute.exchange").operator, desc = "Exchange with {motion}" }
-    maps.n["sxx"] = { require("substitute.exchange").line, desc = "Exchange with line" }
-    maps.n["sxc"] = { require("substitute.exchange").cancel, desc = "Exchange exchange" }
-    maps.v["X"] = { require("substitute.exchange").visual, desc = "Exchange in visual" }
+    maps.o["s"] = {
+      function() require("flash").jump() end,
+      desc = "Flash",
+    }
+    maps.n["S"] = {
+      function() require("flash").treesitter() end,
+      desc = "Flash Treesitter",
+    }
+    maps.x["S"] = {
+      function() require("flash").treesitter() end,
+      desc = "Flash Treesitter",
+    }
+    maps.o["S"] = {
+      function() require("flash").treesitter() end,
+      desc = "Flash Treesitter",
+    }
+    maps.o["r"] = {
+      function() require("flash").remote() end,
+      desc = "Remote Flash",
+    }
+    maps.o["R"] = {
+      function() require("flash").treesitter_search() end,
+      desc = "Flash Treesitter Search",
+    }
+    maps.x["R"] = {
+      function() require("flash").treesitter_search() end,
+      desc = "Flash Treesitter Search",
+    }
   end
 
   -- trouble

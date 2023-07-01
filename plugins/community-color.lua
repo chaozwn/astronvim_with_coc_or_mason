@@ -1,8 +1,8 @@
 return {
-  { "NvChad/nvim-colorizer.lua", enabled = false },
+  { import = "astrocommunity.completion.copilot-lua" },
   {
     "uga-rosa/ccc.nvim",
-    event = "User AstroFile",
+    keys = function() return {} end,
     opts = {
       highlighter = {
         auto_enable = true,

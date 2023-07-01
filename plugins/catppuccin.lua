@@ -34,7 +34,6 @@ return {
     integrations = {
       aerial = true,
       alpha = true,
-      coc_nvim = true,
       gitsigns = true,
       indent_blankline = {
         enabled = true,

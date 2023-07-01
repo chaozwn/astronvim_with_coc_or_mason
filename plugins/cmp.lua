@@ -38,7 +38,6 @@ return {
         ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
         ["<Tab>"] = cmp.mapping(function(fallback)
           -- idea输入方式
-          -- if cmp.visible() and has_words_before() then
           if cmp.visible() then
             local entry = cmp.get_selected_entry()
             if not entry then

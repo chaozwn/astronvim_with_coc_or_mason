@@ -1,15 +1,7 @@
 return {
  mappings = function(maps)
     return require("user.keymaps").mappings(maps)
-
   end,
-  heirline = {
-    separators = {
-      breadcrumbs = "  ",
-      path = "  ",
-    },
-  },
-
   diagnostics = {
     update_in_insert = false,
   },

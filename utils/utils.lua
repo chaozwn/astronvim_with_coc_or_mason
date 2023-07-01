@@ -35,14 +35,6 @@ function M.get_os()
   return os
 end
 
-function M.init_coc()
-  require("astronvim.utils").notify(
-    "Initialized coc.nvim for LSP support",
-    vim.log.levels.INFO,
-    { title = "LSP Status" }
-  )
-end
-
 function M.is_vue_project()
   local package_json_path = vim.fn.getcwd() .. "/package.json"
   local file = io.open(package_json_path, "r")

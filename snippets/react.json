@@ -4,15 +4,15 @@
     "body": [
       "import {FC, ReactNode} from 'react'",
       "",
-      "interface ${TM_FILENAME_BASE}Props {",
+      "interface ${0}Props {",
       " children?: ReactNode",
       "}",
       "",
-      "const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = () => {",
-      "return <div>${TM_FILENAME_BASE}</div>",
+      "const ${0}: FC<${0}Props> = () => {",
+      "return <div>${0}</div>",
       "}",
       "",
-      "export default ${TM_FILENAME_BASE}"
+      "export default ${0}"
     ],
     "description": "react tsx function component"
   }

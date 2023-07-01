@@ -18,8 +18,8 @@ function M.mappings(maps)
   maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
   maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }
 
-  maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up" }
-  maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down" }
+  maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up", silent = true }
+  maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }
 
   if is_available "nvim-dap-ui" then
     maps.n["<leader>dU"] = {
@@ -260,6 +260,7 @@ function M.mappings(maps)
     maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
     maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
     maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
+    maps.n["<leader>fN"] = { "<cmd>Telescope noice<cr>", desc = "Find noice" }
     maps.v["<leader>fr"] =
       { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
     -- buffer switching

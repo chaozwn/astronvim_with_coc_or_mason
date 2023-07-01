@@ -14,7 +14,7 @@ local plugins = {
 if vim.g.lsp_type ~= "coc" then
   local lsp_plugins = {
     { import = "astrocommunity.pack.prisma" },
-    { import = "astrocommunity.pack.typescript" },
+    { import = "astrocommunity.pack.typescript-all-in-one" },
     { import = "astrocommunity.pack.tailwindcss" },
     { import = "astrocommunity.pack.markdown" },
     { import = "astrocommunity.pack.python" },
@@ -23,6 +23,9 @@ if vim.g.lsp_type ~= "coc" then
     { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.json" },
+    { import = "astrocommunity.pack.lua" },
+    { import = "astrocommunity.pack.vue" },
+    { import = "astrocommunity.pack.html-css" },
     -- WARNING:support native inlay hints.
     -- https://github.com/AstroNvim/AstroNvim/pull/2015/commits/9b9d565afb7dfb733e772b4f16dcd1069b0afc71
     -- WARNING: astronvim support native inlay hints

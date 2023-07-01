@@ -2,7 +2,6 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "ahmedkhalf/project.nvim", -- defined in  ./editor.lua
-    "nvim-telescope/telescope-media-files.nvim",
     "nvim-lua/popup.nvim",
     "nvim-lua/plenary.nvim",
     "fannheyward/telescope-coc.nvim",
@@ -48,7 +47,6 @@ return {
     require "plugins.configs.telescope"(...)
     local telescope = require "telescope"
     telescope.load_extension "projects"
-    telescope.load_extension "media_files"
     if vim.g.lsp_type ~= "coc" then
       telescope.load_extension "refactoring"
     else

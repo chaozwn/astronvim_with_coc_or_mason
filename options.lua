@@ -16,7 +16,7 @@ local opt = {
 local g = {
   transparent_background = true,
   resession_enabled = true,
-  inlay_hints_enabled = true,
+  -- inlay_hints_enabled = true,
 }
 
 return {

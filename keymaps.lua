@@ -331,42 +331,43 @@ function M.mappings(maps)
   maps.n["<leader>/"] = false
 
   if is_available "flash.nvim" then
-    maps.n["s"] = {
+    maps.n["<leader>s"] = {
       function() require("flash").jump() end,
       desc = "Flash",
     }
-    maps.x["s"] = {
+    maps.x["<leader>s"] = {
       function() require("flash").jump() end,
       desc = "Flash",
     }
-    maps.o["s"] = {
+    maps.o["<leader>s"] = {
       function() require("flash").jump() end,
       desc = "Flash",
     }
-    maps.n["S"] = {
+    maps.n["<leader><leader>s"] = {
       function() require("flash").treesitter() end,
       desc = "Flash Treesitter",
     }
-    maps.x["S"] = {
+    maps.x["<leader><leader>s"] = {
       function() require("flash").treesitter() end,
       desc = "Flash Treesitter",
     }
-    maps.o["S"] = {
+    maps.o["<leader><leader>s"] = {
       function() require("flash").treesitter() end,
       desc = "Flash Treesitter",
     }
-    maps.o["r"] = {
-      function() require("flash").remote() end,
-      desc = "Remote Flash",
-    }
-    maps.o["R"] = {
-      function() require("flash").treesitter_search() end,
-      desc = "Flash Treesitter Search",
-    }
-    maps.x["R"] = {
-      function() require("flash").treesitter_search() end,
-      desc = "Flash Treesitter Search",
-    }
+  end
+
+  if is_available "substitute.nvim" then
+    -- substitute, 交换和替换插件, 寄存器中的值，将会替换到s位置, s{motion}
+    maps.n["s"] = { require("substitute").operator, desc = "Replace with {motion}" }
+    maps.n["ss"] = { require("substitute").line, desc = "Replace with line" }
+    maps.n["S"] = { require("substitute").eol, desc = "Replace until eol" }
+    maps.v["p"] = { require("substitute").visual, desc = "Replace in visual" }
+    -- exchange
+    maps.n["sx"] = { require("substitute.exchange").operator, desc = "Exchange with {motion}" }
+    maps.n["sxx"] = { require("substitute.exchange").line, desc = "Exchange with line" }
+    maps.n["sxc"] = { require("substitute.exchange").cancel, desc = "Exchange exchange" }
+    maps.v["X"] = { require("substitute.exchange").visual, desc = "Exchange in visual" }
   end
 
   -- trouble

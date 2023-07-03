@@ -26,9 +26,14 @@ return function()
     HighlightURL = { underline = true }, -- always underline URLs
 
     -- flash
-    FlashMatch = { fg = "#4fd6be", bold = true },
-    FlashCurrent = { fg = "#4fd6be", bold = true },
-    FlashLabel = { fg = "#ff007c", bold = true },
-    FlashBackdrop = { fg = "#545c7e" },
+    FlashMatch = { bg = bg, fg = "#89b4fa", bold = true, italic = true },
+    FlashCurrent = { bg = bg, fg = "#04a5e5", bold = true, italic = true, underline = true },
+    FlashLabel = { bg = bg, fg = "#ff007c", bold = true },
+    FlashBackdrop = { bg = bg, fg = "#6c7086" },
+
+    -- HopNextKey = { bg = bg, fg = C.peach, style = { "bold", "underline" } },
+    -- HopNextKey1 = { bg = bg, fg = C.blue, style = { "bold" } },
+    -- HopNextKey2 = { bg = bg, fg = C.teal, style = { "bold", "italic" } },
+    -- HopUnmatched = { bg = bg, fg = C.overlay0 },
   }
 end

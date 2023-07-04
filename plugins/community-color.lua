@@ -3,6 +3,5 @@ return {
   {
     "uga-rosa/ccc.nvim",
     keys = function() return {} end,
-    event = { "BufEnter" },
   },
 }

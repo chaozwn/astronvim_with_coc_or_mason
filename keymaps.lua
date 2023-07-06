@@ -16,6 +16,9 @@ function M.mappings(maps)
   -- print(vim.fn.has "unix" == 1)
   local system = vim.loop.os_uname().sysname
 
+  maps.x = {}
+  maps.o = {}
+
   -- better search
   maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
   maps.n["N"] = { my_utils.better_search "N", desc = "Previous search" }

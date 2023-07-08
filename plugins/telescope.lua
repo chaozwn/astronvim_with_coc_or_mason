@@ -24,7 +24,6 @@ return {
     })
   end,
   config = function(...)
-    -- TODO: add telescope dap ui https://github.com/nvim-telescope/telescope-dap.nvim
     require "plugins.configs.telescope"(...)
     local telescope = require "telescope"
     telescope.load_extension "refactoring"

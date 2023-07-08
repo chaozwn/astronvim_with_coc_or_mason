@@ -12,12 +12,9 @@ function M.mappings(maps)
   local is_available = utils.is_available
   local my_utils = require "user.utils.utils"
 
-  -- print(require("astronvim.utils").is_available "flash.nvim")
+  -- print(require("astronvim.utils").is_available "telescope_dap")
   -- print(vim.fn.has "unix" == 1)
   local system = vim.loop.os_uname().sysname
-
-  maps.x = {}
-  maps.o = {}
 
   -- better search
   maps.n["n"] = { my_utils.better_search "n", desc = "Next search" }
@@ -263,8 +260,6 @@ function M.mappings(maps)
     maps.n["<leader>fp"] =
       { function() require("telescope").extensions.projects.projects {} end, desc = "Find projects" }
     maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
-    maps.n["<leader>fM"] = { function() require("telescope.builtin").man_pages() end, desc = "Find man" }
-    maps.n["<leader>fm"] = { "<cmd>Telescope media_files<cr>", desc = "Find media files" }
     maps.n["<leader>fN"] = { "<cmd>Telescope noice<cr>", desc = "Find noice" }
     maps.v["<leader>fr"] =
       { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }

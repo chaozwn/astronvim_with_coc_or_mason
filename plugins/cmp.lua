@@ -19,6 +19,7 @@ return {
         -- 自动选中第一条
         completeopt = "menu,menuone,noinsert",
       },
+      --- NOTE: https://github.com/AstroNvim/astrocommunity/pull/383
       sources = cmp.config.sources {
         { name = "nvim_lsp", priority = 1000 },
         { name = "luasnip", priority = 900 },

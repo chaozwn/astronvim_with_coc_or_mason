@@ -27,7 +27,16 @@
       "pylsp.plugins.rope_autoimport.enabled": true,
       "pylsp.plugins.rope_autoimport.memory": true,
       "pylsp.plugins.rope_completion.enabled": true,
-      "pylsp.plugins.rope_completion.eager": true
+      "pylsp.plugins.rope_completion.eager": true,
+      "pylsp.plugins.jedi.auto_import_modules": [
+        "numpy",
+        "pandas",
+        "matplotlib"
+      ],
+      "pylsp.plugins.jedi_completion.eager": true,
+      "pylsp.plugins.jedi_completion.fuzzy": true,
+      "pylsp.plugins.jedi_completion.include_class_objects": true,
+      "pylsp.plugins.jedi_completion.include_function_objects": true
     },
     "pyright": {
       "python.pythonPath": "~/miniconda3/envs/python38/bin/python",

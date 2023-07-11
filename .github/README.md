@@ -8,6 +8,12 @@ if you want to use `coc`, switch branch to `main`, and set `vim.g.lsp_type = "co
 vim.g.lsp_type = "coc" -- use coc as lsp server
 vim.g.lsp_type = "lsp" -- use mason as lsp server
 ```
+## NOTE
+#### *vim.lsp.buf.hover()* `KK` jump into signature help float window.
+```
+Displays hover information about the symbol under the cursor in a floating
+window. Calling the function twice will jump into the floating window.
+```
 
 ## 🛠️ Installation
 

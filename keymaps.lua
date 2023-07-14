@@ -23,7 +23,9 @@ function M.mappings(maps)
   maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up", silent = true }
   maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }
 
-  if is_available "diffview.nvim" then maps.n["<leader>gD"] = { "<Cmd>DiffviewOpen<CR>", desc = "Open Diffview Tab" } end
+  if is_available "diffview.nvim" then
+    maps.n["<leader>gD"] = { "<Cmd>DiffviewOpen<CR>", desc = "Open Diffview Tab" }
+  end
 
   if is_available "nvim-dap-ui" then
     maps.n["<leader>dU"] = {
@@ -218,9 +220,6 @@ function M.mappings(maps)
   maps.n["<leader><leader>"] = { desc = "󰍉 User" }
   -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
   maps.n["s"] = "<Nop>"
-
-  -- terminal
-  if "toggleterm.nvim" then maps.t["<C-[>"] = { [[<C-\><C-n>]], desc = "Exit Terminal Mode" } end
 
   -- close mason
   if is_available "refactoring.nvim" then

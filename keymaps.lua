@@ -24,7 +24,7 @@ function M.mappings(maps)
   maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }
 
   if is_available "diffview.nvim" then
-    maps.n["<leader>gD"] = { "<Cmd>DiffviewOpen<CR>", desc = "Open Diffview Tab" }
+    maps.n["<leader>gD"] = { "<Cmd>DiffviewOpen<CR>", desc = "View diff with tab" }
   end
 
   if is_available "nvim-dap-ui" then

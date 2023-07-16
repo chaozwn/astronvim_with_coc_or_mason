@@ -278,8 +278,8 @@ function M.mappings(maps)
   end
 
   -- visual模式下缩进代码, 缩进后仍然可以继续选中区域
-  maps.v["<"] = { "<gv", desc = "Indent to the left" }
-  maps.v[">"] = { ">gv", desc = "Indent to the right" }
+  maps.v["<"] = { "<gv", desc = "Unindent line" }
+  maps.v[">"] = { ">gv", desc = "Indent line" }
 
   -- 在visual mode 里粘贴不要复制
   maps.n["x"] = { '"_x', desc = "Cut without copy" }

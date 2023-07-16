@@ -3,7 +3,6 @@ return {
   { import = "astrocommunity.editing-support.auto-save-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
-  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   {
     "folke/zen-mode.nvim",
     opts = {

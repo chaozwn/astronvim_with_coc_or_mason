@@ -74,4 +74,29 @@ function M.toggle_lazy_git()
   end
 end
 
+function M.removeValueFromTable(tbl, value)
+  for i, v in ipairs(tbl) do
+    if v == value then
+      table.remove(tbl, i)
+      return true
+    end
+  end
+  return false
+end
+
+function M.list_remove_unique(lst, vals)
+  if not lst then lst = {} end
+  assert(vim.tbl_islist(lst), "Provided table is not a list like table")
+  if not vim.tbl_islist(vals) then vals = { vals } end
+  local added = {}
+  vim.tbl_map(function(v) added[v] = true end, lst)
+  for _, val in ipairs(vals) do
+    if added[val] then
+      M.removeValueFromTable(lst, val)
+      added[val] = false
+    end
+  end
+  return lst
+end
+
 return M

@@ -284,7 +284,7 @@ function M.mappings(maps)
   if is_available "toggleterm.nvim" then
     if vim.fn.executable "lazygit" == 1 then
       maps.n["<leader>gg"] = {
-        my_utils.toggle_lazy_git(),
+        "<Cmd>MyLazyGit<CR>",
         desc = "ToggleTerm lazygit",
       }
       maps.n["<leader>tl"] = maps.n["<leader>gg"]

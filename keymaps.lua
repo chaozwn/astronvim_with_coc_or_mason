@@ -281,6 +281,16 @@ function M.mappings(maps)
   maps.v["<"] = { "<gv", desc = "Unindent line" }
   maps.v[">"] = { ">gv", desc = "Indent line" }
 
+  if is_available "toggleterm.nvim" then
+    if vim.fn.executable "lazygit" == 1 then
+      maps.n["<leader>gg"] = {
+        my_utils.toggle_lazy_git(),
+        desc = "ToggleTerm lazygit",
+      }
+      maps.n["<leader>tl"] = maps.n["<leader>gg"]
+    end
+  end
+
   -- 在visual mode 里粘贴不要复制
   maps.n["x"] = { '"_x', desc = "Cut without copy" }
 

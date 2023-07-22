@@ -289,6 +289,12 @@ function M.mappings(maps)
       }
       maps.n["<leader>tl"] = maps.n["<leader>gg"]
     end
+    if vim.fn.executable "joshuto" then
+      maps.n["<leader>tj"] = {
+        my_utils.toggle_joshuto(),
+        desc = "ToggleTerm joshuto",
+      }
+    end
   end
 
   -- 在visual mode 里粘贴不要复制

@@ -8,6 +8,10 @@ if you want to use `coc`, switch branch to `main`, and set `vim.g.lsp_type = "co
 vim.g.lsp_type = "coc" -- use coc as lsp server
 vim.g.lsp_type = "lsp" -- use mason as lsp server
 ```
+### recommend
+```
+brew install fzf
+```
 ## NOTE
 #### *vim.lsp.buf.hover()* `KK` jump into signature help float window.
 ```

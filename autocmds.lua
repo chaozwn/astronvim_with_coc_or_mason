@@ -1,7 +1,6 @@
 local utils = require "astronvim.utils"
 local is_available = utils.is_available
 local augroup = vim.api.nvim_create_augroup
-local im_select = require "user.utils.im-select"
 
 -- text like documents enable wrap and spell
 vim.api.nvim_create_autocmd("FileType", {
@@ -11,25 +10,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
   end,
-})
-
-vim.api.nvim_create_augroup("im-select", { clear = true })
-
-vim.api.nvim_create_autocmd("InsertLeave", {
-  group = "im-select",
-  callback = im_select.macInsertLeave,
-})
-vim.api.nvim_create_autocmd("InsertEnter", {
-  group = "im-select",
-  callback = im_select.macInsertEnter,
-})
-vim.api.nvim_create_autocmd("FocusGained", {
-  group = "im-select",
-  callback = im_select.macFocusGained,
-})
-vim.api.nvim_create_autocmd("FocusLost", {
-  group = "im-select",
-  callback = im_select.macFocusLost,
 })
 
 if vim.g.neovide then

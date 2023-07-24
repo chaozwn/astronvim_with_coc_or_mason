@@ -85,7 +85,7 @@ function M.toggle_joshuto(path)
     local output_path = "/tmp/joshuto_filechosen"
     os.remove(output_path)
     path = vim.fn.expand "%:p:h"
-    local cmd = string.format("joshuto --file-chooser --output-file %s %s", output_path, path)
+    local cmd = string.format('joshuto --file-chooser --output-file "%s" "%s"', output_path, path)
     require("astronvim.utils").toggle_term_cmd {
       cmd = cmd,
       hidden = true,
@@ -104,6 +104,7 @@ function M.toggle_joshuto(path)
       on_exit = function(t, job, code, event)
         if code == 102 then
           local open_path = vim.fn.readfile(output_path)[1]
+          vim.cmd "silent! :checktime"
           vim.loop.new_timer():start(
             0,
             0,

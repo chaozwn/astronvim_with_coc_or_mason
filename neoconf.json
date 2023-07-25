@@ -49,11 +49,13 @@
       "tailwindCSS.classAttributes": [
         "class",
         "className",
-        "ngClass",
-        "classList",
-        "cva"
+        "ngClass"
       ],
-      "tailwindCSS.emmetCompletions": true,
+      "tailwindCSS.experimental.classRegex": [
+        "cva\\(([^)]*)\\)",
+        "[\"'`]([^\"'`]*).*?[\"'`]"
+      ],
+      "tailwindCSS.emmetCompletions": false,
       "tailwindCSS.lint.cssConflict": "warning",
       "tailwindCSS.lint.invalidApply": "error",
       "tailwindCSS.lint.invalidConfigPath": "error",

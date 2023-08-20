@@ -12,7 +12,8 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
-      -- opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "emmet_language_server" })
+      -- NOTE: https://github.com/antonk52/cssmodules-language-server
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "cssmodules_ls" })
       -- opts.ensure_installed = user_utils.list_remove_unique(opts.ensure_installed, { "emmet_ls" })
     end,
   },

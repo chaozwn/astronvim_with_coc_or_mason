@@ -1,7 +1,7 @@
 -- Basic jukit options
 -- NOTE: debug :lua print(vim.inspect(vim.api.nvim_get_var("jukit")))
 vim.g.jukit_mappings = 0
-vim.g.jukit_shell_cmd = "/Users/mac/miniconda3/envs/python38/bin/ipython3"
+vim.g.jukit_shell_cmd = "python"
 -- Specifies the command used to start a shell in the output split. Can also be an absolute path. Can also be any other shell command, e.g. `R`, `julia`, etc. (note that output saving is only possible for ipython)
 vim.g.jukit_terminal = "tmux"
 -- Terminal to use. Can be one of '', 'kitty', 'vimterm', 'nvimterm' or 'tmux'. If '' is given then will try to detect terminal (though this might fail, in which case it simply defaults to 'vimterm' or 'nvimterm' - depending on the output of `has("nvim")`)
@@ -84,13 +84,14 @@ vim.g.jukit_kill_ueberzug_on_focus_lost = 1
 
 vim.g.jukit_ueberzug_theme = "dark"
 vim.g.jukit_ueberzug_term_hw_ratio = -1
-vim.g.jukit_ueberzug_python_cmd = "python3"
+vim.g.jukit_ueberzug_python_cmd = "python"
 vim.g.jukit_ueberzug_jupyter_cmd = "jupyter"
 vim.g.jukit_ueberzug_cutycapt_cmd = "cutycapt"
 vim.g.jukit_ueberzug_imagemagick_cmd = "convert"
 
 return {
   "luk400/vim-jukit",
+  enabled = false,
   config = function() end,
   event = "User AstroFile",
 }

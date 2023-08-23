@@ -39,7 +39,7 @@
       "pylsp.plugins.jedi_completion.include_function_objects": true
     },
     "pyright": {
-      "python.pythonPath": "~/miniconda3/envs/python38/bin/python",
+      "python.pythonPath": "python",
       "python.analysis.autoSearchPaths": true,
       "python.analysis.diagnosticMode": "workspace",
       "python.analysis.useLibraryCodeForTypes": true,

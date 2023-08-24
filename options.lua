@@ -18,7 +18,7 @@ local g = {
   maplocalleader = " ", -- set default local leader key
   transparent_background = true,
   resession_enabled = true,
-  inlay_hints_enabled = false,
+  inlay_hints_enabled = true,
 }
 
 return {

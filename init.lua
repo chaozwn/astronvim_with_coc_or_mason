@@ -2,9 +2,9 @@ return {
   mappings = function(maps) return require("user.keymaps").mappings(maps) end,
   diagnostics = {
     update_in_insert = false,
-    virtual_text = { severity = { min = vim.diagnostic.severity.INFO } },
+    virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
     underline = true,
-    signs = { severity = { min = vim.diagnostic.severity.INFO } },
+    signs = { severity = { min = vim.diagnostic.severity.WARN } },
   },
   lazy = {
     defaults = { lazy = true },

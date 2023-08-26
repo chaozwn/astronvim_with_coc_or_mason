@@ -35,19 +35,3 @@ if is_available "resession.nvim" then
 end
 
 vim.api.nvim_create_user_command("MyLazyGit", require("user.utils.utils").toggle_lazy_git(), {})
-
--- TODO: remove after version update
-vim.api.nvim_create_autocmd("TermClose", {
-  pattern = "*lazygit*",
-  desc = "Refresh Neo-Tree when closing lazygit",
-  group = augroup("neotree_refresh", { clear = true }),
-  callback = function()
-    local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
-    if manager_avail then
-      for _, source in ipairs { "filesystem", "git_status", "document_symbols" } do
-        local module = "neo-tree.sources." .. source
-        if package.loaded[module] then manager.refresh(require(module).name) end
-      end
-    end
-  end,
-})

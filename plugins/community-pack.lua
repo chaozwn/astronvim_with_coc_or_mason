@@ -12,4 +12,5 @@ return {
   vim.fn.executable "npm" == 1 and { import = "astrocommunity.pack.json" } or {},
   vim.fn.executable "npm" == 1 and { import = "astrocommunity.pack.html-css" } or {},
   { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.full-dadbod" },
 }

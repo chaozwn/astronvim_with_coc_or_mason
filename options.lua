@@ -1,6 +1,3 @@
-local utils = require "astronvim.utils"
-local is_available = utils.is_available
-
 -- set vim options here (vim.<first_key>.<second_key> = value)
 local opt = {
   list = true, -- show whitespace characters
@@ -23,8 +20,6 @@ local g = {
   resession_enabled = true,
   inlay_hints_enabled = true,
 }
-
-if is_available "vim-dadbod-ui" then g["db_ui_auto_execute_table_helpers"] = 1 end
 
 return {
   opt = opt,

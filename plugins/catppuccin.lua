@@ -34,6 +34,7 @@ return {
     integrations = {
       aerial = true,
       alpha = true,
+      flash = true,
       gitsigns = true,
       indent_blankline = {
         enabled = true,
@@ -78,6 +79,7 @@ return {
       which_key = true,
       headlines = true,
       sandwich = true,
+      illuminate = true,
     },
   },
 }

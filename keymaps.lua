@@ -12,7 +12,7 @@ function M.mappings(maps)
   local is_available = utils.is_available
   local my_utils = require "user.utils.utils"
 
-  -- print(require("astronvim.utils").is_available "vim-dadbod-ui")
+  -- print(require("astronvim.utils").is_available "vim-illuminate")
   -- print(vim.fn.has "unix" == 1)
   local system = vim.loop.os_uname().sysname
 
@@ -27,6 +27,17 @@ function M.mappings(maps)
 
   if is_available "diffview.nvim" then
     maps.n["<leader>gD"] = { "<Cmd>DiffviewOpen<CR>", desc = "View diff with tab" }
+  end
+
+  if is_available "vim-illuminate" then
+    maps.n["[["] = {
+      function() require("illuminate").goto_prev_reference() end,
+      desc = "Prev Reference",
+    }
+    maps.n["]]"] = {
+      function() require("illuminate").goto_next_reference() end,
+      desc = "Next Reference",
+    }
   end
 
   if is_available "nvim-dap-ui" then

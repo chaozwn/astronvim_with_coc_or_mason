@@ -91,7 +91,6 @@ vim.g.jukit_ueberzug_imagemagick_cmd = "convert"
 
 return {
   "luk400/vim-jukit",
-  enabled = false,
   config = function() end,
   event = "User AstroFile",
 }

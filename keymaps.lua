@@ -29,17 +29,6 @@ function M.mappings(maps)
     maps.n["<leader>gD"] = { "<Cmd>DiffviewOpen<CR>", desc = "View diff with tab" }
   end
 
-  if is_available "vim-illuminate" then
-    maps.n["[["] = {
-      function() require("illuminate").goto_prev_reference() end,
-      desc = "Prev Reference",
-    }
-    maps.n["]]"] = {
-      function() require("illuminate").goto_next_reference() end,
-      desc = "Next Reference",
-    }
-  end
-
   if is_available "yanky.nvim" then
     maps.n["<leader>fP"] = {
       function() require("telescope").extensions.yank_history.yank_history {} end,

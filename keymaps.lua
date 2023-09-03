@@ -12,7 +12,7 @@ function M.mappings(maps)
   local is_available = utils.is_available
   local my_utils = require "user.utils.utils"
 
-  -- print(require("astronvim.utils").is_available "vim-illuminate")
+  -- print(require("astronvim.utils").is_available "yanky.nvim")
   -- print(vim.fn.has "unix" == 1)
   local system = vim.loop.os_uname().sysname
 
@@ -37,6 +37,101 @@ function M.mappings(maps)
     maps.n["]]"] = {
       function() require("illuminate").goto_next_reference() end,
       desc = "Next Reference",
+    }
+  end
+
+  if is_available "yanky.nvim" then
+    maps.n["<leader>fP"] = {
+      function() require("telescope").extensions.yank_history.yank_history {} end,
+      desc = "Open Yank History",
+    }
+    maps.n["y"] = {
+      "<Plug>(YankyYank)",
+      desc = "Yank text",
+    }
+    maps.x["y"] = {
+      "<Plug>(YankyYank)",
+      desc = "Yank text",
+    }
+    maps.n["p"] = {
+      "<Plug>(YankyPutAfter)",
+      desc = "Put yanked text after cursor",
+    }
+    maps.x["p"] = {
+      "<Plug>(YankyPutAfter)",
+      desc = "Put yanked text after cursor",
+    }
+    maps.n["P"] = {
+      "<Plug>(YankyPutBefore)",
+      desc = "Put yanked text before cursor",
+    }
+    maps.x["P"] = {
+      "<Plug>(YankyPutBefore)",
+      desc = "Put yanked text before cursor",
+    }
+    maps.n["gp"] = {
+      "<Plug>(YankyGPutAfter)",
+      desc = "Put yanked text after selection",
+    }
+    maps.x["gp"] = {
+      "<Plug>(YankyGPutAfter)",
+      desc = "Put yanked text after selection",
+    }
+    maps.n["gP"] = {
+      "<Plug>(YankyGPutBefore)",
+      desc = "Put yanked text before selection",
+    }
+    maps.x["gP"] = {
+      "<Plug>(YankyGPutBefore)",
+      desc = "Put yanked text before selection",
+    }
+    maps.n["[y"] = {
+      "<Plug>(YankyCycleForward)",
+      desc = "Cycle forward through yank history",
+    }
+    maps.n["]y"] = {
+      "<Plug>(YankyCycleBackward)",
+      desc = "Cycle backward through yank history",
+    }
+    maps.n["[p"] = {
+      "<Plug>(YankyPutIndentAfterLinewise)",
+      desc = "Put indented after cursor (linewise)",
+    }
+    maps.n["]p"] = {
+      "<Plug>(YankyPutIndentBeforeLinewise)",
+      desc = "Put indented before cursor (linewise)",
+    }
+    maps.n["[P"] = {
+      "<Plug>(YankyPutIndentAfterLinewise)",
+      desc = "Put indented after cursor (linewise)",
+    }
+    maps.n["]P"] = {
+      "<Plug>(YankyPutIndentBeforeLinewise)",
+      desc = "Put indented before cursor (linewise)",
+    }
+    maps.n[">p"] = {
+      "<Plug>(YankyPutIndentAfterShiftRight)",
+      desc = "Put and indent right",
+    }
+    maps.n["<p"] = {
+      "<Plug>(YankyPutIndentAfterShiftLeft)",
+      desc = "Put and indent left",
+    }
+    maps.n[">P"] = {
+      "<Plug>(YankyPutIndentBeforeShiftRight)",
+      desc = "Put before and indent right",
+    }
+    maps.n["<P"] = {
+      "<Plug>(YankyPutIndentBeforeShiftLeft)",
+      desc = "Put before and indent left"
+    }
+    maps.n["=p"] = {
+      "<Plug>(YankyPutAfterFilter)",
+      desc = "Put after applying a filter",
+    }
+    maps.n["=P"] = {
+      "<Plug>(YankyPutBeforeFilter)",
+      desc = "Put before applying a filter",
     }
   end
 

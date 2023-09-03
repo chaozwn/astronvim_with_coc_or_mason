@@ -29,101 +29,6 @@ function M.mappings(maps)
     maps.n["<leader>gD"] = { "<Cmd>DiffviewOpen<CR>", desc = "View diff with tab" }
   end
 
-  if is_available "yanky.nvim" then
-    maps.n["<leader>fP"] = {
-      function() require("telescope").extensions.yank_history.yank_history {} end,
-      desc = "Open Yank History",
-    }
-    maps.n["y"] = {
-      "<Plug>(YankyYank)",
-      desc = "Yank text",
-    }
-    maps.x["y"] = {
-      "<Plug>(YankyYank)",
-      desc = "Yank text",
-    }
-    maps.n["p"] = {
-      "<Plug>(YankyPutAfter)",
-      desc = "Put yanked text after cursor",
-    }
-    maps.x["p"] = {
-      "<Plug>(YankyPutAfter)",
-      desc = "Put yanked text after cursor",
-    }
-    maps.n["P"] = {
-      "<Plug>(YankyPutBefore)",
-      desc = "Put yanked text before cursor",
-    }
-    maps.x["P"] = {
-      "<Plug>(YankyPutBefore)",
-      desc = "Put yanked text before cursor",
-    }
-    maps.n["gp"] = {
-      "<Plug>(YankyGPutAfter)",
-      desc = "Put yanked text after selection",
-    }
-    maps.x["gp"] = {
-      "<Plug>(YankyGPutAfter)",
-      desc = "Put yanked text after selection",
-    }
-    maps.n["gP"] = {
-      "<Plug>(YankyGPutBefore)",
-      desc = "Put yanked text before selection",
-    }
-    maps.x["gP"] = {
-      "<Plug>(YankyGPutBefore)",
-      desc = "Put yanked text before selection",
-    }
-    maps.n["[y"] = {
-      "<Plug>(YankyCycleForward)",
-      desc = "Cycle forward through yank history",
-    }
-    maps.n["]y"] = {
-      "<Plug>(YankyCycleBackward)",
-      desc = "Cycle backward through yank history",
-    }
-    maps.n["[p"] = {
-      "<Plug>(YankyPutIndentAfterLinewise)",
-      desc = "Put indented after cursor (linewise)",
-    }
-    maps.n["]p"] = {
-      "<Plug>(YankyPutIndentBeforeLinewise)",
-      desc = "Put indented before cursor (linewise)",
-    }
-    maps.n["[P"] = {
-      "<Plug>(YankyPutIndentAfterLinewise)",
-      desc = "Put indented after cursor (linewise)",
-    }
-    maps.n["]P"] = {
-      "<Plug>(YankyPutIndentBeforeLinewise)",
-      desc = "Put indented before cursor (linewise)",
-    }
-    maps.n[">p"] = {
-      "<Plug>(YankyPutIndentAfterShiftRight)",
-      desc = "Put and indent right",
-    }
-    maps.n["<p"] = {
-      "<Plug>(YankyPutIndentAfterShiftLeft)",
-      desc = "Put and indent left",
-    }
-    maps.n[">P"] = {
-      "<Plug>(YankyPutIndentBeforeShiftRight)",
-      desc = "Put before and indent right",
-    }
-    maps.n["<P"] = {
-      "<Plug>(YankyPutIndentBeforeShiftLeft)",
-      desc = "Put before and indent left"
-    }
-    maps.n["=p"] = {
-      "<Plug>(YankyPutAfterFilter)",
-      desc = "Put after applying a filter",
-    }
-    maps.n["=P"] = {
-      "<Plug>(YankyPutBeforeFilter)",
-      desc = "Put before applying a filter",
-    }
-  end
-
   if is_available "nvim-dap-ui" then
     maps.n["<leader>dU"] = {
       function() require("dapui").toggle { reset = true } end,
@@ -184,105 +89,32 @@ function M.mappings(maps)
       maps.c["<D-v>"] = "<C-R>+"
       -- Paste insert mode
       maps.i["<D-v>"] = '<esc>"+pli'
-    elseif system == "window" then
+    end
+  end
+
+  if system == "Darwin" then
+    --NOTE: neovim > 0.10.0
+    -- maps.n["<D-s>"] = "<Cmd>w<CR>"
+    -- maps.n["<D-v>"] = '"+P'
+    -- maps.v["<D-v>"] = '"+P'
+    -- maps.c["<D-v>"] = "<C-R>+"
+    -- maps.i["<D-v>"] = '<esc>"+pli'
+    if is_available "Comment.nvim" then
+      maps.n["<C-/>"] = {
+        function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+        desc = "Comment line",
+      }
+      maps.v["<C-/>"] = {
+        "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+        desc = "Toggle comment line",
+      }
+      maps.v["<leader>/"] = false
+      maps.n["<leader>/"] = false
     end
   end
 
   if is_available "markdown-preview.nvim" then
     maps.n["<leader>ze"] = { "<cmd>MarkdownPreviewToggle<CR>", desc = "Open Markdown preview" }
-  end
-
-  if is_available "vim-jukit" then
-    maps.n["<leader>j"] = { desc = " Jupyter" }
-    maps.v["<leader>j"] = { desc = " Jupyter" }
-
-    -- Open
-    maps.n["<leader>jo"] = { desc = "Open" }
-    maps.n["<leader>joo"] = {
-      "<cmd>call jukit#splits#output()<CR>",
-      desc = "Open ipython window",
-    }
-    maps.n["<leader>jot"] = { "<cmd>call jukit#splits#term()<CR>", desc = "Open terminal window" }
-    maps.n["<leader>joh"] = { "<cmd>call jukit#splits#history()<CR>", desc = "Open history window" }
-    maps.n["<leader>joa"] =
-      { "<cmd>call jukit#splits#output_and_history()<CR>", desc = "Open terminal and history window" }
-
-    -- Close
-    maps.n["<leader>jc"] = { desc = "Close" }
-    maps.n["<leader>jch"] = { "<cmd>call jukit#splits#close_history()<CR>", desc = "Close output history window" }
-    maps.n["<leader>jco"] = { "<cmd>call jukit#splits#close_output_split()<CR>", desc = "Close output window" }
-    -- Argument: Whether or not to ask you to confirm before closing
-    maps.n["<leader>jca"] = { "<cmd>call jukit#splits#close_output_and_history(1)<CR>", desc = "Close both windows" }
-
-    -- Show
-    maps.n["<leader>jS"] = { desc = "Show" }
-    maps.n["<leader>jSc"] =
-      { "<cmd>call jukit#splits#show_last_cell_output(1)<CR>", desc = "Show last cell output in output history window" }
-
-    -- Scroll
-    maps.n["<leader>js"] = { desc = "Scroll" }
-    maps.n["<leader>jsj"] = { "<cmd>call jukit#splits#out_hist_scroll(1)<CR>", desc = "Scroll down in history window" }
-    maps.n["<leader>jsk"] = { "<cmd>call jukit#splits#out_hist_scroll(0)<CR>", desc = "Scroll up in history window" }
-
-    -- UI autocmd
-    maps.n["<leader>ju"] = { desc = "UI" }
-    maps.n["<leader>juh"] =
-      { "<cmd>call jukit#splits#toggle_auto_hist()", desc = "Toggle auto displaying saved output on CursorHold" }
-    maps.n["<leader>jul"] = { "<cmd>call jukit#layouts#set_layout()<CR>", desc = "Apply layout to current splits" }
-    maps.n["<leader>jup"] =
-      { "<cmd>call jukit#ueberzug#set_default_pos()<CR>", desc = "Set position and dimension of ueberzug window" }
-
-    -- Execute
-    maps.n["<leader>je"] = { desc = "Execute" }
-    maps.v["<leader>je"] = { desc = "Execute" }
-    maps.n["<leader>jer"] = { "<cmd>call jukit#send#section(0)<CR>", desc = "Execute current cell" }
-    maps.n["<leader>jel"] = { "<cmd>call jukit#send#line()<CR>", desc = "Execute current line" }
-    maps.v["<leader>jer"] = { "<cmd>call jukit#send#selection()<CR>", desc = "Execute selected code" }
-    maps.n["<leader>jeu"] =
-      { "<cmd>call jukit#send#until_current_section()<CR>", desc = "Execute all cells until current cell" }
-    maps.n["<leader>jea"] = { "<cmd>call jukit#send#all()<CR>", desc = "Execute all cells" }
-
-    -- Cell
-    maps.n["<leader>jj"] = { desc = "Cell" }
-    maps.n["<leader>jjo"] = { "<cmd>call jukit#cells#create_below(0)<CR>", desc = "Create code cell below" }
-    maps.n["<leader>jjO"] = { "<cmd>call jukit#cells#create_above(0)<CR>", desc = "Create code cell above" }
-    maps.n["<leader>jjt"] = { "<cmd>call jukit#cells#create_below(1)<CR>", desc = "Create markdown cell below" }
-    maps.n["<leader>jjT"] = { "<cmd>call jukit#cells#create_above(1)<CR>", desc = "Create markdown cell above" }
-    maps.n["<leader>jjd"] = { "<cmd>call jukit#cells#delete()<CR>", desc = "Delete current cell" }
-    maps.n["<leader>jjs"] = { "<cmd>call jukit#cells#split()<CR>", desc = "Split current cell" }
-    maps.n["<leader>jjm"] =
-      { "<cmd>call jukit#cells#merge_below()<CR>", desc = "Merge current cell with the cell below" }
-    maps.n["<leader>jjM"] =
-      { "<cmd>call jukit#cells#merge_above()<CR>", desc = "Merge current cell with the cell above" }
-    maps.n["<leader>jjK"] = { "<cmd>call jukit#cells#move_up()<CR>", desc = "Move current cell up" }
-    maps.n["<leader>jjJ"] = { "<cmd>call jukit#cells#move_down()<CR>", desc = "Move current cell down" }
-    maps.n["<leader>jjj"] = { "<cmd>call jukit#cells#jump_to_next_cell()<CR>", desc = "Jump to next cell below" }
-    maps.n["<leader>jjk"] =
-      { "<cmd>call jukit#cells#jump_to_previous_cell()<CR>", desc = "Jump to previous cell above" }
-    maps.n["<leader>jjc"] = { "<cmd>call jukit#cells#delete_outputs(0)<CR>", desc = "Clear current cell output" }
-    maps.n["<leader>jja"] = { "<cmd>call jukit#cells#delete_outputs(1)<CR>", desc = "Clear all cell output" }
-
-    -- Conversion
-    maps.n["<leader>jm"] = { desc = "Conversion" }
-    maps.n["<leader>jmj"] =
-      { "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>", desc = "Convert py to jupyter notebook" }
-    if vim.g.jukit_html_viewer then
-      maps.n["<leader>jmt"] =
-        { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<CR>", desc = "Convert file to html" }
-      maps.n["<leader>jmT"] =
-        { "<cmd>call jukit#convert#save_nb_to_file(1,1,'html')<CR>", desc = "Convert file to html with rerun all code" }
-    end
-
-    if vim.g.jukit_pdf_viewer then
-      maps.n["<leader>jmp"] = { "<cmd>call jukit#convert#save_nb_to_file(0,1,'pdf')<CR>", desc = "Convert file to pdf" }
-      maps.n["<leader>jmP"] =
-        { "<cmd>call jukit#convert#save_nb_to_file(1,1,'pdf')<CR>", desc = "Convert file to pdf with rerun all code" }
-    end
-
-    -- Env
-    maps.n["<leader>jn"] = { desc = "Env" }
-    maps.n["<leader>jnc"] = { ":JukitOut conda activate ", desc = "Activate conda env" }
-    maps.n["<leader>jnC"] = { ":JukitOutHist conda activate ", desc = "Activate conda env with history window" }
   end
 
   if is_available "marks.nvim" then
@@ -302,20 +134,7 @@ function M.mappings(maps)
   -- 关闭搜索高亮
   maps.n["<leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
 
-  -- chatgpt
-  if is_available "neoai.nvim" then
-    maps.n["<leader>n"] = { desc = "󰚩 Chatgpt" }
-    maps.v["<leader>n"] = { desc = "󰚩 Chatgpt" }
-    -- NOTE: note that the plugin has a feature where the output from the model automatically gets saved to the g register and all code snippets get saved to the c register. These can be changed in the config.
-    maps.n["<leader>no"] = { "<cmd>NeoAI<CR>", desc = "Toggle NeoAI" }
-    maps.n["<leader>ne"] = { "<cmd>NeoAIToggle<CR>", desc = "Toggle NeoAI" }
-    maps.n["<leader>na"] = { "<cmd>NeoAIContext<CR>", desc = "Choose all code" }
-    maps.v["<leader>nf"] = { ":NeoAIContext<CR>", desc = "Select code" }
-    maps.n["<leader>ni"] = { ":NeoAIInject ", desc = "Inject code with prompt" }
-  end
-
   maps.n["<leader><leader>"] = { desc = "󰍉 User" }
-  -- maps.n["<leader>m"] = { desc = "󱂬 Translate" }
   maps.n["s"] = "<Nop>"
 
   -- close mason
@@ -430,18 +249,6 @@ function M.mappings(maps)
   maps.n["<leader>lm"] = { ":LspRestart<CR>", desc = "Lsp restart" }
   maps.n["<leader>lg"] = { ":LspLog<CR>", desc = "Show lsp log" }
 
-  -- Comment
-  if is_available "Comment.nvim" then
-    maps.n["<C-/>"] = {
-      function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
-      desc = "Comment line",
-    }
-    maps.v["<C-/>"] =
-      { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line" }
-  end
-  maps.v["<leader>/"] = false
-  maps.n["<leader>/"] = false
-
   if is_available "flash.nvim" then
     maps.n["<leader>s"] = {
       function() require("flash").jump() end,
@@ -497,11 +304,6 @@ function M.mappings(maps)
     maps.n["<leader>zp"] = { "<CMD>CccPick<CR>", desc = "Pick color" }
     maps.n["<leader>zc"] = { "<CMD>CccConvert<CR>", desc = "Convert color" }
     maps.n["<leader>uC"] = { "<CMD>CccHighlighterToggle<CR>", desc = "Toggle ccc highlighter" }
-  end
-
-  if is_available "zen-mode.nvim" then
-    -- zen mode
-    maps.n["<leader>zz"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" }
   end
 
   if is_available "nvim-treesitter" then

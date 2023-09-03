@@ -19,7 +19,7 @@ end
 
 if is_available "resession.nvim" then
   local resession = require "resession"
-  vim.api.nvim_del_augroup_by_name "alpha_autostart" -- disable alpha auto start
+  -- vim.api.nvim_del_augroup_by_name "alpha_autostart" -- disable alpha auto start
 
   vim.api.nvim_create_autocmd("VimEnter", {
     desc = "Restore session on open",

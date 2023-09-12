@@ -12,6 +12,7 @@ local opt = {
   wildmenu = true,
   wildmode = "longest:list,full",
   cmdheight = 1,
+  pumheight = 35,
 }
 
 local is_mac = require("user.utils.utils").is_mac()
@@ -55,14 +56,10 @@ if g.lsp_type == "coc" then
     "coc-toml",
     "coc-prettier",
     "coc-snippets",
-    "coc-word",
     "coc-pairs",
-    "coc-translator",
     "coc-highlight",
     "coc-eslint",
     "@yaegassy/coc-tailwindcss3",
-    "@yaegassy/coc-volar",
-    "@yaegassy/coc-volar-tools",
   }
 end
 

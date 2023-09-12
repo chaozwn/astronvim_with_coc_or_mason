@@ -3,7 +3,7 @@ local M = {}
 function M.better_search(key)
   return function()
     local searched, error =
-        pcall(vim.cmd.normal, { args = { (vim.v.count > 0 and vim.v.count or "") .. key }, bang = true })
+      pcall(vim.cmd.normal, { args = { (vim.v.count > 0 and vim.v.count or "") .. key }, bang = true })
     if not searched and type(error) == "string" then require("astronvim.utils").notify(error, vim.log.levels.ERROR) end
   end
 end
@@ -41,6 +41,22 @@ function M.init_coc()
     vim.log.levels.INFO,
     { title = "LSP Status" }
   )
+end
+
+function M.is_vue_project()
+  local package_json_path = vim.fn.getcwd() .. "/package.json"
+  local file = io.open(package_json_path, "r")
+
+  if file then
+    local package_json_content = file:read "*a"
+    file:close()
+
+    local package_json = vim.fn.json_decode(package_json_content)
+
+    if package_json and package_json.dependencies and package_json.dependencies.vue then return true end
+  end
+
+  return false
 end
 
 return M

@@ -25,7 +25,8 @@ return {
       default_mappings = false,
       builtin_marks = { "", "⚑" },
       cyclic = true,
-      force_write_shada = false,
+      force_write_shada = true,
+      -- force_write_shada = false,
       refresh_interval = 250,
       excluded_filetypes = {
         "qf",

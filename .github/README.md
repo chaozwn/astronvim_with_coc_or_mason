@@ -64,4 +64,3 @@ nvim
 | Comment                     | `Leader + /`        |
 | Horizontal Split            | `\`                 |
 | Vertical Split              | <code>&#124;</code> |
-

@@ -12,4 +12,5 @@ return {
     },
   },
   lazy = false,
+  enable = true,
 }

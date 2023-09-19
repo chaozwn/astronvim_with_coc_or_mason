@@ -22,6 +22,24 @@ return {
   -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
   {
     "jay-babu/mason-null-ls.nvim",
+    --     -- overrides `require("mason-null-ls").setup(...)`
+    opts = {
+      --       -- automatic_installation = true,
+      ensure_installed = {
+        "astro",
+        --         "gomodifytags",
+        --         "gofumpt",
+        --         "iferr",
+        --         "impl",
+        --         "goimports",
+        "prettierd",
+        --         "stylua",
+        "eslint_d",
+        --         "black",
+        --         "isort",
+        --         "pylint",
+      },
+    },
   },
   -- :DapInstall python
   {
@@ -66,14 +84,6 @@ return {
     config = function() require("refactoring").setup {} end,
   },
 }
-
-
-
-
-
-
-
-
 
 -- -- :e 重新加载语言分析服务
 -- -- :LSPInstall lua_ls

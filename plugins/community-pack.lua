@@ -13,6 +13,8 @@ return {
   vim.fn.executable "npm" == 1 and { import = "astrocommunity.pack.html-css" } or {},
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.full-dadbod" },
+  { import = "astrocommunity.pack.rust" },
+  -- { import = "astrocommunity.pack.proto" },
   {
     "kristijanhusak/vim-dadbod-ui",
     init = function()

@@ -8,7 +8,7 @@ return {
   },
   opts = function(_, opts)
     local cmp = require "cmp"
-    -- local compare = require "cmp.config.compare"
+    local compare = require "cmp.config.compare"
     local luasnip = require "luasnip"
 
     local function has_words_before()
@@ -17,6 +17,47 @@ return {
     end
 
     return require("astronvim.utils").extend_tbl(opts, {
+      formatting = {
+        format = function(_, item)
+          local icons = require "user.highlights.icons"
+          if icons[item.kind] then item.kind = icons[item.kind] .. item.kind end
+          return item
+        end,
+      },
+      -- window = { completion = { col_offset = -1, side_padding = 0 } },
+      sources = cmp.config.sources {
+        { name = "nvim_lsp", priority = 1000 },
+        { name = "luasnip", priority = 750 },
+        { name = "pandoc_references", priority = 725 },
+        { name = "latex_symbols", priority = 700 },
+        { name = "emoji", priority = 700 },
+        { name = "calc", priority = 650 },
+        { name = "path", priority = 500 },
+        { name = "buffer", priority = 250 },
+      },
+      sorting = {
+        comparators = {
+          compare.offset,
+          compare.exact,
+          compare.score,
+          compare.recently_used,
+          function(entry1, entry2)
+            local _, entry1_under = entry1.completion_item.label:find "^_+"
+            local _, entry2_under = entry2.completion_item.label:find "^_+"
+            entry1_under = entry1_under or 0
+            entry2_under = entry2_under or 0
+            if entry1_under > entry2_under then
+              return false
+            elseif entry1_under < entry2_under then
+              return true
+            end
+          end,
+          compare.kind,
+          compare.sort_text,
+          compare.length,
+          compare.order,
+        },
+      },
       completion = {
         -- 自动选中第一条
         completeopt = "menu,menuone,noinsert",
@@ -43,24 +84,8 @@ return {
           end
         end, { "i", "s" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
-          -- idea输入方式
-          if cmp.visible() then
-            local entry = cmp.get_selected_entry()
-            if not entry then
-              cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-            else
-              if has_words_before() then
-                cmp.confirm {
-                  behavior = cmp.ConfirmBehavior.Replace,
-                  select = false,
-                }
-              else
-                cmp.confirm {
-                  behavior = cmp.ConfirmBehavior.Insert,
-                  select = false,
-                }
-              end
-            end
+          if cmp.visible() and has_words_before() then
+            cmp.confirm { select = true }
           else
             fallback()
           end

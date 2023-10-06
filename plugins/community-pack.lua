@@ -14,7 +14,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.full-dadbod" },
   { import = "astrocommunity.pack.rust" },
-  -- { import = "astrocommunity.pack.proto" },
+  { import = "astrocommunity.pack.proto" },
   {
     "kristijanhusak/vim-dadbod-ui",
     init = function()

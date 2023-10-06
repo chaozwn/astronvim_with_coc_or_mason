@@ -246,8 +246,8 @@ function M.mappings(maps)
   }
 
   -- lsp restart
-  maps.n["<leader>lm"] = { ":LspRestart<CR>", desc = "Lsp restart" }
-  maps.n["<leader>lg"] = { ":LspLog<CR>", desc = "Show lsp log" }
+  maps.n["<leader>lm"] = { "<Cmd>LspRestart<CR>", desc = "Lsp restart" }
+  maps.n["<leader>lg"] = { "<Cmd>LspLog<CR>", desc = "Show lsp log" }
 
   if is_available "flash.nvim" then
     maps.n["<leader>s"] = {

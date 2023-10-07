@@ -14,7 +14,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.full-dadbod" },
   { import = "astrocommunity.pack.rust" },
-  { import = "astrocommunity.pack.proto" },
+  vim.fn.executable "protoc" == 1 and { import = "astrocommunity.pack.proto" } or {},
   {
     "kristijanhusak/vim-dadbod-ui",
     init = function()

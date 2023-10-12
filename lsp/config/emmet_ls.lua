@@ -1,8 +1,14 @@
 -- https://github.com/pedro757/emmet
 -- npm i -g ls_emmet
-
 return {
   filetypes = {
+    "astro",
+    "astro-markdown",
+    "markdown",
+    "markdown.mdx",
+    "md",
+    "mdx",
+
     "css",
     "eruby",
     "html",

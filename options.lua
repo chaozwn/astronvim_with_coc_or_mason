@@ -11,6 +11,11 @@ local opt = {
   termguicolors = true,
   wildmenu = true,
   wildmode = "longest:list,full",
+-- <<<<<<< HEAD
+--   cmdheight = 1,
+--   pumheight = 35,
+-- =======
+-- >>>>>>> origin/mason
 }
 
 local g = {

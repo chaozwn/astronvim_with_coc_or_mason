@@ -12,6 +12,28 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- <<<<<<< HEAD
+-- vim.api.nvim_create_augroup("im-select", { clear = true })
+--
+-- vim.api.nvim_create_autocmd("InsertLeave", {
+--   group = "im-select",
+--   callback = im_select.macInsertLeave,
+-- })
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+--   group = "im-select",
+--   callback = im_select.macInsertEnter,
+-- })
+-- vim.api.nvim_create_autocmd("FocusGained", {
+--   group = "im-select",
+--   callback = im_select.macFocusGained,
+-- })
+-- vim.api.nvim_create_autocmd("FocusLost", {
+--   group = "im-select",
+--   callback = im_select.macFocusLost,
+-- })
+--
+-- =======
+-- >>>>>>> origin/mason
 if vim.g.neovide then
   local neovide = require "user.utils.neovide"
   neovide.init()
@@ -31,6 +53,22 @@ if is_available "resession.nvim" then
         resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
       end
     end,
+  })
+
+  -- Filetypes
+  vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*.astro",
+    command = "set filetype=astro",
+  })
+
+  vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*.mdx",
+    command = "set filetype=markdown",
+  })
+  -- mdx files are markdown
+  vim.api.nvim_create_autocmd("BufEnter,BufNewFile,BufRead", {
+    pattern = "*.mdx",
+    callback = function() vim.bo.filetype = "markdown" end,
   })
 end
 

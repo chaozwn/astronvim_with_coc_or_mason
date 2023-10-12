@@ -19,6 +19,34 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright",
+      -- "tsserver",
+      -- "astro",
     },
+    -- capabilities = {
+    --   workspace = {
+    --     applyEdit = true,
+    --     workspaceEdit = {
+    --       documentChanges = true,
+    --       resourceOperations = {
+    --         "create",
+    --         "rename",
+    --         "delete",
+    --       },
+    --       failureHandling = "textOnlyTransactional",
+    --     },
+    --     didChangeConfiguration = {
+    --       dynamicRegistration = true,
+    --     },
+    --     didChangeWatchedFiles = {
+    --       dynamicRegistration = true,
+    --     },
+    --   },
+    --   textDocument = {
+    --     completion = {
+    --       completionItem = {
+    --         snippetSupport = true,
+    --       },
+    --     },
+    --   },
   },
 }

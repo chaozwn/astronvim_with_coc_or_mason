@@ -66,7 +66,7 @@ if is_available "resession.nvim" then
     command = "set filetype=markdown",
   })
   -- mdx files are markdown
-  vim.api.nvim_create_autocmd("BufEnter,BufNewFile,BufRead", {
+  vim.api.nvim_create_autocmd({"BufEnter","BufNewFile","BufRead"}, {
     pattern = "*.mdx",
     callback = function() vim.bo.filetype = "markdown" end,
   })

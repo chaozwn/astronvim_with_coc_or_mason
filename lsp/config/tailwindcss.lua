@@ -1,7 +1,7 @@
 local util = require "lspconfig.util"
 return {
   root_dir = function(fname)
-    return lsp_util.root_pattern("tailwind.config.cjs", "tailwind.config.ts",
+    return util.root_pattern("tailwind.config.cjs", "tailwind.config.ts",
       "tailwind.config.cjs")(fname)
   end,
   settings = {

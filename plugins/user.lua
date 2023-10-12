@@ -59,9 +59,9 @@ return {
     event = "User AstroFile",
     opts = function(_, opts)
       return require("astronvim.utils").extend_tbl(opts, {
-        char = "│",
-        show_trailing_blankline_indent = false,
-        show_current_context = false,
+        -- char = "│",
+        -- show_trailing_blankline_indent = false,
+        -- show_current_context = false,
       })
     end,
   },

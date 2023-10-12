@@ -1,0 +1,14 @@
+
+{
+  "setup": {
+    "prefix": ["si"],
+    "body": [
+      "const ${0} = () => {",
+      "return <div>${0}</div>",
+      "}",
+      "",
+      "export default ${0}"
+    ],
+    "description": "solid tsx function component"
+  }
+}

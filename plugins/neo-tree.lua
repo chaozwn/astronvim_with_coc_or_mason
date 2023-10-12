@@ -1,5 +1,7 @@
 local get_icon = require("astronvim.utils").get_icon
 
+-- NOTE: https://github.com/adelarsq/image_preview.nvim wait alacriity pull request merge
+-- NOTE: https://github.com/nvim-neo-tree/neo-tree.nvim/issues/860 wait undo modifications close
 return {
   "nvim-neo-tree/neo-tree.nvim",
   -- dependencies = { "miversen33/netman.nvim" },
@@ -33,7 +35,7 @@ return {
           hide_gitignored = false,
           hide_by_name = {
             ".git",
-            "node_modules",
+            -- "node_modules",
           },
           never_show = {
             ".DS_Store",

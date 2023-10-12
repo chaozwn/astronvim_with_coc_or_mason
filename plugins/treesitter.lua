@@ -4,7 +4,13 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = function(_, opts)
-    return require("astronvim.utils").extend_tbl(opts, { })
+    return require("astronvim.utils").extend_tbl(opts, {
+      autotag = {
+        enable = true,
+        -- WARN: https://github.com/windwp/nvim-ts-autotag/issues/124 autocompletion bug
+        enable_close_on_slash = false,
+      },
+    })
   end,
 }
 

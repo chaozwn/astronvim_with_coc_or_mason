@@ -7,30 +7,42 @@
     },
     "tsserver": {
       "javascript.updateImportsOnFileMove.enabled": "always",
-      "javascript.inlayHints.includeInlayEnumMemberValueHints": true,
-      "javascript.inlayHints.includeInlayFunctionLikeReturnTypeHints": true,
-      "javascript.inlayHints.includeInlayFunctionParameterTypeHints": true,
       "javascript.inlayHints.includeInlayParameterNameHints": "all",
-      "javascript.inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName": true,
-      "javascript.inlayHints.includeInlayPropertyDeclarationTypeHints": true,
+      "javascript.inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName": false,
+      "javascript.inlayHints.includeInlayFunctionParameterTypeHints": true,
       "javascript.inlayHints.includeInlayVariableTypeHints": true,
+      "javascript.inlayHints.includeInlayVariableTypeHintsWhenTypeMatchesName": false,
+      "javascript.inlayHints.includeInlayPropertyDeclarationTypeHints": true,
+      "javascript.inlayHints.includeInlayFunctionLikeReturnTypeHints": true,
+      "javascript.inlayHints.includeInlayEnumMemberValueHints": true,
+
       "typescript.updateImportsOnFileMove.enabled": "always",
-      "typescript.inlayHints.includeInlayEnumMemberValueHints": true,
-      "typescript.inlayHints.includeInlayFunctionLikeReturnTypeHints": true,
-      "typescript.inlayHints.includeInlayFunctionParameterTypeHints": true,
       "typescript.inlayHints.includeInlayParameterNameHints": "all",
-      "typescript.inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+      "typescript.inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName": false,
+      "typescript.inlayHints.includeInlayFunctionParameterTypeHints": true,
+      "typescript.inlayHints.includeInlayVariableTypeHints": true,
+      "typescript.inlayHints.includeInlayVariableTypeHintsWhenTypeMatchesName": false,
       "typescript.inlayHints.includeInlayPropertyDeclarationTypeHints": true,
-      "typescript.inlayHints.includeInlayVariableTypeHints": true
+      "typescript.inlayHints.includeInlayFunctionLikeReturnTypeHints": true,
+      "typescript.inlayHints.includeInlayEnumMemberValueHints": true
     },
     "pylsp": {
       "pylsp.plugins.rope_autoimport.enabled": true,
       "pylsp.plugins.rope_autoimport.memory": true,
       "pylsp.plugins.rope_completion.enabled": true,
-      "pylsp.plugins.rope_completion.eager": true
+      "pylsp.plugins.rope_completion.eager": true,
+      "pylsp.plugins.jedi.auto_import_modules": [
+        "numpy",
+        "pandas",
+        "matplotlib"
+      ],
+      "pylsp.plugins.jedi_completion.eager": true,
+      "pylsp.plugins.jedi_completion.fuzzy": true,
+      "pylsp.plugins.jedi_completion.include_class_objects": true,
+      "pylsp.plugins.jedi_completion.include_function_objects": true
     },
     "pyright": {
-      "python.pythonPath": "~/miniconda3/envs/python38/bin/python",
+      "python.pythonPath": "python",
       "python.analysis.autoSearchPaths": true,
       "python.analysis.diagnosticMode": "workspace",
       "python.analysis.useLibraryCodeForTypes": true,
@@ -40,11 +52,13 @@
       "tailwindCSS.classAttributes": [
         "class",
         "className",
-        "ngClass",
-        "classList",
-        "cva"
+        "ngClass"
       ],
-      "tailwindCSS.emmetCompletions": true,
+      "tailwindCSS.experimental.classRegex": [
+        "cva\\(([^)]*)\\)",
+        "[\"'`]([^\"'`]*).*?[\"'`]"
+      ],
+      "tailwindCSS.emmetCompletions": false,
       "tailwindCSS.lint.cssConflict": "warning",
       "tailwindCSS.lint.invalidApply": "error",
       "tailwindCSS.lint.invalidConfigPath": "error",

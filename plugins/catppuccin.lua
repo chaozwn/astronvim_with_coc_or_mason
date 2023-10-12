@@ -34,7 +34,7 @@ return {
     integrations = {
       aerial = true,
       alpha = true,
-      coc_nvim = true,
+      flash = true,
       gitsigns = true,
       indent_blankline = {
         enabled = true,
@@ -50,6 +50,9 @@ return {
       dap = { enabled = true, enable_ui = true },
       native_lsp = {
         enabled = true,
+        inlay_hints = {
+          background = true,
+        },
         virtual_text = {
           errors = { "italic" },
           hints = { "italic" },
@@ -76,6 +79,7 @@ return {
       which_key = true,
       headlines = true,
       sandwich = true,
+      illuminate = true,
     },
   },
 }

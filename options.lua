@@ -11,57 +11,20 @@ local opt = {
   termguicolors = true,
   wildmenu = true,
   wildmode = "longest:list,full",
-  cmdheight = 1,
-  pumheight = 35,
+-- <<<<<<< HEAD
+--   cmdheight = 1,
+--   pumheight = 35,
+-- =======
+-- >>>>>>> origin/mason
 }
 
-local is_mac = require("user.utils.utils").is_mac()
-local get_coc_config_home = function()
-  if is_mac then
-    return "~/.config/nvim/lua/user"
-  else
-    return "~/.config/nvim"
-  end
-end
 local g = {
+  mapleader = " ", -- set leader key
+  maplocalleader = " ", -- set default local leader key
   transparent_background = true,
   resession_enabled = true,
-  lsp_type = "lsp",
-  -- lsp_type = "coc",
-  -- fix coc completion problem
-  -- coc_snippet_next = "<C-n>",
-  -- coc_snippet_prev = "<C-p>",
-  -- coc_config_home = get_coc_config_home(),
+  inlay_hints_enabled = true,
 }
-
-if g.lsp_type == "coc" then
-  opt["backup"] = false
-  opt["writebackup"] = false
-  opt["updatetime"] = 300
-  opt["signcolumn"] = "yes"
-  g["coc_global_extensions"] = {
-    "coc-marketplace",
-    "coc-emmet",
-    "coc-tsserver",
-    "coc-json",
-    "coc-html",
-    "coc-css",
-    "coc-clangd",
-    "coc-go",
-    "coc-sumneko-lua",
-    "coc-vimlsp",
-    "coc-sh",
-    "coc-db",
-    "coc-pyright",
-    "coc-toml",
-    "coc-prettier",
-    "coc-snippets",
-    "coc-pairs",
-    "coc-highlight",
-    "coc-eslint",
-    "@yaegassy/coc-tailwindcss3",
-  }
-end
 
 return {
   opt = opt,

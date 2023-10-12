@@ -2,11 +2,21 @@
 
 A user configuration template for [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
-now this config can support `Coc` or `Mason`, you can modify in `options.lua`
-
+now i use mason more, so this branch `mason` only have lsp.
+if you want to use `coc`, switch branch to `main`, and set `vim.g.lsp_type = "coc"`
 ```
 vim.g.lsp_type = "coc" -- use coc as lsp server
 vim.g.lsp_type = "lsp" -- use mason as lsp server
+```
+### recommend
+```
+brew install fzf
+```
+## NOTE
+#### *vim.lsp.buf.hover()* `KK` jump into signature help float window.
+```
+Displays hover information about the symbol under the cursor in a floating
+window. Calling the function twice will jump into the floating window.
 ```
 
 ## 🛠️ Installation

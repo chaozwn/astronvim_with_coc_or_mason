@@ -17,14 +17,6 @@ return {
     end
 
     return require("astronvim.utils").extend_tbl(opts, {
-      formatting = {
-        format = function(_, item)
-          local icons = require "user.highlights.icons"
-          if icons[item.kind] then item.kind = icons[item.kind] .. item.kind end
-          return item
-        end,
-      },
-      -- window = { completion = { col_offset = -1, side_padding = 0 } },
       sources = cmp.config.sources {
         { name = "nvim_lsp", priority = 1000 },
         { name = "luasnip", priority = 750 },

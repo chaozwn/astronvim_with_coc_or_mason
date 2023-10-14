@@ -23,8 +23,6 @@ function M.mappings(maps)
   maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up", silent = true }
   maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }
 
-  if is_available "vim-dadbod-ui" then maps.n["<leader>td"] = { "<Cmd>DBUI<CR>", desc = "ToggleTerm db ui" } end
-
   if is_available "diffview.nvim" then
     maps.n["<leader>gD"] = { "<Cmd>DiffviewOpen<CR>", desc = "View diff with tab" }
   end

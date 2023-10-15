@@ -8,5 +8,5 @@
 -- end
 
 return {
-  { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
+  -- { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
 }

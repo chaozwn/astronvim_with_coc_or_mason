@@ -37,7 +37,7 @@ return {
   "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-calc",
-    "hrsh7th/cmp-emoji",
+    -- "hrsh7th/cmp-emoji",
     -- "jc-doyle/cmp-pandoc-references",
     -- "kdheepak/cmp-latex-symbols",
   },
@@ -131,7 +131,7 @@ return {
         -- { name = "pandoc_references", priority = 725 },
         -- { name = "latex_symbols",     priority = 700 },
         { name = "buffer",            priority = 950, max_item_count = 6  },
-        { name = "emoji",             priority = 700, max_item_count = 2  },
+        -- { name = "emoji",             priority = 700, max_item_count = 2  },
         { name = "calc",              priority = 650 },
       },
       formatting = {

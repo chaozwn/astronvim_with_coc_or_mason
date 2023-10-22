@@ -54,8 +54,14 @@
         "ngClass"
       ],
       "tailwindCSS.experimental.classRegex": [
-        "cva\\(([^)]*)\\)",
-        "[\"'`]([^\"'`]*).*?[\"'`]"
+        [
+          "cva\\(([^)]*)\\)",
+          "[\"'`]([^\"'`]*).*?[\"'`]"
+        ],
+        [
+          "cx\\(([^)]*)\\)",
+          "(?:'|\"|`)([^']*)(?:'|\"|`)"
+        ]
       ],
       "tailwindCSS.emmetCompletions": false,
       "tailwindCSS.lint.cssConflict": "warning",

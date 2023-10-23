@@ -3,6 +3,7 @@ return {
   vim.fn.executable "npm" == 1 and { import = "astrocommunity.pack.typescript" } or {},
   vim.fn.executable "npm" == 1 and { import = "astrocommunity.pack.tailwindcss" } or {},
   { import = "astrocommunity.pack.markdown" },
+  { import = "astrocommunity.pack.thrift" },
   (vim.fn.executable "python" == 1 or vim.fn.executable "python3" == 1) and { import = "astrocommunity.pack.python" }
     or {},
   vim.fn.executable "npm" == 1 and { import = "astrocommunity.pack.docker" } or {},

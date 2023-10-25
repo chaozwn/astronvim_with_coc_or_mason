@@ -34,4 +34,4 @@ if is_available "resession.nvim" then
   })
 end
 
-vim.api.nvim_create_user_command("MyLazyGit", require("user.utils.utils").toggle_lazy_git(), {})
+-- vim.api.nvim_create_user_command("MyLazyGit", require("user.utils.utils").toggle_lazy_git(), {})

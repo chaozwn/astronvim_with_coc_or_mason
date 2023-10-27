@@ -3,4 +3,5 @@
 -- colorscheme = "astrotheme",
 -- return "tokyonight"
 -- return "catppuccin"
-return "astrotheme"
+-- return "astrotheme"
+return "astrodark"

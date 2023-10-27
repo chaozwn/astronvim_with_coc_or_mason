@@ -15,7 +15,6 @@
       "javascript.inlayHints.includeInlayPropertyDeclarationTypeHints": true,
       "javascript.inlayHints.includeInlayFunctionLikeReturnTypeHints": true,
       "javascript.inlayHints.includeInlayEnumMemberValueHints": true,
-
       "typescript.updateImportsOnFileMove.enabled": "always",
       "typescript.inlayHints.includeInlayParameterNameHints": "all",
       "typescript.inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName": false,
@@ -55,8 +54,14 @@
         "ngClass"
       ],
       "tailwindCSS.experimental.classRegex": [
-        "cva\\(([^)]*)\\)",
-        "[\"'`]([^\"'`]*).*?[\"'`]"
+        [
+          "cva\\(([^)]*)\\)",
+          "[\"'`]([^\"'`]*).*?[\"'`]"
+        ],
+        [
+          "cx\\(([^)]*)\\)",
+          "(?:'|\"|`)([^']*)(?:'|\"|`)"
+        ]
       ],
       "tailwindCSS.emmetCompletions": false,
       "tailwindCSS.lint.cssConflict": "warning",
@@ -67,6 +72,7 @@
       "tailwindCSS.lint.invalidVariant": "error",
       "tailwindCSS.lint.recommendedVariantOrder": "warning",
       "tailwindCSS.validate": true
-    }
+    },
+    "rust_analyzer": {}
   }
 }

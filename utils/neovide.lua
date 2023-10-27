@@ -2,7 +2,6 @@ local M = {}
 
 function M.init()
   M.config()
-  if vim.g.transparent_background then M.background() end
   M.refresh(60, 5)
 end
 

@@ -27,4 +27,12 @@ return {
   {
     "jay-babu/mason-nvim-dap.nvim",
   },
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function(_, opts)
+      local dap, dapui = require "dap", require "dapui"
+      dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+      dapui.setup(opts)
+    end,
+  },
 }

@@ -52,7 +52,8 @@
       "tailwindCSS.classAttributes": [
         "class",
         "className",
-        "ngClass"
+        "ngClass",
+        "classList"
       ],
       "tailwindCSS.experimental.classRegex": [
         [

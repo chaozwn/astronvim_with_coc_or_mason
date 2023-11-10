@@ -52,7 +52,8 @@
       "tailwindCSS.classAttributes": [
         "class",
         "className",
-        "ngClass"
+        "ngClass",
+        "classList"
       ],
       "tailwindCSS.experimental.classRegex": [
         [
@@ -67,7 +68,8 @@
         "tw=\"([^\"]*)",
         "tw={\"([^\"}]*)",
         "tw\\.\\w+`([^`]*)",
-        "tw\\(.*?\\)`([^`]*)"
+        "tw\\(.*?\\)`([^`]*)",
+        "data-te-class-[^=]*=(\"([^\"]*)|'([^']*)\")"
       ],
       "tailwindCSS.includeLanguages": {
         "typescript": "javascript",

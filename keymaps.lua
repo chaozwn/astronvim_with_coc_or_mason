@@ -12,7 +12,7 @@ function M.mappings(maps)
   local is_available = utils.is_available
   local my_utils = require "user.utils.utils"
 
-  -- print(require("astronvim.utils").is_available "yanky.nvim")
+  -- print(require("astronvim.utils").is_available "venv-selector.nvim")
   -- print(vim.fn.has "unix" == 1)
   local system = vim.loop.os_uname().sysname
 
@@ -97,6 +97,7 @@ function M.mappings(maps)
     -- maps.v["<D-v>"] = '"+P'
     -- maps.c["<D-v>"] = "<C-R>+"
     -- maps.i["<D-v>"] = '<esc>"+pli'
+
     if is_available "Comment.nvim" then
       maps.n["<C-/>"] = {
         function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
@@ -109,6 +110,19 @@ function M.mappings(maps)
       maps.v["<leader>/"] = false
       maps.n["<leader>/"] = false
     end
+  end
+
+  if is_available "venv-selector.nvim" then
+    maps.n["<leader>lv"] = {
+      "<cmd>VenvSelect<CR>",
+      desc = "Select VirtualEnv",
+    }
+    maps.n["<leader>lV"] = {
+      function()
+        require("astronvim.utils").notify('Current Env:' .. require("venv-selector").get_active_venv(), vim.log.levels.INFO)
+      end,
+      desc = "Show Current VirtualEnv",
+    }
   end
 
   if is_available "markdown-preview.nvim" then

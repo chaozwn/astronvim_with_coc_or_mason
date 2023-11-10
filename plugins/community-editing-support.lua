@@ -4,7 +4,7 @@ return {
     "chaozwn/auto-save.nvim",
     event = { "User AstroFile", "InsertEnter" },
     opts = {
-      debounce_delay = 4000,
+      debounce_delay = 2500,
       print_enabled = false,
       callbacks = {
         before_saving = function()

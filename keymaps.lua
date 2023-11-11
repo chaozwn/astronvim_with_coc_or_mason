@@ -86,6 +86,52 @@ function M.mappings(maps)
     end
   end
 
+  if is_available "noice.nvim" then
+    local noice_down = function()
+      if not require("noice.lsp").scroll(4) then return "<c-f>" end
+    end
+    local noice_up = function()
+      if not require("noice.lsp").scroll(-4) then return "<c-f>" end
+    end
+
+    maps.n["<C-d>"] = {
+      noice_down,
+      desc = "Scroll down",
+      silent = true,
+      expr = true,
+    }
+    maps.i["<C-d>"] = {
+      noice_down,
+      desc = "Scroll down",
+      silent = true,
+      expr = true,
+    }
+    maps.s["<C-d>"] = {
+      noice_down,
+      desc = "Scroll down",
+      silent = true,
+      expr = true,
+    }
+    maps.n["<C-u>"] = {
+      noice_up,
+      desc = "Scroll down",
+      silent = true,
+      expr = true,
+    }
+    maps.i["<C-u>"] = {
+      noice_up,
+      desc = "Scroll down",
+      silent = true,
+      expr = true,
+    }
+    maps.s["<C-u>"] = {
+      noice_up,
+      desc = "Scroll down",
+      silent = true,
+      expr = true,
+    }
+  end
+
   if system == "Darwin" then
     --NOTE: neovim > 0.10.0
     -- maps.n["<D-s>"] = "<Cmd>w<CR>"

@@ -18,10 +18,10 @@ return {
   vim.fn.executable "protoc" == 1 and { import = "astrocommunity.pack.proto" } or {},
   {
     "linux-cultist/venv-selector.nvim",
-    ft="python",
+    ft = "python",
     opts = {
-      anaconda_base_path="~/miniconda3",
-      anaconda_envs_path="~/miniconda3/envs"
+      anaconda_base_path = "~/miniconda3",
+      anaconda_envs_path = "~/miniconda3/envs",
     },
     keys = function() return {} end,
   },

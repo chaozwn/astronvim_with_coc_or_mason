@@ -27,6 +27,5 @@ return {
     require "plugins.configs.telescope"(...)
     local telescope = require "telescope"
     telescope.load_extension "refactoring"
-    if not vim.g.neovide then telescope.load_extension "noice" end
   end,
 }

@@ -87,7 +87,7 @@
     },
     "rust_analyzer": {
       "rust-analyzer.cachePriming.enable": true,
-      "rust-analyzer.cachePriming.numThreads": 0
+      "rust-analyzer.cachePriming.numThreads": 4
     }
   }
 }

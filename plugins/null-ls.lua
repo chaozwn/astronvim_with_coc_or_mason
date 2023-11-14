@@ -31,6 +31,7 @@ return {
         filetypes = {
           "css",
           "astro",
+          "svelte",
           "tsx",
           "scss",
           "less",

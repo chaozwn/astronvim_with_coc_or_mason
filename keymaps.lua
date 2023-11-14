@@ -130,7 +130,7 @@ function M.mappings(maps)
   end
 
   -- 关闭搜索高亮
-  maps.n["<leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
+  -- maps.n["<leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
 
   maps.n["<leader><leader>"] = { desc = "󰍉 User" }
   maps.n["s"] = "<Nop>"

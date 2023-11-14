@@ -8,6 +8,7 @@ local opt = {
   thesaurus = vim.fn.expand "~/.config/nvim/lua/user/spell/mthesaur.txt",
   swapfile = false,
   wrap = true, -- soft wrap lines
+  -- termguicolors = false,
   termguicolors = true,
   wildmenu = true,
   wildmode = "longest:list,full",

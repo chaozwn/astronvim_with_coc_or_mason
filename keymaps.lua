@@ -23,6 +23,10 @@ function M.mappings(maps)
   maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up", silent = true }
   maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }
 
+  maps.n["<C-a>"] = { "gg<S-v>G", desc = "Select all" }
+  maps.n["+"] = { "<C-a>", desc = "Add" }
+  maps.n["-"] = { "<C-x>", desc = "Sub" }
+
   if is_available "nvim-dap-ui" then
     maps.n["<leader>dU"] = {
       function() require("dapui").toggle { reset = true } end,

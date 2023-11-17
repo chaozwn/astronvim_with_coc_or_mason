@@ -1,2 +1,1 @@
-return function(client, bufnr)
-end
+return function(client, bufnr) end

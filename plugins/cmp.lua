@@ -134,13 +134,13 @@ return {
         -- { name = "emoji",             priority = 700, max_item_count = 2  },
         { name = "calc",              priority = 650 },
       },
-      formatting = {
-        format = function(_, item)
-          local icons = require "user.highlights.icons"
-          if icons[item.kind] then item.kind = icons[item.kind] .. item.kind end
-          return item
-        end,
-      },
+      -- formatting = {
+      --   format = function(_, item)
+      --     local icons = require "user.highlights.icons"
+      --     if icons[item.kind] then item.kind = icons[item.kind] .. item.kind end
+      --     return item
+      --   end,
+      -- },
       -- sources = cmp.config.sources {
       --   { name = "nvim_lsp", priority = 1000 },
       --   { name = "luasnip", priority = 750 },

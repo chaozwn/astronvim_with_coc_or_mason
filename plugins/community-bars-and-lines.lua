@@ -1,3 +1,3 @@
 return {
-  { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
+  -- { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
 }

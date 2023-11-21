@@ -92,10 +92,10 @@ function M.mappings(maps)
 
   if is_available "noice.nvim" then
     local noice_down = function()
-      if not require("noice.lsp").scroll(4) then return "<c-f>" end
+      if not require("noice.lsp").scroll(4) then return "<C-d>" end
     end
     local noice_up = function()
-      if not require("noice.lsp").scroll(-4) then return "<c-f>" end
+      if not require("noice.lsp").scroll(-4) then return "<C-u>" end
     end
 
     maps.n["<C-d>"] = {
@@ -217,9 +217,6 @@ function M.mappings(maps)
   maps.v["0"] = { "^", desc = "Go to start without blank" }
   maps.v["^"] = { "0", desc = "Go to start" }
 
-  -- auto save开关
-  if is_available "auto-save.nvim" then maps.n["<leader>um"] = { ":ASToggle<CR>", desc = "Toggle AutoSave" } end
-
   if is_available "vim-visual-multi" then
     -- visual multi
     vim.g.VM_maps = {
@@ -236,9 +233,6 @@ function M.mappings(maps)
   if is_available "telescope.nvim" then
     maps.v["<leader>f"] = { desc = "󰍉 Find" }
     maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
-    maps.n["<leader>fN"] = { "<cmd>Telescope noice<cr>", desc = "Find noice" }
-    maps.v["<leader>fr"] =
-      { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
     -- buffer switching
     maps.n["<leader>bt"] = {
       function()

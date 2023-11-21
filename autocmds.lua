@@ -8,16 +8,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   command = "set nopaste",
 })
 
--- text like documents enable wrap and spell
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "gitcommit", "markdown", "text", "plaintex" },
-  group = vim.api.nvim_create_augroup("auto_spell", { clear = true }),
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
-
 if vim.g.neovide then
   local neovide = require "user.utils.neovide"
   neovide.init()
@@ -25,7 +15,6 @@ end
 
 if is_available "resession.nvim" then
   local resession = require "resession"
-  -- vim.api.nvim_del_augroup_by_name "alpha_autostart" -- disable alpha auto start
 
   vim.api.nvim_create_autocmd("VimEnter", {
     desc = "Restore session on open",

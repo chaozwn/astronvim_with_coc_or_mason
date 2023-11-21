@@ -2,6 +2,12 @@ local utils = require "astronvim.utils"
 local is_available = utils.is_available
 local augroup = vim.api.nvim_create_augroup
 
+-- Turn off paste mode when leaving insert mode
+vim.api.nvim_create_autocmd("InsertLeave", {
+  pattern = "*",
+  command = "set nopaste",
+})
+
 -- text like documents enable wrap and spell
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "gitcommit", "markdown", "text", "plaintex" },
@@ -72,4 +78,16 @@ if is_available "resession.nvim" then
   })
 end
 
-vim.api.nvim_create_user_command("MyLazyGit", require("user.utils.utils").toggle_lazy_git(), {})
+if is_available "venv-selector.nvim" then
+  vim.api.nvim_create_autocmd("VimEnter", {
+    desc = "Auto select virtualenv Nvim open",
+    pattern = "*",
+    callback = function()
+      local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
+      if venv ~= "" then require("venv-selector").retrieve_from_cache() end
+    end,
+    once = true,
+  })
+end
+
+-- vim.api.nvim_create_user_command("MyLazyGit", require("user.utils.utils").toggle_lazy_git(), {})

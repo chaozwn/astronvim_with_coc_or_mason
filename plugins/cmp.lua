@@ -114,14 +114,6 @@ return {
           column_width = 500,
         },
       },
-      -- window = { completion = { col_offset = -1, side_padding = 0 } },
-      -- completion = {
-      --   -- 自动选中第一条
-      --   completeopt = "menu,menuone,noinsert",
-      --   winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-      --   col_offset = -3,
-      --   side_padding = 0,
-      -- },
       sources = cmp.config.sources {
         { name = "codeium",           priority = 2000, max_item_count = 9 },
         { name = "nvim_lua",          priority = 1000 , max_item_count = 9 },
@@ -140,17 +132,6 @@ return {
       --     if icons[item.kind] then item.kind = icons[item.kind] .. item.kind end
       --     return item
       --   end,
-      -- },
-      -- sources = cmp.config.sources {
-      --   { name = "nvim_lsp", priority = 1000 },
-      --   { name = "luasnip", priority = 750 },
-      --   { name = "pandoc_references", priority = 725 },
-      --   { name = "latex_symbols", priority = 700 },
-      --   { name = "emoji", priority = 700 },
-      --   { name = "calc", priority = 650 },
-      --   { name = "path", priority = 500 },
-      --   { name = "buffer", priority = 250 },
-      -- },
       sorting = {
         comparators = {
           compare.offset,

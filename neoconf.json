@@ -3,7 +3,8 @@
     "cssls": {
       "css.lint.unknownAtRules": "ignore",
       "less.lint.unknownAtRules": "ignore",
-      "scss.lint.unknownAtRules": "ignore"
+      "scss.lint.unknownAtRules": "ignore",
+      "scss.validate": false
     },
     "tsserver": {
       "javascript.updateImportsOnFileMove.enabled": "always",
@@ -51,12 +52,29 @@
       "tailwindCSS.classAttributes": [
         "class",
         "className",
-        "ngClass"
+        "ngClass",
+        "classList"
       ],
       "tailwindCSS.experimental.classRegex": [
-        "cva\\(([^)]*)\\)",
-        "[\"'`]([^\"'`]*).*?[\"'`]"
+        [
+          "cva\\(([^)]*)\\)",
+          "[\"'`]([^\"'`]*).*?[\"'`]"
+        ],
+        [
+          "cx\\(([^)]*)\\)",
+          "(?:'|\"|`)([^']*)(?:'|\"|`)"
+        ],
+        "tw`([^`]*)",
+        "tw=\"([^\"]*)",
+        "tw={\"([^\"}]*)",
+        "tw\\.\\w+`([^`]*)",
+        "tw\\(.*?\\)`([^`]*)",
+        "data-te-class-[^=]*=(\"([^\"]*)|'([^']*)\")"
       ],
+      "tailwindCSS.includeLanguages": {
+        "typescript": "javascript",
+        "typescriptreact": "javascript"
+      },
       "tailwindCSS.emmetCompletions": false,
       "tailwindCSS.lint.cssConflict": "warning",
       "tailwindCSS.lint.invalidApply": "error",
@@ -67,6 +85,9 @@
       "tailwindCSS.lint.recommendedVariantOrder": "warning",
       "tailwindCSS.validate": true
     },
-    "rust_analyzer": {}
+    "rust_analyzer": {
+      "rust-analyzer.cachePriming.enable": true,
+      "rust-analyzer.cachePriming.numThreads": 4
+    }
   }
 }

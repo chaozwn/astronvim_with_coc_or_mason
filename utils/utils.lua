@@ -76,6 +76,10 @@ function M.toggle_lazy_git()
         vim.api.nvim_set_keymap("t", "<C-k>", "<cmd>wincmd k<cr>", { silent = true, noremap = true })
         vim.api.nvim_set_keymap("t", "<C-l>", "<cmd>wincmd l<cr>", { silent = true, noremap = true })
       end,
+      on_exit = function(t, job, code, event)
+        -- For Stop Term Mode
+        vim.cmd [[stopinsert]]
+      end,
     }
   end
 end

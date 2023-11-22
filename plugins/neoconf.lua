@@ -4,7 +4,7 @@ return {
     return require("astronvim.utils").extend_tbl(opts, {
       import = {
         vscode = true,
-        coc = true,
+        coc = false,
         nlsp = true,
       },
     })

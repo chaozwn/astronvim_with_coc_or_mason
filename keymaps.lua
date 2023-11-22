@@ -24,8 +24,6 @@ function M.mappings(maps)
   maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }
 
   maps.n["<C-a>"] = { "gg<S-v>G", desc = "Select all" }
-  maps.n["+"] = { "<C-a>", desc = "Add" }
-  maps.n["-"] = { "<C-x>", desc = "Sub" }
 
   if is_available "nvim-dap-ui" then
     maps.n["<leader>dU"] = {
@@ -54,22 +52,6 @@ function M.mappings(maps)
         desc = "Conditional Breakpoint (S-F9)",
       }
     end
-  end
-
-  if is_available "neotest" then
-    local neotest = require "neotest"
-    maps.n["<leader>m"] = { desc = "󰇉 Test" }
-    maps.n["<leader>mc"] = { function() neotest.run.run() end, desc = "Run nearest" }
-    maps.n["<leader>mC"] = { function() neotest.run.run { strategy = "dap" } end, desc = "Run nearest with dap" }
-    maps.n["<leader>mt"] = { function() neotest.run.run(vim.fn.expand "%") end, desc = "Run file" }
-    maps.n["<leader>mT"] =
-      { function() neotest.run.run { vim.fn.expand "%", strategy = "dap" } end, desc = "Run file with dap" }
-    maps.n["<leader>ma"] = { function() neotest.run.run(vim.loop.cwd()) end, desc = "Run all test files" }
-    maps.n["<leader>ms"] = { function() neotest.summary.toggle() end, desc = "Toggle summary" }
-    maps.n["<leader>mo"] =
-      { function() neotest.output.open { enter = true, auto_close = true } end, desc = "Show output" }
-    maps.n["<leader>mO"] = { function() neotest.output_panel.toggle() end, desc = "Toggle output panel" }
-    maps.n["<leader>mS"] = { function() neotest.run.stop() end, desc = "Stop test" }
   end
 
   if vim.g.neovide then
@@ -202,16 +184,6 @@ function M.mappings(maps)
 
   maps.n["H"] = { "^", desc = "Go to start without blank" }
   maps.n["L"] = { "$", desc = "Go to end without blank" }
-
-  -- $跳到行尾不带空格(交换$和g_)
-  maps.n["$"] = { "g_", desc = "Go to end without blank" }
-  maps.n["g_"] = { "$", desc = "Go to end" }
-  maps.v["$"] = { "g_", desc = "Go to end without blank" }
-  maps.v["g_"] = { "$", desc = "Go to end" }
-  maps.n["0"] = { "^", desc = "Go to start without blank" }
-  maps.n["^"] = { "0", desc = "Go to start" }
-  maps.v["0"] = { "^", desc = "Go to start without blank" }
-  maps.v["^"] = { "0", desc = "Go to start" }
 
   if is_available "vim-visual-multi" then
     -- visual multi

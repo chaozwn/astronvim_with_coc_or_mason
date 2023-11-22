@@ -84,6 +84,6 @@
       "tailwindCSS.lint.invalidVariant": "error",
       "tailwindCSS.lint.recommendedVariantOrder": "warning",
       "tailwindCSS.validate": true
-    },
+    }
   }
 }

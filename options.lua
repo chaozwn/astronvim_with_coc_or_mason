@@ -3,11 +3,6 @@ local opt = {
   list = true, -- show whitespace characters
   listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
   showbreak = "↪ ",
-  swapfile = false,
-  wrap = true, -- soft wrap lines
-  termguicolors = true,
-  wildmenu = true,
-  wildmode = "longest:list,full",
 }
 
 local g = {

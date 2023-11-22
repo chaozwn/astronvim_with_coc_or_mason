@@ -174,10 +174,6 @@ function M.mappings(maps)
     }
   end
 
-  if is_available "markdown-preview.nvim" then
-    maps.n["<leader>ze"] = { "<cmd>MarkdownPreviewToggle<CR>", desc = "Open Markdown preview" }
-  end
-
   if is_available "marks.nvim" then
     -- marks
     maps.n["m"] = { desc = "Marks" }
@@ -340,13 +336,6 @@ function M.mappings(maps)
     maps.n["sxx"] = { require("substitute.exchange").line, desc = "Exchange with line" }
     maps.n["sxc"] = { require("substitute.exchange").cancel, desc = "Exchange exchange" }
     maps.v["X"] = { require("substitute.exchange").visual, desc = "Exchange in visual" }
-  end
-
-  maps.n["<leader>z"] = { desc = " Tools" }
-  if is_available "ccc.nvim" then
-    maps.n["<leader>zp"] = { "<CMD>CccPick<CR>", desc = "Pick color" }
-    maps.n["<leader>zc"] = { "<CMD>CccConvert<CR>", desc = "Convert color" }
-    maps.n["<leader>uC"] = { "<CMD>CccHighlighterToggle<CR>", desc = "Toggle ccc highlighter" }
   end
 
   if is_available "nvim-treesitter" then

@@ -85,9 +85,5 @@
       "tailwindCSS.lint.recommendedVariantOrder": "warning",
       "tailwindCSS.validate": true
     },
-    "rust_analyzer": {
-      "rust-analyzer.cachePriming.enable": true,
-      "rust-analyzer.cachePriming.numThreads": 0
-    }
   }
 }

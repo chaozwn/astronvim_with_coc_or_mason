@@ -25,6 +25,8 @@ function M.mappings(maps)
 
   maps.n["<C-a>"] = { "gg<S-v>G", desc = "Select all" }
 
+  maps.i["<C-s>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
+
   if is_available "nvim-dap-ui" then
     maps.n["<leader>dU"] = {
       function() require("dapui").toggle { reset = true } end,

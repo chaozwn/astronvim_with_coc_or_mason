@@ -73,7 +73,9 @@
       ],
       "tailwindCSS.includeLanguages": {
         "typescript": "javascript",
-        "typescriptreact": "javascript"
+        "typescriptreact": "javascript",
+        "astro": "typescript",
+        "svelte": "typescript"
       },
       "tailwindCSS.emmetCompletions": false,
       "tailwindCSS.lint.cssConflict": "warning",

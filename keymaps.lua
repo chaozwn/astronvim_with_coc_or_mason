@@ -323,6 +323,8 @@ if is_available "vim-visual-multi" then
     maps.n["<leader>pb"] = { "<cmd>Neoconf show<CR>", desc = "Show neoconf merge config" }
     maps.n["<leader>pc"] = { "<cmd>Neoconf lsp<CR>", desc = "Show neoconf merge lsp config" }
   end
+  -- make F1 key same as eas key
+  maps.n["<F1>"] = { "<cmd>Telescope commands<cr>", desc = "Show commands" }
 
   return maps
 end

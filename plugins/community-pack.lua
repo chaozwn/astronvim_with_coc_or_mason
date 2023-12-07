@@ -2,7 +2,7 @@ return {
   -- vim.fn.executable "npm" == 1 and { import = "astrocommunity.pack.prisma" } or {},
   -- vim.fn.executable "npm" == 1 and { import = "astrocommunity.pack.typescript" } or {},
   -- vim.fn.executable "pnpm" == 1 and { import = "astrocommunity.pack.typescript" } or {},
-  vim.fn.executable "npm" == 1 and { import = "astrocommunity.pack.tailwindcss" } or {},
+  { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.thrift" },
   (vim.fn.executable "python" == 1 or vim.fn.executable "python3" == 1) and {
@@ -29,9 +29,9 @@ return {
   },
   { import = "astrocommunity.motion.vim-matchup" },
   { import = "astrocommunity.motion.nvim-surround" },
-  -- { import = "astrocommunity.pack.astro" },
+  { import = "astrocommunity.pack.astro" },
   -- { import = "astrocommunity.pack.svelte" },
-  -- { import = "astrocommunity.pack.html-css" },
+  { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.indent.indent-blankline-nvim" },
   -- { import = "astrocommunity.syntax.hlargs-nvim" },
   { import = "astrocommunity.editing-support.ultimate-autopair-nvim" },
@@ -39,7 +39,9 @@ return {
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.editing-support.text-case-nvim" },
-  -- { import = "astrocommunity.code-runner.sniprun" },
-
-  
+  { import = "astrocommunity.editing-support.stickybuf-nvim" },
+  { import = "astrocommunity.code-runner.sniprun" },
+  -- { import = "astrocommunity.workflow.hardtime-nvim" },
+  { import = "astrocommunity.syntax.hlargs-nvim" },
+  { import = "astrocommunity.pack.svelte" },
 }

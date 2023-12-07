@@ -73,7 +73,9 @@
       ],
       "tailwindCSS.includeLanguages": {
         "typescript": "javascript",
-        "typescriptreact": "javascript"
+        "typescriptreact": "javascript",
+        "astro": "typescript",
+        "svelte": "typescript"
       },
       "tailwindCSS.emmetCompletions": false,
       "tailwindCSS.lint.cssConflict": "warning",
@@ -87,7 +89,7 @@
     },
     "rust_analyzer": {
       "rust-analyzer.cachePriming.enable": true,
-      "rust-analyzer.cachePriming.numThreads": 4
+      "rust-analyzer.cachePriming.numThreads": 0
     }
   }
 }

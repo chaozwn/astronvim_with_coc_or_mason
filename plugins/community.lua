@@ -15,7 +15,7 @@ local plugins = {
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
   -- { import = "astrocommunity.syntax.hlargs-nvim" },
 
-  dependencies = { "pmizio/typescript-tools.nvim" },
+  -- dependencies = { "pmizio/typescript-tools.nvim" },
   lazy = false,
 }
 

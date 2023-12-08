@@ -1,5 +1,5 @@
 return {
-  "jose-elias-alvarez/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
   enabled = false,
   -- event = "LazyFile",
   dependencies = { "mason.nvim" },

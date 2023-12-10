@@ -11,9 +11,23 @@ return {
       null_ls.builtins.code_actions.eslint_d.with {
         -- js/ts linter
         -- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
+           filetypes = {
+          "css",
+          "astro",
+          "svelte",
+          "tsx",
+          "scss",
+          "less",
+          "html",
+          "json",
+          "yaml",
+          "markdown",
+          "graphql",
+        },
         condition = function(utils)
           return utils.root_has_file ".eslintrc.js"
             or utils.root_has_file ".eslintrc.cjs"
+            or utils.root_has_file ".eslintrc.mjs"
             or utils.root_has_file ".eslintrc.json" -- change file extension if you use something else
         end,
       },
@@ -21,13 +35,6 @@ return {
       null_ls.builtins.formatting.eslint_d.with {
         -- js/ts linter
         -- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
-        condition = function(utils)
-          return utils.root_has_file ".eslintrc.js"
-            or utils.root_has_file ".eslintrc.cjs"
-            or utils.root_has_file ".eslintrc.json" -- change file extension if you use something else
-        end,
-      },
-      null_ls.builtins.formatting.prettierd.with {
         filetypes = {
           "css",
           "astro",
@@ -41,8 +48,30 @@ return {
           "markdown",
           "graphql",
         },
-        extra_filetypes = { "astro" },
+
+        condition = function(utils)
+          return utils.root_has_file ".eslintrc.js"
+            or utils.root_has_file ".eslintrc.cjs"
+            or utils.root_has_file ".eslintrc.mjs"
+            or utils.root_has_file ".eslintrc.json" -- change file extension if you use something else
+        end,
       },
+      -- null_ls.builtins.formatting.prettierd.with {
+      --   filetypes = {
+      --     "css",
+      --     "astro",
+      --     "svelte",
+      --     "tsx",
+      --     "scss",
+      --     "less",
+      --     "html",
+      --     "json",
+      --     "yaml",
+      --     "markdown",
+      --     "graphql",
+      --   },
+      --   extra_filetypes = { "astro" },
+      -- },
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.isort.with {
         filetypes = { "python" },

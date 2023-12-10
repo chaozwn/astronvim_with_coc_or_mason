@@ -2,38 +2,12 @@ local utils = require "astronvim.utils"
 local is_available = utils.is_available
 local augroup = vim.api.nvim_create_augroup
 
--- text like documents enable wrap and spell
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "gitcommit", "markdown", "text", "plaintex" },
-  group = vim.api.nvim_create_augroup("auto_spell", { clear = true }),
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
+-- Turn off paste mode when leaving insert mode
+vim.api.nvim_create_autocmd("InsertLeave", {
+  pattern = "*",
+  command = "set nopaste",
 })
 
--- <<<<<<< HEAD
--- vim.api.nvim_create_augroup("im-select", { clear = true })
---
--- vim.api.nvim_create_autocmd("InsertLeave", {
---   group = "im-select",
---   callback = im_select.macInsertLeave,
--- })
--- vim.api.nvim_create_autocmd("InsertEnter", {
---   group = "im-select",
---   callback = im_select.macInsertEnter,
--- })
--- vim.api.nvim_create_autocmd("FocusGained", {
---   group = "im-select",
---   callback = im_select.macFocusGained,
--- })
--- vim.api.nvim_create_autocmd("FocusLost", {
---   group = "im-select",
---   callback = im_select.macFocusLost,
--- })
---
--- =======
--- >>>>>>> origin/mason
 if vim.g.neovide then
   local neovide = require "user.utils.neovide"
   neovide.init()
@@ -41,7 +15,6 @@ end
 
 if is_available "resession.nvim" then
   local resession = require "resession"
-  -- vim.api.nvim_del_augroup_by_name "alpha_autostart" -- disable alpha auto start
 
   vim.api.nvim_create_autocmd("VimEnter", {
     desc = "Restore session on open",

@@ -23,6 +23,10 @@ function M.mappings(maps)
   maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up", silent = true }
   maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }
 
+  maps.n["<C-a>"] = { "gg<S-v>G", desc = "Select all" }
+
+  maps.i["<C-s>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
+
   if is_available "nvim-dap-ui" then
     maps.n["<leader>dU"] = {
       function() require("dapui").toggle { reset = true } end,
@@ -52,22 +56,6 @@ function M.mappings(maps)
     end
   end
 
-  if is_available "neotest" then
-    local neotest = require "neotest"
-    maps.n["<leader>m"] = { desc = "󰇉 Test" }
-    maps.n["<leader>mc"] = { function() neotest.run.run() end, desc = "Run nearest" }
-    maps.n["<leader>mC"] = { function() neotest.run.run { strategy = "dap" } end, desc = "Run nearest with dap" }
-    maps.n["<leader>mt"] = { function() neotest.run.run(vim.fn.expand "%") end, desc = "Run file" }
-    maps.n["<leader>mT"] =
-      { function() neotest.run.run { vim.fn.expand "%", strategy = "dap" } end, desc = "Run file with dap" }
-    maps.n["<leader>ma"] = { function() neotest.run.run(vim.loop.cwd()) end, desc = "Run all test files" }
-    maps.n["<leader>ms"] = { function() neotest.summary.toggle() end, desc = "Toggle summary" }
-    maps.n["<leader>mo"] =
-      { function() neotest.output.open { enter = true, auto_close = true } end, desc = "Show output" }
-    maps.n["<leader>mO"] = { function() neotest.output_panel.toggle() end, desc = "Toggle output panel" }
-    maps.n["<leader>mS"] = { function() neotest.run.stop() end, desc = "Stop test" }
-  end
-
   if vim.g.neovide then
     if system == "Darwin" then
       vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
@@ -88,10 +76,10 @@ function M.mappings(maps)
 
   if is_available "noice.nvim" then
     local noice_down = function()
-      if not require("noice.lsp").scroll(4) then return "<c-f>" end
+      if not require("noice.lsp").scroll(4) then return "<C-d>" end
     end
     local noice_up = function()
-      if not require("noice.lsp").scroll(-4) then return "<c-f>" end
+      if not require("noice.lsp").scroll(-4) then return "<C-u>" end
     end
 
     maps.n["<C-d>"] = {
@@ -170,10 +158,6 @@ function M.mappings(maps)
     }
   end
 
-  if is_available "markdown-preview.nvim" then
-    maps.n["<leader>ze"] = { "<cmd>MarkdownPreviewToggle<CR>", desc = "Open Markdown preview" }
-  end
-
   if is_available "marks.nvim" then
     -- marks
     maps.n["m"] = { desc = "Marks" }
@@ -203,20 +187,7 @@ function M.mappings(maps)
   maps.n["H"] = { "^", desc = "Go to start without blank" }
   maps.n["L"] = { "$", desc = "Go to end without blank" }
 
-  -- $跳到行尾不带空格(交换$和g_)
-  maps.n["$"] = { "g_", desc = "Go to end without blank" }
-  maps.n["g_"] = { "$", desc = "Go to end" }
-  maps.v["$"] = { "g_", desc = "Go to end without blank" }
-  maps.v["g_"] = { "$", desc = "Go to end" }
-  maps.n["0"] = { "^", desc = "Go to start without blank" }
-  maps.n["^"] = { "0", desc = "Go to start" }
-  maps.v["0"] = { "^", desc = "Go to start without blank" }
-  maps.v["^"] = { "0", desc = "Go to start" }
-
-  -- auto save开关
-  if is_available "auto-save.nvim" then maps.n["<leader>um"] = { ":ASToggle<CR>", desc = "Toggle AutoSave" } end
-
-  if is_available "vim-visual-multi" then
+if is_available "vim-visual-multi" then
     -- visual multi
     vim.g.VM_maps = {
       ["Find Under"] = "<C-n>",
@@ -232,9 +203,6 @@ function M.mappings(maps)
   if is_available "telescope.nvim" then
     maps.v["<leader>f"] = { desc = "󰍉 Find" }
     maps.n["<leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
-    maps.n["<leader>fN"] = { "<cmd>Telescope noice<cr>", desc = "Find noice" }
-    maps.v["<leader>fr"] =
-      { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Find code refactors" }
     -- buffer switching
     maps.n["<leader>bt"] = {
       function()
@@ -342,13 +310,6 @@ function M.mappings(maps)
     maps.n["sxx"] = { require("substitute.exchange").line, desc = "Exchange with line" }
     maps.n["sxc"] = { require("substitute.exchange").cancel, desc = "Exchange exchange" }
     maps.v["X"] = { require("substitute.exchange").visual, desc = "Exchange in visual" }
-  end
-
-  maps.n["<leader>z"] = { desc = " Tools" }
-  if is_available "ccc.nvim" then
-    maps.n["<leader>zp"] = { "<CMD>CccPick<CR>", desc = "Pick color" }
-    maps.n["<leader>zc"] = { "<CMD>CccConvert<CR>", desc = "Convert color" }
-    maps.n["<leader>uC"] = { "<CMD>CccHighlighterToggle<CR>", desc = "Toggle ccc highlighter" }
   end
 
   if is_available "nvim-treesitter" then

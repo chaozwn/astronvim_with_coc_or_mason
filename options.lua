@@ -3,19 +3,12 @@ local opt = {
   list = true, -- show whitespace characters
   listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
   showbreak = "↪ ",
-  spellfile = vim.fn.expand "~/.config/nvim/lua/user/spell/en.utf-8.add",
-  thesaurus = vim.fn.expand "~/.config/nvim/lua/user/spell/mthesaur.txt",
   swapfile = false,
   wrap = true, -- soft wrap lines
   -- termguicolors = false,
   termguicolors = true,
   wildmenu = true,
   wildmode = "longest:list,full",
--- <<<<<<< HEAD
---   cmdheight = 1,
---   pumheight = 35,
--- =======
--- >>>>>>> origin/mason
 }
 
 local g = {

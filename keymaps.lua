@@ -187,7 +187,7 @@ function M.mappings(maps)
   maps.n["H"] = { "^", desc = "Go to start without blank" }
   maps.n["L"] = { "$", desc = "Go to end without blank" }
 
-if is_available "vim-visual-multi" then
+  if is_available "vim-visual-multi" then
     -- visual multi
     vim.g.VM_maps = {
       ["Find Under"] = "<C-n>",
@@ -325,6 +325,62 @@ if is_available "vim-visual-multi" then
   end
   -- make F1 key same as eas key
   maps.n["<F1>"] = { "<cmd>Telescope commands<cr>", desc = "Show commands" }
+
+  -- Show dependency versions
+  vim.keymap.set(
+    { "n" },
+    "<LEADER>is",
+    require("package-info").show,
+    { silent = true, noremap = true, desc = "Show package info" }
+  )
+
+  -- Hide dependency versions
+  vim.keymap.set(
+    { "n" },
+    "<LEADER>ic",
+    require("package-info").hide,
+    { silent = true, noremap = true, desc = "Hide package info" }
+  )
+
+  -- Toggle dependency versions
+  vim.keymap.set(
+    { "n" },
+    "<LEADER>it",
+    require("package-info").toggle,
+    { silent = true, noremap = true, desc = "Toggle package info" }
+  )
+
+  -- Update dependency on the line
+  vim.keymap.set(
+    { "n" },
+    "<LEADER>iu",
+    require("package-info").update,
+    { silent = true, noremap = true, desc = "Update package" }
+  )
+
+  -- Delete dependency on the line
+  vim.keymap.set(
+    { "n" },
+    "<LEADER>id",
+    require("package-info").delete,
+    { silent = true, noremap = true, desc = "Delete package" }
+  )
+
+  -- Install a new dependency
+  vim.keymap.set(
+    { "n" },
+    "<LEADER>ii",
+    require("package-info").install,
+    { silent = true, noremap = true, desc = "Install package" }
+  )
+
+  -- Install a different dependency version
+  vim.keymap.set(
+    { "n" },
+    "<LEADER>ip",
+    require("package-info").change_version,
+    { silent = true, noremap = true, desc = "Change package version" }
+  )
 
   return maps
 end

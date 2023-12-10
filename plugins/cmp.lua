@@ -132,8 +132,6 @@ return {
       --     if icons[item.kind] then item.kind = icons[item.kind] .. item.kind end
       --     return item
       --   end,
-      -- },
-
       sorting = {
         comparators = {
           compare.offset,

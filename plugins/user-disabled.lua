@@ -4,5 +4,5 @@ return {
     "goolord/alpha-nvim",
     enabled = false,
   },
-  { "rcarriga/nvim-notify", opts = { timeout = 0 } },
+  { "rcarriga/nvim-notify", opts = { timeout = 0, background_colour = "#000000" } },
 }

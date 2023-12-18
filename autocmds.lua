@@ -2,12 +2,6 @@ local utils = require "astronvim.utils"
 local is_available = utils.is_available
 local augroup = vim.api.nvim_create_augroup
 
--- Turn off paste mode when leaving insert mode
-vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = "*",
-  command = "set nopaste",
-})
-
 if vim.g.neovide then
   local neovide = require "user.utils.neovide"
   neovide.init()
@@ -40,5 +34,3 @@ if is_available "venv-selector.nvim" then
     once = true,
   })
 end
-
--- vim.api.nvim_create_user_command("MyLazyGit", require("user.utils.utils").toggle_lazy_git(), {})

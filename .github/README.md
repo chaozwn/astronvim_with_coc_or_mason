@@ -11,6 +11,12 @@ vim.g.lsp_type = "lsp" -- use mason as lsp server
 ### recommend
 ```
 brew install fzf
+brew install luarocks
+brew install lazygit
+brew install ripgrep
+npm install tree-sitter-cli or cargo install tree-sitter-cli
+brew install gdu
+brew install bottom
 ```
 ## NOTE
 #### *vim.lsp.buf.hover()* `KK` jump into signature help float window.

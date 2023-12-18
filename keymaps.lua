@@ -120,7 +120,7 @@ function M.mappings(maps)
     }
   end
 
-  if system == "Darwin" then
+  if system == "Darwin" or system == "Linux" then
     --NOTE: neovim > 0.10.0
     -- maps.n["<D-s>"] = "<Cmd>w<CR>"
     -- maps.n["<D-v>"] = '"+P'

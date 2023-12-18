@@ -13,13 +13,5 @@ return {
     }
     return util.find_git_ancestor(fname) or util.root_pattern(unpack(root_files))(fname)
   end,
-  init_options = {
-    settings = {
-      -- Any extra CLI arguments for `ruff` go here.
-      args = { "--config=$HOME/.config/ruff/ruff.toml" },
-      organizeImports = true,
-      fixAll = true,
-    },
-  },
   settings = {},
 }

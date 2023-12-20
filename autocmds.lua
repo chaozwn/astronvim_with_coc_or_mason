@@ -2,6 +2,12 @@ local utils = require "astronvim.utils"
 local is_available = utils.is_available
 local augroup = vim.api.nvim_create_augroup
 
+-- Turn off paste mode when leaving insert mode
+vim.api.nvim_create_autocmd("InsertLeave", {
+  pattern = "*",
+  command = "set nopaste",
+})
+
 if vim.g.neovide then
   local neovide = require "user.utils.neovide"
   neovide.init()

@@ -1,7 +1,27 @@
-
 {
-  "setup": {
-    "prefix": ["si"],
+  "ComponetProps": {
+    "prefix": [
+      "sp"
+    ],
+    "body": [
+      "import { Component, JSX } from 'solid-js'",
+      "",
+      "export interface ${0}Props {",
+      "children?: JSX.Element",
+      "}",
+      "",
+      "const ${0}: Component<${0}Props> = (props) => {",
+      "return <div>${0}</div>",
+      "}",
+      "",
+      "export default ${0}"
+    ],
+    "description": "solid tsx function component with props"
+  },
+  "ComponetWithoutProps": {
+    "prefix": [
+      "si"
+    ],
     "body": [
       "const ${0} = () => {",
       "return <div>${0}</div>",
@@ -9,6 +29,6 @@
       "",
       "export default ${0}"
     ],
-    "description": "solid tsx function component"
+    "description": "solid tsx function component without props"
   }
 }

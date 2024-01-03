@@ -3,7 +3,7 @@ return {
   {
     "catppuccin",
     opts = {
-      transparent_background = true,
+      transparent_background = vim.g.transparent_background,
       integrations = {
         alpha = true,
         flash = true,

@@ -8,23 +8,7 @@
     },
     "tsserver": {
       "javascript.updateImportsOnFileMove.enabled": "always",
-      "javascript.inlayHints.includeInlayParameterNameHints": "all",
-      "javascript.inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName": false,
-      "javascript.inlayHints.includeInlayFunctionParameterTypeHints": true,
-      "javascript.inlayHints.includeInlayVariableTypeHints": true,
-      "javascript.inlayHints.includeInlayVariableTypeHintsWhenTypeMatchesName": false,
-      "javascript.inlayHints.includeInlayPropertyDeclarationTypeHints": true,
-      "javascript.inlayHints.includeInlayFunctionLikeReturnTypeHints": true,
-      "javascript.inlayHints.includeInlayEnumMemberValueHints": true,
-      "typescript.updateImportsOnFileMove.enabled": "always",
-      "typescript.inlayHints.includeInlayParameterNameHints": "all",
-      "typescript.inlayHints.includeInlayParameterNameHintsWhenArgumentMatchesName": false,
-      "typescript.inlayHints.includeInlayFunctionParameterTypeHints": true,
-      "typescript.inlayHints.includeInlayVariableTypeHints": true,
-      "typescript.inlayHints.includeInlayVariableTypeHintsWhenTypeMatchesName": false,
-      "typescript.inlayHints.includeInlayPropertyDeclarationTypeHints": true,
-      "typescript.inlayHints.includeInlayFunctionLikeReturnTypeHints": true,
-      "typescript.inlayHints.includeInlayEnumMemberValueHints": true
+      "typescript.updateImportsOnFileMove.enabled": "always"
     },
     "pylsp": {
       "pylsp.plugins.rope_autoimport.enabled": true,

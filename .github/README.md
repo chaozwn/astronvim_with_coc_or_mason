@@ -8,6 +8,24 @@ if you want to use `coc`, switch branch to `main`, and set `vim.g.lsp_type = "co
 vim.g.lsp_type = "coc" -- use coc as lsp server
 vim.g.lsp_type = "lsp" -- use mason as lsp server
 ```
+### Input Auto Switch
+```
+brew install im-select
+im-select
+```
+copy result to `im-select.lua`
+```
+return {
+  "chaozwn/im-select.nvim",
+  lazy = false,
+  opts = {
+    -- modify 'im.rime.inputmethod.Squirrel.Hans' to your own input method
+    default_main_select = "im.rime.inputmethod.Squirrel.Hans",
+    set_previous_events = { "InsertEnter", "FocusLost" },
+  },
+}
+```
+
 ### recommend
 ```
 brew install fzf

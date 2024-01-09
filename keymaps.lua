@@ -23,8 +23,6 @@ function M.mappings(maps)
   maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up", silent = true }
   maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }
 
-  maps.n["<C-a>"] = { "gg<S-v>G", desc = "Select all" }
-
   maps.i["<C-s>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
 
   if is_available "nvim-dap-ui" then

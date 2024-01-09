@@ -8,6 +8,7 @@
       "",
       "export interface ${0}Props {",
       "children?: JSX.Element",
+      "class?: string",
       "}",
       "",
       "const ${0}: Component<${0}Props> = (props) => {",

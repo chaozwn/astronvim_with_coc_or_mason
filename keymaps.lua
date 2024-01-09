@@ -158,7 +158,7 @@ function M.mappings(maps)
 
   if is_available "marks.nvim" then
     -- marks
-    maps.n["m"] = { desc = "Marks" }
+    maps.n["m"] = { desc = "󰈚 Marks" }
     maps.n["m,"] = { "<Plug>(Marks-setnext)<CR>", desc = "Set Next Lowercase Mark" }
     maps.n["m;"] = { "<Plug>(Marks-toggle)<CR>", desc = "Toggle Mark(Set Or Cancel Mark)" }
     maps.n["m]"] = { "<Plug>(Marks-next)<CR>", desc = "Move To Next Mark" }

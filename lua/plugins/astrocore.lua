@@ -7,35 +7,14 @@ return {
     local augroup = vim.api.nvim_create_augroup
 
     return require("astrocore").extend_tbl(opts, {
-      -- modify core features of AstroNvim
-      features = {
-        max_file = { size = 1024 * 100, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-        autopairs = true, -- enable autopairs at start
-        cmp = true, -- enable completion at start
-        highlighturl = true, -- highlight URLs at start
-        notifications = true, -- enable notifications at start
-      },
-      -- Configure diagnostics options (`:h vim.diagnostic.config()`)
-      diagnostics = {
-        update_in_insert = false,
-      },
       -- Configuration options for controlling formatting with language servers
       formatting = {
         -- control auto formatting on save
-        format_on_save = {
-          -- enable or disable format on save globally
-          enabled = false,
-          -- enable format on save for specified filetypes only
-          allow_filetypes = {},
-          -- disable format on save for specified filetypes
-          ignore_filetypes = {},
-        },
+        format_on_save = false,
         -- disable formatting capabilities for specific language servers
         disabled = {},
         -- default format timeout
         timeout_ms = 10000,
-        -- fully override the default formatting function
-        filter = function(client) return true end,
       },
       autocmds = {
         auto_spell = {
@@ -72,6 +51,18 @@ return {
                 resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
               end
             end,
+          },
+        },
+        auto_select_virtualenv = {
+          {
+            event = "VimEnter",
+            desc = "Auto select virtualenv Nvim open",
+            pattern = "*",
+            callback = function()
+              local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
+              if venv ~= "" then require("venv-selector").retrieve_from_cache() end
+            end,
+            once = true,
           },
         },
         auto_update_neotree_after_lazygit_close = {

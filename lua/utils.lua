@@ -41,6 +41,44 @@ function M.toggle_lazy_git()
   end
 end
 
+function M.toggle_joshuto(path)
+  return function()
+    local output_path = "/tmp/joshuto_filechosen"
+    os.remove(output_path)
+    path = vim.fn.expand "%:p:h"
+    local cmd = string.format('joshuto --file-chooser --output-file "%s" "%s"', output_path, path)
+    require("astrocore").toggle_term_cmd {
+      cmd = cmd,
+      hidden = true,
+      on_open = function()
+        M.remove_keymap("t", "<C-H>")
+        M.remove_keymap("t", "<C-J>")
+        M.remove_keymap("t", "<C-K>")
+        M.remove_keymap("t", "<C-L>")
+      end,
+      on_close = function()
+        vim.api.nvim_set_keymap("t", "<C-h>", "<cmd>wincmd h<cr>", { silent = true, noremap = true })
+        vim.api.nvim_set_keymap("t", "<C-j>", "<cmd>wincmd j<cr>", { silent = true, noremap = true })
+        vim.api.nvim_set_keymap("t", "<C-k>", "<cmd>wincmd k<cr>", { silent = true, noremap = true })
+        vim.api.nvim_set_keymap("t", "<C-l>", "<cmd>wincmd l<cr>", { silent = true, noremap = true })
+      end,
+      on_exit = function(t, job, code, event)
+        if code == 102 then
+          local open_path = vim.fn.readfile(output_path)[1]
+          vim.cmd "silent! :checktime"
+          vim.loop.new_timer():start(
+            0,
+            0,
+            vim.schedule_wrap(function()
+              if open_path then vim.cmd(string.format("edit %s", open_path)) end
+            end)
+          )
+        end
+      end,
+    }
+  end
+end
+
 function M.removeValueFromTable(tbl, value)
   for i, v in ipairs(tbl) do
     if v == value then

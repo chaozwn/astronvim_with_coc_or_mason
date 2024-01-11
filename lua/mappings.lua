@@ -15,8 +15,25 @@ function M.mappings(maps)
 
   maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
 
+  -- telescope plugin mappings
+  if is_available "telescope.nvim" then
+    maps.v["<Leader>f"] = { desc = "󰍉 Find" }
+    maps.n["<Leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
+    -- buffer switching
+    maps.n["<Leader>bt"] = {
+      function()
+        if #vim.t.bufs > 1 then
+          require("telescope.builtin").buffers { sort_mru = true, ignore_current_buffer = true }
+        else
+          require("astrocore").notify "No other buffers open"
+        end
+      end,
+      desc = "Switch Buffers In Telescope",
+    }
+  end
+
   if is_available "nvim-dap-ui" then
-    maps.n["<leader>dU"] = {
+    maps.n["<Leader>dU"] = {
       function() require("dapui").toggle { reset = true } end,
       desc = "Toggle Debugger UI and reset layout",
     }
@@ -25,15 +42,15 @@ function M.mappings(maps)
         function() require("persistent-breakpoints.api").toggle_breakpoint() end,
         desc = "Debugger: Toggle Breakpoint",
       }
-      maps.n["<leader>db"] = {
+      maps.n["<Leader>db"] = {
         function() require("persistent-breakpoints.api").toggle_breakpoint() end,
         desc = "Toggle Breakpoint (F9)",
       }
-      maps.n["<leader>dB"] = {
+      maps.n["<Leader>dB"] = {
         function() require("persistent-breakpoints.api").clear_all_breakpoints() end,
         desc = "Clear All Breakpoints",
       }
-      maps.n["<leader>dC"] = {
+      maps.n["<Leader>dC"] = {
         function() require("persistent-breakpoints.api").set_conditional_breakpoint() end,
         desc = "Conditional Breakpoint (S-F9)",
       }
@@ -45,11 +62,11 @@ function M.mappings(maps)
   end
 
   if is_available "venv-selector.nvim" then
-    maps.n["<leader>lv"] = {
+    maps.n["<Leader>lv"] = {
       "<cmd>VenvSelect<CR>",
       desc = "Select VirtualEnv",
     }
-    maps.n["<leader>lV"] = {
+    maps.n["<Leader>lV"] = {
       function()
         require("astrocore").notify("Current Env:" .. require("venv-selector").get_active_venv(), vim.log.levels.INFO)
       end,
@@ -59,9 +76,9 @@ function M.mappings(maps)
 
   -- close mason
   if is_available "refactoring.nvim" then
-    maps.n["<leader>r"] = { desc = " Refactor" }
-    maps.v["<leader>r"] = { desc = " Refactor" }
-    maps.x["<leader>r"] = { desc = " Refactor" }
+    maps.n["<Leader>r"] = { desc = " Refactor" }
+    maps.v["<Leader>r"] = { desc = " Refactor" }
+    maps.x["<Leader>r"] = { desc = " Refactor" }
     maps.n["<Leader>rb"] = {
       function() require("refactoring").refactor "Extract Block" end,
       desc = "Extract Block",
@@ -289,6 +306,12 @@ function M.mappings(maps)
       }
       maps.n["<Leader>gg"] = maps.n["<Leader>tl"]
     end
+    if vim.fn.executable "joshuto" == 1 then
+      maps.n["<Leader>tj"] = {
+        require("utils").toggle_joshuto(),
+        desc = "ToggleTerm joshuto",
+      }
+    end
   end
 
   -- 在visual mode 里粘贴不要复制
@@ -367,6 +390,12 @@ function M.mappings(maps)
   if is_available "nvim-treesitter" then
     -- TsInformation
     maps.n["<Leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
+  end
+
+  if is_available "neoconf.nvim" then
+    maps.n["<Leader>pd"] = { "<cmd>Neoconf<CR>", desc = "Select local/global neoconf config" }
+    maps.n["<Leader>pb"] = { "<cmd>Neoconf show<CR>", desc = "Show neoconf merge config" }
+    maps.n["<Leader>pc"] = { "<cmd>Neoconf lsp<CR>", desc = "Show neoconf merge lsp config" }
   end
 
   return maps

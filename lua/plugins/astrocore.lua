@@ -49,7 +49,7 @@ return {
             end,
           },
         },
-        autohide_tabline = {
+        auto_hide_tabline = {
           {
             event = "User",
             desc = "Auto hide tabline",
@@ -70,6 +70,22 @@ return {
               if vim.fn.argc(-1) == 0 then
                 -- Save these to a different directory, so our manual sessions don't get polluted
                 resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+              end
+            end,
+          },
+        },
+        auto_update_neotree_after_lazygit_close = {
+          {
+            event = "TermClose",
+            desc = "Refresh Neo-Tree when closing lazygit",
+            group = augroup("neotree_refresh", { clear = true }),
+            callback = function()
+              local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
+              if manager_avail then
+                for _, source in ipairs { "filesystem", "git_status", "document_symbols" } do
+                  local module = "neo-tree.sources." .. source
+                  if package.loaded[module] then manager.refresh(require(module).name) end
+                end
               end
             end,
           },

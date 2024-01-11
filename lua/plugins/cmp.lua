@@ -1,4 +1,3 @@
--- override nvim-cmp plugin
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -8,7 +7,7 @@ return {
     "jc-doyle/cmp-pandoc-references",
     "kdheepak/cmp-latex-symbols",
   },
-  config = function(_, opts)
+  opts = function(_, opts)
     local cmp = require "cmp"
     local compare = require "cmp.config.compare"
     local luasnip = require "luasnip"

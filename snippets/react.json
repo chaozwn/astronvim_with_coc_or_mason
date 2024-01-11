@@ -1,0 +1,19 @@
+{
+  "setup": {
+    "prefix": ["rf"],
+    "body": [
+      "import {FC, ReactNode} from 'react'",
+      "",
+      "interface ${0}Props {",
+      " children?: ReactNode",
+      "}",
+      "",
+      "const ${0}: FC<${0}Props> = () => {",
+      "return <div>${0}</div>",
+      "}",
+      "",
+      "export default ${0}"
+    ],
+    "description": "react tsx function component"
+  }
+}

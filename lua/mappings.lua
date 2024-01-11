@@ -15,6 +15,137 @@ function M.mappings(maps)
 
   maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
 
+  if is_available "nvim-dap-ui" then
+    maps.n["<leader>dU"] = {
+      function() require("dapui").toggle { reset = true } end,
+      desc = "Toggle Debugger UI and reset layout",
+    }
+    if is_available "persistent-breakpoints.nvim" then
+      maps.n["<F9>"] = {
+        function() require("persistent-breakpoints.api").toggle_breakpoint() end,
+        desc = "Debugger: Toggle Breakpoint",
+      }
+      maps.n["<leader>db"] = {
+        function() require("persistent-breakpoints.api").toggle_breakpoint() end,
+        desc = "Toggle Breakpoint (F9)",
+      }
+      maps.n["<leader>dB"] = {
+        function() require("persistent-breakpoints.api").clear_all_breakpoints() end,
+        desc = "Clear All Breakpoints",
+      }
+      maps.n["<leader>dC"] = {
+        function() require("persistent-breakpoints.api").set_conditional_breakpoint() end,
+        desc = "Conditional Breakpoint (S-F9)",
+      }
+      maps.n["<F21>"] = {
+        function() require("persistent-breakpoints.api").set_conditional_breakpoint() end,
+        desc = "Conditional Breakpoint (S-F9)",
+      }
+    end
+  end
+
+  if is_available "venv-selector.nvim" then
+    maps.n["<leader>lv"] = {
+      "<cmd>VenvSelect<CR>",
+      desc = "Select VirtualEnv",
+    }
+    maps.n["<leader>lV"] = {
+      function()
+        require("astrocore").notify("Current Env:" .. require("venv-selector").get_active_venv(), vim.log.levels.INFO)
+      end,
+      desc = "Show Current VirtualEnv",
+    }
+  end
+
+  -- close mason
+  if is_available "refactoring.nvim" then
+    maps.n["<leader>r"] = { desc = " Refactor" }
+    maps.v["<leader>r"] = { desc = " Refactor" }
+    maps.x["<leader>r"] = { desc = " Refactor" }
+    maps.n["<Leader>rb"] = {
+      function() require("refactoring").refactor "Extract Block" end,
+      desc = "Extract Block",
+    }
+    maps.n["<Leader>ri"] = {
+      function() require("refactoring").refactor "Inline Variable" end,
+      desc = "Inline Variable",
+    }
+    maps.n["<Leader>rp"] = {
+      function() require("refactoring").debug.printf { below = false } end,
+      desc = "Debug: Print Function",
+    }
+    maps.n["<Leader>rc"] = {
+      function() require("refactoring").debug.cleanup {} end,
+      desc = "Debug: Clean Up",
+    }
+    maps.n["<Leader>rd"] = {
+      function() require("refactoring").debug.print_var { below = false } end,
+      desc = "Debug: Print Variable",
+    }
+    maps.n["<Leader>rbf"] = {
+      function() require("refactoring").refactor "Extract Block To File" end,
+      desc = "Extract Block To File",
+    }
+
+    maps.x["<Leader>re"] = {
+      function() require("refactoring").refactor "Extract Function" end,
+      desc = "Extract Function",
+    }
+    maps.x["<Leader>rf"] = {
+      function() require("refactoring").refactor "Extract Function To File" end,
+      desc = "Extract Function To File",
+    }
+    maps.x["<Leader>rv"] = {
+      function() require("refactoring").refactor "Extract Variable" end,
+      desc = "Extract Variable",
+    }
+    maps.x["<Leader>ri"] = {
+      function() require("refactoring").refactor "Inline Variable" end,
+      desc = "Inline Variable",
+    }
+
+    maps.v["<Leader>re"] = {
+      function() require("refactoring").refactor "Extract Function" end,
+      desc = "Extract Function",
+    }
+    maps.v["<Leader>rf"] = {
+      function() require("refactoring").refactor "Extract Function To File" end,
+      desc = "Extract Function To File",
+    }
+    maps.v["<Leader>rv"] = {
+      function() require("refactoring").refactor "Extract Variable" end,
+      desc = "Extract Variable",
+    }
+    maps.v["<Leader>ri"] = {
+      function() require("refactoring").refactor "Inline Variable" end,
+      desc = "Inline Variable",
+    }
+    maps.v["<Leader>rb"] = {
+      function() require("refactoring").refactor "Extract Block" end,
+      desc = "Extract Block",
+    }
+    maps.v["<Leader>rbf"] = {
+      function() require("refactoring").refactor "Extract Block To File" end,
+      desc = "Extract Block To File",
+    }
+    maps.v["<Leader>rr"] = {
+      function() require("refactoring").select_refactor() end,
+      desc = "Select Refactor",
+    }
+    maps.v["<Leader>rp"] = {
+      function() require("refactoring").debug.printf { below = false } end,
+      desc = "Debug: Print Function",
+    }
+    maps.v["<Leader>rc"] = {
+      function() require("refactoring").debug.cleanup {} end,
+      desc = "Debug: Clean Up",
+    }
+    maps.v["<Leader>rd"] = {
+      function() require("refactoring").debug.print_var { below = false } end,
+      desc = "Debug: Print Variable",
+    }
+  end
+
   if is_available "noice.nvim" then
     local noice_down = function()
       if not require("noice.lsp").scroll(4) then return "<C-d>" end

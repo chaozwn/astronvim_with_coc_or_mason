@@ -18,5 +18,3 @@ vim.g.maplocalleader = ""
 vim.g.resession_enabled = true
 vim.g.inlay_hints_enabled = true
 vim.g.transparent_background = true
-vim.g.autoformat = false
-vim.b.autoformat = false

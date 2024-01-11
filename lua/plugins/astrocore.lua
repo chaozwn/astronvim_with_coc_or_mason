@@ -19,6 +19,24 @@ return {
       diagnostics = {
         update_in_insert = false,
       },
+      -- Configuration options for controlling formatting with language servers
+      formatting = {
+        -- control auto formatting on save
+        format_on_save = {
+          -- enable or disable format on save globally
+          enabled = false,
+          -- enable format on save for specified filetypes only
+          allow_filetypes = {},
+          -- disable format on save for specified filetypes
+          ignore_filetypes = {},
+        },
+        -- disable formatting capabilities for specific language servers
+        disabled = {},
+        -- default format timeout
+        timeout_ms = 10000,
+        -- fully override the default formatting function
+        filter = function(client) return true end,
+      },
       autocmds = {
         auto_spell = {
           {
@@ -57,7 +75,7 @@ return {
           },
         },
       },
-      mappings = require("mappings").mappings(opts.mappings) ,
+      mappings = require("mappings").mappings(opts.mappings),
     })
   end,
 }

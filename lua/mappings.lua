@@ -76,6 +76,41 @@ function M.mappings(maps)
     end
   end
 
+  if is_available "dial.nvim" then
+    maps.v["<C-a>"] = {
+      function() return require("dial.map").manipulate("increment", "visual") end,
+      desc = "Increment",
+    }
+    maps.v["<C-x>"] = {
+      function() return require("dial.map").manipulate("decrement", "visual") end,
+      desc = "Decrement",
+    }
+    maps.v["g<C-a>"] = {
+      function() return require("dial.map").manipulate("increment", "gvisual") end,
+      desc = "Increment",
+    }
+    maps.v["g<C-x>"] = {
+      function() return require("dial.map").manipulate("decrement", "gvisual") end,
+      desc = "Decrement",
+    }
+    maps.n["<C-a>"] = {
+      function() return require("dial.map").manipulate("increment", "normal") end,
+      desc = "Increment",
+    }
+    maps.n["<C-x>"] = {
+      function() return require("dial.map").manipulate("decrement", "normal") end,
+      desc = "Decrement",
+    }
+    maps.n["g<C-a>"] = {
+      function() return require("dial.map").manipulate("increment", "gnormal") end,
+      desc = "Increment",
+    }
+    maps.n["g<C-x>"] = {
+      function() return require("dial.map").manipulate("decrement", "gnormal") end,
+      desc = "Decrement",
+    }
+  end
+
   if is_available "marks.nvim" then
     -- print(require("astrocore").is_available "marks.nvim")
     -- marks

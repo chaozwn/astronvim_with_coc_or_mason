@@ -1,5 +1,5 @@
 {
-  "AstroNvim": { "branch": "v4", "commit": "e2e11ea486ec6bfd139a1c70cffc58cd2422073a" },
+  "AstroNvim": { "branch": "v4", "commit": "0e3c6f1abfe137ac0833473fb75c0c9689d53d43" },
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "82108e7e31cc6fc223cc5df5cae6d89f70bb199f" },
   "SchemaStore.nvim": { "branch": "main", "commit": "fcb1522fefd0f9029b7dc71aa2664d2d0ead0fb3" },
@@ -7,7 +7,7 @@
   "arshlib.nvim": { "branch": "master", "commit": "e76e35c927098d07445c72e9416cce243f6aae59" },
   "astrocommunity": { "branch": "v4", "commit": "0ea44d98d33aa7db4c05ebd43d27661e458653b5" },
   "astrocore": { "branch": "main", "commit": "6d4d447051548b20aece8f90021653d540197acc" },
-  "astrolsp": { "branch": "main", "commit": "23b36e884c13cab0bbe745f68fd40bf6c521d7ec" },
+  "astrolsp": { "branch": "main", "commit": "2cae1a9567388841c4e967be00be27e99e449e83" },
   "astrotheme": { "branch": "main", "commit": "208d85fcc2fa19351d55b584666ea0b2ddf9db4e" },
   "astroui": { "branch": "main", "commit": "716b2f64e5abb50e1b5997abfaa03229a0498ed9" },
   "catppuccin": { "branch": "main", "commit": "5e36ca599f4aa41bdd87fbf2c5aae4397ac55074" },
@@ -33,7 +33,6 @@
   "im-select.nvim": { "branch": "master", "commit": "9e3461931484be07a0d6def480d2f036c70c081e" },
   "inc-rename.nvim": { "branch": "main", "commit": "6f9b5f9cb237e12935144cdc535322b8c93c1b25" },
   "incline.nvim": { "branch": "main", "commit": "fdd7e08a6e3d0dd8d9aa02428861fa30c37ba306" },
-  "indent-blankline.nvim": { "branch": "master", "commit": "3c8a185da4b8ab7aef487219f5e001b11d4b6aaf" },
   "indent-tools.nvim": { "branch": "master", "commit": "31b839d65aa04b568fabe5e100a63cc44ef3f5d5" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
   "lspkind.nvim": { "branch": "master", "commit": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf" },

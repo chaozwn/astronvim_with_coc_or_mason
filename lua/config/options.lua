@@ -2,10 +2,21 @@
 -- Default options that are always set: https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/options.lua
 -- Add any additional options here
 
--- vim.opt.relativenumber = true -- sets vim.opt.relativenumber
--- vim.opt.number = true -- sets vim.opt.number
--- vim.opt.spell = false -- sets vim.opt.spell
--- vim.opt.signcolumn = "auto" -- sets vim.opt.signcolumn to auto
--- vim.opt.wrap = false -- sets vim.opt.wrap
+vim.opt.conceallevel = 2 -- enable conceal
+vim.opt.list = true -- show whitespace characters
+vim.opt.listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" }
+vim.opt.showbreak = "↪ "
+vim.opt.showtabline = (vim.t.bufs and #vim.t.bufs > 1) and 2 or 1
+vim.opt.spellfile = vim.fn.expand "~/.config/nvim/spell/en.utf-8.add"
+vim.opt.splitkeep = "screen"
+vim.opt.swapfile = false
+vim.opt.thesaurus = vim.fn.expand "~/.config/nvim/spell/mthesaur.txt"
+vim.opt.wrap = true -- soft wrap lines
 
--- vim.g.mapleader = " " -- sets vim.g.mapleader
+vim.g.mapleader = " "
+vim.g.maplocalleader = ""
+vim.g.resession_enabled = true
+vim.g.inlay_hints_enabled = true
+vim.g.transparent_background = true
+vim.g.autoformat = false
+vim.b.autoformat = false

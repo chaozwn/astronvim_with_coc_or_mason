@@ -27,10 +27,7 @@ return {
   { "jay-babu/mason-nvim-dap.nvim", optional = true, init = false },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts)
-      require("astrocore").list_insert_unique(opts.ensure_installed, { "cssmodules_ls", "emmet_language_server" })
-      require("utils").list_remove_unique(opts.ensure_installed, "emmet_ls")
-    end,
+    opts = function(_, opts) end,
   },
   { "jay-babu/mason-null-ls.nvim" },
 }

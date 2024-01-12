@@ -15,6 +15,24 @@ function M.mappings(maps)
 
   maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
 
+  if vim.g.neovide then
+    if system == "Darwin" then
+      vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
+      -- Save
+      maps.n["<D-s>"] = ":w<CR>"
+      -- Paste normal mode
+      maps.n["<D-v>"] = '"+P'
+      -- Copy
+      maps.v["<D-c>"] = '"+y'
+      -- Paste visual mode
+      maps.v["<D-v>"] = '"+P'
+      -- Paste command mode
+      maps.c["<D-v>"] = "<C-R>+"
+      -- Paste insert mode
+      maps.i["<D-v>"] = '<esc>"+pli'
+    end
+  end
+
   -- telescope plugin mappings
   if is_available "telescope.nvim" then
     maps.v["<Leader>f"] = { desc = "󰍉 Find" }

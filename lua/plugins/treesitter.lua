@@ -13,6 +13,13 @@ return {
         enable = true,
         enable_close_on_slash = true,
       },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          node_incremental = "v",
+          node_decremental = "V",
+        },
+      },
     })
   end,
 }

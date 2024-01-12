@@ -6,17 +6,13 @@ return {
     local resession = require "resession"
     local augroup = vim.api.nvim_create_augroup
 
-    return require("astrocore").extend_tbl(opts, {
-      -- Configuration options for controlling formatting with language servers
-      formatting = {
-        -- control auto formatting on save
-        format_on_save = false,
-        -- disable formatting capabilities for specific language servers
-        disabled = {},
-        -- default format timeout
-        timeout_ms = 10000,
-      },
+    local options = require("astrocore").extend_tbl(opts, {
       autocmds = {
+        auto_turnoff_paste = {
+          event = "InsertLeave",
+          pattern = "*",
+          command = "set nopaste",
+        },
         auto_spell = {
           {
             event = "FileType",
@@ -68,5 +64,6 @@ return {
       },
       mappings = require("mappings").mappings(opts.mappings),
     })
+    return options
   end,
 }

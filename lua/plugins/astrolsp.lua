@@ -2,6 +2,15 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    -- Configuration options for controlling formatting with language servers
+    formatting = {
+      -- control auto formatting on save
+      format_on_save = false,
+      -- disable formatting capabilities for specific language servers
+      disabled = {},
+      -- default format timeout
+      timeout_ms = 10000,
+    },
     servers = { "pylance" },
     ---@diagnostic disable: missing-fields
     config = {

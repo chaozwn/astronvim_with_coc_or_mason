@@ -13,7 +13,6 @@ require("lazy").setup {
     -- AstroCommunity: import any community modules here
     -- TODO: Remove branch v4 on release
     { "AstroNvim/astrocommunity", branch = "v4" },
-    -- { import = "astrocommunity.pack.lua" },
     -- import/override with your plugins
     { import = "plugins" },
   },

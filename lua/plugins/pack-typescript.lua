@@ -122,6 +122,7 @@ return {
               tsserver_plugins = {
                 "@styled/typescript-styled-plugin",
               },
+              expose_as_code_action = "all",
             },
           },
         },

@@ -6,6 +6,14 @@ A template for getting started with [AstroNvim](https://github.com/AstroNvim/Ast
 
 ## 🛠️ Installation
 
+### requirment
+`npm`,
+
+### support Styled-components
+```shell
+npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
+```
+
 #### Make a backup of your current nvim and shared folder
 
 ```shell

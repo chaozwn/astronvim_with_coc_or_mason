@@ -2,6 +2,9 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    features = {
+      inlay_hints = true
+    },
     -- Configuration options for controlling formatting with language servers
     formatting = {
       -- control auto formatting on save
@@ -139,7 +142,7 @@ return {
       },
     },
     capabilities = { workspace = { didChangeWatchedFiles = { dynamicRegistration = false } } },
-    diagnostics = { update_in_insert = false },
+    diagnostics = { update_in_insert = false, virtual_text = true, underline = true },
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {

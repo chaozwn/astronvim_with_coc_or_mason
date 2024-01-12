@@ -53,7 +53,7 @@ return {
       },
       completion = {
         -- 自动选中第一条
-        completeopt = "menu,menuone,noinsert",
+        completeopt = "menu,menuone,preview,noinsert",
       },
       mapping = {
         ["<CR>"] = cmp.config.disable,

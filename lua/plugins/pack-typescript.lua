@@ -1,20 +1,5 @@
 local utils = require "astrocore"
 
-local function on_file_remove(args)
-  local ts_clients = vim.lsp.get_clients { name = "tsserver" }
-  for _, ts_client in ipairs(ts_clients) do
-    ts_client.request("workspace/executeCommand", {
-      command = "_typescript.applyRenameFile",
-      arguments = {
-        {
-          sourceUri = vim.uri_from_fname(args.source),
-          targetUri = vim.uri_from_fname(args.destination),
-        },
-      },
-    })
-  end
-end
-
 local function check_json_key_exists(filename, key)
   -- Open the file in read mode
   local file = io.open(filename, "r")
@@ -117,19 +102,22 @@ return {
       "AstroNvim/astrolsp",
       ---@diagnostic disable: missing-fields
       opts = {
-        handlers = { tsserver = false }, -- disable tsserver setup, this plugin does it
+        handlers = {
+          tsserver = false,
+        }, -- disable tsserver setup, this plugin does it
         config = {
           ["typescript-tools"] = { -- enable inlay hints by default for `typescript-tools`
             settings = {
               tsserver_file_preferences = {
                 includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
                 includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHints = false,
                 includeInlayVariableTypeHintsWhenTypeMatchesName = false,
                 includeInlayPropertyDeclarationTypeHints = true,
                 includeInlayFunctionLikeReturnTypeHints = true,
                 includeInlayEnumMemberValueHints = true,
+                importModuleSpecifierPreference = "non-relative",
               },
               tsserver_plugins = {
                 "@styled/typescript-styled-plugin",
@@ -142,23 +130,6 @@ return {
     ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     -- get AstroLSP provided options like `on_attach` and `capabilities`
     opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    optional = true,
-    opts = function(_, opts)
-      local events = require "neo-tree.events"
-      opts.event_handlers = {
-        {
-          event = events.FILE_MOVED,
-          handler = on_file_remove,
-        },
-        {
-          event = events.FILE_RENAMED,
-          handler = on_file_remove,
-        },
-      }
-    end,
   },
   {
     "dmmulroy/tsc.nvim",

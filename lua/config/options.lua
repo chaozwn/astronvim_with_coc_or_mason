@@ -16,5 +16,4 @@ vim.opt.wrap = true -- soft wrap lines
 vim.g.mapleader = " "
 vim.g.maplocalleader = ""
 vim.g.resession_enabled = true
-vim.g.inlay_hints_enabled = true
 vim.g.transparent_background = true

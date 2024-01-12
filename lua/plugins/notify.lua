@@ -5,7 +5,6 @@ return {
 
     return require("astrocore").extend_tbl(opts, {
       background_colour = transparent_bg,
-      timeout = 0,
     })
   end,
 }

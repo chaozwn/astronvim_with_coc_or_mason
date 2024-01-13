@@ -1,6 +1,38 @@
 local utils = require "astrocore"
 return {
   {
+    "AstroNvim/astrolsp",
+    opts = {
+      handlers = { rust_analyzer = false },
+      config = {
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              checkOnSave = {
+                command = "clippy",
+              },
+              assist = {
+                importEnforceGranularity = true,
+                importPrefix = "crate",
+              },
+              completion = {
+                postfix = {
+                  enable = false,
+                },
+              },
+              inlayHints = {
+                lifetimeElisionHints = {
+                  enable = true,
+                  useParameterNames = true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then
@@ -20,40 +52,6 @@ return {
     "mrcjkb/rustaceanvim",
     version = "^3",
     ft = "rust",
-    dependencies = {
-      {
-        "AstroNvim/astrolsp",
-        opts = {
-          handlers = { rust_analyzer = false },
-          config = {
-            rust_analyzer = {
-              settings = {
-                ["rust-analyzer"] = {
-                  checkOnSave = {
-                    command = "clippy",
-                  },
-                  assist = {
-                    importEnforceGranularity = true,
-                    importPrefix = "crate",
-                  },
-                  completion = {
-                    postfix = {
-                      enable = false,
-                    },
-                  },
-                  inlayHints = {
-                    lifetimeElisionHints = {
-                      enable = true,
-                      useParameterNames = true,
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
     opts = function()
       local adapter
       local success, package = pcall(function() return require("mason-registry").get_package "codelldb" end)

@@ -100,6 +100,12 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
+      {
+        "AstroNvim/astrolsp",
+        opts = {
+          handlers = { tsserver = false },
+        },
+      },
     },
     ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     opts = function(_, opts)
@@ -108,6 +114,8 @@ return {
 
       return require("astrocore").extend_tbl(options, {
         settings = {
+          -- spawn additional tsserver instance to calculate diagnostics on it
+          separate_diagnostic_server = false,
           tsserver_file_preferences = {
             includeInlayParameterNameHints = "all",
             includeInlayParameterNameHintsWhenArgumentMatchesName = true,

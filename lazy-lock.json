@@ -33,6 +33,7 @@
   "guess-indent.nvim": { "branch": "main", "commit": "b8ae749fce17aa4c267eec80a6984130b94f80b2" },
   "heirline.nvim": { "branch": "master", "commit": "1b6f12e011f225a26aa162905cbf68804479e7e6" },
   "im-select.nvim": { "branch": "master", "commit": "9e3461931484be07a0d6def480d2f036c70c081e" },
+  "inc-rename.nvim": { "branch": "main", "commit": "6f9b5f9cb237e12935144cdc535322b8c93c1b25" },
   "incline.nvim": { "branch": "main", "commit": "fdd7e08a6e3d0dd8d9aa02428861fa30c37ba306" },
   "indent-blankline.nvim": { "branch": "master", "commit": "12e92044d313c54c438bd786d11684c88f6f78cd" },
   "indent-tools.nvim": { "branch": "master", "commit": "31b839d65aa04b568fabe5e100a63cc44ef3f5d5" },

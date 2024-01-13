@@ -23,6 +23,44 @@ end
 
 return {
   {
+    "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
+    ---@diagnostic disable: missing-fields
+    opts = {
+      handlers = { tsserver = false }, -- disable tsserver setup, this plugin does it
+      config = {
+        ["typescript-tools"] = { -- enable inlay hints by default for `typescript-tools`
+          settings = {
+            separate_diagnostic_server = true,
+            -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
+            -- memory limit in megabytes or "auto"(basically no limit)
+            tsserver_max_memory = "auto",
+            tsserver_file_preferences = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = false,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+              includeCompletionsForModuleExports = true,
+              quotePreference = "auto",
+            },
+            tsserver_format_options = {
+              allowIncompleteCompletions = false,
+              allowRenameOfImportPath = false,
+            },
+            tsserver_plugins = {
+              "@styled/typescript-styled-plugin",
+            },
+            expose_as_code_action = "all",
+          },
+        },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     optional = true,
     opts = function(_, opts)
@@ -35,7 +73,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "eslint" })
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "eslint" })
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("eslint_fix_creator", { clear = true }),
@@ -97,42 +135,15 @@ return {
   },
   {
     "pmizio/typescript-tools.nvim",
+    --TODO: wait this issue close. link: https://github.com/pmizio/typescript-tools.nvim/issues/219
+    commit = "13d9dda2fc1ff82ca5a8ced0e1b46e93debac792",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
-      {
-        "AstroNvim/astrolsp",
-        opts = {
-          handlers = { tsserver = false },
-        },
-      },
     },
     ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-    opts = function(_, opts)
-      local server_opts = require("astrolsp").lsp_opts "typescript-tools"
-      local options = require("astrocore").extend_tbl(server_opts, opts)
-
-      return require("astrocore").extend_tbl(options, {
-        settings = {
-          -- spawn additional tsserver instance to calculate diagnostics on it
-          separate_diagnostic_server = false,
-          tsserver_file_preferences = {
-            includeInlayParameterNameHints = "all",
-            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = false,
-            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
-          },
-          tsserver_plugins = {
-            "@styled/typescript-styled-plugin",
-          },
-          expose_as_code_action = "all",
-        },
-      })
-    end,
+    -- get AstroLSP provided options like `on_attach` and `capabilities`
+    opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,
   },
   {
     "dmmulroy/tsc.nvim",

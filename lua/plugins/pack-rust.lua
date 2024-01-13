@@ -72,6 +72,7 @@ return {
         end
         adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
       else
+        ---@diagnostic disable-next-line: missing-parameter
         adapter = cfg.get_codelldb_adapter()
       end
       return { server = require("astrolsp").lsp_opts "rust_analyzer", dap = { adapter = adapter } }

@@ -15,7 +15,14 @@ return {
       timeout_ms = 10000,
     },
     capabilities = { workspace = { didChangeWatchedFiles = { dynamicRegistration = false } } },
-    diagnostics = { update_in_insert = false, virtual_text = true, underline = true },
+    diagnostics = {
+      underline = true,
+      virtual_text = {
+        spacing = 5,
+        severity_limit = "Warning",
+      },
+      update_in_insert = false,
+    },
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {

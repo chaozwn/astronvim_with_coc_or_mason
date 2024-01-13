@@ -7,10 +7,6 @@ return {
     -- Ensure that opts.ensure_installed exists and is a table or string "all".
     -- if opts.ensure_installed ~= "all" then end
     return require("astrocore").extend_tbl(opts, {
-      autotag = {
-        enable = true,
-        enable_close_on_slash = true,
-      },
       incremental_selection = {
         enable = true,
         keymaps = {

@@ -2,6 +2,35 @@ local utils = require "astrocore"
 
 return {
   {
+    "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
+    opts = {
+      ---@diagnostic disable: missing-fields
+      config = {
+        cssls = {
+          settings = {
+            css = {
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+            less = {
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+            scss = {
+              validate = false,
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     optional = true,
     opts = function(_, opts)

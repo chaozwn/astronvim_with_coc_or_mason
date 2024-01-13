@@ -85,18 +85,6 @@ function M.mappings(maps)
     end
   end
 
-  if is_available "venv-selector.nvim" then
-    maps.n["<Leader>lv"] = {
-      "<cmd>VenvSelect<CR>",
-      desc = "Select VirtualEnv",
-    }
-    maps.n["<Leader>lV"] = {
-      function()
-        require("astrocore").notify("Current Env:" .. require("venv-selector").get_active_venv(), vim.log.levels.INFO)
-      end,
-      desc = "Show Current VirtualEnv",
-    }
-  end
 
   -- close mason
   if is_available "refactoring.nvim" then
@@ -414,12 +402,6 @@ function M.mappings(maps)
   if is_available "nvim-treesitter" then
     -- TsInformation
     maps.n["<Leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
-  end
-
-  if is_available "neoconf.nvim" then
-    maps.n["<Leader>pd"] = { "<cmd>Neoconf<CR>", desc = "Select local/global neoconf config" }
-    maps.n["<Leader>pb"] = { "<cmd>Neoconf show<CR>", desc = "Show neoconf merge config" }
-    maps.n["<Leader>pc"] = { "<cmd>Neoconf lsp<CR>", desc = "Show neoconf merge lsp config" }
   end
 
   return maps

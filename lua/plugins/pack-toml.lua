@@ -1,6 +1,16 @@
 local utils = require "astrocore"
 return {
   {
+    "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
+    opts = {
+      ---@diagnostic disable: missing-fields
+      config = {
+        taplo = { evenBetterToml = { schema = { catalogs = { "https://www.schemastore.org/api/json/catalog.json" } } } },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     optional = true,
     opts = function(_, opts)

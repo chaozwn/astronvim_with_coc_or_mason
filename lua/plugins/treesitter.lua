@@ -3,9 +3,16 @@
 -- NOTE: treesitter new textobject. k: block, c: class, ?: conditional, f: function, l: loop, a: parameter, ""< | > | A ,F ,K" swap textobject
 return {
   "nvim-treesitter/nvim-treesitter",
+  dependencies = {
+    {
+      "windwp/nvim-ts-autotag",
+      commit = "9506a6b0fc7c170bed9f58ff91397adcd819b6ed",
+    },
+  },
   opts = function(_, opts)
     -- Ensure that opts.ensure_installed exists and is a table or string "all".
     -- if opts.ensure_installed ~= "all" then end
+    -- WARN: https://github.com/windwp/nvim-ts-autotag/issues/143
     return require("astrocore").extend_tbl(opts, {
       incremental_selection = {
         enable = true,

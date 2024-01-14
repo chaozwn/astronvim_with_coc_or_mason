@@ -37,8 +37,8 @@ return {
             tsserver_max_memory = "auto",
             tsserver_file_preferences = {
               includeInlayParameterNameHints = "all",
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-              includeInlayFunctionParameterTypeHints = true,
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = false,
               includeInlayVariableTypeHints = false,
               includeInlayVariableTypeHintsWhenTypeMatchesName = false,
               includeInlayPropertyDeclarationTypeHints = true,

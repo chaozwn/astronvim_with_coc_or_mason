@@ -3,6 +3,7 @@
 -- Add any additional options here
 
 vim.opt.conceallevel = 2 -- enable conceal
+vim.opt.concealcursor = ""
 vim.opt.list = true -- show whitespace characters
 vim.opt.listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" }
 vim.opt.showbreak = "↪ "
@@ -16,4 +17,3 @@ vim.opt.wrap = true -- soft wrap lines
 vim.g.mapleader = " "
 vim.g.maplocalleader = ""
 vim.g.resession_enabled = true
-vim.g.transparent_background = true

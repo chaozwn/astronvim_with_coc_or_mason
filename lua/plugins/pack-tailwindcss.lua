@@ -50,6 +50,14 @@ return {
     },
   },
   {
+    "chaozwn/tailwind-fold.nvim",
+    opts = {
+      min_chars = 0,
+    },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = { "html", "svelte", "astro", "vue", "typescriptreact" },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     optional = true,
     opts = function(_, opts)

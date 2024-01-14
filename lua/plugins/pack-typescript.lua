@@ -136,7 +136,6 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     --TODO: wait this issue close. link: https://github.com/pmizio/typescript-tools.nvim/issues/219
-    commit = "6095c2a19da8de6f45cce64863e180824ce04bc7",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",

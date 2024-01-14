@@ -7,6 +7,18 @@ return {
       integrations = {
         telescope = { enabled = true, style = "nvchad" },
       },
+      custom_highlights = {
+        -- disable italics  for treesitter highlights
+        TabLineFill = { link = "StatusLine" },
+        LspInlayHint = { style = { "italic" } },
+        UfoFoldedEllipsis = { link = "UfoFoldedFg" },
+        ["@parameter"] = { style = {} },
+        ["@type.builtin"] = { style = {} },
+        ["@namespace"] = { style = {} },
+        ["@text.uri"] = { style = { "underline" } },
+        ["@tag.attribute"] = { style = { "italic" } },
+        ["@tag.attribute.tsx"] = { style = { "italic" } },
+      },
     },
   },
   {

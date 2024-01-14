@@ -28,6 +28,15 @@ return {
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
       },
+      i = {
+        ["<C-l>"] = {
+          function ()
+            vim.lsp.buf.signature_help()
+          end,
+          desc = "Signature help",
+          cond = "textDocument/signatureHelp"
+        }
+      }
     },
   },
 }

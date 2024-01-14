@@ -31,5 +31,37 @@
       "export default ${0}"
     ],
     "description": "solid tsx function component without props"
+  },
+  "RxjsStore": {
+    "prefix": [
+      "st"
+    ],
+    "body": [
+      "import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs'",
+      "import { from } from 'solid-js'",
+      "",
+      "interface ${1} {}",
+      "",
+      "class ${2}Store {",
+      "private _store: BehaviorSubject<${1}>",
+      "",
+      "constructor() {",
+      "this._store = new BehaviorSubject<${1}>({})",
+      "}",
+      "",
+      "selectState<K extends keyof ${1}>(stateKey: K) {",
+      "return this._store.pipe(",
+      "distinctUntilChanged(),",
+      "map(state => state[stateKey])",
+      ")",
+      "}",
+      "",
+      "selectStateSignal<K extends keyof ${1}>(stateKey: K) {",
+      "return from(this.selectState(stateKey))",
+      "}",
+      "}",
+      "",
+      "export const ${3}Store = new ${2}Store()"
+    ]
   }
 }

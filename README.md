@@ -54,7 +54,7 @@ return {
 }
 ```
 
-### support Styled-components
+### Support styled-components
 ```shell
 npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
 ```

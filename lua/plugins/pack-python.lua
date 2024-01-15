@@ -3,6 +3,7 @@ local is_available = require("astrocore").is_available
 local set_mappings = require("astrocore").set_mappings
 
 return {
+  { "microsoft/python-type-stubs", ft = "python" },
   {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
@@ -62,7 +63,7 @@ return {
                   callArgumentNames = true,
                   pytestParameters = true,
                 },
-                stubPath = vim.env.HOME .. "/typings",
+                stubPath = vim.fn.stdpath "data" .. "/lazy/python-type-stubs",
                 diagnosticSeverityOverrides = {
                   reportUnusedImport = "information",
                   reportUnusedFunction = "information",
@@ -143,7 +144,7 @@ return {
   },
   {
     "mfussenegger/nvim-dap-python",
-    dependencies = "mfussenegger/nvim-dap",
+    dependencies = { "mfussenegger/nvim-dap" },
     ft = "python",
     config = function(_, opts)
       local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"

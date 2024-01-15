@@ -11,7 +11,7 @@ return {
       ---@diagnostic disable: missing-fields
       config = {
         pylance = {
-          on_attach = function(_, bufnr)
+          on_attach = function(client, bufnr)
             if is_available "venv-selector.nvim" then
               set_mappings({
                 n = {
@@ -51,7 +51,7 @@ return {
               analysis = {
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
-                diagnosticMode = "openFilesOnly",
+                diagnosticMode = "workspace",
                 typeCheckingMode = "basic",
                 autoImportCompletions = true,
                 completeFunctionParens = true,

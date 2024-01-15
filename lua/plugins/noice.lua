@@ -33,6 +33,8 @@ return {
         routes = {
           { filter = { event = "notify", find = "No information available" }, opts = { skip = true } },
           { filter = { event = "msg_show", find = "DB: Query%s" }, opts = { skip = true } },
+          { filter = { event = "msg_show", find = "%swritten" }, opts = { skip = true } },
+          { filter = { event = "msg_show", find = "%schange;%s" }, opts = { skip = true } },
         },
       })
     end,

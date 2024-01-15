@@ -50,7 +50,7 @@ return {
     },
   },
   {
-    "chaozwn/tailwind-fold.nvim",
+    "razak17/tailwind-fold.nvim",
     opts = {
       min_chars = 0,
     },

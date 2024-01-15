@@ -6,8 +6,6 @@ A template for getting started with [AstroNvim](https://github.com/AstroNvim/Ast
 
 **Features**: Python development supports Pylance.
 
-
-
 ## 🛠️ Introduction
 
 Currently supports development in TypeScript, Python, and Rust.
@@ -16,14 +14,12 @@ Currently supports development in TypeScript, Python, and Rust.
 - Python: "Pylance"
 - Rust: "mrcjkb/rustaceanvim"
 
-
-
+Support: Jupyter Notebook
 
 ## 🛠️ Installation
 
 ### The system supports commands.
 `npm`,`python`,`rustc`
-
 
 ### Recommend install
 ```
@@ -111,8 +107,6 @@ nvim
 | Horizontal Split            | `\`                 |
 | Vertical Split              | <code>&#124;</code> |
 
-
-
 ## NOTE
 
 #### *vim.lsp.buf.hover()* `KK` jump into signature help float window.
@@ -121,4 +115,3 @@ nvim
 Displays hover information about the symbol under the cursor in a floating
 window. Calling the function twice will jump into the floating window.
 ```
-

@@ -39,6 +39,99 @@ function M.mappings(maps)
     end
   end
 
+  if is_available "vim-jukit" then
+    maps.n["<Leader>j"] = { desc = " Jupyter" }
+    maps.v["<Leader>j"] = { desc = " Jupyter" }
+
+    -- Open
+    maps.n["<Leader>jo"] = { desc = "Open" }
+    maps.n["<Leader>joo"] = {
+      "<cmd>call jukit#splits#output()<CR>",
+      desc = "Open ipython window",
+    }
+    maps.n["<Leader>jot"] = { "<cmd>call jukit#splits#term()<CR>", desc = "Open terminal window" }
+    maps.n["<Leader>joh"] = { "<cmd>call jukit#splits#history()<CR>", desc = "Open history window" }
+    maps.n["<Leader>joa"] =
+      { "<cmd>call jukit#splits#output_and_history()<CR>", desc = "Open terminal and history window" }
+
+    -- Close
+    maps.n["<Leader>jc"] = { desc = "Close" }
+    maps.n["<Leader>jch"] = { "<cmd>call jukit#splits#close_history()<CR>", desc = "Close output history window" }
+    maps.n["<Leader>jco"] = { "<cmd>call jukit#splits#close_output_split()<CR>", desc = "Close output window" }
+    -- Argument: Whether or not to ask you to confirm before closing
+    maps.n["<Leader>jca"] = { "<cmd>call jukit#splits#close_output_and_history(1)<CR>", desc = "Close both windows" }
+
+    -- Show
+    maps.n["<Leader>jS"] = { desc = "Show" }
+    maps.n["<Leader>jSc"] =
+      { "<cmd>call jukit#splits#show_last_cell_output(1)<CR>", desc = "Show last cell output in output history window" }
+
+    -- Scroll
+    maps.n["<Leader>js"] = { desc = "Scroll" }
+    maps.n["<Leader>jsj"] = { "<cmd>call jukit#splits#out_hist_scroll(1)<CR>", desc = "Scroll down in history window" }
+    maps.n["<Leader>jsk"] = { "<cmd>call jukit#splits#out_hist_scroll(0)<CR>", desc = "Scroll up in history window" }
+
+    -- UI autocmd
+    maps.n["<Leader>ju"] = { desc = "UI" }
+    maps.n["<Leader>juh"] =
+      { "<cmd>call jukit#splits#toggle_auto_hist()", desc = "Toggle auto displaying saved output on CursorHold" }
+    maps.n["<Leader>jul"] = { "<cmd>call jukit#layouts#set_layout()<CR>", desc = "Apply layout to current splits" }
+    maps.n["<Leader>jup"] =
+      { "<cmd>call jukit#ueberzug#set_default_pos()<CR>", desc = "Set position and dimension of ueberzug window" }
+
+    -- Execute
+    maps.n["<Leader>je"] = { desc = "Execute" }
+    maps.v["<Leader>je"] = { desc = "Execute" }
+    maps.n["<Leader>jer"] = { "<cmd>call jukit#send#section(0)<CR>", desc = "Execute current cell" }
+    maps.n["<Leader>jel"] = { "<cmd>call jukit#send#line()<CR>", desc = "Execute current line" }
+    maps.v["<Leader>jer"] = { "<cmd>call jukit#send#selection()<CR>", desc = "Execute selected code" }
+    maps.n["<Leader>jeu"] =
+      { "<cmd>call jukit#send#until_current_section()<CR>", desc = "Execute all cells until current cell" }
+    maps.n["<Leader>jea"] = { "<cmd>call jukit#send#all()<CR>", desc = "Execute all cells" }
+
+    -- Cell
+    maps.n["<Leader>jj"] = { desc = "Cell" }
+    maps.n["<Leader>jjo"] = { "<cmd>call jukit#cells#create_below(0)<CR>", desc = "Create code cell below" }
+    maps.n["<Leader>jjO"] = { "<cmd>call jukit#cells#create_above(0)<CR>", desc = "Create code cell above" }
+    maps.n["<Leader>jjt"] = { "<cmd>call jukit#cells#create_below(1)<CR>", desc = "Create markdown cell below" }
+    maps.n["<Leader>jjT"] = { "<cmd>call jukit#cells#create_above(1)<CR>", desc = "Create markdown cell above" }
+    maps.n["<Leader>jjd"] = { "<cmd>call jukit#cells#delete()<CR>", desc = "Delete current cell" }
+    maps.n["<Leader>jjs"] = { "<cmd>call jukit#cells#split()<CR>", desc = "Split current cell" }
+    maps.n["<Leader>jjm"] =
+      { "<cmd>call jukit#cells#merge_below()<CR>", desc = "Merge current cell with the cell below" }
+    maps.n["<Leader>jjM"] =
+      { "<cmd>call jukit#cells#merge_above()<CR>", desc = "Merge current cell with the cell above" }
+    maps.n["<Leader>jjK"] = { "<cmd>call jukit#cells#move_up()<CR>", desc = "Move current cell up" }
+    maps.n["<Leader>jjJ"] = { "<cmd>call jukit#cells#move_down()<CR>", desc = "Move current cell down" }
+    maps.n["<Leader>jjj"] = { "<cmd>call jukit#cells#jump_to_next_cell()<CR>", desc = "Jump to next cell below" }
+    maps.n["<Leader>jjk"] =
+      { "<cmd>call jukit#cells#jump_to_previous_cell()<CR>", desc = "Jump to previous cell above" }
+    maps.n["<Leader>jjc"] = { "<cmd>call jukit#cells#delete_outputs(0)<CR>", desc = "Clear current cell output" }
+    maps.n["<Leader>jja"] = { "<cmd>call jukit#cells#delete_outputs(1)<CR>", desc = "Clear all cell output" }
+
+    -- Conversion
+    maps.n["<Leader>jm"] = { desc = "Conversion" }
+    maps.n["<Leader>jmj"] =
+      { "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>", desc = "Convert py to jupyter notebook" }
+    if vim.g.jukit_html_viewer then
+      maps.n["<Leader>jmt"] =
+        { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<CR>", desc = "Convert file to html" }
+      maps.n["<Leader>jmT"] =
+        { "<cmd>call jukit#convert#save_nb_to_file(1,1,'html')<CR>", desc = "Convert file to html with rerun all code" }
+    end
+
+    if vim.g.jukit_pdf_viewer then
+      maps.n["<Leader>jmp"] = { "<cmd>call jukit#convert#save_nb_to_file(0,1,'pdf')<CR>", desc = "Convert file to pdf" }
+      maps.n["<Leader>jmP"] =
+        { "<cmd>call jukit#convert#save_nb_to_file(1,1,'pdf')<CR>", desc = "Convert file to pdf with rerun all code" }
+    end
+
+    -- Env
+    maps.n["<Leader>jn"] = { desc = "Env" }
+    maps.n["<Leader>jnc"] = { ":JukitOut conda activate ", desc = "Activate conda env" }
+    maps.n["<Leader>jnC"] = { ":JukitOutHist conda activate ", desc = "Activate conda env with history window" }
+  end
+
   if is_available "cellular-automaton.nvim" then
     maps.n["<Leader>um"] = { "<cmd>CellularAutomaton make_it_rain<CR>", desc = "Make it rain" }
     maps.n["<Leader>uM"] = { "<cmd>CellularAutomaton game_of_life<CR>", desc = "Game of life" }

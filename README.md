@@ -4,16 +4,12 @@
 
 A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
-**Features**: Python development supports Pylance.
-
-
 
 ## 🛠️ Introduction
 
-Currently supports development in TypeScript, Python, and Rust.
+Currently supports development in TypeScript and Rust.
 
 - Typescript: "typescript-tools.nvim"
-- Python: "Pylance"
 - Rust: "mrcjkb/rustaceanvim"
 
 
@@ -22,7 +18,7 @@ Currently supports development in TypeScript, Python, and Rust.
 ## 🛠️ Installation
 
 ### The system supports commands.
-`npm`,`python`,`rustc`
+`npm`,`rustc`
 
 
 ### Recommend install

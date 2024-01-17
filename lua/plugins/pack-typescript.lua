@@ -73,7 +73,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "eslint" })
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "tsserver", "eslint" })
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("eslint_fix_creator", { clear = true }),

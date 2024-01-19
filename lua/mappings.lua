@@ -59,6 +59,10 @@ function M.mappings(maps)
       end,
       desc = "Switch Buffers In Telescope",
     }
+    maps.n["<Leader>fp"] = {
+      "<cmd>Telescope projects<CR>",
+      desc = "Switch Buffers In Telescope",
+    }
   end
 
   if is_available "nvim-dap-ui" then

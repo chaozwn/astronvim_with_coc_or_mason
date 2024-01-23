@@ -1,7 +1,7 @@
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
-  event = "User AstroFile",
+  event = "InsertEnter",
   opts = {
     suggestion = {
       enabled = true,

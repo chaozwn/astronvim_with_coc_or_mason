@@ -65,8 +65,6 @@ return {
         scss = { "prettierd" },
         less = { "prettierd" },
         html = { "prettierd" },
-        json = { "prettierd" },
-        jsonc = { "prettierd" },
       },
     },
   },

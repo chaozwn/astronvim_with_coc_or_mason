@@ -4,7 +4,6 @@
 
 A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
-
 ## 🛠️ Introduction
 
 Currently supports development in TypeScript and Rust.
@@ -12,16 +11,14 @@ Currently supports development in TypeScript and Rust.
 - Typescript: "typescript-tools.nvim"
 - Rust: "mrcjkb/rustaceanvim"
 
-
-
-
 ## 🛠️ Installation
 
-### The system supports commands.
+### The system should supports commands.
+
 `npm`,`rustc`
 
-
 ### Recommend install
+
 ```
 brew install fzf
 brew install luarocks
@@ -33,12 +30,15 @@ brew install bottom
 ```
 
 ### Input Auto Switch
+
 ```
 brew tap daipeihust/tap
 brew install im-select
 im-select
 ```
+
 copy result to `im-select.lua`
+
 ```
 return {
   "chaozwn/im-select.nvim",
@@ -52,11 +52,10 @@ return {
 ```
 
 ### Support styled-components
+
 ```shell
 npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
 ```
-
-
 
 #### Make a backup of your current nvim and shared folder
 
@@ -108,14 +107,11 @@ nvim
 | Horizontal Split            | `\`                 |
 | Vertical Split              | <code>&#124;</code> |
 
-
-
 ## NOTE
 
-#### *vim.lsp.buf.hover()* `KK` jump into signature help float window.
+#### _vim.lsp.buf.hover()_ `KK` jump into signature help float window.
 
 ```
 Displays hover information about the symbol under the cursor in a floating
 window. Calling the function twice will jump into the floating window.
 ```
-

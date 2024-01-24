@@ -76,6 +76,15 @@ return {
             or {}
         end,
       },
+      formatters = {
+        prettier = {
+          options = {
+            ft_parsers = {
+              markdown = "markdown",
+            },
+          },
+        },
+      },
     },
   },
 }

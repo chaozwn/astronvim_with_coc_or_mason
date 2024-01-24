@@ -51,6 +51,8 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
+        ["yaml.ansible"] = { "prettierd" },
+        ["yaml.cfn"] = { "prettierd" },
         yaml = { "prettierd" },
         yml = { "prettierd" },
       },

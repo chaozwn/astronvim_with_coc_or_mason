@@ -1,4 +1,16 @@
 local utils = require "astrocore"
+local function preview_stack_trace()
+  local line = vim.api.nvim_get_current_line()
+  local pattern = "--> ([^:]+):(%d+):(%d+)"
+  -- local pattern = "--> [^/]+/([^:]+):(%d+):(%d+)"
+  local filepath, line_nr, column_nr = string.match(line, pattern)
+  if filepath and line_nr and column_nr then
+    vim.cmd ":wincmd k"
+    vim.cmd("e " .. filepath)
+    vim.api.nvim_win_set_cursor(0, { tonumber(line_nr), tonumber(column_nr) })
+  end
+end
+
 return {
   {
     "AstroNvim/astrolsp",
@@ -6,6 +18,16 @@ return {
       handlers = { rust_analyzer = false },
       config = {
         rust_analyzer = {
+          on_attach = function(_, bufnr)
+            vim.api.nvim_create_autocmd("BufEnter", {
+              pattern = "*cargo run*",
+              desc = "Jump to error line from error log",
+              callback = function()
+                print "hello"
+                vim.keymap.set("n", "gd", preview_stack_trace, { silent = true, noremap = true, buffer = true })
+              end,
+            })
+          end,
           settings = {
             ["rust-analyzer"] = {
               checkOnSave = {

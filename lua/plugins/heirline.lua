@@ -18,7 +18,7 @@ return {
         separators = {
           left = { "", "" }, -- separator for the left side of the statusline
           right = { " ", "" }, -- separator for the right side of the statusline
-          -- tab = { "", "" },
+          tab = { "", "" },
         },
         -- add new colors that can be used by heirline
         colors = function(hl)
@@ -115,14 +115,13 @@ return {
         status.component.fill(),
         -- add a component for the current diagnostics if it exists and use the right separator for the section
         status.component.diagnostics {
-          -- surround = { separator = "right" },
-          surround = false,
+          surround = { separator = "right" },
           padding = { right = 1 },
         },
         -- add a component to display LSP clients, disable showing LSP progress, and use the right separator
         status.component.lsp {
           lsp_progress = false,
-          surround = false,
+          surround = { separator = "right" },
           lsp_client_names = {
             icon = { padding = { right = 1 } },
           },

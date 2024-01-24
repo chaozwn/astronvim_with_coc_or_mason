@@ -4,7 +4,6 @@ return {
     name = "catppuccin",
     ---@type CatppuccinOptions
     opts = {
-      transparent_background = true,
       integrations = {
         telescope = { enabled = true, style = "nvchad" },
       },

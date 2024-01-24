@@ -69,7 +69,6 @@ return {
         if autoformat then return { timeout_ms = 500, lsp_fallback = true } end
       end,
       formatters_by_ft = {
-        ["*"] = { "injected" },
         ["_"] = function(bufnr)
           return require("astrocore.buffer").is_valid(bufnr)
               and { "trim_whitespace", "trim_newlines", "squeeze_blanks" }

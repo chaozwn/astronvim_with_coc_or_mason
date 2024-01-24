@@ -19,7 +19,7 @@ Currently supports development in TypeScript and Rust.
 
 ### Recommend install
 
-```
+```shell
 brew install fzf
 brew install luarocks
 brew install lazygit
@@ -31,7 +31,7 @@ brew install bottom
 
 ### Input Auto Switch
 
-```
+```shell
 brew tap daipeihust/tap
 brew install im-select
 im-select
@@ -39,7 +39,7 @@ im-select
 
 copy result to `im-select.lua`
 
-```
+```lua
 return {
   "chaozwn/im-select.nvim",
   lazy = false,

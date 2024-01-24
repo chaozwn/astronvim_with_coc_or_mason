@@ -34,6 +34,7 @@ brew install bottom
 
 ### Input Auto Switch
 ```
+brew tap daipeihust/tap
 brew install im-select
 im-select
 ```

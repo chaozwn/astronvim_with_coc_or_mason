@@ -18,13 +18,17 @@ return {
     "williamboman/mason-lspconfig.nvim",
     optional = true,
     opts = function(_, opts)
+      -- lsp
       opts.ensure_installed =
         utils.list_insert_unique(opts.ensure_installed, "docker_compose_language_service", "dockerls")
     end,
   },
   {
-    "jay-babu/mason-null-ls.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     optional = true,
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "hadolint") end,
+    opts = function(_, opts)
+      -- format
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "hadolint")
+    end,
   },
 }

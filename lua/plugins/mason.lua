@@ -22,5 +22,4 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts) end,
   },
-  { "jay-babu/mason-null-ls.nvim" },
 }

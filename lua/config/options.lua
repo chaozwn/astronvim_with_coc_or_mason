@@ -17,3 +17,4 @@ vim.opt.wrap = true -- soft wrap lines
 vim.g.mapleader = " "
 vim.g.maplocalleader = ""
 vim.g.resession_enabled = true
+vim.g.autoformat = false

@@ -42,11 +42,19 @@ return {
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "codelldb") end,
+    optional = true,
+    opts = function(_, opts)
+      -- dap
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "codelldb")
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "rust_analyzer") end,
+    optional = true,
+    opts = function(_, opts)
+      -- lsp
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "rust_analyzer")
+    end,
   },
   {
     "mrcjkb/rustaceanvim",

@@ -23,7 +23,6 @@ return {
               pattern = "*cargo run*",
               desc = "Jump to error line from error log",
               callback = function()
-                print "hello"
                 vim.keymap.set("n", "gd", preview_stack_trace, { silent = true, noremap = true, buffer = true })
               end,
             })

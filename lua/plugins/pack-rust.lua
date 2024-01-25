@@ -2,7 +2,6 @@ local utils = require "astrocore"
 local function preview_stack_trace()
   local line = vim.api.nvim_get_current_line()
   local pattern = "--> ([^:]+):(%d+):(%d+)"
-  -- local pattern = "--> [^/]+/([^:]+):(%d+):(%d+)"
   local filepath, line_nr, column_nr = string.match(line, pattern)
   if filepath and line_nr and column_nr then
     vim.cmd ":wincmd k"

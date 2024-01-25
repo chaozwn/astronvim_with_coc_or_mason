@@ -1,10 +1,10 @@
 return {
   {
     "Weissle/persistent-breakpoints.nvim",
-    event = "BufReadPost",
+    event = "BufEnter",
     opts = function(_, opts)
       return require("astrocore").extend_tbl(opts, {
-        load_breakpoints_event = { "BufReadPost" },
+        load_breakpoints_event = { "BufEnter" },
       })
     end,
   },

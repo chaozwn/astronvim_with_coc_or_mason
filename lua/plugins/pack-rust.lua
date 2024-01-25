@@ -17,12 +17,12 @@ return {
       handlers = { rust_analyzer = false },
       config = {
         rust_analyzer = {
-          on_attach = function(_, bufnr)
-            vim.api.nvim_create_autocmd("BufEnter", {
+          on_attach = function()
+            vim.api.nvim_create_autocmd("TermClose", {
               pattern = "*cargo run*",
-              desc = "Jump to error line from error log",
+              desc = "Jump to error line",
               callback = function()
-                vim.keymap.set("n", "gd", preview_stack_trace, { silent = true, noremap = true, buffer = true })
+                vim.keymap.set("n", "gd", preview_stack_trace, { silent = true, noremap = true, buffer = true, desc = "Jump to error line" })
               end,
             })
           end,

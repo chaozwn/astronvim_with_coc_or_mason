@@ -22,22 +22,34 @@ return {
               pattern = "*cargo run*",
               desc = "Jump to error line",
               callback = function()
-                vim.keymap.set("n", "gd", preview_stack_trace, { silent = true, noremap = true, buffer = true, desc = "Jump to error line" })
+                vim.keymap.set(
+                  "n",
+                  "gd",
+                  preview_stack_trace,
+                  { silent = true, noremap = true, buffer = true, desc = "Jump to error line" }
+                )
               end,
             })
           end,
           settings = {
             ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+                loadOutDirsFromCheck = true,
+                runBuildScripts = true,
+              },
+              -- Add clippy lints for Rust.
               checkOnSave = {
+                allFeatures = true,
                 command = "clippy",
+                extraArgs = { "--no-deps" },
               },
-              assist = {
-                importEnforceGranularity = true,
-                importPrefix = "crate",
-              },
-              completion = {
-                postfix = {
-                  enable = false,
+              procMacro = {
+                enable = true,
+                ignored = {
+                  ["async-trait"] = { "async_trait" },
+                  ["napi-derive"] = { "napi" },
+                  ["async-recursion"] = { "async_recursion" },
                 },
               },
               inlayHints = {
@@ -56,7 +68,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "rust")
+        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "rust", "toml", "ron")
       end
     end,
   },
@@ -108,23 +120,29 @@ return {
     config = function(_, opts) vim.g.rustaceanvim = opts end,
   },
   {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "Saecki/crates.nvim",
+        event = { "BufRead Cargo.toml" },
+        opts = {
+          src = {
+            cmp = { enabled = true },
+          },
+        },
+      },
+    },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, { name = "crates" })
+      return opts
+    end,
+  },
+  {
     "Saecki/crates.nvim",
     lazy = true,
-    init = function()
-      vim.api.nvim_create_autocmd("BufRead", {
-        group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
-        desc = "Load crates.nvim into Cargo buffers",
-        pattern = "Cargo.toml",
-        callback = function()
-          require("cmp").setup.buffer { sources = { { name = "crates" } } }
-          require "crates"
-        end,
-      })
-    end,
     opts = {
-      src = {
-        cmp = { enabled = true },
-      },
       null_ls = {
         enabled = true,
         name = "crates.nvim",

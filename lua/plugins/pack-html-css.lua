@@ -40,14 +40,6 @@ return {
     end,
   },
   {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    optional = true,
-    opts = function(_, opts)
-      -- format
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "prettierd")
-    end,
-  },
-  {
     "williamboman/mason-lspconfig.nvim",
     optional = true,
     opts = function(_, opts)
@@ -55,17 +47,5 @@ return {
       opts.ensure_installed =
         utils.list_insert_unique(opts.ensure_installed, "html", "cssls", "cssmodules_ls", "emmet_language_server")
     end,
-  },
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        css = { "prettierd" },
-        scss = { "prettierd" },
-        less = { "prettierd" },
-        html = { "prettierd" },
-      },
-    },
   },
 }

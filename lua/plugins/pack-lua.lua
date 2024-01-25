@@ -15,23 +15,11 @@ return {
     opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "lua_ls") end,
   },
   {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "jay-babu/mason-null-ls.nvim",
     optional = true,
     opts = function(_, opts)
-      -- format
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "stylua")
-      -- lint
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "luacheck")
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, "stylua", "luacheck")
     end,
-  },
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        lua = { "stylua" },
-      },
-    },
   },
   {
     "AstroNvim/astrolsp",

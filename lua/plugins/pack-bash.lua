@@ -10,13 +10,9 @@ return {
     end,
   },
   {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    optional = true,
+    "jay-babu/mason-null-ls.nvim",
     opts = function(_, opts)
-      -- format
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "shfmt")
-      -- lint
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "shellcheck")
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "shellcheck", "shfmt")
     end,
   },
   {
@@ -34,14 +30,5 @@ return {
       -- lsp
       opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "bashls")
     end,
-  },
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        sh = { "shfmt" },
-      },
-    },
   },
 }

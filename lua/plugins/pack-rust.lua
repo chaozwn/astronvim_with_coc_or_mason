@@ -1,12 +1,24 @@
 local utils = require "astrocore"
 local function preview_stack_trace()
-  local line = vim.api.nvim_get_current_line()
-  local pattern = "--> ([^:]+):(%d+):(%d+)"
-  local filepath, line_nr, column_nr = string.match(line, pattern)
-  if filepath and line_nr and column_nr then
+  local current_line = vim.api.nvim_get_current_line()
+  local patterns_list = {
+    "--> ([^:]+):(%d+):(%d+)",
+    "at ([^:]+):(%d+):(%d+)",
+  }
+
+  local function try_patterns(patterns, line)
+    for _, pattern in ipairs(patterns) do
+      local filepath, line_nr, column_nr = string.match(line, pattern)
+      if filepath and line_nr then return filepath, tonumber(line_nr), tonumber(column_nr or 0) end
+    end
+    return nil, nil, nil
+  end
+
+  local filepath, line_nr, column_nr = try_patterns(patterns_list, current_line)
+  if filepath then
     vim.cmd ":wincmd k"
     vim.cmd("e " .. filepath)
-    vim.api.nvim_win_set_cursor(0, { tonumber(line_nr), tonumber(column_nr) })
+    vim.api.nvim_win_set_cursor(0, { line_nr, column_nr })
   end
 end
 

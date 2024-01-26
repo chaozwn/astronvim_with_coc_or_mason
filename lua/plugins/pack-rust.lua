@@ -44,6 +44,10 @@ return {
                 command = "clippy",
                 extraArgs = { "--no-deps" },
               },
+              assist = {
+                importEnforceGranularity = true,
+                importPrefix = "crate",
+              },
               procMacro = {
                 enable = true,
                 ignored = {

@@ -400,7 +400,6 @@ function M.mappings(maps)
     maps.n["s"] = { require("substitute").operator, desc = "Replace with {motion}" }
     maps.n["ss"] = { require("substitute").line, desc = "Replace with line" }
     maps.n["S"] = { require("substitute").eol, desc = "Replace until eol" }
-    maps.v["p"] = { require("substitute").visual, desc = "Replace in visual" }
     -- exchange
     maps.n["sx"] = { require("substitute.exchange").operator, desc = "Exchange with {motion}" }
     maps.n["sxx"] = { require("substitute.exchange").line, desc = "Exchange with line" }

@@ -29,6 +29,13 @@ brew install gdu
 brew install bottom
 ```
 
+### Neovim requirements
+
+```
+npm install -g neovim
+pip install pynvim
+```
+
 ### Input Auto Switch
 
 ```shell

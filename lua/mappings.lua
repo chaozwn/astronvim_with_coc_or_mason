@@ -335,7 +335,7 @@ function M.mappings(maps)
 
     if vim.fn.executable "cmatrix" == 1 then
       maps.n["<Leader>tm"] = {
-        require("utils").toggle_cmatrix(),
+        require("utils").toggle_unicmatrix(),
         desc = "ToggleTerm cmatrix",
       }
     end

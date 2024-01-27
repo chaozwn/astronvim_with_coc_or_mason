@@ -14,10 +14,10 @@ function M.remove_keymap(mode, key)
   end
 end
 
-function M.toggle_cmatrix()
+function M.toggle_unicmatrix()
   return function()
     require("astrocore").toggle_term_cmd {
-      cmd = "cmatrix -ba -u 2",
+      cmd = "unimatrix -n -s 96 -l o",
       hidden = false,
       direction = "float",
       float_opts = {

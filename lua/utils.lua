@@ -14,6 +14,22 @@ function M.remove_keymap(mode, key)
   end
 end
 
+function M.toggle_cmatrix()
+  return function()
+    require("astrocore").toggle_term_cmd {
+      cmd = "cmatrix -ba -u 2",
+      hidden = false,
+      direction = "float",
+      float_opts = {
+        -- Enable full screen
+        width = vim.o.columns,
+        height = vim.o.lines,
+        border = "none",
+      },
+    }
+  end
+end
+
 function M.toggle_lazy_git()
   return function()
     local worktree = require("astrocore").file_worktree()

@@ -22,6 +22,22 @@ return {
             ["vim.lsp.util.stylize_markdown"] = true,
             ["cmp.entry.get_documentation"] = true,
           },
+          signature = {
+            enabled = true,
+            auto_open = {
+              enabled = false,
+              trigger = false, -- Automatically show signature help when typing a trigger character from the LSP
+              luasnip = false, -- Will open signature help when jumping to Luasnip insert nodes
+              throttle = 50, -- Debounce lsp signature help request by 50ms
+            },
+            view = nil, -- when nil, use defaults from documentation
+            opts = {}, -- merged with defaults from documentation
+          },
+          message = {
+            enabled = true,
+            view = "mini",
+            opts = {},
+          },
         },
         presets = {
           bottom_search = true, -- use a classic bottom cmdline for search
@@ -30,11 +46,16 @@ return {
           inc_rename = false, -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = true, -- add a border to hover docs and signature help
         },
+        views = {
+          notify = {
+            merge = true,
+          },
+        },
         routes = {
-          { filter = { event = "notify", find = "No information available" }, opts = { skip = true } },
-          { filter = { event = "msg_show", find = "DB: Query%s" }, opts = { skip = true } },
-          { filter = { event = "msg_show", find = "%swritten" }, opts = { skip = true } },
-          { filter = { event = "msg_show", find = "%schange;%s" }, opts = { skip = true } },
+          { filter = { event = "notify", find = "No information available" }, opts = { stop = true } },
+          { filter = { event = "msg_show", find = "DB: Query%s" }, opts = { stop = true } },
+          { filter = { event = "msg_show", find = "%swritten" }, opts = { stop = true } },
+          { filter = { event = "msg_show", find = "%schange;%s" }, opts = { stop = true } },
         },
       })
     end,

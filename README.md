@@ -29,6 +29,14 @@ brew install gdu
 brew install bottom
 ```
 
+### Install unimatrix
+`<Leader>tm`
+```shell
+pip install git+https://github.com/will8211/unimatrix.git
+```
+![unimatrix]('./assets/unimatrix.png') 
+
+
 ### Neovim requirements
 
 ```

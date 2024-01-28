@@ -15,6 +15,8 @@ function M.mappings(maps)
 
   maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
 
+  maps.v["p"] = { '"_dP', desc = "Replace Without Yanking" }
+
   if vim.g.neovide then
     if system == "Darwin" then
       vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key

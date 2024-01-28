@@ -51,6 +51,17 @@ return {
             end,
           },
         },
+        auto_conceallevel_for_json = {
+          {
+            event = "FileType",
+            desc = "Fix conceallevel for json files",
+            pattern = { "json", "jsonc" },
+            callback = function()
+              vim.wo.spell = false
+              vim.wo.conceallevel = 0
+            end,
+          },
+        },
       },
       mappings = require("mappings").mappings(opts.mappings),
     })

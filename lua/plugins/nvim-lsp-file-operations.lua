@@ -1,6 +1,5 @@
 return {
   "antosha417/nvim-lsp-file-operations",
-  commit = "9bb09acea495e6bc2325a89722e522c13d2ed40b",
   -- lazy will handle loading nvim-tree and neo-tree appropriately based on the module load and our `init` function
   lazy = true,
   init = function(plugin) -- lazily load plugin after a tree plugin is loaded

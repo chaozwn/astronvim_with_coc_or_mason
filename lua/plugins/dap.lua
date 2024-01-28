@@ -9,21 +9,11 @@ return {
     end,
   },
   {
-    "theHamsta/nvim-dap-virtual-text",
-    dependencies = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
-    event = "User AstroFile",
-    opts = {
-      commented = true,
-      enabled = true,
-      enabled_commands = true,
-    },
-  },
-  {
     "rcarriga/nvim-dap-ui",
     config = function(_, opts)
       local dap, dapui = require "dap", require "dapui"
       dap.listeners.after.event_initialized["dapui_config"] = function()
-        require("dapui").open(2) 
+        require("dapui").open { layout = 2, reset = true }
       end
       dapui.setup(opts)
     end,

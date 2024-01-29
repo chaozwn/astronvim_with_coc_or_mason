@@ -6,10 +6,11 @@ A template for getting started with [AstroNvim](https://github.com/AstroNvim/Ast
 
 ## 🛠️ Introduction
 
-Currently supports development in TypeScript and Rust.
+Currently supports development in TypeScript,Rust,Python.
 
 - Typescript: "typescript-tools.nvim"
 - Rust: "mrcjkb/rustaceanvim"
+- Python: "pylance"
 
 ## 🛠️ Installation
 

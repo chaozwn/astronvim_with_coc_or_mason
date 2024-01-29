@@ -62,6 +62,18 @@ return {
             end,
           },
         },
+        auto_select_virtualenv = {
+          {
+            event = "VimEnter",
+            desc = "Auto select virtualenv Nvim open",
+            pattern = "*",
+            callback = function()
+              local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
+              if venv ~= "" then require("venv-selector").retrieve_from_cache() end
+            end,
+            once = true,
+          },
+        },
       },
       mappings = require("mappings").mappings(opts.mappings),
     })

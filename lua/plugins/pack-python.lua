@@ -57,9 +57,9 @@ return {
           end,
           cmd = { "pylance", "--stdio" },
           single_file_support = true,
+          before_init = function(_, c) c.settings.python.pythonPath = vim.fn.exepath "python" end,
           settings = {
             python = {
-              pythonPath = vim.env.VIRTUAL_ENV and vim.env.VIRTUAL_ENV .. "/bin/python",
               analysis = {
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
@@ -68,22 +68,8 @@ return {
                 autoImportCompletions = true,
                 completeFunctionParens = true,
                 indexing = true,
-                inlayHints = {
-                  variableTypes = true,
-                  functionReturnTypes = true,
-                  callArgumentNames = true,
-                  pytestParameters = true,
-                },
+                inlayHints = false,
                 stubPath = vim.fn.stdpath "data" .. "/lazy/python-type-stubs",
-                diagnosticSeverityOverrides = {
-                  reportUnusedImport = "information",
-                  reportUnusedFunction = "information",
-                  reportUnusedVariable = "information",
-                  reportGeneralTypeIssues = "none",
-                  reportOptionalMemberAccess = "none",
-                  reportOptionalSubscript = "none",
-                  reportPrivateImportUsage = "none",
-                },
               },
             },
           },

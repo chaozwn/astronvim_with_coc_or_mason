@@ -357,10 +357,10 @@ function M.mappings(maps)
       }
       maps.n["<Leader>gg"] = maps.n["<Leader>tl"]
     end
-    if vim.fn.executable "joshuto" == 1 then
-      maps.n["<Leader>tj"] = {
-        require("utils").toggle_joshuto(),
-        desc = "ToggleTerm joshuto",
+    if vim.fn.executable "yazi" == 1 then
+      maps.n["<Leader>ty"] = {
+        require("utils").toggle_yazi(),
+        desc = "ToggleTerm yazi",
       }
     end
 

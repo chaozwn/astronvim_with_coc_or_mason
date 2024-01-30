@@ -32,17 +32,6 @@ return {
                 },
               }, { buffer = bufnr })
             end
-            vim.api.nvim_buf_create_user_command(
-              bufnr,
-              "PylanceOrganizeImports",
-              function()
-                vim.lsp.buf.execute_command {
-                  command = "pyright.organizeimports",
-                  arguments = { vim.uri_from_bufnr(0) },
-                }
-              end,
-              { desc = "Organize Imports" }
-            )
           end,
           filetypes = { "python" },
           root_dir = function(...)

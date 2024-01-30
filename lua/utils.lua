@@ -17,7 +17,7 @@ end
 function M.toggle_unicmatrix()
   return function()
     require("astrocore").toggle_term_cmd {
-      cmd = "unimatrix -n -s 96 -o",
+      cmd = "unimatrix -s 96 -o -b",
       hidden = false,
       direction = "float",
       float_opts = {

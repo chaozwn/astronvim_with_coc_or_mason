@@ -12,7 +12,7 @@ return {
       -- disable formatting capabilities for specific language servers
       disabled = {},
       -- default format timeout
-      timeout_ms = 10000,
+      timeout_ms = 600000,
     },
     capabilities = { workspace = { didChangeWatchedFiles = { dynamicRegistration = false } } },
     diagnostics = {

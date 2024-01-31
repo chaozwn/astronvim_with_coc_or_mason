@@ -23,9 +23,5 @@ return {
       },
     })
   end,
-  config = function(...)
-    require "astronvim.plugins.configs.telescope"(...)
-    local telescope = require "telescope"
-    telescope.load_extension "refactoring"
-  end,
+  config = function(...) require "astronvim.plugins.configs.telescope"(...) end,
 }

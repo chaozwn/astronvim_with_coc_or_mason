@@ -15,8 +15,6 @@ function M.mappings(maps)
 
   maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
 
-  maps.v["p"] = { '"_dP', desc = "Replace Without Yanking" }
-
   if vim.g.neovide then
     if system == "Darwin" then
       vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
@@ -123,95 +121,6 @@ function M.mappings(maps)
         desc = "Conditional Breakpoint (S-F9)",
       }
     end
-  end
-
-  -- close mason
-  if is_available "refactoring.nvim" then
-    maps.n["<Leader>r"] = { desc = " Refactor" }
-    maps.v["<Leader>r"] = { desc = " Refactor" }
-    maps.x["<Leader>r"] = { desc = " Refactor" }
-    maps.n["<Leader>rb"] = {
-      function() require("refactoring").refactor "Extract Block" end,
-      desc = "Extract Block",
-    }
-    maps.n["<Leader>ri"] = {
-      function() require("refactoring").refactor "Inline Variable" end,
-      desc = "Inline Variable",
-    }
-    maps.n["<Leader>rp"] = {
-      function() require("refactoring").debug.printf { below = false } end,
-      desc = "Debug: Print Function",
-    }
-    maps.n["<Leader>rc"] = {
-      function() require("refactoring").debug.cleanup {} end,
-      desc = "Debug: Clean Up",
-    }
-    maps.n["<Leader>rd"] = {
-      function() require("refactoring").debug.print_var { below = false } end,
-      desc = "Debug: Print Variable",
-    }
-    maps.n["<Leader>rbf"] = {
-      function() require("refactoring").refactor "Extract Block To File" end,
-      desc = "Extract Block To File",
-    }
-
-    maps.x["<Leader>re"] = {
-      function() require("refactoring").refactor "Extract Function" end,
-      desc = "Extract Function",
-    }
-    maps.x["<Leader>rf"] = {
-      function() require("refactoring").refactor "Extract Function To File" end,
-      desc = "Extract Function To File",
-    }
-    maps.x["<Leader>rv"] = {
-      function() require("refactoring").refactor "Extract Variable" end,
-      desc = "Extract Variable",
-    }
-    maps.x["<Leader>ri"] = {
-      function() require("refactoring").refactor "Inline Variable" end,
-      desc = "Inline Variable",
-    }
-
-    maps.v["<Leader>re"] = {
-      function() require("refactoring").refactor "Extract Function" end,
-      desc = "Extract Function",
-    }
-    maps.v["<Leader>rf"] = {
-      function() require("refactoring").refactor "Extract Function To File" end,
-      desc = "Extract Function To File",
-    }
-    maps.v["<Leader>rv"] = {
-      function() require("refactoring").refactor "Extract Variable" end,
-      desc = "Extract Variable",
-    }
-    maps.v["<Leader>ri"] = {
-      function() require("refactoring").refactor "Inline Variable" end,
-      desc = "Inline Variable",
-    }
-    maps.v["<Leader>rb"] = {
-      function() require("refactoring").refactor "Extract Block" end,
-      desc = "Extract Block",
-    }
-    maps.v["<Leader>rbf"] = {
-      function() require("refactoring").refactor "Extract Block To File" end,
-      desc = "Extract Block To File",
-    }
-    maps.v["<Leader>rr"] = {
-      function() require("refactoring").select_refactor() end,
-      desc = "Select Refactor",
-    }
-    maps.v["<Leader>rp"] = {
-      function() require("refactoring").debug.printf { below = false } end,
-      desc = "Debug: Print Function",
-    }
-    maps.v["<Leader>rc"] = {
-      function() require("refactoring").debug.cleanup {} end,
-      desc = "Debug: Clean Up",
-    }
-    maps.v["<Leader>rd"] = {
-      function() require("refactoring").debug.print_var { below = false } end,
-      desc = "Debug: Print Variable",
-    }
   end
 
   if is_available "noice.nvim" then

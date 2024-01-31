@@ -1,3 +1,28 @@
+local function trim(s)
+  if s == nil then return "" end
+  return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+local function truncateString(s, maxLength)
+  if #s > maxLength then
+    return string.sub(s, 1, maxLength) .. "..."
+  else
+    return s
+  end
+end
+
+local formatting_style = {
+  fields = { "kind", "abbr", "menu" },
+  format = function(_, item)
+    local icons = require "icons.lspkind"
+    local icon = icons[item.kind] or ""
+    item.kind = string.format("%s", icon)
+    item.abbr = trim(item.abbr)
+    item.menu = truncateString(trim(item.menu), 20)
+    return item
+  end,
+}
+
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -18,6 +43,13 @@ return {
     end
 
     return require("astrocore").extend_tbl(opts, {
+      window = {
+        completion = {
+          col_offset = 1,
+          side_padding = 0,
+        },
+      },
+      formatting = formatting_style,
       sources = cmp.config.sources {
         { name = "nvim_lsp", priority = 1000 },
         { name = "luasnip", priority = 750 },

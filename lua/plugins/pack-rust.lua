@@ -125,7 +125,10 @@ return {
         ---@diagnostic disable-next-line: missing-parameter
         adapter = cfg.get_codelldb_adapter()
       end
-      return { server = require("astrolsp").lsp_opts "rust_analyzer", dap = { adapter = adapter } }
+      return {
+        server = require("astrolsp").lsp_opts "rust_analyzer",
+        dap = { adapter = adapter },
+      }
     end,
     config = function(_, opts) vim.g.rustaceanvim = opts end,
   },

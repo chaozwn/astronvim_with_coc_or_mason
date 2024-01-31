@@ -7,14 +7,6 @@ return {
     -- Ensure that opts.ensure_installed exists and is a table or string "all".
     -- if opts.ensure_installed ~= "all" then end
     -- WARN: https://github.com/windwp/nvim-ts-autotag/issues/143
-    return require("astrocore").extend_tbl(opts, {
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          node_incremental = "v",
-          node_decremental = "V",
-        },
-      },
-    })
+    return require("astrocore").extend_tbl(opts, {})
   end,
 }

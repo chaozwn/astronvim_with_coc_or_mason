@@ -4,19 +4,23 @@
 
 A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
+## Neovim version
+neovim >= 0.9, recommend 0.9
+
 ## 🛠️ Introduction
 
-Currently supports development in TypeScript,Rust,Python.
+Currently supports development in TypeScript,Rust,Python,Go.
 
 - Typescript: "typescript-tools.nvim"
 - Rust: "mrcjkb/rustaceanvim"
 - Python: "pylance"
+- Go: "go.nvim"
 
 ## 🛠️ Installation
 
 ### The system should supports commands.
 
-`npm`,`rustc`
+`npm`,`rustc`,`go`
 
 ### Recommend install
 

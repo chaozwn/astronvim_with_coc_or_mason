@@ -1,7 +1,6 @@
 -- This file is automatically ran last in the setup process and is a good place to configure
 -- augroups/autocommands and custom filetypes also this just pure lua so
 -- anything that doesn't fit in the normal config locations above can go here
-
 local function yaml_ft(path, bufnr)
   local buf_text = table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false), "\n")
   if
@@ -25,6 +24,8 @@ vim.filetype.add {
     qmd = "markdown",
     yml = yaml_ft,
     yaml = yaml_ft,
+    json = "jsonc",
+    api = "goctl"
   },
   filename = {
     [".eslintrc.json"] = "jsonc",

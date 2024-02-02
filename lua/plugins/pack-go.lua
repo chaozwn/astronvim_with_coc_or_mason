@@ -48,7 +48,7 @@ return {
                 unusedwrite = true,
                 useany = true,
               },
-              usePlaceholders = true,
+              usePlaceholders = false,
               completeUnimported = true,
               staticcheck = true,
               directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
@@ -70,7 +70,6 @@ return {
       end
     end,
   },
-
   {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
@@ -113,11 +112,17 @@ return {
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
-},
-    opts = {
     },
+    opts = {},
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
+  },
+  {
+    "BYT0723/goctl.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    enabled = false,
+    ft="goctl",
+    opts = {},
   },
 }

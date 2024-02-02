@@ -25,7 +25,6 @@ vim.filetype.add {
     yml = yaml_ft,
     yaml = yaml_ft,
     json = "jsonc",
-    api = "goctl"
   },
   filename = {
     [".eslintrc.json"] = "jsonc",

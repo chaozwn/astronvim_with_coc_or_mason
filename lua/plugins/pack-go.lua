@@ -118,11 +118,4 @@ return {
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
   },
-  {
-    "BYT0723/goctl.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    enabled = false,
-    ft="goctl",
-    opts = {},
-  },
 }

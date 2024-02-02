@@ -32,6 +32,7 @@ brew install ripgrep
 npm install tree-sitter-cli or cargo install tree-sitter-cli
 brew install gdu
 brew install bottom
+brew install protobuf
 ```
 
 ### Install unimatrix

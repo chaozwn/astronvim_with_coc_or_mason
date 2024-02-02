@@ -4,6 +4,19 @@
     "vscode": "^1.11.0"
   },
   "contributes": {
+    "language": [
+      {
+        "id": "goctl",
+        "aliases": [
+          "goctl",
+          "goctl"
+        ],
+        "extensions": [
+          ".api"
+        ],
+        "configuration": "./language-configuration-goctl.json"
+      }
+    ],
     "snippets": [
       {
         "language": [
@@ -22,6 +35,10 @@
       {
         "language": "vue",
         "path": "./vue.json"
+      },
+      {
+        "language": "goctl",
+        "path": "./goctl.json"
       },
       {
         "language": "go",

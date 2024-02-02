@@ -118,4 +118,31 @@ return {
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
   },
+  {
+    "chaozwn/goctl.nvim",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
+    ft = "goctl",
+    opts = function()
+      local group = vim.api.nvim_create_augroup("GoctlAutocmd", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = "goctl",
+        callback = function()
+          -- set up format keymap
+          vim.keymap.set(
+            "n",
+            "<Leader>lf",
+            "<Cmd>GoctlApiFormat<CR>",
+            { silent = true, noremap = true, buffer = true, desc = "Format Buffer" }
+          )
+          vim.keymap.set(
+            "n",
+            "<Leader>fg",
+            "<cmd>Telescope goctl<CR>",
+            { silent = true, noremap = true, buffer = true, desc = "Jump to error line" }
+          )
+        end,
+      })
+    end,
+  },
 }

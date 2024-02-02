@@ -7,7 +7,6 @@ return {
   opts = function(_, opts)
     local actions = require "telescope.actions"
     return require("astrocore").extend_tbl(opts, {
-      extensions = {},
       pickers = {
         find_files = {
           -- dot file
@@ -23,5 +22,9 @@ return {
       },
     })
   end,
-  config = function(...) require "astronvim.plugins.configs.telescope"(...) end,
+  config = function(...)
+    local telescope = require "telescope"
+    require "astronvim.plugins.configs.telescope"(...)
+    telescope.load_extension "goctl"
+  end,
 }

@@ -122,7 +122,6 @@ return {
     "chaozwn/goctl.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
     ft = "goctl",
-    build = ":lua require('goctl.common').install_or_upgrade()",
     opts = function()
       local group = vim.api.nvim_create_augroup("GoctlAutocmd", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {

@@ -21,6 +21,16 @@ return {
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, "buf")
+
+      opts.handlers.buf = function()
+        local null_ls = require "null-ls"
+        null_ls.register(null_ls.builtins.diagnostics.buf.with {
+          condition = function() return false end,
+        })
+        null_ls.register(null_ls.builtins.formatting.buf.with {
+          condition = function() return true end,
+        })
+      end
     end,
   },
 }

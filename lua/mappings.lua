@@ -14,6 +14,7 @@ function M.mappings(maps)
   maps.i["<C-s>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
 
   maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
+  maps.v["p"] = { "pgvy", desc = "Paste" }
 
   if vim.g.neovide then
     if system == "Darwin" then

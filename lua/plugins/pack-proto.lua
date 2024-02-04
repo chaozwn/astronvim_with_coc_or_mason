@@ -1,5 +1,19 @@
 return {
   {
+    "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
+    opts = {
+      ---@diagnostic disable: missing-fields
+      config = {
+        bufls = {
+          filetypes = { "proto" },
+          single_file_support = true,
+          settings = {},
+        },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     optional = true,
     opts = function(_, opts)
@@ -21,16 +35,6 @@ return {
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, "buf")
-
-      opts.handlers.buf = function()
-        local null_ls = require "null-ls"
-        null_ls.register(null_ls.builtins.diagnostics.buf.with {
-          condition = function() return false end,
-        })
-        null_ls.register(null_ls.builtins.formatting.buf.with {
-          condition = function() return true end,
-        })
-      end
     end,
   },
 }

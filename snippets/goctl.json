@@ -337,7 +337,7 @@
     "prefix": "@server",
     "body": [
       "@server(",
-      "    handler: $1",
+      "    prefix: $1",
       ")",
       "$0"
     ]

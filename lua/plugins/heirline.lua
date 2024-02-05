@@ -127,6 +127,27 @@ return {
             icon = { padding = { right = 1 } },
           },
         },
+        status.component.virtual_env {
+          padding = { right = 1 },
+        },
+        -- {
+        --   -- define a simple component where the provider is just a folder icon
+        --   status.component.builder {
+        --     -- astronvim.get_icon gets the user interface icon for a closed folder with a space after it
+        --     provider = function() return require("tmux-awesome-manager.src.integrations.status").status_with_icons() end,
+        --     -- set the foreground color to be used for the icon
+        --     hl = require("astroui.status.hl").get_attributes "virtual_env",
+        --     on_click = {
+        --       name = "heirline_branch",
+        --       callback = function()
+        --         if require("astrocore").is_available "telescope.nvim" then
+        --           vim.cmd ":Telescope tmux-awesome-manager list_terms"
+        --         end
+        --       end,
+        --     },
+        --     update = { "OptionSet", pattern = "*tmux_default_orientation*" },
+        --   },
+        -- },
         -- NvChad has some nice icons to go along with information, so we can create a parent component to do this
         -- all of the children of this table will be treated together as a single component
         {

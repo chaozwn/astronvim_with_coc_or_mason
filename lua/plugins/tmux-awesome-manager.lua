@@ -14,14 +14,15 @@ return {
       session_name = "Neovim Terminals",
       use_icon = false, -- use prefix icon
       icon = " ", -- Prefix icon to use
-      project_open_as = "window", -- Open per_project_commands as.  Default: separated_session
+      -- project_open_as = "window", -- Open per_project_commands as.  Default: separated_session
       default_size = "30%", -- on panes, the default size
       open_new_as = "pane", -- open new command as.  options: pane, window, separated_session.
     }
+
     -- commands
     tmux.run_wk {
       cmd = "yarn add %1",
-      namet= "Yarn Add",
+      name = "Yarn Add",
       questions = { { question = "package name: ", required = true } },
     }
 

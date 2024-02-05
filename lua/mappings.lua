@@ -1,5 +1,6 @@
 local system = vim.loop.os_uname().sysname
 local is_available = require("astrocore").is_available
+local utils = require "astrocore"
 local M = {}
 
 function M.mappings(maps)
@@ -15,6 +16,9 @@ function M.mappings(maps)
 
   maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
   maps.v["p"] = { "pgvy", desc = "Paste" }
+  if vim.fn.executable "btm" == 1 then
+    maps.n["<Leader>tT"] = { function() utils.toggle_term_cmd "btm" end, desc = "ToggleTerm btm" }
+  end
 
   if vim.g.neovide then
     if system == "Darwin" then

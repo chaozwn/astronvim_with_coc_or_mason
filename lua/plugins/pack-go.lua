@@ -1,3 +1,14 @@
+local function create_buf_config_file()
+  local source_file = vim.fn.stdpath "config" .. "/buf.yaml"
+  local target_file = vim.fn.getcwd() .. "/buf.yaml"
+  local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+  local cmd = is_windows
+      and string.format("copy %s %s", vim.fn.shellescape(source_file, true), vim.fn.shellescape(target_file, true))
+    or string.format("cp %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_file))
+  os.execute(cmd)
+end
+
+
 return {
   {
     "AstroNvim/astrolsp",
@@ -82,6 +93,34 @@ return {
         "impl",
         "goimports"
       )
+
+      if not opts.handlers then opts.handlers = {} end
+
+      opts.handlers.buf = function()
+        local null_ls = require "null-ls"
+        local buf_buildins = null_ls.builtins.diagnostics.buf
+        table.insert(buf_buildins._opts.args, "--config")
+        table.insert(buf_buildins._opts.args, vim.fn.stdpath "config" .. "/buf.yaml")
+        null_ls.register(null_ls.builtins.diagnostics.buf.with {
+          generator_opts = buf_buildins._opts,
+        })
+        null_ls.register(null_ls.builtins.formatting.buf.with {
+          condition = function() return true end,
+        })
+      end
+
+      vim.api.nvim_create_autocmd("FileType", {
+        desc = "create completion",
+        pattern = "proto",
+        callback = function()
+          vim.keymap.set(
+            "n",
+            "<Leader>uB",
+            create_buf_config_file,
+            { silent = true, noremap = true, buffer = true, desc = "Create buf config file" }
+          )
+        end,
+      })
     end,
   },
   {
@@ -114,6 +153,9 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
+      lsp_inlay_hints = {
+        enable = false,
+      },
       diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
         hdlr = true, -- hook lsp diag handler and send diag to quickfix
         underline = true,

@@ -30,8 +30,17 @@ return {
 
       opts.handlers.sqlfluff = function()
         local null_ls = require "null-ls"
+        local buf_diagnostics_buildins = null_ls.builtins.diagnostics.sqlfluff
+        table.insert(buf_diagnostics_buildins._opts.args, "--config")
+        table.insert(buf_diagnostics_buildins._opts.args, vim.fn.stdpath "config" .. "/.sqlfluff")
+        null_ls.register(null_ls.builtins.diagnostics.sqlfluff.with {
+          generator_opts = buf_diagnostics_buildins._opts,
+        })
+        local buf_formatting_buildins = null_ls.builtins.formatting.sqlfluff
+        table.insert(buf_formatting_buildins._opts.args, "--config")
+        table.insert(buf_formatting_buildins._opts.args, vim.fn.stdpath "config" .. "/.sqlfluff")
         null_ls.register(null_ls.builtins.formatting.sqlfluff.with {
-          extra_args = { "--dialect", "postgres" },
+          generator_opts = buf_formatting_buildins._opts,
         })
       end
 

@@ -1,6 +1,5 @@
 [sqlfluff]
 templater = jinja
-rules = default
 sql_file_exts = .sql,.sql.j2,.dml,.ddl
 dialect = mysql
 exclude_rules = ambiguous.column_count, structure.column_order

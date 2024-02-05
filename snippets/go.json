@@ -97,5 +97,10 @@
       "}$0"
     ],
     "description": "function of middleware"
+  },
+  "class function declaration": {
+    "prefix": "funcc",
+    "body": "func ($1) $2($3) $4 {\n\t$0\n}",
+    "description": "Snippet for class function declaration"
   }
 }

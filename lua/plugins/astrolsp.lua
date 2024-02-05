@@ -4,6 +4,7 @@ return {
   opts = {
     features = {
       inlay_hints = false,
+      diagnostics_mode = 3,
     },
     -- Configuration options for controlling formatting with language servers
     formatting = {
@@ -19,7 +20,15 @@ return {
       underline = true,
       virtual_text = {
         spacing = 5,
-        severity_limit = "Warning",
+        severity_limit = "ERROR",
+        severity = {
+          min = vim.diagnostic.severity.ERROR,
+        },
+      },
+      signs = {
+        severity = {
+          min = vim.diagnostic.severity.ERROR,
+        },
       },
       update_in_insert = false,
     },
@@ -30,13 +39,11 @@ return {
       },
       i = {
         ["<C-l>"] = {
-          function ()
-            vim.lsp.buf.signature_help()
-          end,
+          function() vim.lsp.buf.signature_help() end,
           desc = "Signature help",
-          cond = "textDocument/signatureHelp"
-        }
-      }
+          cond = "textDocument/signatureHelp",
+        },
+      },
     },
   },
 }

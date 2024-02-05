@@ -113,7 +113,25 @@ return {
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
-    opts = {},
+    opts = {
+      diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
+        hdlr = true, -- hook lsp diag handler and send diag to quickfix
+        underline = true,
+        virtual_text = {
+          spacing = 5,
+          severity_limit = "ERROR",
+          severity = {
+            min = vim.diagnostic.severity.ERROR,
+          },
+        },
+        signs = {
+          severity = {
+            min = vim.diagnostic.severity.ERROR,
+          },
+        },
+        update_in_insert = false,
+      },
+    },
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',

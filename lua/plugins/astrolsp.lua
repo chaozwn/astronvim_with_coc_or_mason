@@ -20,14 +20,14 @@ return {
       underline = true,
       virtual_text = {
         spacing = 5,
-        severity_limit = "ERROR",
+        severity_limit = "WARN",
         severity = {
-          min = vim.diagnostic.severity.ERROR,
+          min = vim.diagnostic.severity.WARN,
         },
       },
       signs = {
         severity = {
-          min = vim.diagnostic.severity.ERROR,
+          min = vim.diagnostic.severity.WARN,
         },
       },
       update_in_insert = false,

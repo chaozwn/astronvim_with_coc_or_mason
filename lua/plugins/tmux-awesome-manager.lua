@@ -1,5 +1,6 @@
 return {
   "otavioschwanck/tmux-awesome-manager.nvim",
+  commit = "cd9ebcdf8634b45c4d7111e1502c7a78474a9b51",
   dependencies = {
     "nvim-telescope/telescope.nvim",
     "folke/which-key.nvim",
@@ -24,6 +25,22 @@ return {
       cmd = "yarn add %1",
       name = "Yarn Add",
       questions = { { question = "package name: ", required = true } },
+      session_name = "Yarn Add Window",
+    }
+
+    tmux.run_wk {
+      cmd = "cd %1 && go mod init %2",
+      name = "Go mod init",
+      questions = { { question = "path: " }, { question = "module name: ", required = true } },
+      use_cwd = true,
+      session_name = "Go mod init Window",
+    }
+
+    tmux.run_wk {
+      cmd = "go mod tidy",
+      name = "Go mod tidy",
+      use_cwd = true,
+      session_name = "Go mod tidy",
     }
 
     -- keymap

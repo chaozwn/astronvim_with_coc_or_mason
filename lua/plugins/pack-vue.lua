@@ -1,20 +1,28 @@
+local is_vue_project = require("utils").is_vue_project()
+
 return {
   {
     ---@type LazySpec
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     ---@diagnostic disable: missing-fields
-    opts = {
-      handlers = {
-        volar = function() return not require("utils").is_vue_project() end,
-      },
-      config = {
-        volar = {
-          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-          settings = {},
+    opts = function(_, opts)
+      local volar_handler = opts.handlers.volar
+      if not is_vue_project then
+        volar_handler = false
+      end
+      return require("astrocore").extend_tbl(opts, {
+        handlers = {
+          volar = volar_handler,
         },
-      },
-    },
+        config = {
+          volar = {
+            filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+            settings = {},
+          },
+        },
+      })
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",

@@ -1,26 +1,5 @@
 local utils = require "astrocore"
 
-local function check_json_key_exists(filename, key)
-  -- Open the file in read mode
-  local file = io.open(filename, "r")
-  if not file then
-    return false -- File doesn't exist or cannot be opened
-  end
-
-  -- Read the contents of the file
-  local content = file:read "*all"
-  file:close()
-
-  -- Parse the JSON content
-  local json_parsed, json = pcall(vim.fn.json_decode, content)
-  if not json_parsed or type(json) ~= "table" then
-    return false -- Invalid JSON format
-  end
-
-  -- Check if the key exists in the JSON object
-  return json[key] ~= nil
-end
-
 return {
   ---@type LazySpec
   {
@@ -38,7 +17,9 @@ return {
           },
         },
       },
-      handlers = { tsserver = false }, -- disable tsserver setup, this plugin does it
+      handlers = {
+        tsserver = false, -- disable tsserver setup, this plugin does it
+      },
       config = {
         ["typescript-tools"] = { -- enable inlay hints by default for `typescript-tools`
           settings = {
@@ -46,6 +27,7 @@ return {
             -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
             -- memory limit in megabytes or "auto"(basically no limit)
             tsserver_max_memory = "auto",
+            code_lens = "all",
             tsserver_file_preferences = {
               includeInlayParameterNameHints = "all",
               includeInlayParameterNameHintsWhenArgumentMatchesName = false,
@@ -95,7 +77,7 @@ return {
       if not opts.handlers then opts.handlers = {} end
 
       local has_prettier = function(util)
-        return check_json_key_exists(vim.fn.getcwd() .. "/package.json", "prettier")
+        return require("utils").check_json_key_exists(vim.fn.getcwd() .. "/package.json", "prettier")
           or util.root_has_file ".prettierrc"
           or util.root_has_file ".prettierrc.json"
           or util.root_has_file ".prettierrc.yml"
@@ -133,6 +115,9 @@ return {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
     },
+    enabled = function()
+      return not require("utils").is_vue_project()
+    end,
     ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     -- get AstroLSP provided options like `on_attach` and `capabilities`
     opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,

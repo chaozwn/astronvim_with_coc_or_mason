@@ -9,12 +9,13 @@ neovim >= 0.9, recommend 0.9
 
 ## 🛠️ Introduction
 
-Currently supports development in TypeScript,Rust,Python,Go.
+Currently supports development in TypeScript,Rust,Python,Go,Vue.
 
 - Typescript: "typescript-tools.nvim"
 - Rust: "mrcjkb/rustaceanvim"
 - Python: "pylance"
 - Go: "go.nvim"
+- Vue: "volar"
 
 ## 🛠️ Installation
 

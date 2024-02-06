@@ -15,7 +15,7 @@ return {
       -- default format timeout
       timeout_ms = 600000,
     },
-    capabilities = { workspace = { didChangeWatchedFiles = { dynamicRegistration = false } } },
+    capabilities = { workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } },
     diagnostics = {
       underline = true,
       virtual_text = {

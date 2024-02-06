@@ -16,7 +16,6 @@ return {
         config = {
           volar = {
             filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-            settings = {},
             init_options = {
               languageFeatures = {
                 implementation = true, -- new in @volar/vue-language-server v0.33

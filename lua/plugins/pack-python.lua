@@ -68,8 +68,6 @@ return {
                 vim.ui.input({ prompt = "New name: ", default = result.data.newSymbolName }, function(input)
                   if input and #input > 0 then vim.lsp.buf.rename(input) end
                 end)
-              else
-                print(result.label)
               end
             end,
           },

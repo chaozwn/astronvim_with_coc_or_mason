@@ -12,7 +12,7 @@ return {
       ---@diagnostic disable: missing-fields
       config = {
         pylance = {
-          on_attach = function(client, bufnr)
+          on_attach = function(_, bufnr)
             if is_available "venv-selector.nvim" then
               set_mappings({
                 n = {
@@ -59,6 +59,15 @@ return {
                 indexing = true,
                 inlayHints = false,
                 stubPath = vim.fn.stdpath "data" .. "/lazy/python-type-stubs",
+                diagnosticSeverityOverrides = {
+                  reportUnusedImport = "information",
+                  reportUnusedFunction = "information",
+                  reportUnusedVariable = "information",
+                  reportGeneralTypeIssues = "none",
+                  reportOptionalMemberAccess = "none",
+                  reportOptionalSubscript = "none",
+                  reportPrivateImportUsage = "none",
+                },
               },
             },
           },

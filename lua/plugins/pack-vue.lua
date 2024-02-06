@@ -1,5 +1,5 @@
 local is_vue_project = require("utils").is_vue_project()
-
+--TODO: after yarn, diagnostic not refresh
 return {
   {
     ---@type LazySpec
@@ -16,47 +16,7 @@ return {
         config = {
           volar = {
             filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-            settings = {
-              languageFeatures = {
-                implementation = true, -- new in @volar/vue-language-server v0.33
-                references = true,
-                definition = true,
-                typeDefinition = true,
-                callHierarchy = true,
-                hover = true,
-                rename = true,
-                renameFileRefactoring = true,
-                signatureHelp = true,
-                codeAction = true,
-                workspaceSymbol = true,
-                completion = {
-                  defaultTagNameCase = "both",
-                  defaultAttrNameCase = "kebabCase",
-                  getDocumentNameCasesRequest = true,
-                  getDocumentSelectionRequest = true,
-                },
-                -- doc
-                documentHighlight = true,
-                documentLink = true,
-                codeLens = { showReferencesNotification = true },
-                -- not supported - https://github.com/neovim/neovim/pull/15723
-                semanticTokens = false,
-                diagnostics = true,
-                schemaRequestService = true,
-              },
-              -- html
-              documentFeatures = {
-                selectionRange = true,
-                foldingRange = true,
-                linkedEditingRange = true,
-                documentSymbol = true,
-                -- not supported - https://github.com/neovim/neovim/pull/13654
-                documentColor = true,
-                documentFormatting = {
-                  defaultPrintWidth = 100,
-                },
-              },
-            },
+            settings = {},
             init_options = {
               languageFeatures = {
                 implementation = true, -- new in @volar/vue-language-server v0.33
@@ -81,7 +41,7 @@ return {
                 documentLink = true,
                 codeLens = { showReferencesNotification = true },
                 -- not supported - https://github.com/neovim/neovim/pull/15723
-                semanticTokens = true,
+                semanticTokens = false,
                 diagnostics = true,
                 schemaRequestService = true,
               },

@@ -1,6 +1,5 @@
 return {
   "otavioschwanck/tmux-awesome-manager.nvim",
-  commit = "cd9ebcdf8634b45c4d7111e1502c7a78474a9b51",
   dependencies = {
     "nvim-telescope/telescope.nvim",
     "folke/which-key.nvim",

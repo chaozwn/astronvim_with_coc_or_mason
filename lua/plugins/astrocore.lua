@@ -3,8 +3,6 @@
 return {
   "AstroNvim/astrocore",
   opts = function(_, opts)
-    local augroup = vim.api.nvim_create_augroup
-
     local options = require("astrocore").extend_tbl(opts, {
       autocmds = {
         auto_turnoff_paste = {
@@ -38,7 +36,6 @@ return {
           {
             event = "VimEnter",
             desc = "Restore session on open",
-            group = augroup("resession_auto_open", { clear = true }),
             callback = function()
               if require("astrocore").is_available "resession.nvim" then
                 local resession = require "resession"
@@ -46,6 +43,7 @@ return {
                 if vim.fn.argc(-1) == 0 then
                   -- Save these to a different directory, so our manual sessions don't get polluted
                   resession.load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+                  vim.cmd.doautoall "BufReadPre"
                 end
               end
             end,

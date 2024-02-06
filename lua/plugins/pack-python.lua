@@ -35,14 +35,16 @@ return {
           end,
           filetypes = { "python" },
           root_dir = function(...)
-            return require("lspconfig.util").root_pattern(unpack {
-              "pyproject.toml",
-              "setup.py",
-              "setup.cfg",
-              "requirements.txt",
-              "Pipfile",
-              "pyrightconfig.json",
-            })(...)
+            local util = require "lspconfig.util"
+            return util.find_git_ancestor(...)
+              or util.root_pattern(unpack {
+                "pyproject.toml",
+                "setup.py",
+                "setup.cfg",
+                "requirements.txt",
+                "Pipfile",
+                "pyrightconfig.json",
+              })(...)
           end,
           cmd = { "pylance", "--stdio" },
           single_file_support = true,

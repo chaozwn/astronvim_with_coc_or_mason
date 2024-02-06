@@ -1,5 +1,16 @@
 local M = {}
 
+function M.write_to_file(content, file_path)
+  local file = io.open(file_path, "a")
+  if not file then
+    print("Unable to open file: " .. file_path)
+    return
+  end
+  file:write(vim.inspect(content))
+  file:write "\n"
+  file:close()
+end
+
 function M.check_json_key_exists(filename, key)
   -- Open the file in read mode
   local file = io.open(filename, "r")

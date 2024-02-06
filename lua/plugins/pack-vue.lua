@@ -15,6 +15,11 @@ return {
         },
         config = {
           volar = {
+            capabilities = {
+              workspace = {
+                didChangeWatchedFiles = { dynamicRegistration = true },
+              },
+            },
             filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
             init_options = {
               languageFeatures = {

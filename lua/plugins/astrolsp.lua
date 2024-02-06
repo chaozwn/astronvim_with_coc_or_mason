@@ -17,7 +17,7 @@ return {
     },
     capabilities = {
       workspace = {
-        didChangeWatchedFiles = { dynamicRegistration = true },
+        didChangeWatchedFiles = { dynamicRegistration = false },
       },
     },
     diagnostics = {

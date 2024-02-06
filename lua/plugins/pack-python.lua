@@ -1,9 +1,70 @@
 local utils = require "astrocore"
 local is_available = require("astrocore").is_available
 local set_mappings = require("astrocore").set_mappings
+local lsp_util = require "vim.lsp.util"
+
+local function extract_method()
+  local range_params = lsp_util.make_given_range_params()
+  local arguments = { vim.uri_from_bufnr(0):gsub("file://", ""), range_params.range }
+  print "extract_method"
+  local params = {
+    command = "pylance.extractMethod",
+    arguments = arguments,
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
+local function extract_variable()
+  local range_params = lsp_util.make_given_range_params()
+  local arguments = { vim.uri_from_bufnr(0):gsub("file://", ""), range_params.range }
+  print "extract_variable"
+  local params = {
+    command = "pylance.extractVarible",
+    arguments = arguments,
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
+local function organize_imports()
+  local params = {
+    command = "pyright.organizeimports",
+    arguments = { vim.uri_from_bufnr(0) },
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
+local function on_workspace_executecommand(err, result, ctx)
+  if ctx.params.command:match "WithRename" then
+    ctx.params.command = ctx.params.command:gsub("WithRename", "")
+    print(vim.inspect(ctx.params))
+    vim.lsp.buf.execute_command(ctx.params)
+  end
+  if result then
+    if result.label == "Extract Method" then
+      local old_value = result.data.newSymbolName
+      local file = vim.tbl_keys(result.edits.changes)[1]
+      local range = result.edits.changes[file][1].range.start
+      local params = { textDocument = { uri = file }, position = range }
+      local client = vim.lsp.get_client_by_id(ctx.client_id)
+      local bufnr = ctx.bufnr
+      local prompt_opts = {
+        prompt = "New Method Name: ",
+        default = old_value,
+      }
+      if not old_value:find "new_var" then range.character = range.character + 5 end
+      vim.ui.input(prompt_opts, function(input)
+        if not input or #input == 0 then return end
+        params.newName = input
+        local handler = client.handlers["textDocument/rename"] or vim.lsp.handlers["textDocument/rename"]
+        client.request("textDocument/rename", params, handler, bufnr)
+      end)
+    end
+  end
+end
 
 return {
-  { "microsoft/python-type-stubs", ft = "python" },
+  { "microsoft/python-type-stubs" },
+  { "pandas-dev/pandas-stubs" },
   {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
@@ -12,7 +73,7 @@ return {
       ---@diagnostic disable: missing-fields
       config = {
         pylance = {
-          on_attach = function(_, bufnr)
+          on_attach = function(client, bufnr)
             if is_available "venv-selector.nvim" then
               set_mappings({
                 n = {
@@ -60,7 +121,11 @@ return {
                 completeFunctionParens = true,
                 indexing = true,
                 inlayHints = false,
-                stubPath = vim.fn.stdpath "data" .. "/lazy/python-type-stubs",
+                stubPath = vim.fn.stdpath "data" .. "/lazy/python-type-stubs/stubs",
+                extraPaths = {
+                  vim.fn.stdpath "data" .. "/lazy/python-type-stubs/stubs",
+                  vim.fn.stdpath "data" .. "/lazy/pandas-stubs/pandas-stubs",
+                },
                 diagnosticSeverityOverrides = {
                   reportUnusedImport = "information",
                   reportUnusedFunction = "information",
@@ -73,33 +138,26 @@ return {
               },
             },
           },
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = { dynamicRegistration = true },
+            },
+          },
           handlers = {
-            ["workspace/executeCommand"] = function(_, result)
-              if result and result.label == "Extract Method" then
-                vim.ui.input({ prompt = "New name: ", default = result.data.newSymbolName }, function(input)
-                  if input and #input > 0 then vim.lsp.buf.rename(input) end
-                end)
-              end
-            end,
+            ["workspace/executeCommand"] = on_workspace_executecommand,
           },
           commands = {
             PylanceExtractMethod = {
-              function()
-                local arguments =
-                  { vim.uri_from_bufnr(0):gsub("file://", ""), require("vim.lsp.util").make_given_range_params().range }
-                vim.lsp.buf.execute_command { command = "pylance.extractMethod", arguments = arguments }
-              end,
+              extract_method,
               description = "Extract Method",
-              range = 2,
             },
-            PylanceExtractVariable = {
-              function()
-                local arguments =
-                  { vim.uri_from_bufnr(0):gsub("file://", ""), require("vim.lsp.util").make_given_range_params().range }
-                vim.lsp.buf.execute_command { command = "pylance.extractVariable", arguments = arguments }
-              end,
+            PylanceExtractVarible = {
+              extract_variable,
               description = "Extract Variable",
-              range = 2,
+            },
+            PylanceOrganizeImports = {
+              organize_imports,
+              description = "Organize Imports",
             },
           },
           docs = {

@@ -133,29 +133,24 @@ return {
     config = function(_, opts) vim.g.rustaceanvim = opts end,
   },
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "Saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
-        opts = {
-          src = {
-            cmp = { enabled = true },
-          },
-        },
-      },
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, { name = "crates" })
-      return opts
-    end,
-  },
-  {
     "Saecki/crates.nvim",
     lazy = true,
+    event = { "BufRead Cargo.toml" },
+    dependencies = {
+      {
+        "hrsh7th/nvim-cmp",
+        ---@param opts cmp.ConfigSchema
+        opts = function(_, opts)
+          opts.sources = opts.sources or {}
+          table.insert(opts.sources, { name = "crates" })
+          return opts
+        end,
+      },
+    },
     opts = {
+      src = {
+        cmp = { enabled = true },
+      },
       null_ls = {
         enabled = true,
         name = "crates.nvim",

@@ -1,5 +1,5 @@
 {
-  "AstroNvim": { "branch": "v4", "commit": "5470f22a465c207bd504c6440ac18be291c954f5" },
+  "AstroNvim": { "branch": "v4", "commit": "bf5ba4de3ce96235124657a5dad087237fb31442" },
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "2dbef19461198630b3d7c39f414d09fb07d1fdd2" },
   "SchemaStore.nvim": { "branch": "main", "commit": "898a19cb54f310dda7cdeedf3d75aeeffcf19136" },
@@ -69,7 +69,7 @@
   "nvim-lspconfig": { "branch": "master", "commit": "1bc83418927003552505ec66fa5d6cffae953f6a" },
   "nvim-notify": { "branch": "master", "commit": "80b67b265530632505193553d05127ae7fe09ddd" },
   "nvim-surround": { "branch": "main", "commit": "703ec63aa798e5e07d309b35e42def34bebe0174" },
-  "nvim-treesitter": { "branch": "master", "commit": "3722d5d772418401d88f9bebb30b0486c91f0b17" },
+  "nvim-treesitter": { "branch": "master", "commit": "5973b617a9a48212e40c5c0a0727ad7c91b27484" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "8edd5a6d96936bdff23333d3bc177481388839e5" },
   "nvim-ts-autotag": { "branch": "main", "commit": "531f48334c422222aebc888fd36e7d109cb354cd" },
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "7ab799a9792f7cf3883cf28c6a00ad431f3d382a" },

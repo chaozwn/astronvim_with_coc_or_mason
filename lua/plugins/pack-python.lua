@@ -192,6 +192,7 @@ return {
   },
   {
     "linux-cultist/venv-selector.nvim",
+    ft = "python",
     opts = {
       anaconda_base_path = "~/miniconda3",
       anaconda_envs_path = "~/miniconda3/envs",

@@ -45,7 +45,7 @@ return {
                 documentLink = true,
                 codeLens = { showReferencesNotification = true },
                 -- not supported - https://github.com/neovim/neovim/pull/15723
-                semanticTokens = false,
+                semanticTokens = true,
                 diagnostics = true,
                 schemaRequestService = true,
               },

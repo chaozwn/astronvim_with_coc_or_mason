@@ -3,6 +3,11 @@ return {
   ---@type AstroLSPOpts
   opts = {
     features = {
+      -- Configuration table of features provided by AstroLSP
+      autoformat = false, -- enable or disable auto formatting on start
+      codelens = true, -- enable/disable codelens refresh on start
+      lsp_handlers = true, -- enable/disable setting of lsp_handlers
+      semantic_tokens = true, -- enable/disable semantic token highlighting
       inlay_hints = false,
       diagnostics_mode = 3,
     },

@@ -34,6 +34,12 @@ return {
     }
 
     tmux.run_wk {
+      cmd = "yarn dev",
+      name = "Yarn Dev",
+      session_name = "Yarn Dev Window",
+    }
+
+    tmux.run_wk {
       cmd = "cd %1 && go mod init %2",
       name = "Go mod init",
       questions = { { question = "path: " }, { question = "module name: ", required = true } },

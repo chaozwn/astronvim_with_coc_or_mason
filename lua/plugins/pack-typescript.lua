@@ -65,16 +65,16 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "tsserver", "eslint")
-    end,
+    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "tsserver") end,
   },
   {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, "prettierd", "eslint-lsp")
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, "prettierd", "eslint_d")
       if not opts.handlers then opts.handlers = {} end
+
+      local has_eslint = function(util) return util.root_has_file ".eslintrc.json" end
 
       local has_prettier = function(util)
         return require("utils").check_json_key_exists(vim.fn.getcwd() .. "/package.json", "prettier")
@@ -90,6 +90,13 @@ return {
           or util.root_has_file "prettier.config.mjs"
           or util.root_has_file "prettier.config.cjs"
           or util.root_has_file ".prettierrc.toml"
+      end
+
+      opts.handlers.eslint_d = function()
+        local null_ls = require "null-ls"
+        null_ls.register(null_ls.builtins.code_actions.eslint_d.with { condition = has_eslint })
+        null_ls.register(null_ls.builtins.diagnostics.eslint_d.with { condition = has_eslint })
+        null_ls.register(null_ls.builtins.formatting.eslint_d.with { condition = has_eslint })
       end
 
       opts.handlers.prettierd = function()
@@ -115,9 +122,7 @@ return {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
     },
-    enabled = function()
-      return not require("utils").is_vue_project()
-    end,
+    enabled = function() return not require("utils").is_vue_project() end,
     ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     -- get AstroLSP provided options like `on_attach` and `capabilities`
     opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,

@@ -2,40 +2,95 @@
 
 **NOTE:** This is for AstroNvim v4+
 
-A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
+hello guys!
+in my workflow,I use `wezterm` as my terminal, and I also use `tmux` to provide me with multiple terminal windows, `yazi` as terminal file manager. btw this config support neovide and don't need other configs.
 
-## Neovim version
-neovim >= 0.9, recommend 0.9
+### Support neovim version
+neovim >= `0.9`, recommend `0.9`
 
-## 🛠️ Introduction
+### Features
 
-Currently supports development in TypeScript,Rust,Python,Go,Vue.
+now,this config supports development in `TypeScript`,`Rust`,`Python`,`Go`,`vue` and `markdown`.
 
-- Typescript: "typescript-tools.nvim"
-- Rust: "mrcjkb/rustaceanvim"
-- Python: "pylance"
-- Go: "go.nvim" -- support go zero framework
-- Vue: "volar" -- base on `typescript-tools.nvim` and `typescript-vue-plugin`
+- ***`Typescript`***: `typescript-tools.nvim`
+- ***`Rust`***: `mrcjkb/rustaceanvim`
+- ***`Python`***: `pylance`
+- ***`Go`***: `go.nvim` *-- support go zero framework* 
+- ***`Vue`***: `volar` *-- base on `typescript-tools.nvim` and `typescript-vue-plugin`* 
+- ***`Markdown`***: `iamcco/markdown-preview.nvim`,
 
+
+### workflow screenshot
+`wezterm` + `tmux` + `astronvim`
+
+![homepage](assets/homepage.png) 
+
+`wezterm` 
+
+![homepage](assets/wezterm.png) 
+
+`tmux`
+
+![homepage](assets/tmux.png) 
+
+`yazi`
+
+![homepage](assets/yazi.png) 
+
+### other components config
+
+`wezterm`: [https://github.com/chaozwn/wezterm]('https://github.com/chaozwn/wezterm') 
+
+`tmux`: [https://github.com/chaozwn/tmux]("https://github.com/chaozwn/tmux")
+
+`yazi`: [https://github.com/chaozwn/yazi]("https://github.com/chaozwn/yazi")
 ## 🛠️ Installation
 
-### The system should supports commands.
+#### The system should supports commands.
 
-`npm`,`rustc`,`go`
+`npm`,`rustc`,`go`,`tmux` -- if you want to use `tmux-awesome-manager`
 
-### Recommend install
+#### Recommend install
 
 ```shell
 brew install fzf
 brew install luarocks
 brew install lazygit
 brew install ripgrep
-npm install tree-sitter-cli or cargo install tree-sitter-cli
+npm install -g tree-sitter-cli
 brew install gdu
 brew install bottom
 brew install protobuf
 ```
 
+#### Make a backup of your current nvim and shared folder
+
+```shell
+mv ~/.config/nvim ~/.config/nvim.bak
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+mv ~/.cache/nvim ~/.cache/nvim.bak
+```
+
+#### Create a new user repository from this template
+
+Press the "Use this template" button above to create a new repository to store your user configuration.
+
+You can also just clone this repository directly if you do not want to track your user configuration in GitHub.
+
+#### Clone the repository
+
+```shell
+git clone https://github.com/chaozwn/astronvim_with_coc_or_mason ~/.config/nvim
+```
+
+#### Start Neovim
+
+```shell
+nvim
+```
+
+## Tips
 ### Install unimatrix
 `<Leader>tm`
 ```shell
@@ -85,32 +140,12 @@ npm i -g typescript-vue-plugin
 npm i -g vue-component-meta
 ```
 
-#### Make a backup of your current nvim and shared folder
-
-```shell
-mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-mv ~/.local/state/nvim ~/.local/state/nvim.bak
-mv ~/.cache/nvim ~/.cache/nvim.bak
+### Support for neovide
+```
+brew install neovide
+neovide .
 ```
 
-#### Create a new user repository from this template
-
-Press the "Use this template" button above to create a new repository to store your user configuration.
-
-You can also just clone this repository directly if you do not want to track your user configuration in GitHub.
-
-#### Clone the repository
-
-```shell
-git clone https://github.com/chaozwn/astronvim_with_coc_or_mason ~/.config/nvim
-```
-
-#### Start Neovim
-
-```shell
-nvim
-```
 
 ## General Mappings
 

@@ -1,3 +1,5 @@
+if not vim.fn.executable "tmux" then return {} end
+
 return {
   "otavioschwanck/tmux-awesome-manager.nvim",
   dependencies = {

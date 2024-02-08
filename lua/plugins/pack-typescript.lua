@@ -76,8 +76,6 @@ return {
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, "prettierd", "eslint_d")
       if not opts.handlers then opts.handlers = {} end
 
-      local has_eslint = function(util) return util.root_has_file ".eslintrc.json" end
-
       local has_prettier = function(util)
         return require("utils").check_json_key_exists(vim.fn.getcwd() .. "/package.json", "prettier")
           or util.root_has_file ".prettierrc"
@@ -94,11 +92,15 @@ return {
           or util.root_has_file ".prettierrc.toml"
       end
 
+      local has_eslint = function(util) return util.root_has_file ".eslintrc.json" end
+
       opts.handlers.eslint_d = function()
         local null_ls = require "null-ls"
         null_ls.register(null_ls.builtins.code_actions.eslint_d.with { condition = has_eslint })
         null_ls.register(null_ls.builtins.diagnostics.eslint_d.with { condition = has_eslint })
-        null_ls.register(null_ls.builtins.formatting.eslint_d.with { condition = has_eslint })
+        null_ls.register(null_ls.builtins.formatting.eslint_d.with {
+          condition = function(util) return not has_prettier(util) and has_eslint(util) end,
+        })
       end
 
       opts.handlers.prettierd = function()

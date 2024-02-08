@@ -10,7 +10,7 @@
       "\t$2",
       "</script>",
       "",
-      "<style lang=\"sass\">",
+      "<style lang=\"scss\">",
       "\t$3",
       "</style>",
       ""

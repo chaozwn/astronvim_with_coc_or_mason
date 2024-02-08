@@ -20,26 +20,15 @@ return {
       default_size = "30%", -- on panes, the default size
       open_new_as = "pane", -- open new command as.  options: pane, window, separated_session.
     }
-
+    
     -- commands
     tmux.run_wk {
-      cmd = "yarn add %1",
-      name = "Yarn Add",
-      questions = { { question = "package name: ", required = true } },
-      session_name = "Yarn Add Window",
-    }
-
-    tmux.run_wk {
-      cmd = "yarn add -D %1",
-      name = "Yarn Add Dev",
-      questions = { { question = "package name: ", required = true } },
-      session_name = "Yarn Add Dev Window",
-    }
-
-    tmux.run_wk {
-      cmd = "yarn",
-      name = "Yarn",
-      session_name = "Yarn Window",
+      cmd = "yarn test",
+      name = "Vitest test",
+      session_name = "Vitest test Window",
+      open_as = 'pane',
+      size = '30%',
+      orientation = 'horizontal',
     }
 
     tmux.run_wk {

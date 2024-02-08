@@ -46,6 +46,8 @@ return {
             },
             tsserver_plugins = {
               "@styled/typescript-styled-plugin",
+              "typescript-vue-plugin",
+              "vue-component-meta",
             },
             expose_as_code_action = "all",
           },
@@ -122,7 +124,7 @@ return {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
     },
-    enabled = function() return not require("utils").is_vue_project() end,
+    -- enabled = function() return not require("utils").is_vue_project() end,
     ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     -- get AstroLSP provided options like `on_attach` and `capabilities`
     opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,

@@ -138,11 +138,6 @@ return {
               },
             },
           },
-          capabilities = {
-            workspace = {
-              didChangeWatchedFiles = { dynamicRegistration = true },
-            },
-          },
           handlers = {
             ["workspace/executeCommand"] = on_workspace_executecommand,
           },

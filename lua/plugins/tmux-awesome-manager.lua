@@ -28,6 +28,13 @@ return {
     }
 
     tmux.run_wk {
+      cmd = "yarn add -D %1",
+      name = "Yarn Add Dev",
+      questions = { { question = "package name: ", required = true } },
+      session_name = "Yarn Add Dev Window",
+    }
+
+    tmux.run_wk {
       cmd = "yarn",
       name = "Yarn",
       session_name = "Yarn Window",

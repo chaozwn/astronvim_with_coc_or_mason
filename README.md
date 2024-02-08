@@ -14,8 +14,8 @@ Currently supports development in TypeScript,Rust,Python,Go,Vue.
 - Typescript: "typescript-tools.nvim"
 - Rust: "mrcjkb/rustaceanvim"
 - Python: "pylance"
-- Go: "go.nvim"
-- Vue: "volar"
+- Go: "go.nvim" -- support go zero framework
+- Vue: "volar" -- base on `typescript-tools.nvim` and `typescript-vue-plugin`
 
 ## 🛠️ Installation
 
@@ -77,6 +77,12 @@ return {
 
 ```shell
 npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
+```
+
+### Support for vue development
+```shell
+npm i -g typescript-vue-plugin
+npm i -g vue-component-meta
 ```
 
 #### Make a backup of your current nvim and shared folder

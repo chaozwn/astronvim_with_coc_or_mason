@@ -52,7 +52,7 @@
       "selectState<K extends keyof ${1}>(stateKey: K) {",
       "return this._store.pipe(",
       "distinctUntilChanged(),",
-      "map(state => state[stateKey])",
+      "map((state: ${1}) => state[stateKey])",
       ")",
       "}",
       "",

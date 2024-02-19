@@ -1,4 +1,3 @@
-local is_vue_project = require("utils").is_vue_project()
 --TODO: after yarn, diagnostic not refresh
 return {
   {

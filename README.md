@@ -116,7 +116,6 @@ brew tap daipeihust/tap
 brew install im-select
 im-select
 ```
-
 copy result to `im-select.lua`
 
 ```lua

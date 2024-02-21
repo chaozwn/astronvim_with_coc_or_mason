@@ -91,6 +91,9 @@ nvim
 ```
 
 ## Tips
+### Use Lazygit
+`<leader>tl`
+
 ### Install unimatrix
 `<Leader>tm`
 ```shell
@@ -144,6 +147,12 @@ npm i -g vue-component-meta
 ```
 brew install neovide
 neovide .
+```
+
+### Support Lazydocker
+tigger command: `<leader>td`
+```shell
+brew install lazydocker
 ```
 
 

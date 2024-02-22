@@ -61,19 +61,20 @@ return {
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then
         opts.ensure_installed =
-          utils.list_insert_unique(opts.ensure_installed, "javascript", "typescript", "tsx", "jsdoc")
+          utils.list_insert_unique(opts.ensure_installed, { "javascript", "typescript", "tsx", "jsdoc" })
       end
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "tsserver") end,
+    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "tsserver" }) end,
   },
   {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, "prettierd", "eslint_d")
+      opts.ensure_installed =
+        require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd", "eslint_d" })
       if not opts.handlers then opts.handlers = {} end
 
       local has_prettier = function(util)
@@ -112,7 +113,7 @@ return {
   {
     "jay-babu/mason-nvim-dap.nvim",
     optional = true,
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "js") end,
+    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "js" }) end,
   },
   {
     "vuki656/package-info.nvim",

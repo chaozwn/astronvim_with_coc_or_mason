@@ -3,7 +3,7 @@
 templater = jinja
 sql_file_exts = .sql,.sql.j2,.dml,.ddl
 dialect = mysql
-exclude_rules = ambiguous.column_count, structure.column_order, layout.indent, layout.spacing, layout.long_lines, aliasing.column, layout.select_targets
+exclude_rules = ambiguous.column_count, structure.column_order, layout.indent, layout.spacing
 fix_even_unparsable = True
 ignore = parsing
 output_line_length = 200

@@ -2,7 +2,7 @@
   "AstroNvim": { "branch": "v4", "commit": "253bcdcd7a43c70834d5d0708719028428f361df" },
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "f3b3d3446bcbfa62d638b1903ff00a78b2b730a1" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "adaca44ad56bd74ae0e4e500320a7dd6f216650a" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "86dee561c41febe36e4c5e1c09af0fa70c3c3db1" },
   "aerial.nvim": { "branch": "master", "commit": "3748e87a316a68754341cdffcef44fee61dee51c" },
   "arshlib.nvim": { "branch": "master", "commit": "e76e35c927098d07445c72e9416cce243f6aae59" },
   "astrocore": { "branch": "main", "commit": "d8581526b156a5b6ed6fea57badf589cd649bb52" },

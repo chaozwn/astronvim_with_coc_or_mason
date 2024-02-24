@@ -47,7 +47,7 @@ return {
             tsserver_plugins = {
               "@styled/typescript-styled-plugin",
               "typescript-vue-plugin",
-              "vue-component-meta",
+              -- "vue-component-meta",
             },
             expose_as_code_action = "all",
           },
@@ -67,7 +67,9 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "tsserver", "eslint" }) end,
+    opts = function(_, opts)
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "tsserver", "eslint" })
+    end,
   },
   {
     "jay-babu/mason-null-ls.nvim",

@@ -18,10 +18,6 @@ return {
             capabilities = {
               workspace = {
                 didChangeWatchedFiles = { dynamicRegistration = true },
-                workspaceFolders = {
-                  supported = true,
-                  changeNotifications = true,
-                },
               },
             },
             init_options = {

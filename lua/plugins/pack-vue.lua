@@ -1,3 +1,6 @@
+-- if you want to support vue, remove this line
+if true then return {} end
+
 local is_vue_project = require("utils").is_vue_project()
 --TODO: after yarn, diagnostic not refresh
 return {

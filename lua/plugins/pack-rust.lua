@@ -1,6 +1,3 @@
--- if you want to support rust, remove this line
-if true then return {} end
-
 local utils = require "astrocore"
 local function preview_stack_trace()
   local current_line = vim.api.nvim_get_current_line()

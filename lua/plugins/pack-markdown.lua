@@ -11,6 +11,7 @@ return {
                 n = {
                   ["<Leader>lz"] = { "<Cmd>MarkdownPreview<CR>", desc = "Markdown Start Preview" },
                   ["<Leader>lZ"] = { "<Cmd>MarkdownPreviewStop<CR>", desc = "Markdown Stop Preview" },
+                  ["<Leader>lp"] = { "<Cmd>Pastify<CR>", desc = "Markdown Paste Image" },
                 },
               }
             end
@@ -44,5 +45,15 @@ return {
     "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
     ft = "markdown",
+  },
+  {
+    "TobinPalmer/pastify.nvim",
+    cmd = { "Pastify" },
+    opts = {
+      absolute_path = false,
+      apikey = '',
+      local_path = '/assets/imgs/',
+      save = 'local'
+    }
   },
 }

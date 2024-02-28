@@ -93,13 +93,13 @@ return {
         -- <C-n> and <C-p> for navigating snippets
         ["<C-n>"] = cmp.mapping(function()
           if luasnip.jumpable(1) then luasnip.jump(1) end
-        end, { "i", "s" }),
+        end, { "i", "c", "s" }),
         ["<C-p>"] = cmp.mapping(function()
           if luasnip.jumpable(-1) then luasnip.jump(-1) end
-        end, { "i", "s" }),
+        end, { "i", "c", "s" }),
         ["<C-k>"] = cmp.mapping(
           function() cmp.select_prev_item { behavior = cmp.SelectBehavior.Select } end,
-          { "i", "s" }
+          { "i", "c", "s" }
         ),
         ["<C-j>"] = cmp.mapping(function()
           if cmp.visible() then
@@ -107,14 +107,14 @@ return {
           else
             cmp.complete()
           end
-        end, { "i", "s" }),
+        end, { "i", "c", "s" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() and has_words_before() then
             cmp.confirm { select = true }
           else
             fallback()
           end
-        end, { "i", "s" }),
+        end, { "i", "c", "s" }),
         ["<S-Tab>"] = cmp.config.disable,
       },
     })

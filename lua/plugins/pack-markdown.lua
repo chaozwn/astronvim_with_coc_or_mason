@@ -43,17 +43,18 @@ return {
   },
   {
     "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    ft = "markdown",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
   },
   {
     "TobinPalmer/pastify.nvim",
     cmd = { "Pastify" },
     opts = {
       absolute_path = false,
-      apikey = '',
-      local_path = '/assets/imgs/',
-      save = 'local'
-    }
+      apikey = "",
+      local_path = "/assets/imgs/",
+      save = "local",
+    },
   },
 }

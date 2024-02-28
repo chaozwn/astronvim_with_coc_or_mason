@@ -114,7 +114,7 @@ return {
           else
             fallback()
           end
-        end, { "i", "c", "s" }),
+        end, { "i", "s" }),
         ["<S-Tab>"] = cmp.config.disable,
       },
     })

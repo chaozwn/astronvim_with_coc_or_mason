@@ -101,12 +101,17 @@ pip install git+https://github.com/will8211/unimatrix.git
 ```
 ![unimatrix](assets/unimatrix.png) 
 
-
 ### Neovim requirements
 
 ```
 npm install -g neovim
 pip install pynvim
+```
+
+### Markdown Image Paste
+
+```shell
+pip install pillow
 ```
 
 ### Input Auto Switch

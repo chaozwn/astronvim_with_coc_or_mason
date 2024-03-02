@@ -52,6 +52,12 @@ return {
       session_name = "Go mod tidy",
     }
 
+    tmux.run_wk {
+      cmd = "gf run main.go",
+      name = "GoFrame run",
+      session_name = "Goframe run",
+    }
+
     -- keymap
     vim.keymap.set("v", "<leader>t", tmux.send_text_to, { desc = "Send text to a open terminal" }) -- Send text to a open terminal?
     vim.keymap.set("n", "<leader>tk", tmux.kill_all_terms, { desc = "Kill all open terms" }) -- Kill all open terms.

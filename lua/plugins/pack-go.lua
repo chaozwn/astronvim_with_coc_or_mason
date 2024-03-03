@@ -11,6 +11,8 @@ end
 return {
   {
     "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
+    ---@diagnostic disable: missing-fields
     opts = {
       config = {
         gopls = {
@@ -29,6 +31,11 @@ return {
               end
             end
           end,
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = { dynamicRegistration = true },
+            },
+          },
           settings = {
             gopls = {
               gofumpt = true,
@@ -58,6 +65,9 @@ return {
                 unusedwrite = true,
                 useany = true,
               },
+              buildFlags = { "-tags", "integration" },
+              matcher = "Fuzzy",
+              symbolMatcher = "fuzzy",
               usePlaceholders = false,
               completeUnimported = true,
               staticcheck = true,
@@ -151,27 +161,27 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
-      -- disable_defaults = true,
-      lsp_inlay_hints = {
-        enable = false,
-      },
-      diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
-        hdlr = true, -- hook lsp diag handler and send diag to quickfix
-        underline = true,
-        virtual_text = {
-          spacing = 5,
-          severity_limit = "ERROR",
-          severity = {
-            min = vim.diagnostic.severity.ERROR,
-          },
-        },
-        signs = {
-          severity = {
-            min = vim.diagnostic.severity.ERROR,
-          },
-        },
-        update_in_insert = false,
-      },
+      disable_defaults = true,
+      -- lsp_inlay_hints = {
+      --   enable = false,
+      -- },
+      -- diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
+      --   hdlr = true, -- hook lsp diag handler and send diag to quickfix
+      --   underline = true,
+      --   virtual_text = {
+      --     spacing = 5,
+      --     severity_limit = "ERROR",
+      --     severity = {
+      --       min = vim.diagnostic.severity.ERROR,
+      --     },
+      --   },
+      --   signs = {
+      --     severity = {
+      --       min = vim.diagnostic.severity.ERROR,
+      --     },
+      --   },
+      --   update_in_insert = false,
+      -- },
     },
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },

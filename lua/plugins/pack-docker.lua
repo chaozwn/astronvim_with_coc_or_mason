@@ -1,10 +1,10 @@
 local utils = require "astrocore"
-vim.filetype.add {
-  filename = {
-    ["docker-compose.yaml"] = "yaml.docker-compose",
-  },
-}
 return {
+  {
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
+    opts = { filetypes = { filename = { ["docker-compose.yaml"] = "yaml.docker-compose" } } },
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     optional = true,

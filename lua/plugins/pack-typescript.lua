@@ -29,11 +29,10 @@ return {
             "typescript",
             "typescriptreact",
             "typescript.tsx",
+            "vue",
           },
           settings = {
             separate_diagnostic_server = true,
-            -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
-            -- memory limit in megabytes or "auto"(basically no limit)
             tsserver_max_memory = "auto",
             code_lens = "all",
             tsserver_file_preferences = {
@@ -53,8 +52,8 @@ return {
               allowRenameOfImportPath = false,
             },
             tsserver_plugins = {
-              "@styled/typescript-styled-plugin",
               "@vue/typescript-plugin",
+              "@styled/typescript-styled-plugin",
             },
             expose_as_code_action = "all",
           },
@@ -123,8 +122,6 @@ return {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
     },
-    -- enabled = function() return not require("utils").is_vue_project() end,
-    -- ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
     -- get AstroLSP provided options like `on_attach` and `capabilities`
     opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,
   },

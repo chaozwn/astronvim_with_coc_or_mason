@@ -22,6 +22,14 @@ return {
       },
       config = {
         ["typescript-tools"] = { -- enable inlay hints by default for `typescript-tools`
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+          },
           settings = {
             separate_diagnostic_server = true,
             -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
@@ -46,8 +54,7 @@ return {
             },
             tsserver_plugins = {
               "@styled/typescript-styled-plugin",
-              "typescript-vue-plugin",
-              -- "vue-component-meta",
+              "@vue/typescript-plugin",
             },
             expose_as_code_action = "all",
           },
@@ -67,9 +74,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "tsserver", "eslint" })
-    end,
+    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "eslint" }) end,
   },
   {
     "jay-babu/mason-null-ls.nvim",
@@ -119,7 +124,7 @@ return {
       "neovim/nvim-lspconfig",
     },
     -- enabled = function() return not require("utils").is_vue_project() end,
-    ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+    -- ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
     -- get AstroLSP provided options like `on_attach` and `capabilities`
     opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,
   },

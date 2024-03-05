@@ -56,6 +56,10 @@ return {
               "@styled/typescript-styled-plugin",
             },
             expose_as_code_action = "all",
+            jsx_close_tag = {
+              enable = true,
+              filetypes = { "javascriptreact", "typescriptreact" },
+            },
           },
         },
       },

@@ -138,12 +138,12 @@ return {
 ### Support styled-components
 
 ```shell
-npm i -g @styled/typescript-styled-plugin @vue/typescript-plugin 
+npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
 ```
 
 ### Support for vue development
 ```shell
-npm i -g typescript-vue-plugin
+npm i -g @vue/typescript-plugin
 npm i -g vue-component-meta
 ```
 

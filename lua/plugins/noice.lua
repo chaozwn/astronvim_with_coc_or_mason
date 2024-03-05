@@ -16,6 +16,9 @@ return {
     opts = function(_, opts)
       return utils.extend_tbl(opts, {
         lsp = {
+          hover = {
+            silent = true,
+          },
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
           override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -52,7 +55,6 @@ return {
           },
         },
         routes = {
-          { filter = { event = "notify", find = "No information available" }, opts = { skip = true } },
           { filter = { event = "msg_show", find = "DB: Query%s" }, opts = { skip = true } },
           { filter = { event = "msg_show", find = "%swritten" }, opts = { skip = true } },
           { filter = { event = "msg_show", find = "%schange;%s" }, opts = { skip = true } },

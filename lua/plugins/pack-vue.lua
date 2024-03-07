@@ -37,7 +37,7 @@ return {
               plugins = {
                 {
                   name = "@vue/typescript-plugin",
-                  location = "anything",
+                  location = get_npm_global_path() .. "/@vue/typescript-plugin",
                   languages = {
                     "typescript",
                     "vue",

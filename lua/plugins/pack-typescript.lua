@@ -29,6 +29,7 @@ return {
           },
           settings = {
             separate_diagnostic_server = true,
+            complete_function_calls = true,
             tsserver_max_memory = "auto",
             code_lens = "all",
             tsserver_file_preferences = {

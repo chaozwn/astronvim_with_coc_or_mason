@@ -1,5 +1,60 @@
---TODO: after yarn, diagnostic not refresh
+local function get_npm_global_path()
+  local handle = io.popen "npm root -g"
+  local result = handle:read "*a"
+  handle:close()
+  -- 去除结果字符串末尾的换行符
+  result = string.gsub(result, "[\r\n]+$", "")
+  return result
+end
+
+local is_vue_project = require("utils").is_vue_project()
 return {
+  {
+    ---@type LazySpec
+    "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
+    ---@diagnostic disable: missing-fields
+    opts = function(_, opts)
+      local tsserver_handler = opts.handlers.tsserver
+      if not is_vue_project then tsserver_handler = false end
+      return require("astrocore").extend_tbl(opts, {
+        handlers = {
+          tsserver = tsserver_handler,
+        },
+        config = {
+          tsserver = {
+            filetypes = {
+              "javascript",
+              "javascriptreact",
+              "javascript.jsx",
+              "typescript",
+              "typescriptreact",
+              "typescript.tsx",
+              "vue",
+            },
+            init_options = {
+              hostInfo = "neovim",
+              plugins = {
+                {
+                  name = "@vue/typescript-plugin",
+                  location = "anything",
+                  languages = {
+                    "typescript",
+                    "vue",
+                  },
+                },
+              },
+            },
+            capabilities = {
+              workspace = {
+                didChangeWatchedFiles = { dynamicRegistration = true },
+              },
+            },
+          },
+        },
+      })
+    end,
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     optional = true,

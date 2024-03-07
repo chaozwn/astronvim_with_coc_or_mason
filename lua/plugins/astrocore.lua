@@ -3,8 +3,25 @@
 -- AstroCore allows you easy access to customize the default options provided in AstroNvim
 return {
   "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
   opts = function(_, opts)
     local options = require("astrocore").extend_tbl(opts, {
+      diagnostics = {
+        underline = true,
+        virtual_text = {
+          spacing = 5,
+          severity_limit = "WARN",
+          severity = {
+            min = vim.diagnostic.severity.WARN,
+          },
+        },
+        signs = {
+          severity = {
+            min = vim.diagnostic.severity.WARN,
+          },
+        },
+        update_in_insert = false,
+      },
       -- modify core features of AstroNvim
       features = {
         large_buf = { size = 1024 * 100, lines = 10000 }, -- set global limits for large files for disabling features like treesitter

@@ -134,6 +134,7 @@ return {
     cmd = { "TSC" },
     opts = {},
   },
+  { "dmmulroy/ts-error-translator.nvim", opts = {}, ft = { "typescript", "vue" } },
   {
     "mfussenegger/nvim-dap",
     optional = true,

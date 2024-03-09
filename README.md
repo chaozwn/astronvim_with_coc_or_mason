@@ -16,7 +16,7 @@ now,this config supports development in `TypeScript`,`Rust`,`Python`,`Go`,`vue` 
 - ***`Rust`***: `mrcjkb/rustaceanvim`
 - ***`Python`***: `pylance`
 - ***`Go`***: `go.nvim` *-- support go zero framework* 
-- ***`Vue`***: `volar` *-- base on `typescript-tools.nvim` and `typescript-vue-plugin`* 
+- ***`Vue`***: `volar` *-- base on `volar`,`tsserver`,`@vue/typescript-plugin`* 
 - ***`Markdown`***: `iamcco/markdown-preview.nvim`,
 
 

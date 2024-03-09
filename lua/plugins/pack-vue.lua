@@ -7,6 +7,7 @@ local function get_npm_global_path()
   return result
 end
 
+-- TODO: forbid format in vue project and use prettier
 local is_vue_project = require("utils").is_vue_project()
 return {
   {

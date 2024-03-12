@@ -10,13 +10,11 @@ neovim >= `0.9`, recommend `0.9`
 
 ### Features
 
-now,this config supports development in `TypeScript`,`Rust`,`Python`,`Go`,`vue` and `markdown`.
+now,this config supports development in `TypeScript`,`Python`,`Go` and `markdown`.
 
 - ***`Typescript`***: `typescript-tools.nvim`
-- ***`Rust`***: `mrcjkb/rustaceanvim`
 - ***`Python`***: `pylance`
 - ***`Go`***: `go.nvim` *-- support go zero framework* 
-- ***`Vue`***: `volar` *-- base on `volar`,`tsserver`,`@vue/typescript-plugin`* 
 - ***`Markdown`***: `iamcco/markdown-preview.nvim`,
 
 
@@ -139,12 +137,6 @@ return {
 
 ```shell
 npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
-```
-
-### Support for vue development
-```shell
-npm i -g @vue/typescript-plugin
-npm i -g vue-component-meta
 ```
 
 ### Support for neovide

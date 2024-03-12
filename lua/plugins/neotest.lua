@@ -56,10 +56,4 @@ return {
       output = { open_on_run = true },
     },
   },
-  {
-    "catppuccin/nvim",
-    optional = true,
-    ---@type CatppuccinOptions
-    opts = { integrations = { neotest = true } },
-  },
 }

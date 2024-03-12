@@ -63,9 +63,4 @@ return {
     end,
     init = function() vim.g.lsp_handlers_enabled = false end,
   },
-  {
-    "catppuccin/nvim",
-    optional = true,
-    opts = { integrations = { noice = true } },
-  },
 }

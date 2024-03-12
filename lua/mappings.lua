@@ -44,11 +44,6 @@ function M.mappings(maps)
     end
   end
 
-  if is_available "cellular-automaton.nvim" then
-    maps.n["<Leader>um"] = { "<cmd>CellularAutomaton make_it_rain<CR>", desc = "Make it rain" }
-    maps.n["<Leader>uM"] = { "<cmd>CellularAutomaton game_of_life<CR>", desc = "Game of life" }
-  end
-
   -- telescope plugin mappings
   if is_available "telescope.nvim" then
     maps.v["<Leader>f"] = { desc = "󰍉 Find" }

@@ -17,6 +17,9 @@ return {
           },
         },
       },
+      handlers = {
+        tsserver = false
+      },
       config = {
         ["typescript-tools"] = { -- enable inlay hints by default for `typescript-tools`
           filetypes = {
@@ -49,7 +52,6 @@ return {
               allowRenameOfImportPath = false,
             },
             tsserver_plugins = {
-              "@vue/typescript-plugin",
               "@styled/typescript-styled-plugin",
             },
             expose_as_code_action = "all",
@@ -125,7 +127,6 @@ return {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
     },
-    enabled = not require("utils").is_vue_project(),
     -- get AstroLSP provided options like `on_attach` and `capabilities`
     opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,
   },

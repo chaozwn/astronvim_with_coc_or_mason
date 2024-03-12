@@ -16,7 +16,7 @@ require("lazy").setup {
     -- import/override with your plugins
     { import = "plugins" },
   },
-  install = { colorscheme = { "catppuccin" } },
+  install = { colorscheme = { "solarized-osaka" } },
   performance = {
     rtp = {
       -- disable some rtp plugins, add more to your liking

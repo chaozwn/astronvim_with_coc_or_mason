@@ -91,65 +91,70 @@ return {
     end,
   },
   {
-    "jay-babu/mason-null-ls.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "gomodifytags",
-        "gofumpt",
-        "iferr",
-        "impl",
-        "goimports",
-      })
-
-      if not opts.handlers then opts.handlers = {} end
-
-      opts.handlers.buf = function()
-        local null_ls = require "null-ls"
-        local buf_buildins = null_ls.builtins.diagnostics.buf
-        table.insert(buf_buildins._opts.args, "--config")
-        table.insert(buf_buildins._opts.args, vim.fn.stdpath "config" .. "/buf.yaml")
-        null_ls.register(null_ls.builtins.diagnostics.buf.with {
-          generator_opts = buf_buildins._opts,
-        })
-        null_ls.register(null_ls.builtins.formatting.buf.with {
-          condition = function() return true end,
-        })
-      end
-
-      vim.api.nvim_create_autocmd("FileType", {
-        desc = "create completion",
-        pattern = "proto",
-        callback = function()
-          vim.keymap.set(
-            "n",
-            "<Leader>uB",
-            create_buf_config_file,
-            { silent = true, noremap = true, buffer = true, desc = "Create buf config file" }
-          )
-        end,
-      })
+      opts.ensure_installed = require("astrocore").list_insert_unique(
+        opts.ensure_installed,
+        { "delve", "gopls", "gomodifytags", "gofumpt", "iferr", "impl", "goimports" }
+      )
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "stevearc/conform.nvim",
     optional = true,
-    opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "gopls" })
-    end,
+    opts = {
+      formatters_by_ft = {
+        go = { "goimports", "gofumpt" },
+      },
+    },
   },
+  -- {
+  --   "jay-babu/mason-null-ls.nvim",
+  --   optional = true,
+  --   opts = function(_, opts)
+  --     opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+  --       "gomodifytags",
+  --       "gofumpt",
+  --       "iferr",
+  --       "impl",
+  --       "goimports",
+  --     })
+  --
+  --     if not opts.handlers then opts.handlers = {} end
+  --
+  --     opts.handlers.buf = function()
+  --       local null_ls = require "null-ls"
+  --       local buf_buildins = null_ls.builtins.diagnostics.buf
+  --       table.insert(buf_buildins._opts.args, "--config")
+  --       table.insert(buf_buildins._opts.args, vim.fn.stdpath "config" .. "/buf.yaml")
+  --       null_ls.register(null_ls.builtins.diagnostics.buf.with {
+  --         generator_opts = buf_buildins._opts,
+  --       })
+  --       null_ls.register(null_ls.builtins.formatting.buf.with {
+  --         condition = function() return true end,
+  --       })
+  --     end
+  --
+  --     vim.api.nvim_create_autocmd("FileType", {
+  --       desc = "create completion",
+  --       pattern = "proto",
+  --       callback = function()
+  --         vim.keymap.set(
+  --           "n",
+  --           "<Leader>uB",
+  --           create_buf_config_file,
+  --           { silent = true, noremap = true, buffer = true, desc = "Create buf config file" }
+  --         )
+  --       end,
+  --     })
+  --   end,
+  -- },
   {
     "leoluz/nvim-dap-go",
     ft = "go",
     dependencies = {
       "mfussenegger/nvim-dap",
-      {
-        "jay-babu/mason-nvim-dap.nvim",
-        optional = true,
-        opts = function(_, opts)
-          opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "delve" })
-        end,
-      },
     },
     opts = {},
   },
@@ -162,26 +167,6 @@ return {
     },
     opts = {
       disable_defaults = true,
-      -- lsp_inlay_hints = {
-      --   enable = false,
-      -- },
-      -- diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
-      --   hdlr = true, -- hook lsp diag handler and send diag to quickfix
-      --   underline = true,
-      --   virtual_text = {
-      --     spacing = 5,
-      --     severity_limit = "ERROR",
-      --     severity = {
-      --       min = vim.diagnostic.severity.ERROR,
-      --     },
-      --   },
-      --   signs = {
-      --     severity = {
-      --       min = vim.diagnostic.severity.ERROR,
-      --     },
-      --   },
-      --   update_in_insert = false,
-      -- },
     },
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },

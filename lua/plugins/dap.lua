@@ -1,7 +1,6 @@
 local utils = require "astrocore"
 local prefix = "<Leader>fd"
 return {
-  { "jay-babu/mason-nvim-dap.nvim", optional = true, init = false },
   {
     "Weissle/persistent-breakpoints.nvim",
     event = "BufEnter",

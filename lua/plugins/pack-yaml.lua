@@ -34,15 +34,23 @@ return {
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    optional = true,
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "yamlls" }) end,
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd" })
+      opts.ensure_installed =
+        require("astrocore").list_insert_unique(opts.ensure_installed, { "yaml-language-server", "prettierd" })
     end,
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        javascript = { "prettierd" },
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        javascriptreact = { "prettierd" },
+      },
+    },
   },
 }

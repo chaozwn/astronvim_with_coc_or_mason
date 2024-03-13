@@ -30,16 +30,22 @@ return {
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    optional = true,
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "marksman" }) end,
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd" })
+      opts.ensure_installed =
+        require("astrocore").list_insert_unique(opts.ensure_installed, { "marksman", "prettierd" })
     end,
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        markdown = { { "prettierd", "prettier" } },
+        ["markdown.mdx"] = { { "prettierd", "prettier" } },
+      },
+    },
   },
   {
     "iamcco/markdown-preview.nvim",

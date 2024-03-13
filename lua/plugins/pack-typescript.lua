@@ -18,18 +18,10 @@ return {
         },
       },
       handlers = {
-        tsserver = false
+        tsserver = false,
       },
       config = {
         ["typescript-tools"] = { -- enable inlay hints by default for `typescript-tools`
-          filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-          },
           settings = {
             separate_diagnostic_server = true,
             complete_function_calls = true,
@@ -75,45 +67,14 @@ return {
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "eslint", "tsserver" })
-    end,
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed =
-        require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd", "eslint-lsp" })
-      if not opts.handlers then opts.handlers = {} end
-
-      local has_prettier = function(util)
-        return require("utils").check_json_key_exists(vim.fn.getcwd() .. "/package.json", "prettier")
-          or util.root_has_file ".prettierrc"
-          or util.root_has_file ".prettierrc.json"
-          or util.root_has_file ".prettierrc.yml"
-          or util.root_has_file ".prettierrc.yaml"
-          or util.root_has_file ".prettierrc.json5"
-          or util.root_has_file ".prettierrc.js"
-          or util.root_has_file ".prettierrc.cjs"
-          or util.root_has_file "prettier.config.js"
-          or util.root_has_file ".prettierrc.mjs"
-          or util.root_has_file "prettier.config.mjs"
-          or util.root_has_file "prettier.config.cjs"
-          or util.root_has_file ".prettierrc.toml"
-      end
-
-      opts.handlers.prettierd = function()
-        local null_ls = require "null-ls"
-        null_ls.register(null_ls.builtins.formatting.prettierd.with { condition = has_prettier })
-      end
+      opts.ensure_installed = require("astrocore").list_insert_unique(
+        opts.ensure_installed,
+        { "typescript-language-server", "eslint-lsp", "prettierd", "js-debug-adapter" }
+      )
     end,
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    optional = true,
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "js" }) end,
   },
   {
     "vuki656/package-info.nvim",
@@ -127,8 +88,12 @@ return {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
     },
+    ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     -- get AstroLSP provided options like `on_attach` and `capabilities`
-    opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,
+    opts = function()
+      local astrolsp_avail, astrolsp = pcall(require, "astrolsp")
+      if astrolsp_avail then return astrolsp.lsp_opts "typescript-tools" end
+    end,
   },
   {
     "dmmulroy/tsc.nvim",
@@ -182,5 +147,14 @@ return {
     "bennypowers/template-literal-comments.nvim",
     ft = { "javascript", "typescript" },
     config = true,
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        yaml = { { "prettierd", "prettier" } },
+      },
+    },
   },
 }

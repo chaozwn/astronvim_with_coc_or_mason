@@ -6,4 +6,3 @@ return {
     set_previous_events = { "InsertEnter", "FocusLost" },
   },
 }
-

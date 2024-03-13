@@ -37,8 +37,15 @@ return {
           generator_opts = buf_diagnostics_buildins._opts,
         })
         local buf_formatting_buildins = null_ls.builtins.formatting.sqlfluff
-        table.insert(buf_formatting_buildins._opts.args, "--config")
-        table.insert(buf_formatting_buildins._opts.args, vim.fn.stdpath "config" .. "/.sqlfluff")
+        -- sqlfluff fix --disable-progress-bar -n -
+        buf_formatting_buildins._opts.args = {
+          "fix",
+          "--disable-progress-bar",
+          "-n",
+          "--config",
+          vim.fn.stdpath "config" .. "/.sqlfluff",
+          "-",
+        }
         null_ls.register(null_ls.builtins.formatting.sqlfluff.with {
           generator_opts = buf_formatting_buildins._opts,
         })

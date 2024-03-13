@@ -1,4 +1,11 @@
 local utils = require "astrocore"
+local markdown_table_change = function()
+  vim.ui.input({ prompt = "Separate Char: " }, function(input)
+    if not input or #input == 0 then return end
+    local execute_command = ([[:'<,'>MakeTable! ]] .. input)
+    vim.cmd(execute_command)
+  end)
+end
 return {
   {
     "AstroNvim/astrolsp",
@@ -12,6 +19,10 @@ return {
                   ["<Leader>lz"] = { "<Cmd>MarkdownPreview<CR>", desc = "Markdown Start Preview" },
                   ["<Leader>lZ"] = { "<Cmd>MarkdownPreviewStop<CR>", desc = "Markdown Stop Preview" },
                   ["<Leader>lp"] = { "<Cmd>Pastify<CR>", desc = "Markdown Paste Image" },
+                },
+                x = {
+                  ["<Leader>lt"] = { [[:'<,'>MakeTable! \t<CR>]], desc = "Markdown csv to table(Default:\\t)" },
+                  ["<Leader>lT"] = { markdown_table_change, desc = "Markdown csv to table with separate char" },
                 },
               }
             end

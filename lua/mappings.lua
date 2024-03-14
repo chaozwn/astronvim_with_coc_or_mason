@@ -283,7 +283,7 @@ function M.mappings(maps)
     if vim.fn.executable "lazydocker" == 1 then
       maps.n["<Leader>td"] = {
         require("utils").toggle_lazy_docker(),
-        desc = "ToggleTerm lazydocker"
+        desc = "ToggleTerm lazydocker",
       }
     end
   end
@@ -324,6 +324,19 @@ function M.mappings(maps)
   if is_available "nvim-treesitter" then
     -- TsInformation
     maps.n["<Leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
+  end
+
+  if is_available "substitute.nvim" then
+    -- substitute, 交换和替换插件, 寄存器中的值，将会替换到s位置, s{motion}
+    maps.n["s"] = { require("substitute").operator, desc = "Replace with {motion}" }
+    maps.n["ss"] = { require("substitute").line, desc = "Replace with line" }
+    maps.n["S"] = { require("substitute").eol, desc = "Replace until eol" }
+    maps.v["p"] = { require("substitute").visual, desc = "Replace in visual" }
+    -- exchange
+    maps.n["sx"] = { require("substitute.exchange").operator, desc = "Exchange with {motion}" }
+    maps.n["sxx"] = { require("substitute.exchange").line, desc = "Exchange with line" }
+    maps.n["sxc"] = { require("substitute.exchange").cancel, desc = "Exchange exchange" }
+    maps.v["X"] = { require("substitute.exchange").visual, desc = "Exchange in visual" }
   end
 
   return maps

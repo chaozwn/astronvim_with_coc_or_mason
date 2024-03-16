@@ -165,6 +165,11 @@ return {
       lsp_inlay_hints = {
         enable = false,
       },
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = { dynamicRegistration = true },
+        },
+      },
       diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
         hdlr = true, -- hook lsp diag handler and send diag to quickfix
         underline = true,

@@ -187,6 +187,9 @@ return {
       lsp_inlay_hints = {
         enable = false,
       },
+      trouble = true,
+      run_in_floaterm = true,
+      luasnip = true,
       capabilities = {
         workspace = {
           didChangeWatchedFiles = { dynamicRegistration = true },

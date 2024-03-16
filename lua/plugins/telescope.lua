@@ -6,6 +6,7 @@ return {
   },
   opts = function(_, opts)
     local actions = require "telescope.actions"
+
     return require("astrocore").extend_tbl(opts, {
       pickers = {
         find_files = {

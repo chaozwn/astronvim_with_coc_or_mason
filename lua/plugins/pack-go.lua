@@ -16,6 +16,33 @@ return {
     opts = {
       config = {
         gopls = {
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = { dynamicRegistration = true },
+            },
+            textDocument = {
+              completion = {
+                completionItem = {
+                  commitCharactersSupport = true,
+                  deprecatedSupport = true,
+                  documentationFormat = { "markdown", "plaintext" },
+                  preselectSupport = true,
+                  insertReplaceSupport = true,
+                  labelDetailsSupport = true,
+                  snippetSupport = true,
+                  resolveSupport = {
+                    properties = {
+                      "documentation",
+                      "details",
+                      "additionalTextEdits",
+                    },
+                  },
+                },
+                contextSupport = true,
+                dynamicRegistration = true,
+              },
+            },
+          },
           on_attach = function(client, _)
             if client.name == "gopls" then
               if not client.server_capabilities.semanticTokensProvider then
@@ -31,11 +58,6 @@ return {
               end
             end
           end,
-          capabilities = {
-            workspace = {
-              didChangeWatchedFiles = { dynamicRegistration = true },
-            },
-          },
           settings = {
             gopls = {
               gofumpt = true,

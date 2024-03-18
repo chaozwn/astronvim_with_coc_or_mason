@@ -34,7 +34,7 @@ return {
         -- hijack_netrw_behavior = "open_default",
         bind_to_cwd = true,
         follow_current_file = {
-          enabled = false,
+          enabled = true,
         },
         filtered_items = {
           always_show = { ".github", ".gitignore" },

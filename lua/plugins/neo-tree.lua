@@ -24,9 +24,18 @@ return {
           -- { source = "remote", display_name = get_icon("Session", 1, true) .. "Remote" },
         },
       },
+      buffers = {
+        bind_to_cwd = true,
+        follow_current_file = {
+          enabled = true,
+        },
+      },
       filesystem = {
         -- hijack_netrw_behavior = "open_default",
-        -- bind_to_cwd = false,
+        bind_to_cwd = true,
+        follow_current_file = {
+          enabled = false,
+        },
         filtered_items = {
           always_show = { ".github", ".gitignore" },
           hide_dotfiles = false,

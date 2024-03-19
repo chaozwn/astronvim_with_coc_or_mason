@@ -19,9 +19,7 @@
   "list.previewHighlightGroup": "Statement",
   "list.nextKeymap": "<C-J>",
   "list.previousKeymap": "<C-K>",
-  "snippets.ultisnips.directories": [
-    "$HOME/.config/nvim/coc_snippets/"
-  ],
+  "snippets.ultisnips.directories": ["$HOME/.config/nvim/coc_snippets/"],
   "suggest.noselect": false,
   "suggest.enablePreselect": true,
   "suggest.autoTrigger": "always",
@@ -70,9 +68,7 @@
     "javascript": "javascriptreact"
   },
   "html.completion.attributeDefaultValue": "empty",
-  "Lua.diagnostics.globals": [
-    "vim"
-  ],
+  "Lua.diagnostics.globals": ["vim"],
   "tsserver.enable": true,
   "tsserver.log": "normal",
   "tsserver.enableJavascript": true,
@@ -88,16 +84,9 @@
   "typescript.referencesCodeLens.enabled": true,
   "typescript.referencesCodeLens.showOnAllFunctions": true,
   "typescript.preferences.includePackageJsonAutoImports": "on",
-  "pairs.enableCharacters": [
-    "(",
-    "[",
-    "{",
-    "'",
-    "\"",
-    "`"
-  ],
+  "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
   "pairs.enableBackspace": true,
   "css.lint.unknownAtRules": "ignore",
   "less.lint.unknownAtRules": "ignore",
-  "scss.lint.unknownAtRules": "ignore"
+  "scss.lint.unknownAtRules": "ignore",
 }

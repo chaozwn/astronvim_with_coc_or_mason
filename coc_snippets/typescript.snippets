@@ -1,0 +1,17 @@
+snippet log "console.log"
+console.log(${0});
+endsnippet
+
+snippet rf "react function component" 
+import { FC, ReactNode } from 'react'
+
+interface ${0}Props {
+  children?: ReactNode
+}
+
+const ${0}: FC<${0}Props> = () => {
+  return <div>${0}</div>
+}
+
+export default ${0} 
+endsnippet

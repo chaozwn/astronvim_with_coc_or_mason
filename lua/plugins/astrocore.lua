@@ -6,51 +6,11 @@ return {
   ---@type AstroCoreOpts
   opts = function(_, opts)
     local options = require("astrocore").extend_tbl(opts, {
-      -- Configure project root detection, check status with `:AstroRootInfo`
-      rooter = {
-        -- list of detectors in order of prevalence, elements can be:
-        --   "lsp" : lsp detection
-        --   string[] : a list of directory patterns to look for
-        --   fun(bufnr: integer): string|string[] : a function that takes a buffer number and outputs detected roots
-        detector = {
-          "lsp", -- highest priority is getting workspace from running language servers
-          { "dirs", "deploy.cmd" },
-          { "_darcs", ".hg", ".bzr", ".svn", ".sln" }, -- next check for a version controlled parent directory
-          { "lua", "MakeFile", "package.json" }, -- lastly check for known project root files
-        },
-        -- ignore things from root detection
-        ignore = {
-          servers = {}, -- list of language server names to ignore (Ex. { "efm" })
-          dirs = {}, -- list of directory patterns (Ex. { "~/.cargo/*" })
-        },
-        -- automatically update working directory (update manually with `:AstroRoot`)
-        autochdir = false,
-        -- scope of working directory to change ("global"|"tab"|"win")
-        scope = "global",
-        -- show notification on every working directory change
-        notify = true,
-      },
-      diagnostics = {
-        underline = true,
-        virtual_text = {
-          spacing = 5,
-          severity_limit = "WARN",
-          severity = {
-            min = vim.diagnostic.severity.WARN,
-          },
-        },
-        signs = {
-          severity = {
-            min = vim.diagnostic.severity.WARN,
-          },
-        },
-        update_in_insert = false,
-      },
       -- modify core features of AstroNvim
       features = {
         large_buf = { size = 1024 * 100, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
         autopairs = true, -- enable autopairs at start
-        cmp = true, -- enable completion at start
+        cmp = false, -- enable completion at start
         highlighturl = true, -- highlight URLs at start
         notifications = true, -- enable notifications at start
       },

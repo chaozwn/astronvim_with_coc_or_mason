@@ -1,8 +1,10 @@
+-- NOTE: https://github.com/fannheyward/telescope-coc.nvim/issues/54
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "nvim-lua/popup.nvim",
     "nvim-lua/plenary.nvim",
+    "fannheyward/telescope-coc.nvim",
   },
   opts = function(_, opts)
     local actions = require "telescope.actions"
@@ -25,7 +27,7 @@ return {
   end,
   config = function(...)
     local telescope = require "telescope"
-    require "astronvim.plugins.configs.telescope"(...)
-    telescope.load_extension "goctl"
+    require "astronvim.plugins.configs.telescope" (...)
+    telescope.load_extension "coc"
   end,
 }

@@ -63,8 +63,8 @@ return {
         -- Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
         -- delays and poor user experience
         opts.options.opt.updatetime = 300
-        opts.options.g.coc_snippet_next = "<c-n>"
-        opts.options.g.coc_snippet_prev = "<c-p>"
+        opts.options.g.coc_snippet_next = "<C-n>"
+        opts.options.g.coc_snippet_prev = "<C-p>"
 
         if not opts.commands then opts.commands = {} end
         opts.commands.Format = { function() vim.fn.CocAction "format" end, desc = "Format file with LSP" }
@@ -89,9 +89,9 @@ return {
           nowait = true,
         }
         maps.n["<C-d>"] =
-          { 'coc#float#has_scroll() ? coc#float#scroll(1) : "\\<C-d>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(1) : "\\<C-d>"', expr = true, silent = true, nowait = true }
         maps.n["<C-u>"] =
-          { 'coc#float#has_scroll() ? coc#float#scroll(0) : "\\<C-u>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(0) : "\\<C-u>"', expr = true, silent = true, nowait = true }
         maps.i["<C-d>"] = {
           'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "\\<C-d>"',
           expr = true,
@@ -105,9 +105,9 @@ return {
           nowait = true,
         }
         maps.v["<C-d>"] =
-          { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
         maps.v["<C-u>"] =
-          { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
         maps.n["[d"] = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
         maps.n["]d"] = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
         maps.n["gD"] = { "<Cmd>Telescope coc declarations<CR>", desc = "Show the declaration of current symbol" }
@@ -218,28 +218,26 @@ return {
   },
   {
     "honza/vim-snippets",
-    dependencies = {
-      "neoclide/coc.nvim",
-    },
     event = "BufEnter",
   },
   -- disable core lsp plugins
-  { "AstroNvim/astrolsp", enabled = false },
-  { "folke/neoconf.nvim", enabled = false },
-  { "folke/neodev.nvim", enabled = false },
-  { "jay-babu/mason-null-ls.nvim", enabled = false },
-  { "neovim/nvim-lspconfig", enabled = false },
-  { "nvimtools/none-ls.nvim", enabled = false },
-  { "stevearc/aerial.nvim", enabled = false },
+  { "AstroNvim/astrolsp",                enabled = false },
+  { "folke/neoconf.nvim",                enabled = false },
+  { "folke/neodev.nvim",                 enabled = false },
+  { "jay-babu/mason-null-ls.nvim",       enabled = false },
+  { "neovim/nvim-lspconfig",             enabled = false },
+  { "nvimtools/none-ls.nvim",            enabled = false },
+  { "stevearc/aerial.nvim",              enabled = false },
   { "williamboman/mason-lspconfig.nvim", enabled = false },
   -- cmp
-  { "hrsh7th/cmp-buffer", enabled = false },
-  { "hrsh7th/cmp-nvim-lsp", enabled = false },
-  { "hrsh7th/cmp-path", enabled = false },
-  { "hrsh7th/nvim-cmp", enabled = false },
-  { "rcarriga/cmp-dap", enabled = false },
-  { "saadparwaiz1/cmp_luasnip", enabled = false },
+  { "hrsh7th/cmp-buffer",                enabled = false },
+  { "hrsh7th/cmp-nvim-lsp",              enabled = false },
+  { "hrsh7th/cmp-path",                  enabled = false },
+  { "hrsh7th/nvim-cmp",                  enabled = false },
+  { "rcarriga/cmp-dap",                  enabled = false },
+  { "saadparwaiz1/cmp_luasnip",          enabled = false },
   -- luaship
-  { "L3MON4D3/LuaSnip", enabled = false },
-  { "rafamadriz/friendly-snippets", enabled = false },
+  { "L3MON4D3/LuaSnip",                  enabled = false },
+  { "rafamadriz/friendly-snippets",      enabled = false },
+  { "folke/neoconf.nvim",                enabled = false }
 }

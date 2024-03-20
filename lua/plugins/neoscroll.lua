@@ -1,1 +1,1 @@
-return { "karb94/neoscroll.nvim", event = "VeryLazy", opts = {} }
+return { "karb94/neoscroll.nvim", enabled = false, event = "VeryLazy", opts = {} }

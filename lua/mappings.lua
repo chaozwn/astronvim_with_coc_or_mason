@@ -299,13 +299,13 @@ function M.mappings(maps)
   -- 多个窗口之间跳转
   maps.n["<Leader>we"] = { "<C-w>=", desc = "Make all window equal" }
   maps.n["<TAB>"] =
-    { function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
+  { function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
   maps.n["<S-TAB>"] = {
     function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
     desc = "Previous buffer",
   }
   maps.n["<Leader>bo"] =
-    { function() require("astrocore.buffer").close_all(true) end, desc = "Close all buffers except current" }
+  { function() require("astrocore.buffer").close_all(true) end, desc = "Close all buffers except current" }
   maps.n["<Leader>ba"] = { function() require("astrocore.buffer").close_all() end, desc = "Close all buffers" }
   maps.n["<Leader>bc"] = { function() require("astrocore.buffer").close() end, desc = "Close buffer" }
   maps.n["<Leader>bC"] = { function() require("astrocore.buffer").close(0, true) end, desc = "Force close buffer" }
@@ -326,6 +326,98 @@ function M.mappings(maps)
     maps.n["<Leader>lT"] = { "<cmd>TSInstallInfo<cr>", desc = "Tree sitter Information" }
   end
 
+
+  if is_available("coc.nvim") then
+    maps.i["<TAB>"] = {
+      'coc#pum#visible() ? coc#pum#confirm() : "<TAB>"',
+      expr = true,
+      silent = true,
+      nowait = true,
+    }
+    maps.i["<C-j>"] = {
+      'coc#pum#visible() ? coc#pum#next(0) : "<C-j>"',
+      expr = true,
+      silent = true,
+      nowait = true,
+    }
+    maps.i["<C-k>"] = {
+      'coc#pum#visible() ? coc#pum#prev(0) : "<C-k>"',
+      expr = true,
+      silent = true,
+      nowait = true,
+    }
+    maps.n["<C-d>"] = {
+      'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"',
+      expr = true,
+      silent = true,
+      nowait = true,
+    }
+    maps.n["<C-u>"] = {
+      'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"',
+      expr = true,
+      silent = true,
+      nowait = true,
+    }
+    maps.i["<C-d>"] = {
+      'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-d>"',
+      expr = true,
+      silent = true,
+      nowait = true,
+    }
+    maps.i["<C-u>"] = {
+      'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<C-u>"',
+      expr = true,
+      silent = true,
+      nowait = true,
+    }
+    maps.v["<C-d>"] = {
+      'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"',
+      expr = true,
+      silent = true,
+      nowait = true
+    }
+    maps.v["<C-u>"] = {
+      'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"',
+      expr = true,
+      silent = true,
+      nowait = true
+    }
+    maps.n["[d"] = { "<Plug>(coc-diagnostic-prev)", desc = "Previous diagnostic" }
+    maps.n["]d"] = { "<Plug>(coc-diagnostic-next)", desc = "Next diagnostic" }
+    maps.n["gD"] = { "<Cmd>Telescope coc declarations<CR>", desc = "Show the declaration of current symbol" }
+    maps.n["gI"] = { "<Cmd>Telescope coc implementations<CR>", desc = "Show the implementation of current symbol" }
+    maps.n["gT"] = { "<Cmd>Telescope coc type_definitions<CR>", desc = "Show the definition of current type" }
+    maps.n["gd"] = { "<Cmd>Telescope coc definitions<CR>", desc = "Show the definition of current symbol" }
+    maps.n["gr"] = { "<Cmd>Telescope coc references<CR>", desc = "Show the references of current symbol" }
+    maps.n["<Leader>lR"] = maps.n.gr
+    maps.n["<Leader>la"] = { "<Cmd>Telescope coc code_actions<CR>", desc = "LSP code action" }
+    maps.n["<Leader>lc"] = { "<Cmd>CocConfig<CR>", desc = "Configuration" }
+    maps.n["<Leader>lf"] = { function() vim.cmd.Format() end, desc = "Format buffer" }
+    maps.n["<Leader>lm"] = { "<Cmd>CocList marketplace<CR>", desc = "Marketplace" }
+    maps.n["<Leader>lr"] = { "<Plug>(coc-rename)", desc = "Rename current symbol" }
+    maps.n["<Leader>ls"] = { "<Cmd>Telescope coc document_symbols<CR>", desc = "Search symbols" }
+    maps.n["<Leader>lS"] = { "<Cmd>CocOutline<CR>", desc = "Symbols outline" }
+    -- TODO: add to telescope
+    maps.n["<Leader>lL"] = { "<Plug>(coc-codelens-action)", desc = "LSP CodeLens run" }
+    maps.n["<Leader>uL"] = { "<Cmd>CocCommand document.toggleCodeLens<CR>", desc = "Toggle CodeLens" }
+    maps.n["<Leader>uh"] = { "<Cmd>CocCommand document.toggleInlayHint<CR>", desc = "Toggle LSP inlay hints" }
+    maps.x["<Leader>lF"] = { "<Plug>(coc-format-selected)", desc = "Format selection" }
+    maps.n["<leader>lW"] = { "<Cmd>Telescope coc workspace_diagnostics<CR>", desc = "Show workspace diagnostics" }
+    maps.n["<leader>lG"] = { "<Cmd>Telescope coc workspace_symbols<CR>", desc = "Search workspace symbols" }
+    maps.n["K"] = {
+      function()
+        local cw = vim.fn.expand "<cword>"
+        if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
+          vim.api.nvim_command("h " .. cw)
+        elseif vim.api.nvim_eval "coc#rpc#ready()" then
+          vim.fn.CocActionAsync "doHover"
+        else
+          vim.api.nvim_command("!" .. vim.o.keywordprg .. " " .. cw)
+        end
+      end,
+      desc = "Hover symbol details",
+    }
+  end
   return maps
 end
 

@@ -72,35 +72,35 @@ return {
         if not opts.mappings then opts.mappings = require("astrocore").empty_map_table() end
         local maps = assert(opts.mappings)
         maps.i["<TAB>"] = {
-          'coc#pum#visible() ? coc#pum#confirm() :  "\\<TAB>"',
+          'coc#pum#visible() ? coc#pum#confirm() :  "<TAB>"',
           expr = true,
           silent = true,
           nowait = true,
         }
         maps.i["<C-j>"] = {
-          'coc#pum#visible() ? coc#pum#next(0) : "\\<C-j>"',
+          'coc#pum#visible() ? coc#pum#next(0) : "<C-j>"',
           expr = true,
           silent = true,
           nowait = true,
         }
         maps.i["<C-k>"] = {
-          'coc#pum#visible() ? coc#pum#prev(0) : "\\<C-k>"',
+          'coc#pum#visible() ? coc#pum#prev(0) : "<C-k>"',
           expr = true,
           silent = true,
           nowait = true,
         }
         maps.n["<C-d>"] =
-        { 'coc#float#has_scroll() ? coc#float#scroll(1) : "\\<C-d>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', expr = true, silent = true, nowait = true }
         maps.n["<C-u>"] =
-        { 'coc#float#has_scroll() ? coc#float#scroll(0) : "\\<C-u>"', expr = true, silent = true, nowait = true }
+        { 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', expr = true, silent = true, nowait = true }
         maps.i["<C-d>"] = {
-          'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "\\<C-d>"',
+          'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<C-d>"',
           expr = true,
           silent = true,
           nowait = true,
         }
         maps.i["<C-u>"] = {
-          'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "\\<C-u>"',
+          'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<C-u>"',
           expr = true,
           silent = true,
           nowait = true,
@@ -146,76 +146,6 @@ return {
         }
       end,
     },
-  },
-  {
-    "rebelot/heirline.nvim",
-    opts = function(_, opts)
-      local statusline, status = opts.statusline, require "astroui.status"
-      local function coc_diagnostic(coc_type, diagnostic_type)
-        return {
-          provider = function(self)
-            local count = vim.b[self.bufnr or 0].coc_diagnostic_info[coc_type]
-            return status.utils.stylize(
-              count ~= 0 and tostring(count) or "",
-              { icon = { kind = "Diagnostic" .. diagnostic_type, padding = { left = 1, right = 1 } } }
-            )
-          end,
-          hl = { fg = "diag_" .. diagnostic_type:upper() },
-        }
-      end
-      statusline[5] = status.component.builder { -- diagnostics
-        coc_diagnostic("error", "Error"),
-        coc_diagnostic("warning", "Warn"),
-        coc_diagnostic("information", "Info"),
-        coc_diagnostic("hint", "Hint"),
-        update = { "User", pattern = "CocDiagnosticChange" },
-        init = status.init.update_events { "BufEnter" },
-        surround = {
-          separator = "right",
-          condition = function()
-            for _, count in pairs(vim.b.coc_diagnostic_info or {}) do
-              if type(count) == "number" and count > 0 then return true end
-            end
-            return false
-          end,
-        },
-        on_click = {
-          name = "coc_diagnostic",
-          callback = function()
-            if is_available "telescope.nvim" then
-              if is_available "telescope-coc.nvim" then
-                vim.defer_fn(function() require("telescope").extensions.coc.diagnostics() end, 100)
-              end
-            else
-              vim.schedule(vim.cmd.CocDiagnostic)
-            end
-          end,
-        },
-      }
-      statusline[9] = status.component.builder { -- status
-        {
-          provider = function()
-            if vim.g.coc_status then
-              return status.utils.stylize(" ", { icon = { kind = "ActiveLSP", padding = { left = 1 } } })
-            end
-          end,
-          on_click = {
-            name = "coc_services",
-            callback = vim.schedule_wrap(function() vim.cmd.CocList "services" end),
-          },
-        },
-        {
-          provider = function() return vim.g.coc_status end,
-          on_click = { name = "coc_status", callback = function() vim.schedule(vim.cmd.CocInfo) end },
-        },
-        update = {
-          "User",
-          pattern = "CocStatusChange",
-          callback = function() vim.schedule(vim.cmd.redrawstatus) end,
-        },
-        surround = { separator = "right", condition = function() return vim.g.coc_status ~= nil end },
-      }
-    end,
   },
   {
     "honza/vim-snippets",

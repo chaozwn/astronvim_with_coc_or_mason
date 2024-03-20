@@ -55,6 +55,7 @@ return {
           "coc-eslint",
           "@yaegassy/coc-tailwindcss3",
           "coc-yaml",
+          "@yaegassy/coc-volar"
         }
         -- Some servers have issues with backup files, see #649
         opts.options.opt.backup = false
@@ -193,10 +194,6 @@ return {
       }
       statusline[9] = status.component.builder { -- status
         {
-          provider = function() return vim.g.coc_status end,
-          on_click = { name = "coc_status", callback = function() vim.schedule(vim.cmd.CocInfo) end },
-        },
-        {
           provider = function()
             if vim.g.coc_status then
               return status.utils.stylize(" ", { icon = { kind = "ActiveLSP", padding = { left = 1 } } })
@@ -206,6 +203,10 @@ return {
             name = "coc_services",
             callback = vim.schedule_wrap(function() vim.cmd.CocList "services" end),
           },
+        },
+        {
+          provider = function() return vim.g.coc_status end,
+          on_click = { name = "coc_status", callback = function() vim.schedule(vim.cmd.CocInfo) end },
         },
         update = {
           "User",

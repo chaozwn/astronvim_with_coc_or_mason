@@ -9,10 +9,10 @@ return {
       -- modify core features of AstroNvim
       features = {
         large_buf = { size = 1024 * 100, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-        autopairs = true, -- enable autopairs at start
-        cmp = false, -- enable completion at start
-        highlighturl = true, -- highlight URLs at start
-        notifications = true, -- enable notifications at start
+        autopairs = true,                                 -- enable autopairs at start
+        cmp = false,                                      -- enable completion at start
+        highlighturl = true,                              -- highlight URLs at start
+        notifications = true,                             -- enable notifications at start
       },
       autocmds = {
         auto_turnoff_paste = {

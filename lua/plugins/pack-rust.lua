@@ -45,6 +45,12 @@ return {
           end,
           settings = {
             ["rust-analyzer"] = {
+              -- completion = {
+              --   autoimport = {
+              --     enable = true,
+              --   },
+              --   enableSnippets = true,
+              -- },
               cargo = {
                 allFeatures = true,
                 loadOutDirsFromCheck = true,
@@ -100,7 +106,7 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "^3",
+    version = "^4",
     ft = "rust",
     opts = function()
       local adapter
@@ -122,15 +128,13 @@ return {
         end
         adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
       else
-        ---@diagnostic disable-next-line: missing-parameter
         adapter = cfg.get_codelldb_adapter()
       end
-      return {
-        server = require("astrolsp").lsp_opts "rust_analyzer",
-        dap = { adapter = adapter },
-      }
+
+      local astrolsp_avail, astrolsp = pcall(require, "astrolsp")
+      return { server = astrolsp_avail and astrolsp.lsp_opts "rust_analyzer", dap = { adapter = adapter } }
     end,
-    config = function(_, opts) vim.g.rustaceanvim = opts end,
+    config = function(_, opts) vim.g.rustaceanvim = require("astrocore").extend_tbl(opts, vim.g.rustaceanvim) end,
   },
   {
     "Saecki/crates.nvim",
@@ -156,5 +160,14 @@ return {
         name = "crates.nvim",
       },
     },
+  },
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    opts = function(_, opts)
+      if not opts.adapters then opts.adapters = {} end
+      local rustaceanvim_avail, rustaceanvim = pcall(require, "rustaceanvim.neotest")
+      if rustaceanvim_avail then table.insert(opts.adapters, rustaceanvim) end
+    end,
   },
 }

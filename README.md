@@ -10,12 +10,13 @@ neovim >= `0.9`, recommend `0.9`
 
 ### Features
 
-now,this config supports development in `TypeScript`,`Python`,`Go` and `markdown`.
+now,this config supports development in `TypeScript`,`Python`,`Go`, `Rust` and `markdown`.
 
 - ***`Typescript`***: `typescript-tools.nvim`
 - ***`Python`***: `pylance`
 - ***`Go`***: `go.nvim` *-- support go zero framework* 
 - ***`Markdown`***: `iamcco/markdown-preview.nvim`,
+- ***`Rust`***: `mrcjkb/rustaceanvim`
 
 
 ### workflow screenshot

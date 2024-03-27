@@ -15,7 +15,7 @@ return {
     init = function(plugin) require("astrocore").on_load("mason.nvim", plugin.name) end,
     opts = {
       ensure_installed = {
-        { "pylance", version = "2023.12.101" }, -- last known working version
+        { "pylance", version = "2024.3.2" }, -- last known working version
       },
     },
     config = function(_, opts)

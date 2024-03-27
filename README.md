@@ -120,18 +120,12 @@ brew tap daipeihust/tap
 brew install im-select
 im-select
 ```
-copy result to `im-select.lua`
+run `im-select` & copy result to `im-select.lua`
 
 ```lua
-return {
-  "chaozwn/im-select.nvim",
-  lazy = false,
-  opts = {
-    -- modify 'im.rime.inputmethod.Squirrel.Hans' to your own input method
-    default_main_select = "im.rime.inputmethod.Squirrel.Hans",
-    set_previous_events = { "InsertEnter", "FocusLost" },
-  },
-}
+-- update your self input method here
+Mac.zhCN = "im.rime.inputmethod.Squirrel.Hans" -- there
+Mac.en =  "com.apple.keylayout.ABC"
 ```
 
 ### Support styled-components

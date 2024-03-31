@@ -34,7 +34,7 @@ return {
             separate_diagnostic_server = true,
             complete_function_calls = true,
             tsserver_max_memory = "auto",
-            code_lens = "all",
+            code_lens = "off",
             tsserver_file_preferences = {
               includeInlayParameterNameHints = "all",
               includeInlayParameterNameHintsWhenArgumentMatchesName = false,

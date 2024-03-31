@@ -45,12 +45,12 @@ return {
           end,
           settings = {
             ["rust-analyzer"] = {
-              -- completion = {
-              --   autoimport = {
-              --     enable = true,
-              --   },
-              --   enableSnippets = true,
-              -- },
+              completion = {
+                autoimport = {
+                  enable = true,
+                },
+                enableSnippets = true,
+              },
               cargo = {
                 allFeatures = true,
                 loadOutDirsFromCheck = true,

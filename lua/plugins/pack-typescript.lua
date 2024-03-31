@@ -22,6 +22,7 @@ return {
       },
       config = {
         ["typescript-tools"] = { -- enable inlay hints by default for `typescript-tools`
+          -- on_attach = function(client, bufnr) client.server_capabilities.semanticTokensProvider = false end,
           filetypes = {
             "javascript",
             "javascriptreact",
@@ -29,6 +30,7 @@ return {
             "typescript",
             "typescriptreact",
             "typescript.tsx",
+            -- "vue",
           },
           settings = {
             separate_diagnostic_server = true,
@@ -53,6 +55,7 @@ return {
             },
             tsserver_plugins = {
               "@styled/typescript-styled-plugin",
+              -- "@vue/typescript-plugin",
             },
             expose_as_code_action = "all",
             jsx_close_tag = {

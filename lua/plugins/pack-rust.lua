@@ -45,6 +45,10 @@ return {
           end,
           settings = {
             ["rust-analyzer"] = {
+              cachePriming = {
+                enable = true,
+                numThreads = 2,
+              },
               completion = {
                 autoimport = {
                   enable = true,

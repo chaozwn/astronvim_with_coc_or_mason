@@ -1,6 +1,6 @@
 # AstroNvim Template
 
-**NOTE:** This is for AstroNvim v4+
+**NOTE:** This is the latest v4 configuration; everyone can use it with confidence.
 
 hello guys!
 in my workflow,I use `wezterm` as my terminal, and I also use `tmux` to provide me with multiple terminal windows, `yazi` as terminal file manager. btw this config support neovide and don't need other configs.

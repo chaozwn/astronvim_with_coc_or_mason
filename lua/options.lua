@@ -15,7 +15,4 @@ vim.opt.thesaurus = vim.fn.expand "~/.config/nvim/spell/mthesaur.txt"
 vim.opt.wrap = true -- soft wrap lines
 vim.opt.scrolloff = 5 -- keep 3 lines when scrolling
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = ""
 vim.g.resession_enabled = true
-vim.g.autoformat = false

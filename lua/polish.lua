@@ -25,7 +25,7 @@ vim.filetype.add {
     yml = yaml_ft,
     yaml = yaml_ft,
     json = "jsonc",
-    api = "goctl"
+    api = "goctl",
   },
   filename = {
     [".eslintrc.json"] = "jsonc",
@@ -37,7 +37,7 @@ vim.filetype.add {
   },
 }
 
-local im_select = require("im-select")
+local im_select = require "im-select"
 
 vim.api.nvim_create_augroup("im-select", { clear = true })
 

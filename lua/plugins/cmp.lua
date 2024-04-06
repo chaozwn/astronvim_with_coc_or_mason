@@ -27,7 +27,7 @@ local function mapping()
     end, { "i", "c" }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() and has_words_before() then
-        cmp.confirm { select = true }
+        cmp.confirm()
       else
         fallback()
       end

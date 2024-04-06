@@ -29,14 +29,12 @@ local function mapping(is_cmdline)
     ["<Tab>"] = cmp.mapping(function(fallback)
       if is_cmdline then
         if cmp.visible() then
-          print "is_cmdline is true"
           cmp.confirm()
         else
           fallback()
         end
       else
         if cmp.visible() and has_words_before() then
-          print "is_cmdline is false"
           cmp.confirm { select = true }
         else
           fallback()

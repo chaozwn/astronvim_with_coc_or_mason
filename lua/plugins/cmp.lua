@@ -3,7 +3,8 @@ local function has_words_before()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
-local function mapping()
+local function mapping(is_cmdline)
+  if is_cmdline == nil then is_cmdline = false end
   local cmp = require "cmp"
   local luasnip = require "luasnip"
 
@@ -26,10 +27,20 @@ local function mapping()
       end
     end, { "i", "c" }),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() and has_words_before() then
-        cmp.confirm()
+      if is_cmdline then
+        if cmp.visible() then
+          print "is_cmdline is true"
+          cmp.confirm()
+        else
+          fallback()
+        end
       else
-        fallback()
+        if cmp.visible() and has_words_before() then
+          print "is_cmdline is false"
+          cmp.confirm { select = true }
+        else
+          fallback()
+        end
       end
     end, { "i", "c" }),
     ["<S-Tab>"] = cmp.config.disable,
@@ -80,7 +91,7 @@ return {
           },
           {
             type = ":",
-            mapping = mapping(),
+            mapping = mapping(true),
             sources = cmp.config.sources({
               { name = "path" },
             }, {

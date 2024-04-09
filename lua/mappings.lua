@@ -20,6 +20,11 @@ function M.mappings(maps)
     maps.n["<Leader>tT"] = { function() utils.toggle_term_cmd "btm" end, desc = "ToggleTerm btm" }
   end
 
+  maps.n["n"] = { "nzz" }
+  maps.n["N"] = { "Nzz" }
+  maps.v["n"] = { "nzz" }
+  maps.v["N"] = { "Nzz" }
+
   if vim.g.neovide then
     if system == "Darwin" then
       vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key

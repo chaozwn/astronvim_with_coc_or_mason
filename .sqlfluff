@@ -1,22 +1,39 @@
 # Reference: https://docs.sqlfluff.com/en/stable/rules.html
 [sqlfluff]
-templater = jinja
-sql_file_exts = .sql,.sql.j2,.dml,.ddl
-dialect = mysql
-exclude_rules = ambiguous.column_count, structure.column_order, layout.indent
-fix_even_unparsable = True
-ignore = parsing
-output_line_length = 200
-max_line_length = 200
+templater = dbt
+# This change (from jinja to dbt templater) will make linting slower
+# because linting will first compile dbt code into data warehouse code.
+runaway_limit = 10
+max_line_length = 80
+indent_unit = space
 
 [sqlfluff:indentation]
-indented_joins = False
-indented_using_on = True
-template_blocks_indent = False
+tab_space_size = 4
 
-[sqlfluff:templater]
-unwrap_wrapped_queries = True
+[sqlfluff:layout:type:comma]
+spacing_before = touch
+line_position = trailing
 
-[sqlfluff:templater:jinja]
-apply_dbt_builtins = True
+[sqlfluff:rules:capitalisation.keywords] 
+capitalisation_policy = lower
 
+[sqlfluff:rules:aliasing.table]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.column]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.expression]
+allow_scalar = False
+
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = lower
+
+[sqlfluff:rules:ambiguous.column_references]  # Number in group by
+group_by_and_order_by_style = implicit

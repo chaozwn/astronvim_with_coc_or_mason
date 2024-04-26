@@ -31,7 +31,7 @@ return {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sqlfluff" })
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sqlfluff", "sqlfmt" })
 
       if not opts.handlers then opts.handlers = {} end
 
@@ -43,10 +43,8 @@ return {
         null_ls.register(null_ls.builtins.diagnostics.sqlfluff.with {
           generator_opts = buf_diagnostics_buildins._opts,
         })
-        local buf_formatting_buildins = null_ls.builtins.formatting.sqlfluff
-        table.insert(buf_formatting_buildins._opts.args, "--config")
-        table.insert(buf_formatting_buildins._opts.args, vim.fn.stdpath "config" .. "/.sqlfluff")
-        null_ls.register(null_ls.builtins.formatting.sqlfluff.with {
+        local buf_formatting_buildins = null_ls.builtins.formatting.sqlfmt
+        null_ls.register(null_ls.builtins.formatting.sqlfmt.with {
           generator_opts = buf_formatting_buildins._opts,
         })
       end

@@ -17,50 +17,30 @@ return {
           },
         },
       },
-      handlers = {
-        tsserver = false,
-      },
       config = {
-        ["typescript-tools"] = { -- enable inlay hints by default for `typescript-tools`
-          -- on_attach = function(client, bufnr) client.server_capabilities.semanticTokensProvider = false end,
-          filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-            -- "vue",
-          },
+        vtsls = {
           settings = {
-            separate_diagnostic_server = true,
-            complete_function_calls = true,
-            tsserver_max_memory = "auto",
-            code_lens = "off",
-            tsserver_file_preferences = {
-              includeInlayParameterNameHints = "all",
-              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-              includeInlayFunctionParameterTypeHints = false,
-              includeInlayVariableTypeHints = false,
-              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-              includeCompletionsForModuleExports = true,
-              quotePreference = "auto",
+            typescript = {
+              inlayHints = {
+                parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = false },
+                parameterTypes = { enabled = true },
+                variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                enumMemberValues = { enabled = true },
+              },
+              updateImportsOnFileMove = { enabled = "always" },
             },
-            tsserver_format_options = {
-              allowIncompleteCompletions = false,
-              allowRenameOfImportPath = false,
-            },
-            tsserver_plugins = {
-              "@styled/typescript-styled-plugin",
-              -- "@vue/typescript-plugin",
-            },
-            expose_as_code_action = "all",
-            jsx_close_tag = {
-              enable = true,
-              filetypes = { "javascriptreact", "typescriptreact" },
+            javascript = {
+              inlayHints = {
+                parameterNames = { enabled = "all", suppressWhenArgumentMatchesName = false },
+                parameterTypes = { enabled = true },
+                variableTypes = { enabled = true, suppressWhenTypeMatchesName = false },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                enumMemberValues = { enabled = true },
+              },
+              updateImportsOnFileMove = { enabled = "always" },
             },
           },
         },
@@ -80,7 +60,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "eslint", "tsserver" })
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "eslint", "vtsls" })
     end,
   },
   {
@@ -123,15 +103,6 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
     event = "BufRead package.json",
-  },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "neovim/nvim-lspconfig",
-    },
-    -- get AstroLSP provided options like `on_attach` and `capabilities`
-    opts = function() return require("astrolsp").lsp_opts "typescript-tools" end,
   },
   {
     "dmmulroy/tsc.nvim",

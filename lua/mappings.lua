@@ -6,6 +6,10 @@ local M = {}
 function M.mappings(maps)
   maps.n["<Leader>n"] = false
 
+  maps.n["<Leader>lA"] = {
+    function() vim.lsp.buf.code_action { context = { only = { "source", "refactor", "quickfix" } } } end,
+    desc = "Lsp All Action",
+  }
   maps.n.n = { require("utils").better_search "n", desc = "Next search" }
   maps.n.N = { require("utils").better_search "N", desc = "Previous search" }
 

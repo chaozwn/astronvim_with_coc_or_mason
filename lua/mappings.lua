@@ -104,6 +104,7 @@ function M.mappings(maps)
       function() require("dapui").float_element() end,
       desc = "Open Dap UI Float Element",
     }
+
     if is_available "persistent-breakpoints.nvim" then
       maps.n["<F9>"] = {
         function() require("persistent-breakpoints.api").toggle_breakpoint() end,
@@ -241,8 +242,6 @@ function M.mappings(maps)
 
   -- close search highlight
   maps.n["<Leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
-
-  maps.n["<Leader><Leader>"] = { desc = "󰍉 User" }
 
   maps.n["H"] = { "^", desc = "Go to start without blank" }
   maps.n["L"] = { "$", desc = "Go to end without blank" }

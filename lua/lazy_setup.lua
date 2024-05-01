@@ -13,7 +13,7 @@ require("lazy").setup({
   { import = "plugins" },
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
-  install = { colorscheme = { "solarized-osaka" } },
+  install = {},
   ui = { backdrop = 100 },
   performance = {
     rtp = {

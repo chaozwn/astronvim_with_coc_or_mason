@@ -43,13 +43,20 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     optional = true,
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "marksman" }) end,
+    opts = function(_, opts)
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "marksman", "markdownlint" })
+    end,
   },
   {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd" })
+
+      local nls = require "null-ls"
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        nls.builtins.diagnostics.markdownlint,
+      })
     end,
   },
   {
@@ -67,5 +74,32 @@ return {
       local_path = "/assets/imgs/",
       save = "local",
     },
+  },
+  {
+    "lukas-reineke/headlines.nvim",
+    opts = function()
+      local opts = {}
+      for _, ft in ipairs { "markdown", "norg", "rmd", "org" } do
+        opts[ft] = {
+          headline_highlights = {},
+          -- disable bullets for now. See https://github.com/lukas-reineke/headlines.nvim/issues/66
+          bullets = {},
+        }
+        for i = 1, 6 do
+          local hl = "Headline" .. i
+          vim.api.nvim_set_hl(0, hl, { link = "Headline", default = true })
+          table.insert(opts[ft].headline_highlights, hl)
+        end
+      end
+      return opts
+    end,
+    ft = { "markdown", "norg", "rmd", "org" },
+    config = function(_, opts)
+      -- PERF: schedule to prevent headlines slowing down opening a file
+      vim.schedule(function()
+        require("headlines").setup(opts)
+        require("headlines").refresh()
+      end)
+    end,
   },
 }

@@ -44,8 +44,10 @@ return {
     optional = true,
     opts = function(_, opts)
       -- lsp
-      opts.ensure_installed =
-        utils.list_insert_unique(opts.ensure_installed, { "html", "cssls", "cssmodules_ls", "emmet_language_server" })
+      opts.ensure_installed = utils.list_insert_unique(
+        opts.ensure_installed,
+        { "html", "cssls", "cssmodules_ls", "emmet_language_server", "lemminx" }
+      )
     end,
   },
   {

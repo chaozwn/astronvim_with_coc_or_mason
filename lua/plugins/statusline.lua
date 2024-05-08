@@ -130,6 +130,12 @@ return {
         },
         status.component.virtual_env {
           padding = { right = 1 },
+          on_click = {
+            name = "python",
+            callback = function()
+              vim.schedule(function() vim.cmd "VenvSelect" end)
+            end,
+          },
         },
         -- NvChad has some nice icons to go along with information, so we can create a parent component to do this
         -- all of the children of this table will be treated together as a single component

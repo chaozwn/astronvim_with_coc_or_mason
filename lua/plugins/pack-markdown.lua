@@ -43,15 +43,14 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     optional = true,
-    opts = function(_, opts)
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "marksman", "markdownlint" })
-    end,
+    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "marksman" }) end,
   },
   {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd" })
+      opts.ensure_installed =
+        require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd", "markdownlint" })
 
       local nls = require "null-ls"
       opts.sources = vim.list_extend(opts.sources or {}, {

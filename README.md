@@ -2,8 +2,11 @@
 
 **NOTE:** This is the latest v4 configuration; everyone can use it with confidence.
 
-hello guys!
-in my workflow,I use `wezterm` as my terminal, and I also use `tmux` to provide me with multiple terminal windows, `yazi` as terminal file manager. btw this config support neovide and don't need other configs.
+In the course of my daily tasks, I have optimized my workflow by integrating several powerful tools. My terminal of choice is `WezTerm`, which offers a blend of performance and features that cater to my needs. Alongside this, I employ `tmux` to efficiently manage multiple terminal sessions within a single window.
+
+Additionally, I utilize `yazi` as my terminal-based file manager, which seamlessly fits into my terminal-centric workflow. It is also worth noting that my configuration is compatible with `neovide`, eliminating the necessity for additional setups.
+
+This streamlined combination of tools significantly enhances my productivity and provides a robust terminal experience.
 
 ### Support neovim version
 neovim >= `0.9`, recommend `0.9`

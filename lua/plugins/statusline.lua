@@ -133,7 +133,9 @@ return {
           on_click = {
             name = "python",
             callback = function()
-              vim.schedule(function() vim.cmd "VenvSelect" end)
+              if require("astrocore").is_available "venv-selector.nvim" then
+                vim.schedule(function() vim.cmd "VenvSelect" end)
+              end
             end,
           },
         },

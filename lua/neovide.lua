@@ -7,7 +7,7 @@ function M.init()
 end
 
 function M.config()
-  vim.o.guifont = "JetBrainsMono Nerd Font Mono:h16"
+  vim.o.guifont = "JetBrainsMono Nerd Font:h16"
   -- 没有空闲
   vim.g.neovide_no_idle = true
   -- 退出需要确认

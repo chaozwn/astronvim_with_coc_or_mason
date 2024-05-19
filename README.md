@@ -9,7 +9,7 @@ Additionally, I utilize `yazi` as my terminal-based file manager, which seamless
 This streamlined combination of tools significantly enhances my productivity and provides a robust terminal experience.
 
 ### Support neovim version
-neovim >= `0.9`, recommend `0.9`
+neovim >= `0.10`, recommend `0.10`
 
 ### Features
 

@@ -2,8 +2,8 @@
 ---@type AstroCoreOpts
 -- AstroCore allows you easy access to customize the default options provided in AstroNvim
 return {
-  ---@type AstroCoreOpts
   "AstroNvim/astrocore",
+  ---@type AstroCoreOpts
   opts = function(_, opts)
     local options = require("astrocore").extend_tbl(opts, {
       -- Configure project root detection, check status with `:AstroRootInfo`

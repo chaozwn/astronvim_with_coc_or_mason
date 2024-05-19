@@ -2,8 +2,8 @@
 ---@type AstroCoreOpts
 -- AstroCore allows you easy access to customize the default options provided in AstroNvim
 return {
-  "AstroNvim/astrocore",
   ---@type AstroCoreOpts
+  "AstroNvim/astrocore",
   opts = function(_, opts)
     local options = require("astrocore").extend_tbl(opts, {
       -- Configure project root detection, check status with `:AstroRootInfo`
@@ -17,7 +17,7 @@ return {
         autopairs = true, -- enable autopairs at start
         cmp = true, -- enable completion at start
         highlighturl = true, -- highlight URLs at start
-        notifications = true, -- enable notifications at start
+        notifications = false, -- enable notifications at start
       },
       autocmds = {
         auto_turnoff_paste = {

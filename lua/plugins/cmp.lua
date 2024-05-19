@@ -82,7 +82,7 @@ return {
         return {
           {
             type = "/",
-            mapping = mapping(),
+            mapping = mapping(true),
             sources = {
               { name = "buffer" },
             },

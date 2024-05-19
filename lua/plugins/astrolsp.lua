@@ -8,7 +8,7 @@ return {
       codelens = true, -- enable/disable codelens refresh on start
       lsp_handlers = true, -- enable/disable setting of lsp_handlers
       semantic_tokens = true, -- enable/disable semantic token highlighting
-      inlay_hints = true,
+      inlay_hints = true, -- nvim >= 0.10
       diagnostics_mode = 3,
     },
     -- Configuration options for controlling formatting with language servers

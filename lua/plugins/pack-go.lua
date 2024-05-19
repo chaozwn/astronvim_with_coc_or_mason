@@ -183,7 +183,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
-       disable_defaults = true,
+      disable_defaults = true,
       lsp_inlay_hints = {
         enable = true,
       },

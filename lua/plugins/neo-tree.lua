@@ -2,6 +2,8 @@ local get_icon = require("astroui").get_icon
 
 -- NOTE: https://github.com/adelarsq/image_preview.nvim wait alacriity pull request merge
 -- NOTE: https://github.com/nvim-neo-tree/neo-tree.nvim/issues/860 wait undo modifications close
+
+---@type LazySpec
 return {
   "nvim-neo-tree/neo-tree.nvim",
   -- dependencies = { "miversen33/netman.nvim" },

@@ -2,6 +2,7 @@ local utils = require "astrocore"
 local is_available = require("astrocore").is_available
 local set_mappings = require("astrocore").set_mappings
 
+---@type LazySpec
 return {
   { "microsoft/python-type-stubs" },
   { "pandas-dev/pandas-stubs" },

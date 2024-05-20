@@ -8,6 +8,7 @@ local function create_buf_config_file()
   os.execute(cmd)
 end
 
+---@type LazySpec
 return {
   {
     "AstroNvim/astrolsp",

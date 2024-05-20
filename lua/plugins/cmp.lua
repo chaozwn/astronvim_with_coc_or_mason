@@ -70,6 +70,7 @@ local formatting_style = {
   end,
 }
 
+---@type LazySpec
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {

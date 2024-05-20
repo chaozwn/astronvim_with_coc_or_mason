@@ -10,6 +10,7 @@ local function create_sqlfluff_config_file()
   os.execute(cmd)
 end
 
+---@type LazySpec
 return {
   {
     "nvim-treesitter/nvim-treesitter",

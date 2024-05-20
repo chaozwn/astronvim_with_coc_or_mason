@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "monaqa/dial.nvim",
   config = function()

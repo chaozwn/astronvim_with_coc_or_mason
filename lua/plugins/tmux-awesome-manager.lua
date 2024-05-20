@@ -1,5 +1,6 @@
 if not vim.fn.executable "tmux" then return {} end
 
+---@type LazySpec
 return {
   "otavioschwanck/tmux-awesome-manager.nvim",
   dependencies = {

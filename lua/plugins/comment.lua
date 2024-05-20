@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "numToStr/Comment.nvim",
   opts = function(_, opts)

@@ -1,5 +1,6 @@
 local utils = require "astrocore"
 local prefix = "<Leader>fd"
+---@type LazySpec
 return {
   { "jay-babu/mason-nvim-dap.nvim", optional = true, init = false },
   {

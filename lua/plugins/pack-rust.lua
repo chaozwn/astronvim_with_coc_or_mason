@@ -22,6 +22,7 @@ local function preview_stack_trace()
   end
 end
 
+---@type LazySpec
 return {
   {
     "AstroNvim/astrolsp",

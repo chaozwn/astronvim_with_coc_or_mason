@@ -1,4 +1,5 @@
 local prefix = "<Leader>T"
+---@type LazySpec
 return {
   {
     "nvim-neotest/neotest",

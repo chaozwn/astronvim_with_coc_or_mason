@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "antosha417/nvim-lsp-file-operations",
   -- lazy will handle loading nvim-tree and neo-tree appropriately based on the module load and our `init` function

@@ -1,4 +1,5 @@
 local utils = require "astrocore"
+---@type LazySpec
 return {
   {
     "nvim-treesitter/nvim-treesitter",

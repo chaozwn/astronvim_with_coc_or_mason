@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "onsails/lspkind.nvim",
   opts = function(_, opts)

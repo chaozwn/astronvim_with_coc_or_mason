@@ -6,6 +6,7 @@ local markdown_table_change = function()
     vim.cmd(execute_command)
   end)
 end
+---@type LazySpec
 return {
   {
     "AstroNvim/astrolsp",

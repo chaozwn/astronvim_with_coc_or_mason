@@ -10,6 +10,11 @@ local function create_sqlfluff_config_file()
   os.execute(cmd)
 end
 
+local function is_exists_config_file()
+  -- check if config file exists
+  return vim.fn.filereadable(vim.fn.stdpath "config" .. "/.sqlfluff") == 2
+end
+
 ---@type LazySpec
 return {
   {
@@ -40,7 +45,13 @@ return {
         local null_ls = require "null-ls"
         local buf_diagnostics_buildins = null_ls.builtins.diagnostics.sqlfluff
         table.insert(buf_diagnostics_buildins._opts.args, "--config")
-        table.insert(buf_diagnostics_buildins._opts.args, vim.fn.stdpath "config" .. "/.sqlfluff")
+        local system_config = vim.fn.stdpath "config" .. "/.sqlfluff"
+        local project_config = vim.fn.getcwd() .. "/.sqlfluff"
+        if vim.fn.filereadable(project_config) == 1 then
+          table.insert(buf_diagnostics_buildins._opts.args, project_config)
+        else
+          table.insert(buf_diagnostics_buildins._opts.args, system_config)
+        end
         null_ls.register(null_ls.builtins.diagnostics.sqlfluff.with {
           generator_opts = buf_diagnostics_buildins._opts,
         })

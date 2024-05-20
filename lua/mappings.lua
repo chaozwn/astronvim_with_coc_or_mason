@@ -184,9 +184,9 @@ function M.mappings(maps)
   if system == "Darwin" or system == "Linux" then
     if is_available "Comment.nvim" then
       maps.n["<C-/>"] = maps.n["<Leader>/"]
-      maps.v["<C-/>"] = maps.n["<Leader>/"]
+      maps.x["<C-/>"] = maps.x["<Leader>/"]
       maps.n["<Leader>/"] = false
-      maps.n["<Leader>/"] = false
+      maps.v["<Leader>/"] = false
     end
   end
 

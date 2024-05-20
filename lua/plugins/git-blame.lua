@@ -9,12 +9,13 @@ return {
     "GitBlameCopyCommitURL",
     "GitBlameOpenFileURL",
     "GitBlameCopyFileURL",
-   "GitBlameCopySHA",
+    "GitBlameCopySHA",
   },
-  init = function()
-    vim.g.gitblame_schedule_event = "CursorHold"
-    vim.g.gitblame_clear_event = "CursorHoldI"
-  end,
+  -- NOTE: if you want to improve performance, you can change the event to CursorHold
+  -- init = function()
+  -- vim.g.gitblame_schedule_event = "CursorHold"
+  -- vim.g.gitblame_clear_event = "CursorHoldI"
+  -- end,
   opts = {
     enabled = true,
     date_format = "%r",

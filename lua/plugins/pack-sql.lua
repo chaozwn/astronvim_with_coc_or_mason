@@ -26,13 +26,13 @@ return {
       end
     end,
   },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sqls" })
-    end,
-  },
+  -- {
+  --   "williamboman/mason-lspconfig.nvim",
+  --   optional = true,
+  --   opts = function(_, opts)
+  --     opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sqls" })
+  --   end,
+  -- },
   {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
@@ -55,9 +55,13 @@ return {
         null_ls.register(null_ls.builtins.diagnostics.sqlfluff.with {
           generator_opts = buf_diagnostics_buildins._opts,
         })
-        local buf_formatting_buildins = null_ls.builtins.formatting.sqlfmt
+
+        -- format
+        local sqlfmt_formatting_buildins = null_ls.builtins.formatting.sqlfmt
+        table.insert(sqlfmt_formatting_buildins._opts.args, "--dialect")
+        table.insert(sqlfmt_formatting_buildins._opts.args, "polyglot")
         null_ls.register(null_ls.builtins.formatting.sqlfmt.with {
-          generator_opts = buf_formatting_buildins._opts,
+          generator_opts = sqlfmt_formatting_buildins._opts,
         })
       end
 

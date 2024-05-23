@@ -1,5 +1,3 @@
-if true then return {} end
-
 local utils = require "utils"
 ---@type LazySpec
 return {

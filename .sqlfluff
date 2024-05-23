@@ -1,7 +1,7 @@
 # Reference: https://docs.sqlfluff.com/en/stable/rules.html
 [sqlfluff]
 dialect = postgres
-templater = dbt
+templater = jinja
 # This change (from jinja to dbt templater) will make linting slower
 # because linting will first compile dbt code into data warehouse code.
 runaway_limit = 10

@@ -6,12 +6,12 @@ local get_icon = require("astroui").get_icon
 ---@type LazySpec
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  enabled = false,
   -- dependencies = { "miversen33/netman.nvim" },
   opts = function(_, opts)
     return require("astrocore").extend_tbl(opts, {
       close_if_last_window = true,
       enable_diagnostics = true,
+      popup_border_style = "rounded",
       sources = {
         "filesystem",
         -- "netman.ui.neo-tree",
@@ -29,6 +29,7 @@ return {
       },
       filesystem = {
         -- hijack_netrw_behavior = "open_default",
+        use_libuv_file_watcher = true,
         bind_to_cwd = false,
         follow_current_file = {
           enabled = true,

@@ -7,6 +7,7 @@ templater = dbt
 runaway_limit = 10
 max_line_length = 80
 indent_unit = space
+large_file_skip_byte_limit = 0
 
 [sqlfluff:indentation]
 tab_space_size = 4

@@ -270,13 +270,6 @@ function M.mappings(maps)
       maps.n["<Leader>gg"] = maps.n["<Leader>tl"]
     end
 
-    if vim.fn.executable "yazi" == 1 then
-      maps.n["<Leader>ty"] = {
-        require("utils").toggle_yazi(),
-        desc = "ToggleTerm yazi",
-      }
-    end
-
     if vim.fn.executable "unimatrix" == 1 then
       maps.n["<Leader>tm"] = {
         require("utils").toggle_unicmatrix(),

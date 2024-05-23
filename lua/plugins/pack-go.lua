@@ -185,9 +185,6 @@ return {
     },
     opts = {
       disable_defaults = true,
-      lsp_inlay_hints = {
-        enable = true,
-      },
       trouble = true,
       run_in_floaterm = true,
       luasnip = true,

@@ -20,6 +20,7 @@ brew install protobuf
 pip install git+https://github.com/will8211/unimatrix.git
 npm install -g neovim
 pip install pynvim
+pip install terminaltexteffects
 
 brew tap daipeihust/tap
 brew install im-select

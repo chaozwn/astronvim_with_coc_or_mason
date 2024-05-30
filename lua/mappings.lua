@@ -261,7 +261,7 @@ function M.mappings(maps)
   maps.v["<"] = { "<gv", desc = "Unindent line" }
   maps.v[">"] = { ">gv", desc = "Indent line" }
 
-  if is_available "toggleterm.nvim" then
+  if is_available "telescope.nvim" then
     if vim.fn.executable "lazygit" == 1 then
       maps.n["<Leader>tl"] = {
         require("utils").toggle_lazy_git(),
@@ -274,6 +274,13 @@ function M.mappings(maps)
       maps.n["<Leader>tm"] = {
         require("utils").toggle_unicmatrix(),
         desc = "ToggleTerm unimatrix",
+      }
+    end
+
+    if vim.fn.executable "tte" == 1 then
+      maps.n["<Leader>te"] = {
+        require("utils").toggle_tte(),
+        desc = "ToggleTerm tte",
       }
     end
 

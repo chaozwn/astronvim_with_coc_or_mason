@@ -137,6 +137,15 @@ pip install git+https://github.com/will8211/unimatrix.git
 
 ![unimatrix](assets/unimatrix.png)
 
+### Install TTE
+
+`<Leader>te`
+
+```shell
+pip install terminaltexteffects
+```
+
+![tte](./assets/imgs/tte.png)
 ### Neovim requirements
 
 ```

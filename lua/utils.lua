@@ -88,6 +88,90 @@ function M.toggle_unicmatrix()
   end
 end
 
+function M.toggle_tte()
+  if require("astrocore").is_available "telescope.nvim" then
+    local current_path = vim.fn.expand "%:p" -- get current file path
+    local cmds = {
+      "beams",
+      "binarypath",
+      "blackhole",
+      "bouncyballs",
+      "bubbles",
+      "burn",
+      "colorshift",
+      "crumble",
+      "decrypt",
+      "errorcorrect",
+      "expand",
+      "fireworks",
+      "middleout",
+      "orbittingvolley",
+      "overflow",
+      "pour",
+      "print",
+      "rain",
+      "randomsequence",
+      "rings",
+      "scattered",
+      "slice",
+      "slide",
+      "spotlights",
+      "spray",
+      "swarm",
+      "synthgrid",
+      "unstable",
+      "vhstape",
+      "waves",
+      "wipe",
+    }
+
+    local actions = require "telescope.actions"
+    local action_state = require "telescope.actions.state"
+    local pickers = require "telescope.pickers"
+    local finders = require "telescope.finders"
+    local conf = require("telescope.config").values
+
+    return function()
+      pickers
+        .new({}, {
+          prompt_title = "Select TTE Effect",
+          finder = finders.new_table {
+            results = cmds,
+            entry_maker = function(entry)
+              return {
+                value = entry,
+                display = entry,
+                ordinal = entry,
+              }
+            end,
+          },
+          sorter = conf.generic_sorter {},
+          attach_mappings = function(prompt_bufnr)
+            actions.select_default:replace(function()
+              local selection = action_state.get_selected_entry()
+              actions.close(prompt_bufnr)
+              local cmd = "tte --input-file " .. current_path .. " --xterm-colors " .. selection.value
+              require("astrocore").toggle_term_cmd {
+                cmd = cmd,
+                hidden = false,
+                direction = "float",
+                close_on_exit = false,
+                float_opts = {
+                  width = vim.o.columns,
+                  height = vim.o.lines,
+                  border = "none",
+                },
+                on_close = function(t) t:send "\x03" end,
+              }
+            end)
+            return true
+          end,
+        })
+        :find()
+    end
+  end
+end
+
 function M.toggle_lazy_docker()
   return function()
     require("astrocore").toggle_term_cmd {

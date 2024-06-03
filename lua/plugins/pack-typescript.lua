@@ -1,9 +1,5 @@
 local utils = require "astrocore"
-
--- maps.n["<Leader>lA"] = {
---   function() vim.lsp.buf.code_action { context = { only = { "source", "refactor", "quickfix" } } } end,
---   desc = "Lsp All Action",
--- }
+local set_mappings = utils.set_mappings
 
 local function decode_json(filename)
   -- Open the file in read mode
@@ -89,6 +85,16 @@ return {
       },
       config = {
         vtsls = {
+          on_attach = function()
+            set_mappings({
+              n = {
+                ["<Leader>lA"] = {
+                  function() vim.lsp.buf.code_action { context = { only = { "source", "refactor", "quickfix" } } } end,
+                  desc = "Lsp All Action",
+                },
+              },
+            }, { buffer = true })
+          end,
           settings = {
             typescript = {
               updateImportsOnFileMove = { enabled = "always" },
@@ -161,30 +167,6 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
     event = "BufRead package.json",
-  },
-  {
-    "yioneko/nvim-vtsls",
-    lazy = true,
-    dependencies = {
-      "AstroNvim/astrocore",
-      opts = {
-        autocmds = {
-          nvim_vtsls = {
-            {
-              event = "LspAttach",
-              desc = "Load nvim-vtsls with vtsls",
-              callback = function(args)
-                if assert(vim.lsp.get_client_by_id(args.data.client_id)).name == "vtsls" then
-                  require("vtsls")._on_attach(args.data.client_id, args.buf)
-                  vim.api.nvim_del_augroup_by_name "nvim_vtsls"
-                end
-              end,
-            },
-          },
-        },
-      },
-    },
-    config = function(_, opts) require("vtsls").config(opts) end,
   },
   {
     "dmmulroy/tsc.nvim",

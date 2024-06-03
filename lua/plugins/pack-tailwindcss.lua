@@ -9,18 +9,18 @@ return {
       ---@diagnostic disable: missing-fields
       config = {
         tailwindcss = {
+          root_dir = function(fname)
+            local root_pattern = require("lspconfig").util.root_pattern(
+              "tailwind.config.cjs",
+              "tailwind.config.js",
+              "tailwind.config.ts",
+              "postcss.config.js",
+              "config/tailwind.config.js"
+            )
+            return root_pattern(fname)
+          end,
           settings = {
             tailwindCSS = {
-              root_dir = function(fname)
-                local root_pattern = require("lspconfig").util.root_pattern(
-                  "tailwind.config.cjs",
-                  "tailwind.config.js",
-                  "tailwind.config.ts",
-                  "postcss.config.js",
-                  "config/tailwind.config.js"
-                )
-                return root_pattern(fname)
-              end,
               classAttributes = {
                 "class",
                 "className",

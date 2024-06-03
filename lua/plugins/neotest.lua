@@ -12,6 +12,7 @@ return {
             n = {
               [prefix] = { desc = "󰗇 Tests" },
               [prefix .. "t"] = { function() require("neotest").run.run() end, desc = "Run test" },
+              ---@diagnostic disable-next-line: missing-fields
               [prefix .. "d"] = { function() require("neotest").run.run { strategy = "dap" } end, desc = "Debug test" },
               [prefix .. "f"] = {
                 function() require("neotest").run.run(vim.fn.expand "%") end,

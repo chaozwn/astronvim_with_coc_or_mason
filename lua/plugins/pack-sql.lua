@@ -1,4 +1,5 @@
 local utils = require "astrocore"
+local set_mappings = utils.set_mappings
 
 local function create_sqlfluff_config_file()
   local source_file = vim.fn.stdpath "config" .. "/.sqlfluff"
@@ -10,13 +11,34 @@ local function create_sqlfluff_config_file()
   os.execute(cmd)
 end
 
-local function is_exists_config_file()
-  -- check if config file exists
-  return vim.fn.filereadable(vim.fn.stdpath "config" .. "/.sqlfluff") == 2
-end
-
 ---@type LazySpec
 return {
+  {
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
+    opts = {
+      autocmds = {
+        auto_spell = {
+          {
+            event = "FileType",
+            desc = "create completion",
+            pattern = { "sql", "mysql", "plsql" },
+            callback = function()
+              set_mappings({
+                n = {
+                  ["<Leader>lc"] = {
+                    create_sqlfluff_config_file,
+                    desc = "Create sqlfluff config file",
+                  },
+                },
+              }, { buffer = true })
+            end,
+            once = true,
+          },
+        },
+      },
+    },
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     optional = true,
@@ -26,13 +48,6 @@ return {
       end
     end,
   },
-  -- {
-  --   "williamboman/mason-lspconfig.nvim",
-  --   optional = true,
-  --   opts = function(_, opts)
-  --     opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sqls" })
-  --   end,
-  -- },
   {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
@@ -64,19 +79,6 @@ return {
           generator_opts = sqlfmt_formatting_buildins._opts,
         })
       end
-
-      vim.api.nvim_create_autocmd("FileType", {
-        desc = "create completion",
-        pattern = { "sql", "mysql", "plsql" },
-        callback = function()
-          vim.keymap.set(
-            "n",
-            "<Leader>uA",
-            create_sqlfluff_config_file,
-            { silent = true, noremap = true, buffer = true, desc = "Create sqlfluff config file" }
-          )
-        end,
-      })
     end,
   },
 }

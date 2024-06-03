@@ -11,6 +11,16 @@ return {
         tailwindcss = {
           settings = {
             tailwindCSS = {
+              root_dir = function(fname)
+                local root_pattern = require("lspconfig").util.root_pattern(
+                  "tailwind.config.cjs",
+                  "tailwind.config.js",
+                  "tailwind.config.ts",
+                  "postcss.config.js",
+                  "config/tailwind.config.js"
+                )
+                return root_pattern(fname)
+              end,
               classAttributes = {
                 "class",
                 "className",
@@ -51,14 +61,6 @@ return {
       },
     },
   },
-  -- {
-  --   "razak17/tailwind-fold.nvim",
-  --   opts = {
-  --     min_chars = 80,
-  --   },
-  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
-  --   ft = { "html", "svelte", "astro", "vue", "typescriptreact" },
-  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     optional = true,

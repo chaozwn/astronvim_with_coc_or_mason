@@ -10,7 +10,7 @@ local function mapping(is_cmdline)
 
   return {
     ["<CR>"] = cmp.config.disable,
-    -- ctrl + e关闭补全窗口
+    -- ctrl + e close cmp window
     -- <C-n> and <C-p> for navigating snippets
     ["<C-N>"] = cmp.mapping(function()
       if luasnip.jumpable(1) then luasnip.jump(1) end
@@ -160,7 +160,7 @@ return {
         },
       },
       completion = {
-        -- 自动选中第一条
+        -- auto select first item
         completeopt = "menu,menuone,preview,noinsert",
       },
       mapping = mapping(),

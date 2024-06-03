@@ -1,8 +1,29 @@
 local utils = require "astrocore"
+
 ---@type LazySpec
 return {
   {
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
+    opts = {
+      autocmds = {
+        auto_conceallevel_for_json = {
+          {
+            event = "FileType",
+            desc = "Fix conceallevel for json files",
+            pattern = { "json", "jsonc" },
+            callback = function()
+              vim.wo.spell = false
+              vim.wo.conceallevel = 0
+            end,
+          },
+        },
+      },
+    },
+  },
+  {
     "b0o/SchemaStore.nvim",
+    lazy = true,
     dependencies = {
       {
         "AstroNvim/astrolsp",

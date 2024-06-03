@@ -1,25 +1,108 @@
 local utils = require "astrocore"
+local is_available = utils.is_available
 ---@type LazySpec
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then
-        opts.ensure_installed =
-          utils.list_insert_unique(opts.ensure_installed, { "bash", "markdown", "markdown_inline", "regex", "vim" })
+        opts.ensure_installed = require("astrocore").list_insert_unique(
+          opts.ensure_installed,
+          { "bash", "markdown", "markdown_inline", "regex", "vim" }
+        )
+      end
+    end,
+  },
+  {
+    "AstroNvim/astrolsp",
+    optional = true,
+    ---@param opts AstroLSPOpts
+    opts = function(_, opts)
+      local noice_opts = require("astrocore").plugin_opts "noice.nvim"
+      -- disable the necessary handlers in AstroLSP
+      if not opts.lsp_handlers then opts.lsp_handlers = {} end
+      if vim.tbl_get(noice_opts, "lsp", "hover", "enabled") ~= false then
+        opts.lsp_handlers["textDocument/hover"] = false
+      end
+      if vim.tbl_get(noice_opts, "lsp", "signature", "enabled") ~= false then
+        opts.lsp_handlers["textDocument/signatureHelp"] = false
+      end
+    end,
+  },
+  {
+    "heirline.nvim",
+    optional = true,
+    opts = function(_, opts)
+      local noice_opts = require("astrocore").plugin_opts "noice.nvim"
+      if vim.tbl_get(noice_opts, "lsp", "progress", "enabled") ~= false then -- check if lsp progress is enabled
+        opts.statusline[9] = require("astroui.status").component.lsp { lsp_progress = false }
       end
     end,
   },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    dependencies = { "MunifTanjim/nui.nvim" },
+    priority = 2000,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      {
+        "AstroNvim/astrocore",
+        ---@param opts AstroLSPOpts
+        opts = function(_, opts)
+          -- WARNING: There will be a conflict between this button and the neo-scroll button, and we will determine whether to resolve it based on the situation
+          local maps = utils.empty_map_table()
+          if is_available "noice.nvim" then
+            local noice_down = function()
+              if not require("noice.lsp").scroll(4) then return "<C-d>" end
+            end
+            local noice_up = function()
+              if not require("noice.lsp").scroll(-4) then return "<C-u>" end
+            end
+
+            maps.n["<C-d>"] = {
+              noice_down,
+              desc = "Noice Scroll down",
+              silent = true,
+              expr = true,
+            }
+            maps.i["<C-d>"] = {
+              noice_down,
+              desc = "Noice Scroll down",
+              silent = true,
+              expr = true,
+            }
+            maps.s["<C-d>"] = {
+              noice_down,
+              desc = "Noice Scroll down",
+              silent = true,
+              expr = true,
+            }
+            maps.n["<C-u>"] = {
+              noice_up,
+              desc = "Noice Scroll up",
+              silent = true,
+              expr = true,
+            }
+            maps.i["<C-u>"] = {
+              noice_up,
+              desc = "Noice Scroll up",
+              silent = true,
+              expr = true,
+            }
+            maps.s["<C-u>"] = {
+              noice_up,
+              desc = "Noice Scroll up",
+              silent = true,
+              expr = true,
+            }
+          end
+          opts.mappings = require("astrocore").extend_tbl(opts.mappings, maps)
+        end,
+      },
+    },
     opts = function(_, opts)
       return utils.extend_tbl(opts, {
         lsp = {
-          hover = {
-            silent = true,
-          },
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
           override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -50,18 +133,7 @@ return {
           inc_rename = false, -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = true, -- add a border to hover docs and signature help
         },
-        views = {
-          notify = {
-            merge = true,
-          },
-        },
-        routes = {
-          { filter = { event = "msg_show", find = "DB: Query%s" }, opts = { skip = true } },
-          { filter = { event = "msg_show", find = "%swritten" }, opts = { skip = true } },
-          { filter = { event = "msg_show", find = "%schange;%s" }, opts = { skip = true } },
-        },
       })
     end,
-    init = function() vim.g.lsp_handlers_enabled = false end,
   },
 }

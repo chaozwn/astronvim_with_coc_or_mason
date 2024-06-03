@@ -1,6 +1,17 @@
 local utils = require "astrocore"
+
 ---@type LazySpec
 return {
+  {
+    "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
+    opts = {
+      ---@diagnostic disable: missing-fields
+      config = {
+        lua_ls = { settings = { Lua = { hint = { enable = true, arrayIndex = "Disable" } } } },
+      },
+    },
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     optional = true,
@@ -21,15 +32,5 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "stylua", "selene" })
     end,
-  },
-  {
-    "AstroNvim/astrolsp",
-    ---@diagnostic disable: missing-fields
-    ---@type AstroLSPOpts
-    opts = {
-      config = {
-        lua_ls = { settings = { Lua = { hint = { enable = true, arrayIndex = "Disable" } } } },
-      },
-    },
   },
 }

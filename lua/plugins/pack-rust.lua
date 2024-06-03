@@ -1,4 +1,6 @@
 local utils = require "astrocore"
+local set_mappings = require("astrocore").set_mappings
+
 local function preview_stack_trace()
   local current_line = vim.api.nvim_get_current_line()
   local patterns_list = {
@@ -35,35 +37,21 @@ return {
               pattern = "*cargo run*",
               desc = "Jump to error line",
               callback = function()
-                vim.keymap.set(
-                  "n",
-                  "gd",
-                  preview_stack_trace,
-                  { silent = true, noremap = true, buffer = true, desc = "Jump to error line" }
-                )
+                set_mappings({
+                  n = {
+                    ["gd"] = {
+                      preview_stack_trace,
+                      desc = "Jump to error line",
+                    },
+                  },
+                }, { buffer = true })
               end,
             })
           end,
           settings = {
             ["rust-analyzer"] = {
-              cachePriming = {
-                enable = true,
-                numThreads = 2,
-              },
-              completion = {
-                autoimport = {
-                  enable = true,
-                },
-                enableSnippets = true,
-              },
-              cargo = {
-                allFeatures = true,
-                loadOutDirsFromCheck = true,
-                runBuildScripts = true,
-              },
               -- Add clippy lints for Rust.
               check = {
-                allFeatures = true,
                 command = "clippy",
                 extraArgs = { "--no-deps" },
               },
@@ -71,13 +59,24 @@ return {
                 importEnforceGranularity = true,
                 importPrefix = "crate",
               },
-              procMacro = {
-                enable = true,
-                ignored = {
-                  ["async-trait"] = { "async_trait" },
-                  ["napi-derive"] = { "napi" },
-                  ["async-recursion"] = { "async_recursion" },
+              completion = {
+                postfix = {
+                  enable = false,
                 },
+                autoimport = {
+                  enable = true,
+                },
+                enableSnippets = true,
+              },
+              inlayHints = {
+                lifetimeElisionHints = {
+                  enable = true,
+                  useParameterNames = true,
+                },
+              },
+              cachePriming = {
+                enable = true,
+                numThreads = 2,
               },
             },
           },
@@ -133,6 +132,7 @@ return {
         end
         adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
       else
+        ---@diagnostic disable-next-line: missing-parameter
         adapter = cfg.get_codelldb_adapter()
       end
 

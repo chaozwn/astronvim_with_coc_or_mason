@@ -14,7 +14,7 @@ return {
       ---@diagnostic disable: missing-fields
       config = {
         pylance = {
-          on_attach = function(client, bufnr)
+          on_attach = function()
             if is_available "venv-selector.nvim" then
               set_mappings({
                 n = {
@@ -32,7 +32,7 @@ return {
                     desc = "Show Current VirtualEnv",
                   },
                 },
-              }, { buffer = bufnr })
+              }, { buffer = true })
             end
           end,
           filetypes = { "python" },
@@ -146,14 +146,29 @@ return {
       anaconda_base_path = "~/miniconda3",
       anaconda_envs_path = "~/miniconda3/envs",
     },
+    cmd = { "VenvSelect", "VenvSelectCached" },
   },
   {
     "mfussenegger/nvim-dap-python",
-    dependencies = { "mfussenegger/nvim-dap" },
-    ft = "python",
+    dependencies = "mfussenegger/nvim-dap",
+    ft = "python", -- NOTE: ft: lazy-load on filetype
     config = function(_, opts)
-      local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
+      local path = require("mason-registry").get_package("debugpy"):get_install_path()
+      if vim.fn.has "win32" == 1 then
+        path = path .. "/venv/Scripts/python"
+      else
+        path = path .. "/venv/bin/python"
+      end
       require("dap-python").setup(path, opts)
+    end,
+  },
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    dependencies = { "nvim-neotest/neotest-python" },
+    opts = function(_, opts)
+      if not opts.adapters then opts.adapters = {} end
+      table.insert(opts.adapters, require "neotest-python"(require("astrocore").plugin_opts "neotest-python"))
     end,
   },
 }

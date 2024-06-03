@@ -1,20 +1,11 @@
-local function create_buf_config_file()
-  local source_file = vim.fn.stdpath "config" .. "/buf.yaml"
-  local target_file = vim.fn.getcwd() .. "/buf.yaml"
-  local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-  local cmd = is_windows
-      and string.format("copy %s %s", vim.fn.shellescape(source_file, true), vim.fn.shellescape(target_file, true))
-    or string.format("cp %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_file))
-  os.execute(cmd)
-end
-
 ---@type LazySpec
 return {
   {
     "AstroNvim/astrolsp",
+    optional = true,
     ---@type AstroLSPOpts
-    ---@diagnostic disable: missing-fields
     opts = {
+      ---@diagnostic disable: missing-fields
       config = {
         gopls = {
           capabilities = {
@@ -45,7 +36,6 @@ return {
             },
           },
           on_attach = function(client, _)
-            if client.name == "gopls" then
               if not client.server_capabilities.semanticTokensProvider then
                 local semantic = client.config.capabilities.textDocument.semanticTokens
                 client.server_capabilities.semanticTokensProvider = {
@@ -56,7 +46,6 @@ return {
                   },
                   range = true,
                 }
-              end
             end
           end,
           settings = {
@@ -139,19 +128,6 @@ return {
           condition = function() return true end,
         })
       end
-
-      vim.api.nvim_create_autocmd("FileType", {
-        desc = "create completion",
-        pattern = "proto",
-        callback = function()
-          vim.keymap.set(
-            "n",
-            "<Leader>uB",
-            create_buf_config_file,
-            { silent = true, noremap = true, buffer = true, desc = "Create buf config file" }
-          )
-        end,
-      })
     end,
   },
   {
@@ -196,13 +172,15 @@ return {
     },
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
+    -- Prevents Neovim from freezing on plugin installation/update.
+    -- See: <https://github.com/ray-x/go.nvim/issues/433>
     build = function() require("go.install").update_all() end,
   },
   {
     "chaozwn/goctl.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
     ft = "goctl",
-    enabled = vim.fn.executable "goctl",
+    enabled = vim.fn.executable "goctl" == 1,
     opts = function()
       local group = vim.api.nvim_create_augroup("GoctlAutocmd", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {

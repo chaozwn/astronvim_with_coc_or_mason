@@ -1,4 +1,5 @@
 local utils = require "astrocore"
+
 local markdown_table_change = function()
   vim.ui.input({ prompt = "Separate Char: " }, function(input)
     if not input or #input == 0 then return end
@@ -6,30 +7,29 @@ local markdown_table_change = function()
     vim.cmd(execute_command)
   end)
 end
+
 ---@type LazySpec
 return {
   {
     "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
     opts = {
-      config = {
-        marksman = {
-          on_attach = function(_, bufnr)
-            if require("astrocore").is_available "markdown-preview.nvim" then
-              require("astrocore").set_mappings {
-                n = {
-                  ["<Leader>lz"] = { "<Cmd>MarkdownPreview<CR>", desc = "Markdown Start Preview" },
-                  ["<Leader>lZ"] = { "<Cmd>MarkdownPreviewStop<CR>", desc = "Markdown Stop Preview" },
-                  ["<Leader>lp"] = { "<Cmd>Pastify<CR>", desc = "Markdown Paste Image" },
-                },
-                x = {
-                  ["<Leader>lt"] = { [[:'<,'>MakeTable! \t<CR>]], desc = "Markdown csv to table(Default:\\t)" },
-                  ["<Leader>lT"] = { markdown_table_change, desc = "Markdown csv to table with separate char" },
-                },
-              }
-            end
-          end,
-        },
-      },
+      ---@diagnostic disable: missing-fields
+      on_attach = function()
+        if utils.is_available "markdown-preview.nvim" then
+          utils.set_mappings({
+            n = {
+              ["<Leader>lz"] = { "<Cmd>MarkdownPreview<CR>", desc = "Markdown Start Preview" },
+              ["<Leader>lZ"] = { "<Cmd>MarkdownPreviewStop<CR>", desc = "Markdown Stop Preview" },
+              ["<Leader>lp"] = { "<Cmd>Pastify<CR>", desc = "Markdown Paste Image" },
+            },
+            x = {
+              ["<Leader>lt"] = { [[:'<,'>MakeTable! \t<CR>]], desc = "Markdown csv to table(Default:\\t)" },
+              ["<Leader>lT"] = { markdown_table_change, desc = "Markdown csv to table with separate char" },
+            },
+          }, { buffer = true })
+        end
+      end,
     },
   },
   {

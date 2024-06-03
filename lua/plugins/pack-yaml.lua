@@ -4,6 +4,7 @@ local utils = require "astrocore"
 return {
   {
     "b0o/SchemaStore.nvim",
+    lazy = true,
     dependencies = {
       {
         "AstroNvim/astrolsp",

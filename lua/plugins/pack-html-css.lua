@@ -8,7 +8,9 @@ return {
     opts = {
       ---@diagnostic disable: missing-fields
       config = {
+        html = { init_options = { provideFormatter = false } },
         cssls = {
+          init_options = { provideFormatter = false },
           settings = {
             css = {
               lint = {

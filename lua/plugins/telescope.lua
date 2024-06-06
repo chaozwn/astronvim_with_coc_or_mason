@@ -24,21 +24,6 @@ return {
             end,
             desc = "Switch Buffers In Telescope",
           }
-
-          if vim.fn.executable "lazygit" == 1 then
-            maps.n["<Leader>tl"] = {
-              require("utils").toggle_lazy_git(),
-              desc = "ToggleTerm lazygit",
-            }
-            maps.n["<Leader>gg"] = maps.n["<Leader>tl"]
-          end
-
-          if vim.fn.executable "lazydocker" == 1 then
-            maps.n["<Leader>td"] = {
-              require("utils").toggle_lazy_docker(),
-              desc = "ToggleTerm lazydocker",
-            }
-          end
         end
       end
       opts.mappings = maps

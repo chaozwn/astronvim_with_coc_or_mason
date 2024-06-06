@@ -5,7 +5,7 @@ return {
     name = "catppuccin",
     ---@type CatppuccinOptions
     opts = {
-      transparent_background = true,
+      transparent_background = false,
       custom_highlights = {
         -- disable italics  for treesitter highlights
         TabLineFill = { link = "StatusLine" },

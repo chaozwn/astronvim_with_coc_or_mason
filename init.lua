@@ -17,4 +17,27 @@ end
 
 require "lazy_setup"
 
+local screen_monitor = require "screen_monitor"
+local utils = require "utils"
+
+local function timeout_callback()
+  local tte_id = nil
+  return function()
+    local tte_array = utils.get_all_cmds()
+    local tte_count = #tte_array
+    if tte_id == nil then tte_id = 1 end
+    if tte_id > tte_count then tte_id = 1 end
+    utils.tte(
+      tte_array[tte_id],
+      function() screen_monitor:update_state(true) end,
+      function() screen_monitor:update_state(false) end,
+      false
+    )
+    tte_id = tte_id + 1
+  end
+end
+
+local my_screen = screen_monitor:new(300, timeout_callback())
+my_screen:start_monitor()
+
 if vim.g.neovide then require("neovide").init() end

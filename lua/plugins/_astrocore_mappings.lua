@@ -99,6 +99,35 @@ return {
       -- lsp restart
       maps.n["<Leader>lm"] = { "<Cmd>LspRestart<CR>", desc = "Lsp restart" }
       maps.n["<Leader>lg"] = { "<Cmd>LspLog<CR>", desc = "Show lsp log" }
+
+      if vim.fn.executable "lazygit" == 1 then
+        maps.n["<Leader>tl"] = {
+          require("utils").toggle_lazy_git(),
+          desc = "ToggleTerm lazygit",
+        }
+        maps.n["<Leader>gg"] = maps.n["<Leader>tl"]
+      end
+
+      if vim.fn.executable "lazydocker" == 1 then
+        maps.n["<Leader>td"] = {
+          require("utils").toggle_lazy_docker(),
+          desc = "ToggleTerm lazydocker",
+        }
+      end
+
+      if vim.fn.executable "unimatrix" == 1 then
+        maps.n["<Leader>tm"] = {
+          require("utils").toggle_unicmatrix(),
+          desc = "ToggleTerm unimatrix",
+        }
+      end
+
+      if vim.fn.executable "tte" == 1 then
+        maps.n["<Leader>te"] = {
+          require("utils").toggle_tte(),
+          desc = "ToggleTerm tte",
+        }
+      end
     end
 
     opts.mappings = maps

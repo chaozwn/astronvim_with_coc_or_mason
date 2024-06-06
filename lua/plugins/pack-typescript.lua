@@ -99,11 +99,11 @@ return {
             typescript = {
               updateImportsOnFileMove = { enabled = "always" },
               inlayHints = {
-                parameterNames = { enabled = "all" },
+                parameterNames = { enabled = "literals" },
                 parameterTypes = { enabled = true },
-                variableTypes = { enabled = true },
+                variableTypes = { enabled = false },
                 propertyDeclarationTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = false },
                 enumMemberValues = { enabled = true },
               },
             },
@@ -112,9 +112,9 @@ return {
               inlayHints = {
                 parameterNames = { enabled = "literals" },
                 parameterTypes = { enabled = true },
-                variableTypes = { enabled = true },
+                variableTypes = { enabled = false },
                 propertyDeclarationTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = false },
                 enumMemberValues = { enabled = true },
               },
             },

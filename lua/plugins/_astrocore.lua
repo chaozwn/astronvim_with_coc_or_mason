@@ -11,7 +11,7 @@ return {
     },
     -- modify core features of AstroNvim
     features = {
-      notifications = true, -- enable notifications at start
+      notifications = false, -- enable notifications at start
     },
     -- Configuration table of session options for AstroNvim's session management powered by Resession
     sessions = {

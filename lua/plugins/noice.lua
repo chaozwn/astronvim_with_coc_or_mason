@@ -42,61 +42,72 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    priority = 2000,
     dependencies = {
       "MunifTanjim/nui.nvim",
+      "karb94/neoscroll.nvim",
       {
         "AstroNvim/astrocore",
         ---@param opts AstroLSPOpts
         opts = function(_, opts)
           -- WARNING: There will be a conflict between this button and the neo-scroll button, and we will determine whether to resolve it based on the situation
-          local maps = utils.empty_map_table()
-          if is_available "noice.nvim" then
-            local noice_down = function()
-              if not require("noice.lsp").scroll(4) then return "<C-d>" end
-            end
-            local noice_up = function()
-              if not require("noice.lsp").scroll(-4) then return "<C-u>" end
-            end
+          if not opts.mappings then opts.mappings = require("astrocore").empty_map_table() end
+          local maps = opts.mappings
+          if maps then
+            if is_available "noice.nvim" then
+              local noice_down = function()
+                if not require("noice.lsp").scroll(4) then
+                  if is_available "neoscroll.nvim" then
+                    require("neoscroll").ctrl_d { duration = 250 }
+                  else
+                    return "<C-d>"
+                  end
+                end
+              end
+              local noice_up = function()
+                if not require("noice.lsp").scroll(-4) then
+                  if is_available "neoscroll.nvim" then
+                    require("neoscroll").ctrl_u { duration = 250 }
+                  else
+                    return "<C-u>"
+                  end
+                end
+              end
 
-            maps.n["<C-d>"] = {
-              noice_down,
-              desc = "Noice Scroll down",
-              silent = true,
-              expr = true,
-            }
-            maps.i["<C-d>"] = {
-              noice_down,
-              desc = "Noice Scroll down",
-              silent = true,
-              expr = true,
-            }
-            maps.s["<C-d>"] = {
-              noice_down,
-              desc = "Noice Scroll down",
-              silent = true,
-              expr = true,
-            }
-            maps.n["<C-u>"] = {
-              noice_up,
-              desc = "Noice Scroll up",
-              silent = true,
-              expr = true,
-            }
-            maps.i["<C-u>"] = {
-              noice_up,
-              desc = "Noice Scroll up",
-              silent = true,
-              expr = true,
-            }
-            maps.s["<C-u>"] = {
-              noice_up,
-              desc = "Noice Scroll up",
-              silent = true,
-              expr = true,
-            }
+              maps.n["<C-d>"] = {
+                noice_down,
+                desc = "Noice Scroll down",
+              }
+              maps.i["<C-d>"] = {
+                noice_down,
+                desc = "Noice Scroll down",
+              }
+              maps.s["<C-d>"] = {
+                noice_down,
+                desc = "Noice Scroll down",
+              }
+              maps.x["<C-d>"] = {
+                noice_down,
+                desc = "Noice Scroll down",
+              }
+              maps.n["<C-u>"] = {
+                noice_up,
+                desc = "Noice Scroll up",
+              }
+              maps.i["<C-u>"] = {
+                noice_up,
+                desc = "Noice Scroll up",
+              }
+              maps.s["<C-u>"] = {
+                noice_up,
+                desc = "Noice Scroll up",
+              }
+              maps.x["<C-u>"] = {
+                noice_up,
+                desc = "Noice Scroll up",
+              }
+            end
           end
-          opts.mappings = require("astrocore").extend_tbl(opts.mappings, maps)
+          opts.mappings = maps
         end,
       },
     },

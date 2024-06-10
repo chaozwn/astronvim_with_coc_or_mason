@@ -100,7 +100,7 @@ return {
               updateImportsOnFileMove = { enabled = "always" },
               inlayHints = {
                 parameterNames = { enabled = "literals" },
-                parameterTypes = { enabled = true },
+                parameterTypes = { enabled = false },
                 variableTypes = { enabled = false },
                 propertyDeclarationTypes = { enabled = true },
                 functionLikeReturnTypes = { enabled = false },
@@ -111,7 +111,7 @@ return {
               updateImportsOnFileMove = { enabled = "always" },
               inlayHints = {
                 parameterNames = { enabled = "literals" },
-                parameterTypes = { enabled = true },
+                parameterTypes = { enabled = false },
                 variableTypes = { enabled = false },
                 propertyDeclarationTypes = { enabled = true },
                 functionLikeReturnTypes = { enabled = false },

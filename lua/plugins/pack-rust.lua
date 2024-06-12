@@ -1,5 +1,3 @@
-if true then return {} end
-
 local utils = require "astrocore"
 local set_mappings = require("astrocore").set_mappings
 

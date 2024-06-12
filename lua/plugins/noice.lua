@@ -1,5 +1,6 @@
 local utils = require "astrocore"
 local is_available = utils.is_available
+
 ---@type LazySpec
 return {
   {

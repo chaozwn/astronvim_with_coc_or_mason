@@ -57,7 +57,7 @@ return {
       end
 
       -- close search highlight
-      maps.n["<Leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight" }
+      maps.n["<Leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight", silent = true }
 
       maps.n["H"] = { "^", desc = "Go to start without blank" }
       maps.n["L"] = { "$", desc = "Go to end without blank" }

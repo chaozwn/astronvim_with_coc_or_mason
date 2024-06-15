@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  enabled = false,
   -- dependencies = { "miversen33/netman.nvim" },
   opts = function(_, opts)
     return require("astrocore").extend_tbl(opts, {

@@ -9,6 +9,7 @@ mv ~/.cache/nvim ~/.cache/nvim.bak
 git clone https://github.com/chaozwn/astronvim_with_coc_or_mason ~/.config/nvim
 
 brew install fzf
+brew install fd
 brew install luarocks
 brew install lazygit
 brew install ripgrep

@@ -24,6 +24,10 @@ return {
             end,
             desc = "Switch Buffers In Telescope",
           }
+          maps.n["<Leader>o"] =
+            { "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "Open File browser in cwd path" }
+          maps.n["<Leader>e"] = { "<Cmd>Telescope file_browser<CR>", desc = "Open File browser in current path" }
+
         end
       end
       opts.mappings = maps
@@ -34,9 +38,11 @@ return {
     dependencies = {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
     },
     opts = function(_, opts)
       local actions = require "telescope.actions"
+      local fb_actions = require "telescope._extensions.file_browser.actions"
 
       return require("astrocore").extend_tbl(opts, {
         pickers = {
@@ -47,8 +53,30 @@ return {
           buffers = {
             path_display = { "smart" },
             mappings = {
-              i = { ["<c-d>"] = actions.delete_buffer },
+              i = { ["<C-d>"] = actions.delete_buffer },
               n = { ["d"] = actions.delete_buffer },
+            },
+          },
+        },
+        extensions = {
+          file_browser = {
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+            initial_mode = "normal",
+            quiet = true,
+            mappings = {
+              i = {
+                ["<C-g>"] = false,
+                ["<C-.>"] = fb_actions.toggle_hidden,
+                ["<C-h>"] = fb_actions.backspace,
+                ["<C-l>"] = actions.select_default,
+              },
+              n = {
+                ["g"] = false,
+                ["."] = fb_actions.toggle_hidden,
+                ["h"] = fb_actions.backspace,
+                ["l"] = actions.select_default,
+              },
             },
           },
         },
@@ -57,7 +85,8 @@ return {
     config = function(...)
       local telescope = require "telescope"
       require "astronvim.plugins.configs.telescope"(...)
-      telescope.load_extension "goctl"
+      -- telescope.load_extension "goctl"
+      telescope.load_extension "file_browser"
     end,
   },
   {

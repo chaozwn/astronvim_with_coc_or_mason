@@ -27,7 +27,6 @@ return {
           maps.n["<Leader>o"] =
             { "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "Open File browser in cwd path" }
           maps.n["<Leader>e"] = { "<Cmd>Telescope file_browser<CR>", desc = "Open File browser in current path" }
-
         end
       end
       opts.mappings = maps
@@ -43,6 +42,8 @@ return {
     opts = function(_, opts)
       local actions = require "telescope.actions"
       local fb_actions = require "telescope._extensions.file_browser.actions"
+      local os_sep = require("plenary.Path").sep
+      local action_state = require "telescope.actions.state"
 
       return require("astrocore").extend_tbl(opts, {
         pickers = {
@@ -60,10 +61,22 @@ return {
         },
         extensions = {
           file_browser = {
-            -- disables netrw and use telescope-file-browser in its place
+            on_input_filter_cb = function(prompt)
+              if prompt:sub(-1, -1) == os_sep then
+                local prompt_bufnr = vim.api.nvim_get_current_buf()
+                if vim.bo[prompt_bufnr].filetype == "TelescopePrompt" then
+                  local current_picker = action_state.get_current_picker(prompt_bufnr)
+                  if current_picker.finder.files then
+                    fb_actions.toggle_browser(prompt_bufnr, { reset_prompt = true })
+                    current_picker:set_prompt(prompt:sub(1, -2))
+                  end
+                end
+              end
+            end,
             hijack_netrw = true,
-            initial_mode = "normal",
+            initial_mode = "insert",
             quiet = true,
+            git_status = false,
             mappings = {
               i = {
                 ["<C-g>"] = false,

@@ -78,6 +78,10 @@ return {
             initial_mode = "insert",
             quiet = false,
             no_ignore = true,
+            hidden = {
+              file_browser = true,
+              folder_browser = false,
+            },
             git_status = false,
             prompt_path = false,
             display_stat = { date = nil, size = nil, mode = nil },

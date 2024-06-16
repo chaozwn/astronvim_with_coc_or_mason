@@ -32,7 +32,7 @@ return {
           hl.git_changed = comment_fg
           hl.git_removed = comment_fg
           hl.blank_bg = get_hlgroup("NonText").fg
-          hl.file_info_bg = get_hlgroup("Normal").bg
+          hl.file_info_bg = get_hlgroup("WinBarNC").bg
           hl.nav_icon_bg = get_hlgroup("String").fg
           hl.nav_fg = hl.nav_icon_bg
           hl.folder_icon_bg = get_hlgroup("Error").fg
@@ -94,7 +94,7 @@ return {
           padding = { right = 1 },
           -- define the section separator
           surround = {
-            separator = "hide",
+            separator = "left",
           },
         },
         -- add a component for the current git branch if it exists and use no separator for the sections

@@ -145,6 +145,11 @@ return {
           inc_rename = false, -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = true, -- add a border to hover docs and signature help
         },
+        routes = {
+          { filter = { event = "msg_show", find = "DB: Query%s" }, opts = { skip = true } },
+          { filter = { event = "msg_show", find = "%swritten" }, opts = { skip = true } },
+          { filter = { event = "msg_show", find = "%schange;%s" }, opts = { skip = true } },
+        },
       })
     end,
   },

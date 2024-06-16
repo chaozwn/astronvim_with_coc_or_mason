@@ -20,6 +20,7 @@ return {
           left = { "", "" }, -- separator for the left side of the statusline
           right = { "", "" }, -- separator for the right side of the statusline
           tab = { "", "" },
+          hide = { "", "" },
         },
         -- add new colors that can be used by heirline
         colors = function(hl)
@@ -31,7 +32,7 @@ return {
           hl.git_changed = comment_fg
           hl.git_removed = comment_fg
           hl.blank_bg = get_hlgroup("NonText").fg
-          hl.file_info_bg = get_hlgroup("Visual").bg
+          hl.file_info_bg = get_hlgroup("Normal").bg
           hl.nav_icon_bg = get_hlgroup("String").fg
           hl.nav_fg = hl.nav_icon_bg
           hl.folder_icon_bg = get_hlgroup("Error").fg
@@ -42,7 +43,7 @@ return {
         },
         icon_highlights = {
           file_icon = {
-            statusline = false,
+            statusline = true,
           },
         },
       },
@@ -90,9 +91,11 @@ return {
           filetype = false,
           file_read_only = false,
           -- add padding
-          padding = { right = 1, left = 2 },
+          padding = { right = 1 },
           -- define the section separator
-          surround = { separator = "left", condition = false },
+          surround = {
+            separator = "hide",
+          },
         },
         -- add a component for the current git branch if it exists and use no separator for the sections
         status.component.git_branch {

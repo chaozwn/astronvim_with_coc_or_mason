@@ -4,7 +4,7 @@ return {
     "AstroNvim/astroui",
     ---@type AstroUIOpts
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "solarized-osaka",
       highlights = {
         init = function()
           local get_hlgroup = require("astroui").get_hlgroup

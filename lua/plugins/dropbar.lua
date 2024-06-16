@@ -4,6 +4,9 @@ return {
   {
     "rebelot/heirline.nvim",
     optional = true,
-    opts = function(_, opts) opts.winbar = nil end,
+    opts = function(_, opts)
+      opts.winbar = nil
+      opts.tabline = nil
+    end,
   },
 }

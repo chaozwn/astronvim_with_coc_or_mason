@@ -44,6 +44,7 @@ return {
       local fb_actions = require "telescope._extensions.file_browser.actions"
       local os_sep = require("plenary.Path").sep
       local action_state = require "telescope.actions.state"
+      local fb_utils = require "telescope._extensions.file_browser.utils"
 
       return require("astrocore").extend_tbl(opts, {
         pickers = {
@@ -77,18 +78,58 @@ return {
             initial_mode = "insert",
             quiet = true,
             git_status = false,
+            prompt_path = false,
+            display_stat = { date = true, size = true, mode = nil },
             mappings = {
               i = {
-                ["<C-g>"] = false,
                 ["<C-.>"] = fb_actions.toggle_hidden,
                 ["<C-h>"] = fb_actions.backspace,
                 ["<C-l>"] = actions.select_default,
+                ["<C-g>"] = function(prompt_bufnr)
+                  local selections = fb_utils.get_selected_files(prompt_bufnr, false)
+                  local search_dirs = vim.tbl_map(function(path) return path:absolute() end, selections)
+                  if vim.tbl_isempty(search_dirs) then
+                    local current_finder = action_state.get_current_picker(prompt_bufnr).finder
+                    search_dirs = { current_finder.path }
+                  end
+                  actions.close(prompt_bufnr)
+                  require("telescope.builtin").live_grep { search_dirs = search_dirs }
+                end,
+                ["<C-f>"] = function(prompt_bufnr)
+                  local selections = fb_utils.get_selected_files(prompt_bufnr, false)
+                  local search_dirs = vim.tbl_map(function(path) return path:absolute() end, selections)
+                  if vim.tbl_isempty(search_dirs) then
+                    local current_finder = action_state.get_current_picker(prompt_bufnr).finder
+                    search_dirs = { current_finder.path }
+                  end
+                  actions.close(prompt_bufnr)
+                  require("telescope.builtin").find_files { search_dirs = search_dirs }
+                end,
               },
               n = {
-                ["g"] = false,
+                ["g"] = function(prompt_bufnr)
+                  local selections = fb_utils.get_selected_files(prompt_bufnr, false)
+                  local search_dirs = vim.tbl_map(function(path) return path:absolute() end, selections)
+                  if vim.tbl_isempty(search_dirs) then
+                    local current_finder = action_state.get_current_picker(prompt_bufnr).finder
+                    search_dirs = { current_finder.path }
+                  end
+                  actions.close(prompt_bufnr)
+                  require("telescope.builtin").live_grep { search_dirs = search_dirs }
+                end,
                 ["."] = fb_actions.toggle_hidden,
                 ["h"] = fb_actions.backspace,
                 ["l"] = actions.select_default,
+                ["f"] = function(prompt_bufnr)
+                  local selections = fb_utils.get_selected_files(prompt_bufnr, false)
+                  local search_dirs = vim.tbl_map(function(path) return path:absolute() end, selections)
+                  if vim.tbl_isempty(search_dirs) then
+                    local current_finder = action_state.get_current_picker(prompt_bufnr).finder
+                    search_dirs = { current_finder.path }
+                  end
+                  actions.close(prompt_bufnr)
+                  require("telescope.builtin").find_files { search_dirs = search_dirs }
+                end,
               },
             },
           },

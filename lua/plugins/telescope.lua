@@ -76,10 +76,11 @@ return {
             end,
             hijack_netrw = true,
             initial_mode = "insert",
-            quiet = true,
+            quiet = false,
+            no_ignore = true,
             git_status = false,
             prompt_path = false,
-            display_stat = { date = true, size = true, mode = nil },
+            display_stat = { date = nil, size = nil, mode = nil },
             mappings = {
               i = {
                 ["<C-.>"] = fb_actions.toggle_hidden,

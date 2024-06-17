@@ -13,17 +13,6 @@ return {
         if is_available "telescope.nvim" then
           maps.v["<Leader>f"] = { desc = "󰍉 Find" }
           maps.n["<Leader>fT"] = { "<cmd>TodoTelescope<cr>", desc = "Find TODOs" }
-          -- buffer switching
-          maps.n["<Leader>bt"] = {
-            function()
-              if #vim.t.bufs > 1 then
-                require("telescope.builtin").buffers { sort_mru = true, ignore_current_buffer = true }
-              else
-                require("astrocore").notify "No other buffers open"
-              end
-            end,
-            desc = "Switch Buffers In Telescope",
-          }
           maps.n["<Leader>o"] =
             { "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "Open File browser in cwd path" }
           maps.n["<Leader>e"] = { "<Cmd>Telescope file_browser<CR>", desc = "Open File browser in current path" }
@@ -83,7 +72,7 @@ return {
               folder_browser = false,
             },
             git_status = false,
-            prompt_path = false,
+            prompt_path = true,
             display_stat = { date = nil, size = nil, mode = nil },
             mappings = {
               i = {

@@ -10,7 +10,6 @@ return {
           list = false,
           listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
           showbreak = "↪ ",
-          showtabline = (vim.t.bufs and #vim.t.bufs > 1) and 2 or 1,
           spellfile = vim.fn.expand "~/.config/nvim/spell/en.utf-8.add",
           splitkeep = "screen",
           swapfile = false,

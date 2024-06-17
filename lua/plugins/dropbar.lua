@@ -6,7 +6,6 @@ return {
     optional = true,
     opts = function(_, opts)
       opts.winbar = nil
-      opts.tabline = nil
     end,
   },
 }

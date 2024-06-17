@@ -5,7 +5,6 @@ return {
     if not opts.mappings then opts.mappings = require("astrocore").empty_map_table() end
     local maps = opts.mappings
     if maps then
-      maps.n["gl"] = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" }
       maps.i["<C-l>"] = {
         function() vim.lsp.buf.signature_help() end,
         desc = "Signature help",

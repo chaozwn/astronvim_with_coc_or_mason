@@ -87,14 +87,6 @@ return {
       maps.n["<Leader>bc"] = { function() require("astrocore.buffer").close() end, desc = "Close buffer" }
       maps.n["<Leader>bC"] = { function() require("astrocore.buffer").close(0, true) end, desc = "Force close buffer" }
       maps.n["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" }
-      maps.n["<Leader>bD"] = {
-        function()
-          require("astrocore.status").heirline.buffer_picker(
-            function(bufnr) require("astrocore.buffer").close(bufnr) end
-          )
-        end,
-        desc = "Pick to close",
-      }
 
       -- lsp restart
       maps.n["<Leader>lm"] = { "<Cmd>LspRestart<CR>", desc = "Lsp restart" }

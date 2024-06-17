@@ -35,7 +35,11 @@ return {
           hl.nav_icon_bg = get_hlgroup("String").fg
           hl.nav_fg = hl.nav_icon_bg
           hl.folder_icon_bg = get_hlgroup("Error").fg
+
+          hl.tab_active_bg = get_hlgroup("TabLineSel").bg
+          hl.tab_visible_bg = get_hlgroup("TabLineSel").bg
           hl.buffer_active_bg = get_hlgroup("TabLineSel").bg
+          hl.buffer_visible_bg = get_hlgroup("TabLineSel").bg
 
           return hl
         end,

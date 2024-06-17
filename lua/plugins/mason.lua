@@ -25,7 +25,4 @@ return {
       mason_tool_installer.run_on_start()
     end,
   },
-  { "williamboman/mason-lspconfig.nvim", opts = {} },
-  { "jay-babu/mason-null-ls.nvim", optional = true, opts = {} },
-  { "nvimtools/none-ls.nvim", optional = true, opts = {} },
 }

@@ -6,7 +6,6 @@ return {
       options = {
         opt = {
           conceallevel = 2,
-          concealcursor = "",
           list = false,
           listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
           showbreak = "↪ ",

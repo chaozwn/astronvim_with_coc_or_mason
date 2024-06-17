@@ -11,22 +11,22 @@ return {
       config = {
         taplo = {
           evenBetterToml = { schema = { catalogs = { "https://www.schemastore.org/api/json/catalog.json" } } },
-          on_attach = function()
-            set_mappings({
-              n = {
-                ["K"] = {
-                  function()
-                    if vim.fn.expand "%:t" == "Cargo.toml" and require("crates").popup_available() then
-                      require("crates").show_popup()
-                    else
-                      vim.lsp.buf.hover()
-                    end
-                  end,
-                  desc = "Show Crate Documentation",
-                },
-              },
-            }, { buffer = true })
-          end,
+          -- on_attach = function()
+          --   set_mappings({
+          --     n = {
+          --       ["K"] = {
+          --         function()
+          --           if vim.fn.expand "%:t" == "Cargo.toml" and require("crates").popup_available() then
+          --             require("crates").show_popup()
+          --           else
+          --             vim.lsp.buf.hover()
+          --           end
+          --         end,
+          --         desc = "Show Crate Documentation",
+          --       },
+          --     },
+          --   }, { buffer = true })
+          -- end,
         },
       },
     },

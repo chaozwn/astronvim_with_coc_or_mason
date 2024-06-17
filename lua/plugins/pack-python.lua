@@ -4,8 +4,6 @@ local set_mappings = require("astrocore").set_mappings
 
 ---@type LazySpec
 return {
-  { "microsoft/python-type-stubs" },
-  { "pandas-dev/pandas-stubs" },
   {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
@@ -61,12 +59,7 @@ return {
                 autoImportCompletions = true,
                 completeFunctionParens = true,
                 indexing = true,
-                inlayHints = false,
-                stubPath = vim.fn.stdpath "data" .. "/lazy/python-type-stubs/stubs",
-                extraPaths = {
-                  vim.fn.stdpath "data" .. "/lazy/python-type-stubs/stubs",
-                  vim.fn.stdpath "data" .. "/lazy/pandas-stubs/pandas-stubs",
-                },
+                inlayHints = true,
                 diagnosticSeverityOverrides = {
                   reportUnusedImport = "information",
                   reportUnusedFunction = "information",

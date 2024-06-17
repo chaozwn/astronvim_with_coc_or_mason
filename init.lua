@@ -40,4 +40,4 @@ require "lazy_setup"
 -- local my_screen = screen_monitor:new(300, timeout_callback())
 -- my_screen:start_monitor()
 
-if vim.g.neovide then require("neovide").init() end
+-- if vim.g.neovide then require("neovide").init() end

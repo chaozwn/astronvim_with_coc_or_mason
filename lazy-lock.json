@@ -46,6 +46,8 @@
   "mason-tool-installer.nvim": { "branch": "main", "commit": "c5e07b8ff54187716334d585db34282e46fa2932" },
   "mason.nvim": { "branch": "main", "commit": "c43eeb5614a09dc17c03a7fb49de2e05de203924" },
   "mini.bufremove": { "branch": "main", "commit": "931a3bb514147d9e812767275c4beba6b779b1d3" },
+  "molten-nvim": { "branch": "main", "commit": "df5ccef3b6fda3582f7746e45327ee031f668826" },
+  "neo-tree.nvim": { "branch": "main", "commit": "8c75e8a2949cd6cd35525799200a8d34471ee9eb" },
   "neoconf.nvim": { "branch": "main", "commit": "f8947e998dac4213f6c7bb1c7b843cba64db22dd" },
   "neodev.nvim": { "branch": "main", "commit": "1f4ebcc10852518166ce165e57d425a4265a10d4" },
   "neoscroll.nvim": { "branch": "master", "commit": "a731f66f1d39ec6175fd201c5bf849e54abda99c" },
@@ -87,7 +89,6 @@
   "smart-splits.nvim": { "branch": "master", "commit": "66fda3a601a5b4c679656f15eb6ddd613c8d3216" },
   "solarized-osaka.nvim": { "branch": "main", "commit": "a2a435aa0e6088ccc0d7c3aa2813c10570d90c87" },
   "telescope-dap.nvim": { "branch": "master", "commit": "8c88d9716c91eaef1cdea13cb9390d8ef447dbfe" },
-  "telescope-file-browser.nvim": { "branch": "master", "commit": "a7ab9a957b17199183388c6f357d614fcaa508e5" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb870d27" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
   "template-literal-comments.nvim": { "branch": "main", "commit": "9640cf73a77090a3d044c19766831e6401442095" },
@@ -100,5 +101,6 @@
   "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
   "vim-maketable": { "branch": "master", "commit": "d72e73f333c64110524197ec637897bd1464830f" },
   "vim-visual-multi": { "branch": "master", "commit": "b84a6d42c1c10678928b0bf8327f378c8bc8af5a" },
+  "wezterm.nvim": { "branch": "main", "commit": "f73bba23ab4becd146fa2d0a3a16a84b987eeaca" },
   "which-key.nvim": { "branch": "main", "commit": "0539da005b98b02cf730c1d9da82b8e8edb1c2d2" }
 }

@@ -5,6 +5,10 @@ return {
   opts = function(_, opts)
     return require("astrocore").extend_tbl(opts, {
       transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     })
   end,
 }

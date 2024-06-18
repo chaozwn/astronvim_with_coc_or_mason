@@ -17,6 +17,7 @@ npm install -g tree-sitter-cli
 brew install gdu
 brew install bottom
 brew install protobuf
+brew install trash
 
 pip install git+https://github.com/will8211/unimatrix.git
 npm install -g neovim

@@ -1,0 +1,33 @@
+{
+  "Code cell": {
+    "prefix": [
+      "codecell"
+    ],
+    "body": [
+      "# %%"
+    ],
+    "description": "jupynium code cell"
+  },
+  "Magic commands": {
+    "prefix": [
+      "magiccommands"
+    ],
+    "body": [
+      "# %time"
+    ],
+    "description": "jupynium magic commands"
+  },
+  "Markdown cell": {
+    "prefix": [
+      "markdowncell"
+    ],
+    "body": [
+      "# %% [md]",
+      "\"\"\"",
+      "# This is a markdown heading",
+      "This is markdown content",
+      "\"\"\""
+    ],
+    "description": "jupynium markdown cell"
+  }
+}

@@ -19,6 +19,7 @@ brew install bottom
 brew install protobuf
 brew install trash
 
+pip install notebook nbclassic jupyter-console
 pip install git+https://github.com/will8211/unimatrix.git
 npm install -g neovim
 pip install pynvim

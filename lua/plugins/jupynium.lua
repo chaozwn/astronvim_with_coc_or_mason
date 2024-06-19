@@ -70,6 +70,7 @@ return {
       default_notebook_URL = "localhost:8888/nbclassic",
       jupyter_command = "jupyter",
       use_default_keybindings = false,
+       auto_download_ipynb = false,
     },
     build = "pip install --user .",
   },

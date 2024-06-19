@@ -1,3 +1,5 @@
+local function get_filename_from_path(path) return path:match "([^/\\]+)$" end
+
 ---@type LazySpec
 return {
   {
@@ -14,7 +16,9 @@ return {
 
         maps.n["<Leader>xd"] = {
           function()
-            vim.ui.input({ prompt = "File Name: ", default = "Untitled.ipynb" }, function(input)
+            local file = get_filename_from_path(vim.api.nvim_buf_get_name(0)):match "([^%.]+)"
+
+            vim.ui.input({ prompt = "File Name: ", default = file .. ".ipynb" }, function(input)
               if not input or #input == 0 then return end
               local execute_command = ([[:JupyniumStartSync ]] .. input)
               vim.cmd(execute_command)
@@ -70,7 +74,7 @@ return {
       default_notebook_URL = "localhost:8888/nbclassic",
       jupyter_command = "jupyter",
       use_default_keybindings = false,
-       auto_download_ipynb = false,
+      auto_download_ipynb = false,
     },
     build = "pip install --user .",
   },

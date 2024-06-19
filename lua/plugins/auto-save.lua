@@ -1,7 +1,20 @@
+local function is_ju_py_file(buf)
+  if not buf then return end
+
+  local bufname = vim.api.nvim_buf_get_name(buf)
+
+  if bufname:match "%.ju%.py$" then
+    return true
+  else
+    return false
+  end
+end
+
 ---@type LazySpec
 return {
   "chaozwn/auto-save.nvim",
   event = { "User AstroFile", "InsertEnter" },
+  enabled = false,
   opts = {
     debounce_delay = 3000,
     print_enabled = false,
@@ -15,7 +28,11 @@ return {
         if fn.mode() ~= "n" then
           return false
         else
-          return true -- met condition(s), can save
+          if is_ju_py_file(buf) then
+            return false
+          else
+            return true
+          end
         end
       end
       return false -- can't save

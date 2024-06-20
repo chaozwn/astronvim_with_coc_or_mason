@@ -126,7 +126,6 @@ return {
   },
   {
     "pmizio/typescript-tools.nvim",
-    commit = "ba2e67484e86d1540baf097eaf38135ddb672ac0",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",

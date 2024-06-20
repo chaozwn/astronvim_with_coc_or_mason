@@ -8,10 +8,9 @@ return {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     opts = {
-      servers = { "pylance" },
       ---@diagnostic disable: missing-fields
       config = {
-        pylance = {
+        basedpyright = {
           on_attach = function()
             if is_available "venv-selector.nvim" then
               set_mappings({
@@ -20,7 +19,7 @@ return {
                     "<cmd>VenvSelect<CR>",
                     desc = "Select VirtualEnv",
                   },
-                  ["<Leader>lV"] = {
+                  ["<leader>lv"] = {
                     function()
                       require("astrocore").notify(
                         "Current Env:" .. require("venv-selector").get_active_venv(),
@@ -29,11 +28,16 @@ return {
                     end,
                     desc = "Show Current VirtualEnv",
                   },
+                  ["<leader>lo"] = {
+                    "<cmd>PyrightOrganizeImports<CR>",
+                    desc = "Organize Imports",
+                  },
                 },
               }, { buffer = true })
             end
           end,
           filetypes = { "python" },
+          single_file_support = true,
           root_dir = function(...)
             local util = require "lspconfig.util"
             return util.find_git_ancestor(...)
@@ -46,63 +50,16 @@ return {
                 "pyrightconfig.json",
               })(...)
           end,
-          cmd = { "pylance", "--stdio" },
-          single_file_support = true,
-          before_init = function(_, c) c.settings.python.pythonPath = vim.fn.exepath "python" end,
           settings = {
-            python = {
+            basedpyright = {
               analysis = {
                 autoSearchPaths = true,
+                diagnosticMode = "openFilesOnly",
                 useLibraryCodeForTypes = true,
-                diagnosticMode = "workspace",
+                reportMissingTypeStubs = false,
                 typeCheckingMode = "basic",
-                autoImportCompletions = true,
-                completeFunctionParens = true,
-                indexing = true,
-                inlayHints = true,
-                diagnosticSeverityOverrides = {
-                  reportUnusedImport = "information",
-                  reportUnusedFunction = "information",
-                  reportUnusedVariable = "information",
-                  reportGeneralTypeIssues = "none",
-                  reportOptionalMemberAccess = "none",
-                  reportOptionalSubscript = "none",
-                  reportPrivateImportUsage = "none",
-                },
               },
             },
-          },
-          handlers = {
-            ["workspace/executeCommand"] = function(_, result)
-              if result and result.label == "Extract Method" then
-                vim.ui.input({ prompt = "New name: ", default = result.data.newSymbolName }, function(input)
-                  if input and #input > 0 then vim.lsp.buf.rename(input) end
-                end)
-              end
-            end,
-          },
-          commands = {
-            PylanceExtractMethod = {
-              function()
-                local arguments =
-                  { vim.uri_from_bufnr(0):gsub("file://", ""), require("vim.lsp.util").make_given_range_params().range }
-                vim.lsp.buf.execute_command { command = "pylance.extractMethod", arguments = arguments }
-              end,
-              description = "Extract Method",
-              range = 2,
-            },
-            PylanceExtractVariable = {
-              function()
-                local arguments =
-                  { vim.uri_from_bufnr(0):gsub("file://", ""), require("vim.lsp.util").make_given_range_params().range }
-                vim.lsp.buf.execute_command { command = "pylance.extractVariable", arguments = arguments }
-              end,
-              description = "Extract Variable",
-              range = 2,
-            },
-          },
-          docs = {
-            description = "https://github.com/microsoft/pylance-release\n\n`pylance`, Fast, feature-rich language support for Python",
           },
         },
       },
@@ -113,7 +70,7 @@ return {
     optional = true,
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "python", "toml" })
+        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "python", "toml", "ninja", "rst" })
       end
     end,
   },
@@ -134,10 +91,22 @@ return {
     end,
   },
   {
+    "williamboman/mason-lspconfig.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "basedpyright" })
+    end,
+  },
+  {
     "linux-cultist/venv-selector.nvim",
     opts = {
       anaconda_base_path = "~/miniconda3",
       anaconda_envs_path = "~/miniconda3/envs",
+      settings = {
+        options = {
+          notify_user_on_venv_activation = true,
+        },
+      },
     },
     cmd = { "VenvSelect", "VenvSelectCached" },
   },

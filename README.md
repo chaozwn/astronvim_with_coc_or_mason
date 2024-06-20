@@ -1,31 +1,4 @@
-# AstroNvim Template
-
-<!--toc:start-->
-
-- [AstroNvim Template](#astronvim-template)
-    - [Support neovim version](#support-neovim-version)
-    - [Features](#features)
-    - [workflow screenshot](#workflow-screenshot)
-    - [other components config](#other-components-config)
-    - [🛠️ Installation](#🛠️-installation)
-        - [The system should supports commands](#the-system-should-supports-commands)
-        - [Recommend install](#recommend-install)
-        - [Make a backup of your current nvim and shared folder](#make-a-backup-of-your-current-nvim-and-shared-folder)
-        - [Create a new user repository from this template](#create-a-new-user-repository-from-this-template)
-        - [Clone the repository](#clone-the-repository)
-        - [Start Neovim](#start-neovim)
-    - [Tips](#tips)
-        - [Use Lazygit](#use-lazygit)
-        - [Install unimatrix](#install-unimatrix)
-        - [Neovim requirements](#neovim-requirements)
-        - [Markdown Image Paste](#markdown-image-paste)
-        - [Input Auto Switch](#input-auto-switch)
-        - [Support styled-components](#support-styled-components)
-        - [Support for neovide](#support-for-neovide)
-        - [Support Lazydocker](#support-lazydocker)
-    - [General Mappings](#general-mappings)
-    - [NOTE](#note) - [_vim.lsp.buf.hover()_ `KK` jump into signature help float window](#vimlspbufhover-kk-jump-into-signature-help-float-window)
-  <!--toc:end-->
+# AstroNvimV4 Config
 
 **NOTE:** This is the latest v4 configuration; everyone can use it with confidence.
 
@@ -44,7 +17,7 @@ neovim >= `0.10`, recommend `0.10`
 now,this config supports development in `TypeScript`,`Python`,`Go`, `Rust` and `markdown`.
 
 - **_`Typescript`_**: `typescript-tools.nvim`
-- **_`Python`_**: `pylance`
+- **_`Python`_**: `basedpyright`
 - **_`Go`_**: `go.nvim` _-- support go zero framework_
 - **_`Markdown`_**: `iamcco/markdown-preview.nvim`,
 - **_`Rust`_**: `mrcjkb/rustaceanvim`

@@ -11,7 +11,7 @@ return {
           {
             event = "FileType",
             desc = "Fix conceallevel for json files",
-            pattern = { "json", "jsonc" },
+            pattern = { "json", "jsonc", "json5" },
             callback = function()
               vim.wo.spell = false
               vim.wo.conceallevel = 0
@@ -24,6 +24,7 @@ return {
   {
     "b0o/SchemaStore.nvim",
     lazy = true,
+    version = false,
     dependencies = {
       {
         "AstroNvim/astrolsp",
@@ -32,10 +33,19 @@ return {
           ---@diagnostic disable: missing-fields
           config = {
             jsonls = {
-              on_new_config = function(config)
-                if not config.settings.json.schemas then config.settings.json.schemas = {} end
-                vim.list_extend(config.settings.json.schemas, require("schemastore").json.schemas())
+              -- lazy-load schemastore when needed
+              on_new_config = function(new_config)
+                new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+                vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
               end,
+              settings = {
+                json = {
+                  format = {
+                    enable = true,
+                  },
+                  validate = { enable = true },
+                },
+              },
             },
           },
         },

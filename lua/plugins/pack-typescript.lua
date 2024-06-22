@@ -27,7 +27,15 @@ local lsp_rooter, prettierrc_rooter
 local has_prettier = function(bufnr)
   if type(bufnr) ~= "number" then bufnr = vim.api.nvim_get_current_buf() end
   local rooter = require "astrocore.rooter"
-  if not lsp_rooter then lsp_rooter = rooter.resolve "lsp" end
+  if not lsp_rooter then
+    lsp_rooter = rooter.resolve("lsp", {
+      ignore = {
+        servers = function(client)
+          return not vim.tbl_contains({ "vtsls", "typescript-tools", "volar", "eslint", "tsserver" }, client.name)
+        end,
+      },
+    })
+  end
   if not prettierrc_rooter then
     prettierrc_rooter = rooter.resolve {
       ".prettierrc",
@@ -184,7 +192,7 @@ return {
     "jay-babu/mason-null-ls.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd", "eslint" })
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd" })
 
       if not opts.handlers then opts.handlers = {} end
 

@@ -1,5 +1,18 @@
 local M = {}
 
+function M.extend(t, key, values)
+  local keys = vim.split(key, ".", { plain = true })
+  for i = 1, #keys do
+    local k = keys[i]
+    t[k] = t[k] or {}
+    if type(t) ~= "table" then
+      return
+    end
+    t = t[k]
+  end
+  return vim.list_extend(t, values)
+end
+
 -- This file is automatically ran last in the setup process and is a good place to configure
 -- augroups/autocommands and custom filetypes also this just pure lua so
 -- anything that doesn't fit in the normal config locations above can go here

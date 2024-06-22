@@ -99,6 +99,30 @@ return {
               hybridMode = false,
             },
           },
+          settings = {
+            typescript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              inlayHints = {
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = false },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = false },
+                enumMemberValues = { enabled = true },
+              },
+            },
+            javascript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              inlayHints = {
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = false },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = false },
+                enumMemberValues = { enabled = true },
+              },
+            },
+          },
         },
         vtsls = {
           on_attach = function()
@@ -147,6 +171,17 @@ return {
                 enumMemberValues = { enabled = true },
               },
             },
+            javascript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              inlayHints = {
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = false },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = false },
+                enumMemberValues = { enabled = true },
+              },
+            },
           },
           before_init = function(_, config)
             local astrocore_ok, astrocore = pcall(require, "astrocore")
@@ -185,7 +220,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "eslint", "vtsls", "volar" })
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "eslint", "vtsls", "volar@2.0.19" })
     end,
   },
   {

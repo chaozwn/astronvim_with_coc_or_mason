@@ -34,7 +34,7 @@ return {
         rust_analyzer = {
           on_attach = function()
             vim.api.nvim_create_autocmd({ "TermClose", "BufEnter" }, {
-              pattern = "*cargo run*",
+              pattern = "*cargo*",
               desc = "Jump to error line",
               callback = function()
                 set_mappings({

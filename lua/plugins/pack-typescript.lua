@@ -199,8 +199,6 @@ return {
               enableForWorkspaceTypeScriptVersions = true,
             }
 
-            print(volar_install_path)
-
             astrocore.list_insert_unique(config.settings.vtsls.tsserver.globalPlugins, { vue_plugin_config })
           end,
         },

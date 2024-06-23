@@ -42,7 +42,7 @@ return {
       return require("astrocore").extend_tbl(opts, {
         event_handlers = {
           {
-            event = "neo_tree_buffer_leave",
+            event = "file_opened",
             handler = function() require("neo-tree.command").execute { action = "close" } end,
           },
         },

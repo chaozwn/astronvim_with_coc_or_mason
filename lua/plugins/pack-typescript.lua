@@ -91,13 +91,27 @@ return {
           },
         },
       },
-      handlers = { volar = false },
+      handlers = { vtsls = false },
       config = {
         volar = {
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = { dynamicRegistration = true },
+            },
+          },
           init_options = {
             vue = {
               hybridMode = false,
             },
+          },
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+            "vue",
           },
           settings = {
             typescript = {
@@ -142,7 +156,6 @@ return {
             "typescript",
             "typescriptreact",
             "typescript.tsx",
-            "vue"
           },
           settings = {
             complete_function_calls = true,
@@ -219,7 +232,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "eslint", "vtsls", "volar@2.0.19" })
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "eslint", "vtsls", "volar" })
     end,
   },
   {

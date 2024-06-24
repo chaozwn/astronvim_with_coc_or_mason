@@ -91,7 +91,7 @@ return {
           },
         },
       },
-      handlers = {},
+      handlers = { volar = false },
       config = {
         volar = {
           init_options = {
@@ -142,6 +142,7 @@ return {
             "typescript",
             "typescriptreact",
             "typescript.tsx",
+            "vue"
           },
           settings = {
             complete_function_calls = true,

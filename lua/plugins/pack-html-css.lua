@@ -8,6 +8,21 @@ return {
     opts = {
       ---@diagnostic disable: missing-fields
       config = {
+        emmet_language_server = {
+          filetypes = {
+            "css",
+            "eruby",
+            "html",
+            "htmldjango",
+            "javascriptreact",
+            "less",
+            "pug",
+            "sass",
+            "scss",
+            "typescriptreact",
+            "vue",
+          },
+        },
         html = { init_options = { provideFormatter = false } },
         cssls = {
           init_options = { provideFormatter = false },

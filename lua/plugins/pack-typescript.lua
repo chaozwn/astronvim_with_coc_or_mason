@@ -91,7 +91,6 @@ return {
           },
         },
       },
-      handlers = { vtsls = false },
       config = {
         volar = {
           capabilities = {
@@ -101,40 +100,7 @@ return {
           },
           init_options = {
             vue = {
-              hybridMode = false,
-            },
-          },
-          filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-            "vue",
-          },
-          settings = {
-            typescript = {
-              updateImportsOnFileMove = { enabled = "always" },
-              inlayHints = {
-                parameterNames = { enabled = "literals" },
-                parameterTypes = { enabled = false },
-                variableTypes = { enabled = false },
-                propertyDeclarationTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = false },
-                enumMemberValues = { enabled = true },
-              },
-            },
-            javascript = {
-              updateImportsOnFileMove = { enabled = "always" },
-              inlayHints = {
-                parameterNames = { enabled = "literals" },
-                parameterTypes = { enabled = false },
-                variableTypes = { enabled = false },
-                propertyDeclarationTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = false },
-                enumMemberValues = { enabled = true },
-              },
+              hybridMode = true,
             },
           },
         },
@@ -156,6 +122,7 @@ return {
             "typescript",
             "typescriptreact",
             "typescript.tsx",
+            "vue",
           },
           settings = {
             complete_function_calls = true,

@@ -61,14 +61,14 @@ end
 local function getMethodName(s) return string.gsub(s, "%(.*%)", "") end
 
 local formatting_style = {
-  fields = { "abbr", "kind", "menu" },
+  fields = { "abbr", "menu", "kind" },
   format = function(_, item)
     local icons = require "icons.lspkind"
     local icon = icons[item.kind] or ""
     item.kind = string.format("%s %s", icon, trim(item.kind))
     item.abbr = getMethodName(trim(item.abbr))
+    -- item.menu = truncateString(trim(item.menu), 10)
     item.menu = ""
-    -- item.menu = truncateString(trim(item.menu), 20)
     return item
   end,
 }

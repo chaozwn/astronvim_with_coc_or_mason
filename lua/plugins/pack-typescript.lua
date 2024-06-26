@@ -93,19 +93,42 @@ return {
       },
       config = {
         volar = {
-          capabilities = {
-            workspace = {
-              didChangeWatchedFiles = { dynamicRegistration = true },
-            },
-          },
+          on_attach = function(client, _)
+            client.server_capabilities = utils.extend_tbl(client.server_capabilities, {
+              workspace = {
+                didChangeWatchedFiles = { dynamicRegistration = true },
+              },
+            })
+          end,
           init_options = {
             vue = {
               hybridMode = true,
             },
           },
+          settings = {
+            vue = {
+              updateImportsOnFileMove = { enabled = true },
+            },
+          },
         },
         vtsls = {
-          on_attach = function()
+          on_attach = function(client, _)
+            client.server_capabilities = utils.extend_tbl(client.server_capabilities, {
+              workspace = {
+                didChangeWatchedFiles = { dynamicRegistration = true },
+                fileOperations = {
+                  didRename = {
+                    filters = {
+                      {
+                        pattern = {
+                          glob = "**/*.{ts,cts,mts,tsx,js,cjs,mjs,jsx,vue}",
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            })
             set_mappings({
               n = {
                 ["<Leader>la"] = {

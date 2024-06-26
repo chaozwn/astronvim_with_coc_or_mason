@@ -67,8 +67,7 @@ local formatting_style = {
     local icon = icons[item.kind] or ""
     item.kind = string.format("%s %s ", icon, trim(item.kind))
     item.abbr = getMethodName(trim(item.abbr))
-    -- item.menu = truncateString(trim(item.menu), 10)
-    item.menu = ""
+    item.menu = truncateString(trim(item.menu), 10)
     return item
   end,
 }

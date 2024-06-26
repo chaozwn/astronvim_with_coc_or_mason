@@ -58,13 +58,16 @@ local function truncateString(s, maxLength)
   end
 end
 
+local function getMethodName(s) return string.gsub(s, "%(.*%)", "") end
+
 local formatting_style = {
-  fields = { "kind", "abbr", "menu" },
+  fields = { "abbr", "kind", "menu" },
   format = function(_, item)
     local icons = require "icons.lspkind"
     local icon = icons[item.kind] or ""
-    item.kind = string.format("%s", icon)
-    item.abbr = trim(item.abbr)
+    icon = " " .. icon .. " "
+    item.kind = string.format("%s %s", icon, item.kind)
+    item.abbr = getMethodName(trim(item.abbr))
     item.menu = truncateString(trim(item.menu), 20)
     return item
   end,
@@ -119,12 +122,6 @@ return {
     local compare = require "cmp.config.compare"
 
     return require("astrocore").extend_tbl(opts, {
-      window = {
-        completion = {
-          col_offset = 1,
-          side_padding = 0,
-        },
-      },
       formatting = formatting_style,
       sources = cmp.config.sources {
         {
@@ -184,6 +181,13 @@ return {
         completeopt = "menu,menuone,preview,noinsert",
       },
       mapping = mapping(),
+      window = {
+        completion = {
+          col_offset = 1,
+          side_padding = 1,
+          scrollbar = false,
+        },
+      },
     })
   end,
 }

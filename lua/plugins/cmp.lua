@@ -183,6 +183,7 @@ return {
       mapping = mapping(),
       window = {
         completion = {
+          col_offset = 1,
           side_padding = 1,
           scrollbar = false,
         },

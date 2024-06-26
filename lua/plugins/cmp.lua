@@ -65,10 +65,10 @@ local formatting_style = {
   format = function(_, item)
     local icons = require "icons.lspkind"
     local icon = icons[item.kind] or ""
-    icon = " " .. icon .. " "
-    item.kind = string.format("%s %s", icon, item.kind)
+    item.kind = string.format("%s %s", icon, trim(item.kind))
     item.abbr = getMethodName(trim(item.abbr))
-    item.menu = truncateString(trim(item.menu), 20)
+    item.menu = ""
+    -- item.menu = truncateString(trim(item.menu), 20)
     return item
   end,
 }

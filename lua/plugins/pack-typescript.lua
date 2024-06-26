@@ -113,6 +113,14 @@ return {
         },
         vtsls = {
           on_attach = function(client, _)
+            set_mappings({
+              n = {
+                ["<Leader>lA"] = {
+                  function() vim.lsp.buf.code_action { context = { only = { "source", "refactor", "quickfix" } } } end,
+                  desc = "Lsp All Action",
+                },
+              },
+            }, { buffer = true })
             client.server_capabilities = utils.extend_tbl(client.server_capabilities, {
               workspace = {
                 didChangeWatchedFiles = { dynamicRegistration = true },
@@ -129,14 +137,6 @@ return {
                 },
               },
             })
-            set_mappings({
-              n = {
-                ["<Leader>la"] = {
-                  function() vim.lsp.buf.code_action { context = { only = { "source", "refactor", "quickfix" } } } end,
-                  desc = "Lsp All Action",
-                },
-              },
-            }, { buffer = true })
           end,
           filetypes = {
             "javascript",

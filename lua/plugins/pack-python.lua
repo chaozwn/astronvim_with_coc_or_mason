@@ -12,6 +12,7 @@ return {
       config = {
         basedpyright = {
           on_attach = function(client, _)
+            --TODO: https://github.com/DetachHead/basedpyright/issues/327
             -- require("utils").save_client(client)
             -- client.server_capabilities = utils.extend_tbl(client.server_capabilities, {
             --   workspace = {

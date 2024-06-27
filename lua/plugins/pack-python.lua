@@ -19,7 +19,7 @@ return {
                     "<cmd>VenvSelect<CR>",
                     desc = "Select VirtualEnv",
                   },
-                  ["<leader>lv"] = {
+                  ["<leader>lV"] = {
                     function()
                       require("astrocore").notify(
                         "Current Env:" .. require("venv-selector").get_active_venv(),
@@ -102,6 +102,8 @@ return {
     opts = {
       anaconda_base_path = "~/miniconda3",
       anaconda_envs_path = "~/miniconda3/envs",
+      stay_on_this_version = true,
+      dap_enabled = true,
       settings = {
         options = {
           notify_user_on_venv_activation = true,

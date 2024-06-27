@@ -58,9 +58,15 @@ return {
         }
         maps.x[prefix .. "t"] = maps.n[prefix .. "t"]
 
-        vim.keymap.set("", prefix .. "k", "<cmd>JupyniumScrollUp<cr>", { desc = "Jupynium scroll up" })
+        maps.n[prefix .. "k"] = {
+          "<cmd>JupyniumScrollUp<cr>",
+          desc = "Jupynium scroll up",
+        }
 
-        vim.keymap.set("", prefix .. "j", "<cmd>JupyniumScrollDown<cr>", { desc = "Jupynium scroll down" })
+        maps.n[prefix .. "j"] = {
+          "<cmd>JupyniumScrollDown<cr>",
+          desc = "Jupynium scroll down",
+        }
       end
       opts.mappings = maps
     end,
@@ -77,6 +83,9 @@ return {
       jupyter_command = "jupyter",
       use_default_keybindings = false,
       auto_download_ipynb = false,
+      textobjects = {
+        use_default_keybindings = false,
+      },
     },
     build = "pip install --user .",
   },

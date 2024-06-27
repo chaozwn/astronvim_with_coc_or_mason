@@ -7,6 +7,8 @@ return {
     {
       "AstroNvim/astrocore",
       ---@param opts AstroCoreOpts
+      ---@diagnostic disable: missing-fields
+      ---@diagnostic disable: missing-parameter
       opts = function(_, opts)
         local get_icon = require("astroui").get_icon
         return require("astrocore").extend_tbl(opts, {

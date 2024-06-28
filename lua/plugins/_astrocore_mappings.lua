@@ -23,10 +23,6 @@ return {
       maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
       maps.v["p"] = { "pgvy", desc = "Paste" }
 
-      if vim.fn.executable "btm" == 1 then
-        maps.n["<Leader>tT"] = { function() utils.toggle_term_cmd "btm" end, desc = "ToggleTerm btm" }
-      end
-
       maps.n["n"] = { "nzz" }
       maps.n["N"] = { "Nzz" }
       maps.v["n"] = { "nzz" }

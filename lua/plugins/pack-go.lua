@@ -38,55 +38,59 @@ return {
             },
           },
           on_attach = function(client, _)
-              if not client.server_capabilities.semanticTokensProvider then
-                local semantic = client.config.capabilities.textDocument.semanticTokens
-                client.server_capabilities.semanticTokensProvider = {
-                  full = true,
-                  legend = {
-                    tokenTypes = semantic.tokenTypes,
-                    tokenModifiers = semantic.tokenModifiers,
-                  },
-                  range = true,
-                }
+            if not client.server_capabilities.semanticTokensProvider then
+              local semantic = client.config.capabilities.textDocument.semanticTokens
+              client.server_capabilities.semanticTokensProvider = {
+                full = true,
+                legend = {
+                  tokenTypes = semantic.tokenTypes,
+                  tokenModifiers = semantic.tokenModifiers,
+                },
+                range = true,
+              }
             end
           end,
           settings = {
             gopls = {
-              gofumpt = true,
+              analyses = {
+                ST1003 = true,
+                fieldalignment = false,
+                fillreturns = true,
+                nilness = true,
+                nonewvars = true,
+                shadow = true,
+                undeclaredname = true,
+                unreachable = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+              },
               codelenses = {
-                gc_details = false,
-                generate = true,
+                gc_details = false, -- Show a code lens toggling the display of gc's choices.
+                generate = true, -- show the `go generate` lens.
                 regenerate_cgo = true,
-                run_govulncheck = true,
                 test = true,
                 tidy = true,
                 upgrade_dependency = true,
                 vendor = true,
               },
               hints = {
-                assignVariableTypes = true,
-                compositeLiteralFields = true,
-                compositeLiteralTypes = true,
-                constantValues = true,
+                assignVariableTypes = false,
+                compositeLiteralFields = false,
+                compositeLiteralTypes = false,
+                constantValues = false,
                 functionTypeParameters = true,
                 parameterNames = true,
-                rangeVariableTypes = true,
-              },
-              analyses = {
-                fieldalignment = false,
-                nilness = true,
-                unusedparams = true,
-                unusedwrite = true,
-                useany = true,
+                rangeVariableTypes = false,
               },
               buildFlags = { "-tags", "integration" },
+              completeUnimported = true,
+              diagnosticsDelay = "500ms",
               matcher = "Fuzzy",
+              semanticTokens = true,
+              staticcheck = true,
               symbolMatcher = "fuzzy",
               usePlaceholders = false,
-              completeUnimported = true,
-              staticcheck = true,
-              directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-              semanticTokens = true,
             },
           },
         },
@@ -110,10 +114,9 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         "gomodifytags",
-        "gofumpt",
+        "gotests",
         "iferr",
         "impl",
-        "goimports",
       })
 
       if not opts.handlers then opts.handlers = {} end
@@ -155,56 +158,20 @@ return {
     opts = {},
   },
   {
-    "ray-x/go.nvim",
-    dependencies = {
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {
-      disable_defaults = true,
-      trouble = true,
-      run_in_floaterm = true,
-      luasnip = true,
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = { dynamicRegistration = true },
-        },
-      },
-    },
-    event = { "CmdlineEnter" },
-    ft = { "go", "gomod" },
-    -- Prevents Neovim from freezing on plugin installation/update.
-    -- See: <https://github.com/ray-x/go.nvim/issues/433>
-    build = function() require("go.install").update_all() end,
-  },
-  {
-    "chaozwn/goctl.nvim",
-    dependencies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
-    ft = "goctl",
-    enabled = vim.fn.executable "goctl" == 1,
-    opts = function()
-      local group = vim.api.nvim_create_augroup("GoctlAutocmd", { clear = true })
-      vim.api.nvim_create_autocmd("FileType", {
-        group = group,
-        pattern = "goctl",
-        callback = function()
-          -- set up format keymap
-          vim.keymap.set(
-            "n",
-            "<Leader>lf",
-            "<Cmd>GoctlApiFormat<CR>",
-            { silent = true, noremap = true, buffer = true, desc = "Format Buffer" }
-          )
-          vim.keymap.set(
-            "n",
-            "<Leader>fg",
-            "<cmd>Telescope goctl<CR>",
-            { silent = true, noremap = true, buffer = true, desc = "Jump to error line" }
-          )
-        end,
-      })
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    build = function()
+      if not require("lazy.core.config").spec.plugins["mason.nvim"] then
+        vim.print "Installing go dependencies..."
+        vim.cmd.GoInstallDeps()
+      end
     end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      { "williamboman/mason.nvim", optional = true }, -- by default use Mason for go dependencies
+    },
+    opts = {},
   },
   {
     "nvim-neotest/neotest",

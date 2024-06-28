@@ -11,8 +11,13 @@ return {
       local maps = opts.mappings
       if maps then
         maps.n[prefix] = { desc = " Jupynium" }
+        maps.v[prefix] = { desc = " Jupynium" }
         maps.n[prefix .. "s"] = {
           "<cmd>JupyniumStartAndAttachToServer<CR>",
+          desc = "Jupynium start and attach to server",
+        }
+        maps.n[prefix .. "S"] = {
+          "<cmd>JupyniumStopSync<CR>",
           desc = "Jupynium start and attach to server",
         }
 

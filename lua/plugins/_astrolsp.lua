@@ -7,6 +7,7 @@ return {
       -- Configuration table of features provided by AstroLSP
       autoformat = false, -- enable or disable auto formatting on start
       inlay_hints = true, -- nvim >= 0.10
+      semantic_tokens = true,
     },
     -- Configuration options for controlling formatting with language servers
     formatting = {

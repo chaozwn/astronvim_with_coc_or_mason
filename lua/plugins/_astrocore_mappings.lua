@@ -10,8 +10,8 @@ return {
     if maps then
       maps.n["<Leader>n"] = false
 
-      maps.n.n = { require("utils").better_search "n", desc = "Next search" }
-      maps.n.N = { require("utils").better_search "N", desc = "Previous search" }
+      maps.n.n = { utils.better_search "n", desc = "Next search" }
+      maps.n.N = { utils.better_search "N", desc = "Previous search" }
 
       maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up", silent = true }
       maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }

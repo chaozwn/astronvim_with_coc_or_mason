@@ -52,7 +52,7 @@ return {
           settings = {
             gopls = {
               analyses = {
-                ST1003 = true,
+                ST1003 = false,
                 fieldalignment = false,
                 fillreturns = true,
                 nilness = true,

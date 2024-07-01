@@ -15,21 +15,25 @@ return {
     ---@type AstroLSPOpts
     opts = {
       ---@diagnostic disable: missing-fields
-      on_attach = function()
-        if utils.is_available "markdown-preview.nvim" then
-          utils.set_mappings({
-            n = {
-              ["<Leader>lz"] = { "<Cmd>MarkdownPreview<CR>", desc = "Markdown Start Preview" },
-              ["<Leader>lZ"] = { "<Cmd>MarkdownPreviewStop<CR>", desc = "Markdown Stop Preview" },
-              ["<Leader>lp"] = { "<Cmd>Pastify<CR>", desc = "Markdown Paste Image" },
-            },
-            x = {
-              ["<Leader>lt"] = { [[:'<,'>MakeTable! \t<CR>]], desc = "Markdown csv to table(Default:\\t)" },
-              ["<Leader>lT"] = { markdown_table_change, desc = "Markdown csv to table with separate char" },
-            },
-          }, { buffer = true })
-        end
-      end,
+      config = {
+        marksman = {
+          on_attach = function()
+            if utils.is_available "markdown-preview.nvim" then
+              utils.set_mappings({
+                n = {
+                  ["<Leader>lz"] = { "<cmd>MarkdownPreview<CR>", desc = "Markdown Start Preview" },
+                  ["<Leader>lZ"] = { "<cmd>MarkdownPreviewStop<CR>", desc = "Markdown Stop Preview" },
+                  ["<Leader>lp"] = { "<cmd>Pastify<CR>", desc = "Markdown Paste Image" },
+                },
+                x = {
+                  ["<Leader>lt"] = { [[:'<,'>MakeTable! \t<CR>]], desc = "Markdown csv to table(Default:\\t)" },
+                  ["<Leader>lT"] = { markdown_table_change, desc = "Markdown csv to table with separate char" },
+                },
+              }, { buffer = true })
+            end
+          end,
+        },
+      },
     },
   },
   {

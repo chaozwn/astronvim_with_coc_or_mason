@@ -35,6 +35,7 @@ return {
         yaml = utils.yaml_ft,
         json = "jsonc",
         api = "goctl",
+        MD = "markdown",
       },
       filename = {
         [".eslintrc.json"] = "jsonc",

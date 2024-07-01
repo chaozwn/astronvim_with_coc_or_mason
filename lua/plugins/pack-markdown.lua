@@ -57,10 +57,21 @@ return {
       opts.ensure_installed =
         require("astrocore").list_insert_unique(opts.ensure_installed, { "prettierd", "markdownlint" })
 
-      local nls = require "null-ls"
-      opts.sources = vim.list_extend(opts.sources or {}, {
-        nls.builtins.diagnostics.markdownlint,
-      })
+      opts.handlers.markdownlint = function()
+        local null_ls = require "null-ls"
+        local markdownlint_diagnostics_buildins = null_ls.builtins.diagnostics.markdownlint
+        table.insert(markdownlint_diagnostics_buildins._opts.args, "--config")
+        local system_config = vim.fn.stdpath "config" .. "/.markdownlint.jsonc"
+        local project_config = vim.fn.getcwd() .. "/.markdownlint.jsonc"
+        if vim.fn.filereadable(project_config) == 1 then
+          table.insert(markdownlint_diagnostics_buildins._opts.args, project_config)
+        else
+          table.insert(markdownlint_diagnostics_buildins._opts.args, system_config)
+        end
+        null_ls.register(null_ls.builtins.diagnostics.markdownlint.with {
+          generator_opts = markdownlint_diagnostics_buildins._opts,
+        })
+      end
     end,
   },
   {

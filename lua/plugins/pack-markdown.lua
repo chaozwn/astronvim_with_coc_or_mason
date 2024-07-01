@@ -11,6 +11,20 @@ end
 ---@type LazySpec
 return {
   {
+    "AstroNvim/astrocore",
+    ---@param opts AstroCoreOpts
+    opts = function(_, opts)
+      return require("astrocore").extend_tbl(opts, {
+        options = {
+          g = {
+            mkdp_auto_close = 0,
+            mkdp_combine_preview = 1,
+          },
+        },
+      })
+    end,
+  },
+  {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     opts = {

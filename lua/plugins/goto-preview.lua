@@ -1,4 +1,4 @@
-local set_mappings = require("astrocore").set_mappings
+if true then return {} end
 
 ---@type LazySpec
 return {

@@ -1,4 +1,15 @@
 --TODO: https://github.com/golang/go/issues/60903
+
+local function create_buf_config_file()
+  local source_file = vim.fn.stdpath "config" .. "/buf.yaml"
+  local target_file = vim.fn.getcwd() .. "/buf.yaml"
+  local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+  local cmd = is_windows
+      and string.format("copy %s %s", vim.fn.shellescape(source_file, true), vim.fn.shellescape(target_file, true))
+    or string.format("cp %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_file))
+  os.execute(cmd)
+end
+
 ---@type LazySpec
 return {
   {
@@ -132,6 +143,19 @@ return {
           condition = function() return true end,
         })
       end
+
+      vim.api.nvim_create_autocmd("FileType", {
+        desc = "create completion",
+        pattern = "proto",
+        callback = function()
+          vim.keymap.set(
+            "n",
+            "<Leader>uB",
+            create_buf_config_file,
+            { silent = true, noremap = true, buffer = true, desc = "Create buf config file" }
+          )
+        end,
+      })
     end,
   },
   {
@@ -179,6 +203,27 @@ return {
     opts = function(_, opts)
       if not opts.adapters then opts.adapters = {} end
       table.insert(opts.adapters, require "neotest-go"(require("astrocore").plugin_opts "neotest-go"))
+    end,
+  },
+  {
+    "chaozwn/goctl.nvim",
+    ft = "goctl",
+    enabled = vim.fn.executable "goctl" == 1,
+    opts = function()
+      local group = vim.api.nvim_create_augroup("GoctlAutocmd", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = "goctl",
+        callback = function()
+          -- set up format keymap
+          vim.keymap.set(
+            "n",
+            "<Leader>lf",
+            "<Cmd>GoctlApiFormat<CR>",
+            { silent = true, noremap = true, buffer = true, desc = "Format Buffer" }
+          )
+        end,
+      })
     end,
   },
 }

@@ -45,7 +45,6 @@ return {
     end,
     config = function(...)
       require "astronvim.plugins.configs.telescope"(...)
-      -- telescope.load_extension "goctl"
     end,
   },
   {

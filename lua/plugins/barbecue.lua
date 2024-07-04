@@ -8,5 +8,6 @@ return {
   },
   opts = {
     show_modified = true,
+    exclude_filetypes = { "netrw", "toggleterm", "gomod", "gosum" },
   },
 }

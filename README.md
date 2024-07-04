@@ -96,6 +96,11 @@ nvim
 
 ## Tips
 
+### NVcheatsheet
+`<F2>`
+
+![nvcheatsheet](assets/imgs/nvcheatsheet.png) 
+
 ### Use Lazygit
 
 `<leader>tl`

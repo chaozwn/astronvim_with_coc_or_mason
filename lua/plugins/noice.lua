@@ -57,19 +57,19 @@ return {
             if is_available "noice.nvim" then
               local noice_down = function()
                 if not require("noice.lsp").scroll(4) then
-                  if is_available "neoscroll.nvim" then
-                    require("neoscroll").ctrl_d { duration = 250 }
+                  if vim.fn.mode() ~= "i" then
+                    if is_available "neoscroll.nvim" then require("neoscroll").ctrl_d { duration = 250 } end
                   else
-                    return "<C-d>"
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-d>", true, true, true), "n", true)
                   end
                 end
               end
               local noice_up = function()
                 if not require("noice.lsp").scroll(-4) then
-                  if is_available "neoscroll.nvim" then
-                    require("neoscroll").ctrl_u { duration = 250 }
+                  if vim.fn.mode() ~= "i" then
+                    if is_available "neoscroll.nvim" then require("neoscroll").ctrl_u { duration = 250 } end
                   else
-                    return "<C-u>"
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-u>", true, true, true), "n", true)
                   end
                 end
               end

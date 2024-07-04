@@ -143,9 +143,14 @@ im-select
 run `im-select` & copy result to `im-select.lua`
 
 ```lua
--- update your self input method here
-Mac.zhCN = "im.rime.inputmethod.Squirrel.Hans" -- there
-Mac.en =  "com.apple.keylayout.ABC"
+return {
+  "chaozwn/im-select.nvim",
+  lazy = false,
+  opts = {
+    default_main_select = "com.sogou.inputmethod.sogou.pinyin", -- update your input method
+    set_previous_events = { "InsertEnter", "FocusLost" },
+  },
+}
 ```
 
 ### Support styled-components

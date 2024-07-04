@@ -68,7 +68,6 @@ return {
           require("utils").toggle_lazy_git(),
           desc = "ToggleTerm lazygit",
         }
-        maps.n["<Leader>gg"] = maps.n["<Leader>tl"]
       end
 
       if vim.fn.executable "lazydocker" == 1 then

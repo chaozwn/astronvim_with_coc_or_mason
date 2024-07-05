@@ -36,16 +36,14 @@ return {
           buffers = {
             path_display = { "smart" },
             mappings = {
-              i = { ["<C-d>"] = actions.delete_buffer },
-              n = { ["d"] = actions.delete_buffer },
+              i = { ["<C-d>"] = actions.delete_buffer + actions.move_to_top },
+              n = { ["d"] = actions.delete_buffer + actions.move_to_top },
             },
           },
         },
       })
     end,
-    config = function(...)
-      require "astronvim.plugins.configs.telescope"(...)
-    end,
+    config = function(...) require "astronvim.plugins.configs.telescope"(...) end,
   },
   {
     "AstroNvim/astroui",

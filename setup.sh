@@ -29,10 +29,5 @@ pip install terminaltexteffects
 brew tap daipeihust/tap
 brew install im-select
 
-# npm i -g @styled/typescript-styled-plugin typescript-styled-plugin
-
-# npm i -g @vue/typescript-plugin
-# npm i -g vue-component-meta
-
 brew install neovide
 brew install lazydocker

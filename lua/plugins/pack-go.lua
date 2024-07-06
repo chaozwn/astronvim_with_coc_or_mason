@@ -208,8 +208,7 @@ return {
   {
     "chaozwn/goctl.nvim",
     ft = "goctl",
-    enabled = false,
-    -- enabled = vim.fn.executable "goctl" == 1,
+    enabled = vim.fn.executable "goctl" == 1,
     opts = function()
       local group = vim.api.nvim_create_augroup("GoctlAutocmd", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {

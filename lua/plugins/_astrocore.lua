@@ -34,7 +34,7 @@ return {
         yml = utils.yaml_ft,
         yaml = utils.yaml_ft,
         json = "jsonc",
-        api = "goctl",
+        -- api = "goctl",
         MD = "markdown",
       },
       filename = {

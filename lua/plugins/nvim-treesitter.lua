@@ -1,5 +1,5 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  commit = "4ac4f9beafb6e98e0e94ce8fa58b926192b53403",
+  commit = "5ccec82661b027a0c31e01afb5426d1e02ee51d5",
   opts = {}
 }

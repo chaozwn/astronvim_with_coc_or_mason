@@ -46,17 +46,55 @@ local function trash_visual(state, selected_nodes)
   end)
 end
 
+local function get_filetype_from_path(path)
+  local match = string.match(path, "%.([^%.\\/]*)$") -- 正则匹配以点号分隔的文件扩展名
+
+  if match then
+    local ext = string.lower(match)
+    if ext == "go" then
+      return "go"
+    elseif ext == "lua" then
+      return "lua"
+    else
+      return "unknown"
+    end
+  else
+    return "unknown"
+  end
+end
+
+local function get_filename_without_extension_from_path(path) return path:match "^.+[\\/](.-)%.?[^%.\\/]*$" end
+
+local filetype_mapping = {
+  go = function(path)
+    local file = io.open(path, "w")
+    if file then
+      file:write("package " .. get_filename_without_extension_from_path(path) .. "\n")
+      file:close()
+    end
+  end,
+  unknown = function() end,
+}
+
 ---@type LazySpec
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    -- dependencies = { "miversen33/netman.nvim" },
     opts = function(_, opts)
+      local neo_tree_events = require "neo-tree.events"
+
       return require("astrocore").extend_tbl(opts, {
         event_handlers = {
           {
-            event = "file_opened",
+            event = neo_tree_events.FILE_OPENED,
             handler = function() require("neo-tree.command").execute { action = "close" } end,
+          },
+          {
+            event = neo_tree_events.FILE_ADDED,
+            handler = function(path)
+              local file_type = get_filetype_from_path(path)
+              filetype_mapping[file_type](path)
+            end,
           },
         },
         close_if_last_window = true,

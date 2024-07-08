@@ -102,5 +102,23 @@
     "prefix": "funcc",
     "body": "func ($1) $2($3) $4 {\n\t$0\n}",
     "description": "Snippet for class function declaration"
+  },
+  "gormSerialize": {
+    "prefix": "gorm",
+    "body": [
+      "func (c *${1}) Scan(val interface{}) error {",
+      "\terr := json.Unmarshal(val.([]byte), c)",
+      "\tif err != nil {",
+      "\t\treturn err",
+      "\t}",
+      "\treturn nil",
+      "}",
+      "",
+      "func (c ${1}) Value() (driver.Value, error) {",
+      "\tb, err := json.Marshal(c)",
+      "\treturn string(b), err",
+      "}"
+    ],
+    "description": "Snippet for gorm serialize"
   }
 }

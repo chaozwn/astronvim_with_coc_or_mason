@@ -1,9 +1,9 @@
 #!/bin/bash
 
 mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-mv ~/.local/state/nvim ~/.local/state/nvim.bak
-mv ~/.cache/nvim ~/.cache/nvim.bak
+rm -rf ~/.local/share/nvim 
+rm -rf mv ~/.local/state/nvim 
+rm -rf mv ~/.cache/nvim 
 
 # clone code
 git clone https://github.com/chaozwn/astronvim_with_coc_or_mason ~/.config/nvim

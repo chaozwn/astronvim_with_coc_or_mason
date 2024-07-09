@@ -53,7 +53,6 @@ return {
 
       local diffview = function(prompt_bufnr)
         local selection = action_state.get_selected_entry()
-        print(selection.value)
         if selection == nil then
           utils.__warn_no_selection "extensions.diffviewer.diffview"
           return

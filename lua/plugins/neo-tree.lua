@@ -47,14 +47,12 @@ local function trash_visual(state, selected_nodes)
 end
 
 local function get_filetype_from_path(path)
-  local match = string.match(path, "%.([^%.\\/]*)$") -- 正则匹配以点号分隔的文件扩展名
+  local match = string.match(path, "%.([^%.\\/]*)$") 
 
   if match then
     local ext = string.lower(match)
     if ext == "go" then
       return "go"
-    elseif ext == "lua" then
-      return "lua"
     elseif ext == "api" then
       return "api"
     else

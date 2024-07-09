@@ -240,7 +240,10 @@
     "description": "rune"
   },
   "version": {
-    "prefix": "version",
+    "prefix": [
+      "version",
+      "sy"
+    ],
     "body": [
       "syntax = \"v${1:1}\"$0"
     ],
@@ -260,11 +263,11 @@
     "prefix": "info",
     "body": [
       "info(",
-      "\ttitle: $1",
-      "\tdesc: $2",
-      "\tauthor: $3",
-      "\temail: $4@xiaoheiban.cn",
-      "\tversion: ${5:1.0}",
+      "\ttitle: \"$1\"",
+      "\tdesc: \"$2\"",
+      "\tauthor: \"$3\"",
+      "\temail: \"326747337@qq.com\"",
+      "\tversion: \"${5:1.0}\"",
       ")",
       "",
       "$0"

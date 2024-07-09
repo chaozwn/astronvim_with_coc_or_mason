@@ -47,6 +47,10 @@
       {
         "language": "python",
         "path": "./python.json"
+      },
+      {
+        "language": "proto",
+        "path": "./proto3.json"
       }
     ]
   }

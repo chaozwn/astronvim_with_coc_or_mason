@@ -55,6 +55,8 @@ local function get_filetype_from_path(path)
       return "go"
     elseif ext == "lua" then
       return "lua"
+    elseif ext == "api" then
+      return "api"
     else
       return "unknown"
     end
@@ -70,6 +72,13 @@ local filetype_mapping = {
     local file = io.open(path, "w")
     if file then
       file:write("package " .. get_filename_without_extension_from_path(path) .. "\n")
+      file:close()
+    end
+  end,
+  api = function(path)
+    local file = io.open(path, "w")
+    if file then
+      file:write 'syntax = "v1"'
       file:close()
     end
   end,

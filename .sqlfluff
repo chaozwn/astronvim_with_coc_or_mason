@@ -9,6 +9,7 @@ max_line_length = 80
 indent_unit = space
 large_file_skip_byte_limit = 0
 exclude_rules = CP01,LT02,CV06,CV10,LT08,ST06,LT05,LT09,AM06,ST09,AL01,AL02,LT04,JJ01,LT01,RF02
+ignore = templating
 
 [sqlfluff:indentation]
 tab_space_size = 4
@@ -40,3 +41,15 @@ capitalisation_policy = lower
 
 [sqlfluff:rules:ambiguous.column_references]  # Number in group by
 group_by_and_order_by_style = implicit
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = true
+
+[sqlfluff:templater:jinja:macros]
+# Macros provided as builtins for dbt projects
+dbt_ref = {% macro ref(model_ref) %}{{model_ref}}{% endmacro %}
+dbt_source = {% macro source(source_name, table) %}{{source_name}}_{{table}}{% endmacro %}
+dbt_config = {% macro config() %}{% for k in kwargs %}{% endfor %}{% endmacro %}
+dbt_var = {% macro var(variable, default='') %}item{% endmacro %}
+dbt_is_incremental = {% macro is_incremental() %}True{% endmacro %}
+

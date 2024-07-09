@@ -69,6 +69,7 @@ return {
         end
         null_ls.register(null_ls.builtins.diagnostics.sqlfluff.with {
           generator_opts = buf_diagnostics_buildins._opts,
+          filetypes = { "sql", "dbt" },
         })
 
         -- format
@@ -77,6 +78,7 @@ return {
         table.insert(sqlfmt_formatting_buildins._opts.args, "polyglot")
         null_ls.register(null_ls.builtins.formatting.sqlfmt.with {
           generator_opts = sqlfmt_formatting_buildins._opts,
+          filetypes = { "sql", "dbt" },
         })
       end
     end,

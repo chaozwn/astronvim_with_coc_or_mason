@@ -1,6 +1,6 @@
 # AstroNvimV4 Config
 
-**NOTE:** This is the latest v4 configuration; everyone can use it with confidence.
+**NOTE:** This is the latest v4 configuration.
 
 In the course of my daily tasks, I have optimized my workflow by integrating several powerful tools. My terminal of choice is `WezTerm`, which offers a blend of performance and features that cater to my needs. Alongside this, I employ `tmux` to efficiently manage multiple terminal sessions within a single window.
 
@@ -14,7 +14,7 @@ neovim >= `0.10`, recommend `0.10`
 
 ## Features
 
-now,this config supports development in `TypeScript`,`Python`,`Go`, `Rust` and `markdown`.
+now,this config supports development in `TypeScript`,`Python`,`Go`,`Rust` and `markdown`.
 
 - **_`Typescript`_**: `vtsls`
 - **_`Python`_**: `basedpyright`

@@ -26,20 +26,19 @@ now,this config supports development in `TypeScript`,`Python`,`Go`, `Rust` and `
 
 `wezterm` + `tmux` + `astronvim`
 
-![homepage](assets/homepage.png)
+![homepage](assets/imgs/homepage.png)
 
 `wezterm`
 
-![homepage](assets/wezterm.png)
+![wezterm](assets/imgs/wezterm.png)
 
 `tmux`
 
-![homepage](assets/tmux.png)
+![tmux](assets/imgs/tmux.png)
 
 `yazi`
 
-![homepage](assets/yazi.png)
-
+![yazi](assets/imgs/yazi.png)
 ## other components config
 
 `wezterm`: [https://github.com/chaozwn/wezterm]('https://github.com/chaozwn/wezterm')
@@ -105,6 +104,7 @@ nvim
 
 `<leader>tl`
 
+![lazygit](assets/imgs/lazygit.png)
 ### Install unimatrix
 
 `<Leader>tm`
@@ -113,7 +113,7 @@ nvim
 pip install git+https://github.com/will8211/unimatrix.git
 ```
 
-![unimatrix](assets/unimatrix.png)
+![unimatrix](assets/imgs/unimatrix.png)
 
 ### Install TTE
 

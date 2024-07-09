@@ -37,6 +37,7 @@ return {
         api = "goctl",
         MD = "markdown",
         tpl = "gotmpl",
+        sql = "jinja2",
       },
       filename = {
         [".eslintrc.json"] = "jsonc",

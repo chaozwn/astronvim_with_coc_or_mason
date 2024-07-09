@@ -44,7 +44,7 @@ return {
     optional = true,
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "sql" })
+        -- opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "sql" })
       end
     end,
   },
@@ -69,6 +69,7 @@ return {
         end
         null_ls.register(null_ls.builtins.diagnostics.sqlfluff.with {
           generator_opts = buf_diagnostics_buildins._opts,
+          filetypes = { "sql", "jinja", "jinja2" },
         })
 
         -- format
@@ -77,6 +78,7 @@ return {
         table.insert(sqlfmt_formatting_buildins._opts.args, "polyglot")
         null_ls.register(null_ls.builtins.formatting.sqlfmt.with {
           generator_opts = sqlfmt_formatting_buildins._opts,
+          filetypes = { "sql", "jinja", "jinja2" },
         })
       end
     end,

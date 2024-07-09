@@ -1,7 +1,5 @@
 --WARNING: now rust-analyzer is can't use in neovim, because this issue
 -- https://github.com/rust-lang/rust-analyzer/issues/17289
-if true then return {} end
-
 local utils = require "astrocore"
 local set_mappings = require("astrocore").set_mappings
 

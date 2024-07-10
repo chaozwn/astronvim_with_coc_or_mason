@@ -170,12 +170,12 @@
     "body": "oneof ${3:name} {\n\t$0\n}"
   },
   "enum": {
-    "prefix": "en",
+    "prefix": "enum",
     "description": "enum",
     "body": "enum ${3:EnumName} {\n\t$0\n}"
   },
   "service": {
-    "prefix": ["se", "ser", "sv"],
+    "prefix": ["service"],
     "description": "service",
     "body": "service ${1:ServiceName} {\n\t$0\n}"
   },

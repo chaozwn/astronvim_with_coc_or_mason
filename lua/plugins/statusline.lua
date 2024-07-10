@@ -85,7 +85,6 @@ return {
           { provider = "" },
           -- define the surrounding separator and colors to be used inside of the component
           -- and the color to the right of the separated out section
-          padding = { right = 1 },
           surround = {
             separator = "left",
             color = { main = "blank_bg", right = "file_info_bg" },

@@ -55,6 +55,8 @@ local function get_filetype_from_path(path)
       return "go"
     elseif ext == "api" then
       return "api"
+    elseif ext == "proto" then
+      return "proto"
     else
       return "unknown"
     end
@@ -96,6 +98,13 @@ local filetype_mapping = {
     local file = io.open(path, "w")
     if file then
       file:write 'syntax = "v1"'
+      file:close()
+    end
+  end,
+  proto = function(path)
+    local file = io.open(path, "w")
+    if file then
+      file:write 'syntax = "proto3";'
       file:close()
     end
   end,

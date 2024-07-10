@@ -11,7 +11,13 @@ return {
       mappings = {
         n = {
           ["<F1>"] = false,
-          ["<F2>"] = { function() require("nvcheatsheet").toggle() end, desc = "Cheatsheet" },
+          ["<F2>"] = {
+            function()
+              vim.cmd.Neotree "close"
+              require("nvcheatsheet").toggle()
+            end,
+            desc = "Cheatsheet",
+          },
         },
       },
     },

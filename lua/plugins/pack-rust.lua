@@ -1,9 +1,8 @@
 --WARNING: now rust-analyzer is can't use in neovim, because this issue
 -- https://github.com/rust-lang/rust-analyzer/issues/17289
 -- https://github.com/williamboman/mason.nvim/issues/1741
-if true then return {} end
-
 local utils = require "astrocore"
+
 local set_mappings = require("astrocore").set_mappings
 
 local function preview_stack_trace()
@@ -124,7 +123,7 @@ return {
     optional = true,
     opts = function(_, opts)
       -- lsp
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "rust_analyzer" })
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "rust_analyzer@2024-05-27" })
     end,
   },
   {

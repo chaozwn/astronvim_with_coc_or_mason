@@ -123,7 +123,7 @@ return {
     optional = true,
     opts = function(_, opts)
       -- lsp
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "rust_analyzer@2024-05-27" })
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "rust_analyzer" })
     end,
   },
   {

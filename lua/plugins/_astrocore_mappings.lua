@@ -19,7 +19,6 @@ return {
       maps.x["<C-S>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
       maps.n["<C-S>"] = { "<Cmd>w<cr>", desc = "Save file", silent = true }
 
-      maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
       maps.v["p"] = { "pgvy", desc = "Paste" }
 
       maps.n["n"] = { "nzz" }
@@ -46,18 +45,14 @@ return {
       maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
       -- 多个窗口之间跳转
       maps.n["<Leader>we"] = { "<C-w>=", desc = "Make all window equal" }
+
       maps.n["<TAB>"] =
         { function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
       maps.n["<S-TAB>"] = {
         function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
         desc = "Previous buffer",
       }
-      maps.n["<Leader>bo"] =
-        { function() require("astrocore.buffer").close_all(true) end, desc = "Close all buffers except current" }
-      maps.n["<Leader>ba"] = { function() require("astrocore.buffer").close_all() end, desc = "Close all buffers" }
-      maps.n["<Leader>bc"] = { function() require("astrocore.buffer").close() end, desc = "Close buffer" }
-      maps.n["<Leader>bC"] = { function() require("astrocore.buffer").close(0, true) end, desc = "Force close buffer" }
-      maps.n["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" }
+      maps.n["<Leader>bo"] = maps.n["<Leader>bc"]
 
       -- lsp restart
       maps.n["<Leader>lm"] = { "<Cmd>LspRestart<CR>", desc = "Lsp restart" }

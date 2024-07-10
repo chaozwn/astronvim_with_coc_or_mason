@@ -7,7 +7,7 @@ return {
       colorscheme = "solarized-osaka",
       icons = {
         ActiveLSP = "",
-        ActiveTS = " ",
+        ActiveTS = "",
         ArrowLeft = "",
         ArrowRight = "",
         Bookmarks = "",

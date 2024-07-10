@@ -47,7 +47,7 @@ local function trash_visual(state, selected_nodes)
 end
 
 local function get_filetype_from_path(path)
-  local match = string.match(path, "%.([^%.\\/]*)$") 
+  local match = string.match(path, "%.([^%.\\/]*)$")
 
   if match then
     local ext = string.lower(match)
@@ -63,7 +63,26 @@ local function get_filetype_from_path(path)
   end
 end
 
-local function get_filename_without_extension_from_path(path) return path:match "^.+[\\/](.-)%.?[^%.\\/]*$" end
+local function get_parent_dir(path)
+  if not path then return nil end
+
+  local parent_path = path:match "(.+)/"
+
+  if parent_path then
+    local name = parent_path:match "([^/]+)$"
+    return name
+  else
+    return nil
+  end
+end
+
+local function get_filename_without_extension_from_path(path)
+  local cwd = vim.fn.getcwd()
+
+  local relative_path = path:gsub("^" .. cwd, "")
+
+  return get_parent_dir(relative_path)
+end
 
 local filetype_mapping = {
   go = function(path)

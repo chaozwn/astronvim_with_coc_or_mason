@@ -10,12 +10,12 @@
     "body": "syntax = \"proto2\";"
   },
   "package": {
-    "prefix": "pkg",
+    "prefix": "package",
     "description": "package specifier",
     "body": "package ${1:package.name};"
   },
   "import": {
-    "prefix": "imp",
+    "prefix": "import",
     "description": "import statement",
     "body": "import \"${1:path/to/other/protos}.proto\";"
   },

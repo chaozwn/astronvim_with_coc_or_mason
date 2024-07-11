@@ -1,3 +1,25 @@
+local methods = vim.lsp.protocol.Methods
+
+local inlay_hint_handler = vim.lsp.handlers[methods.textDocument_inlayHint]
+local simplify_inlay_hint_handler = function(err, result, ctx, config)
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
+  if client then
+    if result == nil then return end
+    ---@diagnostic disable-next-line: undefined-field
+
+    result = vim
+      .iter(result)
+      :map(function(hint)
+        local label = hint.label
+        if not (label ~= nil and #label < 5) then hint.label = {} end
+        return hint
+      end)
+      :filter(function(hint) return #hint.label > 0 end)
+      :totable()
+  end
+  inlay_hint_handler(err, result, ctx, config)
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
@@ -22,6 +44,9 @@ return {
       workspace = {
         didChangeWatchedFiles = { dynamicRegistration = true },
       },
+    },
+    lsp_handlers = {
+      [methods.textDocument_inlayHint] = simplify_inlay_hint_handler,
     },
   },
 }

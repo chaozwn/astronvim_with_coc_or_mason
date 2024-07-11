@@ -74,7 +74,7 @@ local function get_parent_dir(path)
     local name = parent_path:match "([^/]+)$"
     return name
   else
-    return nil
+    return "main"
   end
 end
 

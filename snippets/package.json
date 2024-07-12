@@ -8,7 +8,6 @@
       {
         "id": "goctl",
         "aliases": [
-          "goctl",
           "goctl"
         ],
         "extensions": [
@@ -23,34 +22,46 @@
           "typescript",
           "typescriptreact"
         ],
-        "path": "./react.json"
+        "path": "./init/react.json"
       },
       {
         "language": [
           "typescript",
           "typescriptreact"
         ],
-        "path": "./solid.json"
+        "path": "./init/solid.json"
       },
       {
         "language": "vue",
-        "path": "./vue.json"
+        "path": "./init/vue.json"
       },
       {
         "language": "goctl",
-        "path": "./goctl.json"
+        "path": "./init/goctl.json"
       },
       {
         "language": "go",
-        "path": "./go.json"
+        "path": "./init/go.json"
       },
       {
         "language": "python",
-        "path": "./python.json"
+        "path": "./init/python.json"
       },
       {
         "language": "proto",
-        "path": "./proto3.json"
+        "path": "./init/proto3.json"
+      },
+      {
+        "language": "sql",
+        "path": "./jinja/jinja-sql.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./jinja/jinja-yaml.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./jinja/jinja-markdown.json"
       }
     ]
   }

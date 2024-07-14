@@ -35,6 +35,21 @@ return {
   opts = {
     attach_navic = false,
     show_modified = true,
-    exclude_filetypes = { "netrw", "toggleterm" },
+    exclude_filetypes = {
+      "netrw",
+      "aerial",
+      "alpha",
+      "dashboard",
+      "help",
+      "lazy",
+      "mason",
+      "neo-tree",
+      "NvimTree",
+      "neogitstatus",
+      "notify",
+      "startify",
+      "toggleterm",
+      "Trouble",
+    },
   },
 }

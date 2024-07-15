@@ -152,10 +152,6 @@ return {
           { filter = { event = "msg_show", find = "DB: Query%s" }, opts = { skip = true } },
           { filter = { event = "msg_show", find = "%swritten" }, opts = { skip = true } },
           { filter = { event = "msg_show", find = "%schange;%s" }, opts = { skip = true } },
-          {
-            filter = { event = "lsp", find = "%-32603: Invalid offset%" },
-            opts = { skip = true },
-          },
         },
       })
     end,

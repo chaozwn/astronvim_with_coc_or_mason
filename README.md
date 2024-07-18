@@ -18,7 +18,7 @@ now,this config supports development in `TypeScript`,`Python`,`Go`,`Rust` and `m
 
 - **_`Typescript`_**: `vtsls`
 - **_`Python`_**: `basedpyright`
-- **_`Go`_**: `go.nvim` _-- support go zero framework_
+- **_`Go`_**: `gopher.nvim` _-- support go zero framework_
 - **_`Markdown`_**: `iamcco/markdown-preview.nvim`,
 - **_`Rust`_**: `mrcjkb/rustaceanvim`
 

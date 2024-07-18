@@ -46,7 +46,7 @@ local function trash_visual(state, selected_nodes)
   end)
 end
 
-function get_filename_from_path(path)
+local function get_filename_from_path(path)
   local name = path:match "([^/]+)$" or path
   return (name:match "(.+)%..+" or name)
 end
@@ -56,6 +56,7 @@ local function get_filetype_from_path(path)
 
   if match then
     local ext = string.lower(match)
+    -- NOTE: go
     if ext == "go" then
       return "go"
     elseif ext == "api" then
@@ -131,6 +132,7 @@ end
 
 local function get_filename_without_extension_from_path(path, client_name)
   local relative_path = remove_lsp_cwd(path, client_name)
+  if relative_path == nil then return nil end
   return get_parent_dir(relative_path)
 end
 

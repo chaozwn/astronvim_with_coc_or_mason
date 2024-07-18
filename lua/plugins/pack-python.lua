@@ -11,32 +11,7 @@ return {
       ---@diagnostic disable: missing-fields
       config = {
         basedpyright = {
-          on_attach = function(client, _)
-            --TODO: https://github.com/DetachHead/basedpyright/issues/327
-            -- require("utils").save_client(client)
-            -- client.server_capabilities = utils.extend_tbl(client.server_capabilities, {
-            --   workspace = {
-            --     fileOperations = {
-            --       willRename = {
-            --         filters = {
-            --           {
-            --             pattern = {
-            --               glob = "**/*.{py,pyi,pyd,so,dylib}",
-            --               matches = "file",
-            --             },
-            --           },
-            --           {
-            --             pattern = {
-            --               glob = "**",
-            --               matches = "folder",
-            --             },
-            --           },
-            --         },
-            --       },
-            --     },
-            --   },
-            -- })
-
+          on_attach = function()
             if is_available "venv-selector.nvim" then
               set_mappings({
                 n = {

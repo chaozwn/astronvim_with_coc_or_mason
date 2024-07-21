@@ -121,6 +121,10 @@ return {
       commented = true,
       enabled = true,
       enabled_commands = true,
+      only_first_definition = true,
+      virt_text_pos = "eol",
+      highlight_changed_variables = false,
+      all_frames = false,
     },
   },
   {

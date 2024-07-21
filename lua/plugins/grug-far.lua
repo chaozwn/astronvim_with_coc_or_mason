@@ -48,6 +48,22 @@ return {
       icons = {
         enabled = vim.g.icons_enabled,
       },
+      keymaps = {
+        replace = { n = "<localleader>r" },
+        qflist = { n = "<localleader>c" },
+        syncLocations = { n = "<localleader>s" },
+        syncLine = { n = "<localleader>l" },
+        close = { n = "<localleader>q" },
+        historyOpen = { n = "<localleader>t" },
+        historyAdd = { n = "<localleader>a" },
+        refresh = { n = "<localleader>f" },
+        openLocation = { n = "<localleader>o" },
+        gotoLocation = { n = "<enter>" },
+        pickHistoryEntry = { n = "<enter>" },
+        abort = { n = "<localleader>b" },
+        help = { n = "g?" },
+        toggleShowRgCommand = { n = "<localleader>p" },
+      },
     } --[[@as GrugFarOptionsOverride]])
   end,
 }

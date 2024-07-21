@@ -46,6 +46,8 @@ return {
           folder_open = get_icon "FolderOpen",
           kinds = lspkind_avail and lspkind.symbol_map,
         },
+        auto_preview = true, -- automatically open preview when on an item
+        auto_refresh = true, -- auto refresh when open
       }
     end,
   },

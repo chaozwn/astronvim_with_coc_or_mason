@@ -64,6 +64,7 @@ return {
             gopls = {
               analyses = {
                 ST1003 = false,
+                SA5008 = false,
                 fieldalignment = false,
                 fillreturns = true,
                 nilness = true,

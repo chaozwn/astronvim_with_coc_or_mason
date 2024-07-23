@@ -1,3 +1,5 @@
+local file_exists = require("utils").file_exists
+
 local function get_buffer_by_name(buf_name)
   local buffers = vim.api.nvim_list_bufs()
   for _, buf in ipairs(buffers) do
@@ -109,16 +111,6 @@ local function is_file(path)
   end
 end
 
-local function file_exists(path)
-  local file = io.open(path, "r")
-  if file then
-    io.close(file)
-    return true
-  else
-    return false
-  end
-end
-
 local function escape_pattern(text) return text:gsub("([^%w])", "%%%1") end
 
 local function remove_lsp_cwd(path, client_name)
@@ -175,7 +167,7 @@ local filetype_mapping = {
   proto = function(path)
     local file = io.open(path, "w")
     if file then
-      file:write 'syntax = "proto3";'
+      file:write 'syntax = "proto3";\nimport "buf/validate/validate.proto";\n'
       file:close()
     end
   end,
@@ -201,7 +193,7 @@ local filetype_mapping = {
                 if confirm == 1 then
                   local file = io.open(lib_path, "w")
                   if file then
-                    local filename = get_filename_from_path(path)
+                    filename = get_filename_from_path(path)
                     if filename then file:write("mod " .. filename .. ";\n") end
                     file:close()
                   end
@@ -217,7 +209,7 @@ local filetype_mapping = {
                 if choice and choice == 1 then
                   local file = io.open(main_path, "w")
                   if file then
-                    local filename = get_filename_from_path(path)
+                    filename = get_filename_from_path(path)
                     if filename then file:write("mod " .. filename .. ";\n") end
                     file:close()
                   end

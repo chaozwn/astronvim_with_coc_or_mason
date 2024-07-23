@@ -1,8 +1,19 @@
 local set_mappings = require("astrocore").set_mappings
+local file_exists = require("utils").file_exists
 
 local function create_buf_config_file()
   local source_file = vim.fn.stdpath "config" .. "/buf.yaml"
   local target_file = vim.fn.getcwd() .. "/buf.yaml"
+  local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+  local cmd = is_windows
+      and string.format("copy %s %s", vim.fn.shellescape(source_file, true), vim.fn.shellescape(target_file, true))
+    or string.format("cp %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_file))
+  os.execute(cmd)
+end
+
+local function create_buf_gen_config_file()
+  local source_file = vim.fn.stdpath "config" .. "/buf.gen.yaml"
+  local target_file = vim.fn.getcwd() .. "/buf.gen.yaml"
   local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
   local cmd = is_windows
       and string.format("copy %s %s", vim.fn.shellescape(source_file, true), vim.fn.shellescape(target_file, true))
@@ -27,7 +38,20 @@ return {
         set_mappings({
           n = {
             ["<Leader>lc"] = {
-              create_buf_config_file,
+              function()
+                local buf_path = vim.fn.getcwd() .. "/buf.yaml"
+                local buf_gen_path = vim.fn.getcwd() .. "/buf.gen.yaml"
+                if not file_exists(buf_path) then
+                  local confirm = vim.fn.confirm("File `buf.yaml` Not Exist, Create it?", "&Yes\n&No", 1, "Question")
+                  if confirm == 1 then create_buf_config_file() end
+                end
+
+                if not file_exists(buf_gen_path) then
+                  local confirm =
+                    vim.fn.confirm("File `buf.gen.yaml` Not Exist, Create it?", "&Yes\n&No", 1, "Question")
+                  if confirm == 1 then create_buf_gen_config_file() end
+                end
+              end,
               desc = "Create Buf Config File",
             },
           },

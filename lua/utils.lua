@@ -1,5 +1,15 @@
 local M = {}
 
+function M.file_exists(path)
+  local file = io.open(path, "r")
+  if file then
+    io.close(file)
+    return true
+  else
+    return false
+  end
+end
+
 function M.write_log(file_name, content)
   local file = io.open(file_name, "w")
   if file then

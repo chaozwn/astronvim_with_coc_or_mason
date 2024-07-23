@@ -7,6 +7,7 @@ return {
       return require("astrocore").extend_tbl(opts, {
         options = {
           g = {
+            ["VM_default_mappings"] = 0,
             ["Find Under"] = "<C-n>",
             ["Find Subword Under"] = "<C-n>",
             ["Add Cursor Up"] = "<C-S-k>",

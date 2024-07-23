@@ -21,6 +21,36 @@ local function create_buf_gen_config_file()
   os.execute(cmd)
 end
 
+local function diagnostic_auto_import_config()
+  local system_config = vim.fn.stdpath "config" .. "/buf.yaml"
+  local project_config = vim.fn.getcwd() .. "/buf.yaml"
+
+  local null_ls = require "null-ls"
+  local buf_buildins = null_ls.builtins.formatting.buf
+  table.insert(buf_buildins._opts.args, "--config")
+  if vim.fn.filereadable(project_config) == 1 then
+    table.insert(buf_buildins._opts.args, project_config)
+  else
+    table.insert(buf_buildins._opts.args, system_config)
+  end
+  null_ls.register(null_ls.builtins.formatting.buf.with(buf_buildins))
+end
+
+local function formatting_auto_import_config()
+  local system_config = vim.fn.stdpath "config" .. "/buf.yaml"
+  local project_config = vim.fn.getcwd() .. "/buf.yaml"
+
+  local null_ls = require "null-ls"
+  local buf_buildins = null_ls.builtins.diagnostics.buf
+  table.insert(buf_buildins._opts.args, "--config")
+  if vim.fn.filereadable(project_config) == 1 then
+    table.insert(buf_buildins._opts.args, project_config)
+  else
+    table.insert(buf_buildins._opts.args, system_config)
+  end
+  null_ls.register(null_ls.builtins.diagnostics.buf.with(buf_buildins))
+end
+
 ---@type LazySpec
 return {
   {
@@ -74,6 +104,12 @@ return {
     optional = true,
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "buf" })
+      if not opts.handlers then opts.handlers = {} end
+
+      opts.handlers.buf = function()
+        diagnostic_auto_import_config()
+        formatting_auto_import_config()
+      end
     end,
   },
 }

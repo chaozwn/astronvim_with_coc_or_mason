@@ -121,29 +121,6 @@ return {
         "iferr",
         "impl",
       })
-
-      if not opts.handlers then opts.handlers = {} end
-
-      opts.handlers.buf = function()
-        local null_ls = require "null-ls"
-        local buf_buildins = null_ls.builtins.diagnostics.buf
-        table.insert(buf_buildins._opts.args, "--config")
-
-        local system_config = vim.fn.stdpath "config" .. "/buf.yaml"
-        local project_config = vim.fn.getcwd() .. "/buf.yaml"
-        if vim.fn.filereadable(project_config) == 1 then
-          table.insert(buf_buildins._opts.args, project_config)
-        else
-          table.insert(buf_buildins._opts.args, system_config)
-        end
-
-        null_ls.register(null_ls.builtins.diagnostics.buf.with {
-          generator_opts = buf_buildins._opts,
-        })
-        null_ls.register(null_ls.builtins.formatting.buf.with {
-          condition = function() return true end,
-        })
-      end
     end,
   },
   {

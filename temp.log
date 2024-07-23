@@ -1,0 +1,22 @@
+{
+  _opts = {
+    args = { "lint", "$FILENAME#include_package_files=true" },
+    check_exit_code = <function 1>,
+    command = "buf",
+    format = "line",
+    from_stderr = true,
+    on_output = <function 2>,
+    to_stdin = true
+  },
+  filetypes = { "proto" },
+  meta = {
+    description = "A new way of working with Protocol Buffers.",
+    url = "https://github.com/bufbuild/buf"
+  },
+  method = "NULL_LS_DIAGNOSTICS_ON_SAVE",
+  name = "buf_lint",
+  with = <function 3>,
+  <metatable> = {
+    __index = <function 4>
+  }
+}

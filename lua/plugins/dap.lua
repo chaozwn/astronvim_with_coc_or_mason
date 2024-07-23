@@ -8,6 +8,18 @@ return {
     opts = {
       mappings = {
         n = {
+          [prefix_debug .. "q"] = {
+            function() require("dap").terminate() end,
+            desc = "Down Strace",
+          },
+          [prefix_debug .. "Q"] = {
+            function() require("dap").close() end,
+            desc = "Down Strace",
+          },
+          [prefix_debug .. "j"] = {
+            function() require("dap").down() end,
+            desc = "Down Strace",
+          },
           [prefix_debug .. "j"] = {
             function() require("dap").down() end,
             desc = "Down Strace",

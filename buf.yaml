@@ -1,4 +1,4 @@
-version: v2
+version: v1
 name: buf.build/tutorials/lint
 breaking:
   use:
@@ -19,4 +19,3 @@ lint:
 
 deps:
   - buf.build/bufbuild/protovalidate
-

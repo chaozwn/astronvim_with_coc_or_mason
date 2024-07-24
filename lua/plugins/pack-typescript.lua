@@ -93,13 +93,6 @@ return {
       },
       config = {
         volar = {
-          on_attach = function(client, _)
-            client.server_capabilities = utils.extend_tbl(client.server_capabilities, {
-              workspace = {
-                didChangeWatchedFiles = { dynamicRegistration = true },
-              },
-            })
-          end,
           init_options = {
             vue = {
               hybridMode = true,
@@ -352,5 +345,22 @@ return {
       if not opts.adapters then opts.adapters = {} end
       table.insert(opts.adapters, require "neotest-vitest"(require("astrocore").plugin_opts "neotest-vitest"))
     end,
+  },
+  {
+    "echasnovski/mini.icons",
+    optional = true,
+    opts = {
+      file = {
+        [".eslintrc.js"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
+        [".node-version"] = { glyph = "", hl = "MiniIconsGreen" },
+        [".prettierrc"] = { glyph = "", hl = "MiniIconsPurple" },
+        [".yarnrc.yml"] = { glyph = "", hl = "MiniIconsBlue" },
+        ["eslint.config.js"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
+        ["package.json"] = { glyph = "", hl = "MiniIconsGreen" },
+        ["tsconfig.json"] = { glyph = "", hl = "MiniIconsAzure" },
+        ["tsconfig.build.json"] = { glyph = "", hl = "MiniIconsAzure" },
+        ["yarn.lock"] = { glyph = "", hl = "MiniIconsBlue" },
+      },
+    },
   },
 }

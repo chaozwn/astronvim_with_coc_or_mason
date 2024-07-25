@@ -40,11 +40,6 @@ return {
       -- default format timeout
       timeout_ms = 600000,
     },
-    -- capabilities = {
-    --   workspace = {
-    --     didChangeWatchedFiles = { dynamicRegistration = true },
-    --   },
-    -- },
     lsp_handlers = {
       [methods.textDocument_inlayHint] = simplify_inlay_hint_handler,
     },

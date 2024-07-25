@@ -8,7 +8,7 @@ return {
       maps.n["<C-/>"] = opts.mappings.n["<Leader>/"]
       maps.x["<C-/>"] = opts.mappings.x["<Leader>/"]
       maps.n["<Leader>/"] = false
-      maps.v["<Leader>/"] = false
+      maps.x["<Leader>/"] = false
 
       opts.mappings = require("astrocore").extend_tbl(opts.mappings, maps)
     end,

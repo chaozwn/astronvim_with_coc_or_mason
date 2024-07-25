@@ -134,7 +134,6 @@ return {
       {
         "AstroNvim/astrolsp",
         optional = true,
-        ---@param opts AstroLSPOpts
         opts = {
           handlers = { rust_analyzer = false }, -- disable setup of `rust_analyzer`
         },

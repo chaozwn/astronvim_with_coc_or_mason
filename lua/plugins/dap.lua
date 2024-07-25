@@ -1,3 +1,4 @@
+-- TODO: auto set up filename as debug name
 local utils = require "astrocore"
 local prefix_debug = "<Leader>d"
 ---@type LazySpec
@@ -73,6 +74,17 @@ return {
           ["<F21>"] = {
             function() require("persistent-breakpoints.api").set_conditional_breakpoint() end,
             desc = "Conditional Breakpoint (S-F9)",
+          },
+          [prefix_debug .. "S"] = {
+            function() require("dap").run_to_cursor() end,
+            desc = "Run To Cursor",
+          },
+          [prefix_debug .. "s"] = {
+            function()
+              local w = require "dap.ui.widgets"
+              w.centered_float(w.sessions, {})
+            end,
+            desc = "Switch Debug Session",
           },
         },
       },

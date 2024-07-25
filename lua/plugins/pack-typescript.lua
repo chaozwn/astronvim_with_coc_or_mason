@@ -116,7 +116,6 @@ return {
             }, { buffer = true })
             client.server_capabilities = utils.extend_tbl(client.server_capabilities, {
               workspace = {
-                didChangeWatchedFiles = { dynamicRegistration = true },
                 fileOperations = {
                   didRename = {
                     filters = {

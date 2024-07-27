@@ -1,5 +1,23 @@
 local M = {}
 
+function M.remove_lsp_cwd(path, client_name)
+  local cwd = M.get_lsp_root_dir(client_name)
+
+  if cwd == nil then return nil end
+  cwd = M.escape_pattern(cwd)
+
+  return path:gsub("^" .. cwd, "")
+end
+
+function M.remove_cwd(path)
+  local cwd = vim.fn.getcwd()
+  cwd = M.escape_pattern(cwd)
+
+  return path:gsub("^" .. cwd, "")
+end
+
+function M.escape_pattern(text) return text:gsub("([^%w])", "%%%1") end
+
 function M.file_exists(path)
   local file = io.open(path, "r")
   if file then
@@ -8,6 +26,21 @@ function M.file_exists(path)
   else
     return false
   end
+end
+
+function M.get_lsp_root_dir(client_name)
+  local clients = vim.lsp.get_clients()
+
+  if next(clients) == nil then return nil end
+
+  for _, client in ipairs(clients) do
+    if client.name == client_name then
+      local root_dir = client.config.root_dir
+      if root_dir then return root_dir end
+    end
+  end
+
+  return nil
 end
 
 function M.write_log(file_name, content)

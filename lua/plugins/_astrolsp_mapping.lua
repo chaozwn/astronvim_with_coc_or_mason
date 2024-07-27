@@ -10,6 +10,8 @@ return {
         desc = "Signature help",
         cond = "textDocument/signatureHelp",
       }
+      maps.n["gK"] = false
+      maps.n["gk"] = maps.n["<Leader>lh"]
     end
 
     opts.mappings = maps

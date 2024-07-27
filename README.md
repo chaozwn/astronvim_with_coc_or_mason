@@ -10,13 +10,13 @@ This streamlined combination of tools significantly enhances my productivity and
 
 ## Support neovim version
 
-neovim >= `0.10`, recommend `0.10`
+neovim >= `0.10`, recommend `0.10.0`
 
 ## Features
 
 now,this config supports development in `TypeScript`,`Python`,`Go`,`Rust` and `markdown`.
 
-- **_`Typescript`_**: `vtsls`
+- **_`Typescript`_**: `vtsls` work with `volar2`
 - **_`Python`_**: `basedpyright`
 - **_`Go`_**: `gopher.nvim` _-- support go zero framework_
 - **_`Markdown`_**: `iamcco/markdown-preview.nvim`,
@@ -39,6 +39,7 @@ now,this config supports development in `TypeScript`,`Python`,`Go`,`Rust` and `m
 `yazi`
 
 ![yazi](assets/imgs/yazi.png)
+
 ## other components config
 
 `wezterm`: [https://github.com/chaozwn/wezterm]('https://github.com/chaozwn/wezterm')
@@ -57,6 +58,7 @@ now,this config supports development in `TypeScript`,`Python`,`Go`,`Rust` and `m
 
 ```shell
 brew install fzf
+brew install fd
 brew install luarocks
 brew install lazygit
 brew install ripgrep
@@ -64,6 +66,28 @@ npm install -g tree-sitter-cli
 brew install gdu
 brew install bottom
 brew install protobuf
+brew install trash
+brew install gnu-sed
+
+pip install notebook nbclassic jupyter-console
+pip install git+https://github.com/will8211/unimatrix.git
+npm install -g neovim
+pip install pynvim
+pip install terminaltexteffects
+
+brew tap daipeihust/tap
+brew install im-select
+
+brew install neovide
+brew install lazydocker
+```
+
+### Note: for rust development
+
+> rustup and mason's installation of rust-analzyer are different and may cause some [bugs](https://github.com/rust-lang/rust-analyzer/issues/17289), manual installation is recommended. 
+
+```
+rustup component add rust-analyzer
 ```
 
 ### Make a backup of your current nvim and shared folder
@@ -96,15 +120,17 @@ nvim
 ## Tips
 
 ### NVcheatsheet
+
 `<F2>`
 
-![nvcheatsheet](assets/imgs/nvcheatsheet.png) 
+![nvcheatsheet](assets/imgs/nvcheatsheet.png)
 
 ### Use Lazygit
 
 `<leader>tl`
 
 ![lazygit](assets/imgs/lazygit.png)
+
 ### Install unimatrix
 
 `<Leader>tm`
@@ -124,6 +150,7 @@ pip install terminaltexteffects
 ```
 
 ![](./assets/imgs/tte.png)
+
 ### Neovim requirements
 
 ```

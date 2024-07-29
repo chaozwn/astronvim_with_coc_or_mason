@@ -1,5 +1,4 @@
 require("lazy").setup({
-  ---@type AstroNvimOpts
   {
     "AstroNvim/AstroNvim",
     -- version = "^4", -- Remove version tracking to elect for nighly AstroNvim

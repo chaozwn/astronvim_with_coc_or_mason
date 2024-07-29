@@ -18,6 +18,14 @@ return {
           function() vim.cmd [[DiffviewClose]] end,
           desc = "Close Git Diffview",
         }
+        maps.n[prefix_diff_view .. "H"] = {
+          function() vim.cmd [[DiffviewFileHistory]] end,
+          desc = "Open current branch git history",
+        }
+        maps.n[prefix_diff_view .. "h"] = {
+          function() vim.cmd [[DiffviewFileHistory %]] end,
+          desc = "Open current file git history",
+        }
       end
     end,
   },
@@ -51,7 +59,7 @@ return {
       local action_state = require "telescope.actions.state"
       local utils = require "telescope.utils"
 
-      local diffview = function(prompt_bufnr)
+      local compare_local_file_with_specify_branch_with_diffview = function(prompt_bufnr)
         local selection = action_state.get_selected_entry()
         if selection == nil then
           utils.__warn_no_selection "extensions.diffviewer.diffview"
@@ -67,26 +75,26 @@ return {
         pickers = {
           git_commits = {
             mappings = {
-              n = { ["<C-r>d"] = diffview },
-              i = { ["<C-r>d"] = diffview },
+              n = { ["<C-r>d"] = compare_local_file_with_specify_branch_with_diffview },
+              i = { ["<C-r>d"] = compare_local_file_with_specify_branch_with_diffview },
             },
           },
           git_bcommits = {
             mappings = {
-              n = { ["<C-r>d"] = diffview },
-              i = { ["<C-r>d"] = diffview },
+              n = { ["<C-r>d"] = compare_local_file_with_specify_branch_with_diffview },
+              i = { ["<C-r>d"] = compare_local_file_with_specify_branch_with_diffview },
             },
           },
           git_branches = {
             mappings = {
-              n = { ["<C-r>d"] = diffview },
-              i = { ["<C-r>d"] = diffview },
+              n = { ["<C-r>d"] = compare_local_file_with_specify_branch_with_diffview },
+              i = { ["<C-r>d"] = compare_local_file_with_specify_branch_with_diffview },
             },
           },
           git_stash = {
             mappings = {
-              n = { ["<C-r>d"] = diffview },
-              i = { ["<C-r>d"] = diffview },
+              n = { ["<C-r>d"] = compare_local_file_with_specify_branch_with_diffview },
+              i = { ["<C-r>d"] = compare_local_file_with_specify_branch_with_diffview },
             },
           },
         },

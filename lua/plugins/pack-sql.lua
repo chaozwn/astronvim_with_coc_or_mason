@@ -4,11 +4,7 @@ local set_mappings = utils.set_mappings
 local function create_sqlfluff_config_file()
   local source_file = vim.fn.stdpath "config" .. "/.sqlfluff"
   local target_file = vim.fn.getcwd() .. "/.sqlfluff"
-  local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-  local cmd = is_windows
-      and string.format("copy %s %s", vim.fn.shellescape(source_file, true), vim.fn.shellescape(target_file, true))
-    or string.format("cp %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_file))
-  os.execute(cmd)
+  require("utils").copy_file(source_file, target_file)
 end
 
 ---@type LazySpec

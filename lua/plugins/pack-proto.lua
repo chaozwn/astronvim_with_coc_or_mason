@@ -1,24 +1,17 @@
 local set_mappings = require("astrocore").set_mappings
 local file_exists = require("utils").file_exists
+local utils = require "utils"
 
 local function create_buf_config_file()
   local source_file = vim.fn.stdpath "config" .. "/buf.yaml"
   local target_file = vim.fn.getcwd() .. "/buf.yaml"
-  local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-  local cmd = is_windows
-      and string.format("copy %s %s", vim.fn.shellescape(source_file, true), vim.fn.shellescape(target_file, true))
-    or string.format("cp %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_file))
-  os.execute(cmd)
+  utils.copy_file(source_file, target_file)
 end
 
 local function create_buf_gen_config_file()
   local source_file = vim.fn.stdpath "config" .. "/buf.gen.yaml"
   local target_file = vim.fn.getcwd() .. "/buf.gen.yaml"
-  local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-  local cmd = is_windows
-      and string.format("copy %s %s", vim.fn.shellescape(source_file, true), vim.fn.shellescape(target_file, true))
-    or string.format("cp %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_file))
-  os.execute(cmd)
+  utils.copy_file(source_file, target_file)
 end
 
 local function diagnostic_auto_import_config()

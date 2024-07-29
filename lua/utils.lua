@@ -1,5 +1,36 @@
 local M = {}
 
+function M.get_parent_dir(path) return path:match "(.+)/" end
+
+function M.copy_file(source_file, target_file)
+  local target_file_parent_path = M.get_parent_dir(target_file)
+  local cmd = string.format("mkdir -p %s", vim.fn.shellescape(target_file_parent_path))
+  os.execute(cmd)
+  cmd = string.format("cp %s %s", vim.fn.shellescape(source_file), vim.fn.shellescape(target_file))
+  os.execute(cmd)
+
+  vim.notify("File " .. target_file .. " created success.", vim.log.levels.INFO)
+end
+
+function M.create_launch_json()
+  vim.ui.select({
+    "go",
+  }, { prompt = "Select Language Debug Template", default = "go" }, function(select)
+    if not select then return end
+    if select == "go" then
+      local source_file = vim.fn.stdpath "config" .. "/.vscode/go_launch.json"
+      local target_file = vim.fn.getcwd() .. "/.vscode/launch.json"
+      local file_exist = M.file_exists(target_file)
+      if file_exist then
+        local confirm = vim.fn.confirm("File `.vscode/launch.json` Exist, Overwrite it?", "&Yes\n&No", 1, "Question")
+        if confirm == 1 then M.copy_file(source_file, target_file) end
+      else
+        M.copy_file(source_file, target_file)
+      end
+    end
+  end)
+end
+
 function M.remove_lsp_cwd(path, client_name)
   local cwd = M.get_lsp_root_dir(client_name)
 

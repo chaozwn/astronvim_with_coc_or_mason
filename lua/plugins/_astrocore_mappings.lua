@@ -19,7 +19,13 @@ return {
       maps.x["<C-S>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
       maps.n["<C-S>"] = { "<Cmd>w<cr>", desc = "Save file", silent = true }
 
-      maps.v["p"] = { "pgvy", desc = "Paste" }
+      -- Neovim Default LSP Mappings
+      if vim.fn.has "nvim-0.11" ~= 1 then
+        maps.n["gra"] = false
+        maps.x["gra"] = false
+        maps.n["grn"] = false
+        maps.n["grr"] = false
+      end
 
       maps.n["n"] = { "nzz" }
       maps.n["N"] = { "Nzz" }

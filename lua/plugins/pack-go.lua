@@ -117,33 +117,33 @@ return {
       },
     },
     config = function(_, opts)
-      local bufnr = vim.api.nvim_get_current_buf()
-      local bufname = vim.api.nvim_buf_get_name(bufnr)
-      local path = require("utils").remove_cwd(bufname)
+      -- local bufnr = vim.api.nvim_get_current_buf()
+      -- local bufname = vim.api.nvim_buf_get_name(bufnr)
+      -- local path = require("utils").remove_cwd(bufname)
       opts = require("astrocore").extend_tbl(opts, {
-        dap_configurations = {
-          {
-            type = "go",
-            name = "Debug: " .. path,
-            request = "launch",
-            program = "${file}",
-          },
-          {
-            type = "go",
-            name = "Debug (Arguments): " .. path,
-            request = "launch",
-            program = "${file}",
-            args = require("dap-go").get_arguments,
-          },
-          {
-            type = "go",
-            name = "Debug (Arguments & Build Flags): " .. path,
-            request = "launch",
-            program = "${file}",
-            args = require("dap-go").get_arguments,
-            buildFlags = require("dap-go").get_build_flags,
-          },
-        },
+        -- dap_configurations = {
+        --   {
+        --     type = "go",
+        --     name = "Debug: " .. path,
+        --     request = "launch",
+        --     program = "${file}",
+        --   },
+        --   {
+        --     type = "go",
+        --     name = "Debug (Arguments): " .. path,
+        --     request = "launch",
+        --     program = "${file}",go
+        --     args = require("dap-go").get_arguments,
+        --   },
+        --   {
+        --     type = "go",
+        --     name = "Debug (Arguments & Build Flags): " .. path,
+        --     request = "launch",
+        --     program = "${file}",
+        --     args = require("dap-go").get_arguments,
+        --     buildFlags = require("dap-go").get_build_flags,
+        --   },
+        -- },
       })
       require("dap-go").setup(opts)
     end,

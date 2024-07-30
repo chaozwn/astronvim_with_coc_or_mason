@@ -1,5 +1,67 @@
 local M = {}
 
+function M.set_native_lsp_mapping()
+  require("astrocore").set_mappings({
+    n = {
+      ["gra"] = { function() vim.lsp.buf.code_action() end, desc = "vim.lsp.buf.code_action()" },
+      ["grn"] = { function() vim.lsp.buf.rename() end, desc = "vim.lsp.buf.rename()" },
+      ["grr"] = { function() vim.lsp.buf.references() end, desc = "vim.lsp.buf.references()" },
+    },
+    x = {
+      ["gra"] = { function() vim.lsp.buf.code_action() end, desc = "vim.lsp.buf.code_action()" },
+    },
+  }, { buffer = true })
+end
+
+function M.set_telescope_lsp_mapping()
+  require("astrocore").set_mappings({
+    n = {
+      ["gd"] = {
+        function() require("telescope.builtin").lsp_definitions { reuse_win = true } end,
+        desc = "Show the definition of current symbol",
+      },
+      ["gI"] = {
+        function() require("telescope.builtin").lsp_implementations { reuse_win = true } end,
+        desc = "Implementation of current symbol",
+      },
+      ["gy"] = {
+        function() require("telescope.builtin").lsp_type_definitions { reuse_win = true } end,
+        desc = "Definition of current type",
+      },
+      ["<Leader>lG"] = {
+        function()
+          vim.ui.input({ prompt = "Symbol Query: (leave empty for word under cursor)" }, function(query)
+            if query then
+              -- word under cursor if given query is empty
+              if query == "" then query = vim.fn.expand "<cword>" end
+              require("telescope.builtin").lsp_workspace_symbols {
+                query = query,
+                prompt_title = ("Find word (%s)"):format(query),
+              }
+            end
+          end)
+        end,
+        desc = "Search workspace symbols",
+      },
+      ["<Leader>lR"] = {
+        function() require("telescope.builtin").lsp_references() end,
+        desc = "Search references",
+      },
+      ["gr"] = {
+        function() require("telescope.builtin").lsp_references() end,
+        desc = "Search references",
+      },
+    },
+  }, { buffer = true })
+end
+
+function M.is_in_list(value, list)
+  for i = 1, #list do
+    if list[i] == value then return true end
+  end
+  return false
+end
+
 function M.get_parent_dir(path) return path:match "(.+)/" end
 
 function M.copy_file(source_file, target_file)

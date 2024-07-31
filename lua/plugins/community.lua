@@ -33,7 +33,6 @@ return {
   { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
   { import = "astrocommunity.recipes.auto-session-restore" },
-  { import = "astrocommunity.recipes.astrolsp-auto-signature-help" },
   { import = "astrocommunity.recipes.neovide" },
   { import = "astrocommunity.keybinding.nvcheatsheet-nvim" },
   {
@@ -53,5 +52,4 @@ return {
       },
     },
   },
-  -- { import = "astrocommunity.workflow.hardtime-nvim" },
 }

@@ -351,6 +351,7 @@ return {
     opts = {
       file = {
         [".eslintrc.js"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
+        [".eslintrc.cjs"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
         [".node-version"] = { glyph = "", hl = "MiniIconsGreen" },
         [".prettierrc"] = { glyph = "", hl = "MiniIconsPurple" },
         [".yarnrc.yml"] = { glyph = "", hl = "MiniIconsBlue" },

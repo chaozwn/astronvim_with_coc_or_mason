@@ -104,7 +104,7 @@ end
 
 function M.remove_cwd(path)
   local cwd = vim.fn.getcwd()
-  cwd = M.escape_pattern(cwd)
+  cwd = M.escape_pattern(cwd) .. '/'
 
   return path:gsub("^" .. cwd, "")
 end

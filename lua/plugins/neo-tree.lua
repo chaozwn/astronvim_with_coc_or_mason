@@ -1,5 +1,6 @@
 local file_exists = require("utils").file_exists
 local remove_lsp_cwd = require("utils").remove_lsp_cwd
+local remove_cwd = require("utils").remove_cwd
 local get_lsp_root_dir = require("utils").get_lsp_root_dir
 
 local function get_buffer_by_name(buf_name)
@@ -233,6 +234,23 @@ return {
       local neo_tree_events = require "neo-tree.events"
 
       return require("astrocore").extend_tbl(opts, {
+        commands = {
+          copy_absolute_path = function(state)
+            local absolute_path = state.tree:get_node():get_id()
+            vim.fn.setreg("+", absolute_path)
+          end,
+          copy_relative_path = function(state)
+            local absolute_path = state.tree:get_node():get_id()
+            local relative_path = remove_cwd(absolute_path)
+            vim.fn.setreg("+", relative_path)
+          end,
+        },
+        window = {
+          mappings = {
+            ["'"] = "copy_absolute_path",
+            ['"'] = "copy_relative_path",
+          },
+        },
         event_handlers = {
           {
             event = neo_tree_events.FILE_OPENED,

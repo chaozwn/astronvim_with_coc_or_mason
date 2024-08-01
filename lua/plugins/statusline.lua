@@ -31,15 +31,10 @@ return {
           hl.git_changed = comment_fg
           hl.git_removed = comment_fg
           hl.blank_bg = get_hlgroup("NonText").fg
-          hl.file_info_bg = get_hlgroup("DiagnosticVirtualTextInfo").bg
+          hl.file_info_bg = get_hlgroup("Normal").bg
           hl.nav_icon_bg = get_hlgroup("String").fg
           hl.nav_fg = hl.nav_icon_bg
           hl.folder_icon_bg = get_hlgroup("Error").fg
-
-          -- hl.tab_active_bg = hl.bg
-          -- hl.tab_visible_bg = hl.bg
-          -- hl.buffer_active_bg = hl.bg
-          -- hl.buffer_visible_bg = hl.bg
 
           return hl
         end,

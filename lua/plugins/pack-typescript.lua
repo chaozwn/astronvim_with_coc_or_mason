@@ -254,6 +254,14 @@ return {
     "mfussenegger/nvim-dap",
     optional = true,
     config = function()
+      local success, js_debug_adapter_path = pcall(
+        function()
+          return require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+            .. "/js-debug/src/dapDebugServer.js"
+        end
+      )
+      if not success then return end
+
       local dap = require "dap"
       if not dap.adapters["pwa-node"] then
         require("dap").adapters["pwa-node"] = {
@@ -263,8 +271,7 @@ return {
           executable = {
             command = "node",
             args = {
-              require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-                .. "/js-debug/src/dapDebugServer.js",
+              js_debug_adapter_path,
               "${port}",
             },
           },
@@ -309,30 +316,6 @@ return {
         end
       end
     end,
-  },
-  {
-    "yioneko/nvim-vtsls",
-    lazy = true,
-    dependencies = {
-      "AstroNvim/astrocore",
-      opts = {
-        autocmds = {
-          nvim_vtsls = {
-            {
-              event = "LspAttach",
-              desc = "Load nvim-vtsls with vtsls",
-              callback = function(args)
-                if assert(vim.lsp.get_client_by_id(args.data.client_id)).name == "vtsls" then
-                  require("vtsls")._on_attach(args.data.client_id, args.buf)
-                  vim.api.nvim_del_augroup_by_name "nvim_vtsls"
-                end
-              end,
-            },
-          },
-        },
-      },
-    },
-    config = function(_, opts) require("vtsls").config(opts) end,
   },
   {
     "nvim-neotest/neotest",

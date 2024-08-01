@@ -35,13 +35,15 @@ return {
     opts = {
       config = {
         rust_analyzer = {
-          on_attach = function(_, bufnr)
-            vim.keymap.set(
-              "n",
-              "<leader>dc",
-              function() vim.cmd.RustLsp "debuggables" end,
-              { desc = "Rust Debuggables", buffer = bufnr }
-            )
+          on_attach = function()
+            set_mappings({
+              n = {
+                ["<Leader>dc"] = {
+                  function() vim.cmd.RustLsp "debuggables" end,
+                  { desc = "Rust Debuggables" },
+                },
+              },
+            }, { buffer = true })
             vim.api.nvim_create_autocmd({ "TermOpen", "TermClose", "BufEnter" }, {
               pattern = "*cargo*",
               desc = "Jump to error line",

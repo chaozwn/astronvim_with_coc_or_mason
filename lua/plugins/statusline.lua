@@ -36,10 +36,10 @@ return {
           hl.nav_fg = hl.nav_icon_bg
           hl.folder_icon_bg = get_hlgroup("Error").fg
 
-          hl.tab_active_bg = hl.bg
-          hl.tab_visible_bg = hl.bg
-          hl.buffer_active_bg = hl.bg
-          hl.buffer_visible_bg = hl.bg
+          -- hl.tab_active_bg = hl.bg
+          -- hl.tab_visible_bg = hl.bg
+          -- hl.buffer_active_bg = hl.bg
+          -- hl.buffer_visible_bg = hl.bg
 
           return hl
         end,

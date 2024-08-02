@@ -205,10 +205,6 @@ return {
         },
         event_handlers = {
           {
-            event = neo_tree_events.FILE_OPENED,
-            handler = function() require("neo-tree.command").execute { action = "close" } end,
-          },
-          {
             event = neo_tree_events.FILE_ADDED,
             handler = function(path)
               if is_file(path) then

@@ -1,5 +1,58 @@
 local M = {}
 
+function M.decode_json(filename)
+  -- Open the file in read mode
+  local file = io.open(filename, "r")
+  if not file then
+    return false -- File doesn't exist or cannot be opened
+  end
+
+  -- Read the contents of the file
+  local content = file:read "*all"
+  file:close()
+
+  -- Parse the JSON content
+  local json_parsed, json = pcall(vim.fn.json_decode, content)
+  if not json_parsed or type(json) ~= "table" then
+    return false -- Invalid JSON format
+  end
+  return json
+end
+
+function M.check_json_key_exists(json, ...) return vim.tbl_get(json, ...) ~= nil end
+
+function M.is_vue_project(bufnr)
+  local lsp_rooter
+  if type(bufnr) ~= "number" then bufnr = vim.api.nvim_get_current_buf() end
+  local rooter = require "astrocore.rooter"
+  if not lsp_rooter then
+    lsp_rooter = rooter.resolve("lsp", {
+      ignore = {
+        servers = function(client)
+          return not vim.tbl_contains({ "vtsls", "typescript-tools", "volar", "eslint", "tsserver" }, client.name)
+        end,
+      },
+    })
+  end
+
+  local vue_dependency = false
+  for _, root in ipairs(require("astrocore").list_insert_unique(lsp_rooter(bufnr), { vim.fn.getcwd() })) do
+    local package_json = M.decode_json(root .. "/package.json")
+    if
+      package_json
+      and (
+        M.check_json_key_exists(package_json, "dependencies", "vue")
+        or M.check_json_key_exists(package_json, "devDependencies", "vue")
+      )
+    then
+      vue_dependency = true
+      break
+    end
+  end
+
+  return vue_dependency
+end
+
 function M.is_in_list(value, list)
   for i = 1, #list do
     if list[i] == value then return true end
@@ -138,27 +191,6 @@ function M.write_to_file(content, file_path)
   file:write(vim.inspect(content))
   file:write "\n"
   file:close()
-end
-
-function M.check_json_key_exists(filename, key)
-  -- Open the file in read mode
-  local file = io.open(filename, "r")
-  if not file then
-    return false -- File doesn't exist or cannot be opened
-  end
-
-  -- Read the contents of the file
-  local content = file:read "*all"
-  file:close()
-
-  -- Parse the JSON content
-  local json_parsed, json = pcall(vim.fn.json_decode, content)
-  if not json_parsed or type(json) ~= "table" then
-    return false -- Invalid JSON format
-  end
-
-  -- Check if the key exists in the JSON object
-  return json[key] ~= nil
 end
 
 function M.better_search(key)

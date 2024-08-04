@@ -6,7 +6,7 @@
   "configurations": [
     {
       "name": "demo",
-      "type": "go",
+      "type": "delve",
       "request": "launch",
       "mode": "debug",
       "program": "${workspaceFolder}/main.go",

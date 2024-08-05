@@ -5,7 +5,7 @@ return {
     if not opts.mappings then opts.mappings = require("astrocore").empty_map_table() end
     local maps = opts.mappings
     if maps then
-      maps.i["<C-l>"] = {
+      maps.i["<C-p>"] = {
         function() vim.lsp.buf.signature_help() end,
         desc = "Signature help",
         cond = "textDocument/signatureHelp",

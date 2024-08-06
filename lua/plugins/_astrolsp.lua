@@ -30,7 +30,7 @@ return {
       autoformat = false, -- enable or disable auto formatting on start
       inlay_hints = true, -- nvim >= 0.10
       semantic_tokens = true,
-      signature_help = true,
+      signature_help = false,
     },
     -- Configuration options for controlling formatting with language servers
     formatting = {

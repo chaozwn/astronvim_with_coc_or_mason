@@ -226,6 +226,22 @@ function M.toggle_lazy_docker()
   end
 end
 
+function M.toggle_btm()
+  return function()
+    require("astrocore").toggle_term_cmd {
+      cmd = "btm",
+      direction = "float",
+      hidden = true,
+      on_open = function() M.remove_keymap("t", "<Esc>") end,
+      on_close = function() vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { silent = true, noremap = true }) end,
+      on_exit = function()
+        -- For Stop Term Mode
+        vim.cmd [[stopinsert]]
+      end,
+    }
+  end
+end
+
 function M.toggle_lazy_git()
   return function()
     local worktree = require("astrocore").file_worktree()

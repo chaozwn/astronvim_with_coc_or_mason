@@ -71,6 +71,13 @@ return {
         }
       end
 
+      if vim.fn.executable "btm" == 1 then
+        maps.n["<Leader>tt"] = {
+          require("utils").toggle_btm(),
+          desc = "ToggleTerm btm",
+        }
+      end
+
       if vim.fn.executable "unimatrix" == 1 then
         maps.n["<Leader>tm"] = {
           require("utils").toggle_unicmatrix(),

@@ -72,6 +72,8 @@ function M.copy_file(source_file, target_file)
   vim.notify("File " .. target_file .. " created success.", vim.log.levels.INFO)
 end
 
+function M.get_filename_with_extension_from_path(path) return string.match(path, "([^/]+)$") end
+
 function M.create_launch_json()
   vim.ui.select({
     "go",

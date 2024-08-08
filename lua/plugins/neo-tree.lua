@@ -196,11 +196,16 @@ return {
             local relative_path = remove_cwd(absolute_path)
             vim.fn.setreg("+", relative_path)
           end,
+          copy_filename = function(state)
+            local filename = state.tree:get_node().name
+            vim.fn.setreg("+", filename)
+          end,
         },
         window = {
           mappings = {
             ["'"] = "copy_absolute_path",
             ['"'] = "copy_relative_path",
+            ["<C-c>"] = "copy_filename",
           },
         },
         event_handlers = {

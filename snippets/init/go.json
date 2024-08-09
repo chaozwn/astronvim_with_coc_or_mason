@@ -1,30 +1,22 @@
 {
+  "init": {
+    "prefix": "init",
+    "body": ["func init() {", "\t${1}", "}${0}"],
+    "description": "init function"
+  },
   "main": {
     "prefix": "main",
-    "body": [
-      "package main",
-      "",
-      "func main() {",
-      "}"
-    ],
+    "body": ["package main", "", "func main() {", "\t${1}", "}${0}"],
     "description": "main function"
   },
   "func_test": {
     "prefix": "ftest",
-    "body": [
-      "func Test${1:Name}(t *testing.T) {",
-      "\t${2}",
-      "}${0}"
-    ],
+    "body": ["func Test${1:Name}(t *testing.T) {", "\t${2}", "}${0}"],
     "description": "test function for golang"
   },
   "func_benchmark": {
     "prefix": "fbenchmark",
-    "body": [
-      "func Benchmark${1:Name}(b *testing.B) {",
-      "\t${2}",
-      "}${0}"
-    ],
+    "body": ["func Benchmark${1:Name}(b *testing.B) {", "\t${2}", "}${0}"],
     "description": "benchmark test function for golang"
   },
   "for ranger": {
@@ -38,20 +30,12 @@
   },
   "ErrCheck": {
     "prefix": "iferr",
-    "body": [
-      "if err != nil {",
-      "\t${3}",
-      "}${0}"
-    ],
+    "body": ["if err != nil {", "\t${3}", "}${0}"],
     "description": "check express ok"
   },
   "OKCheck": {
     "prefix": "ifok",
-    "body": [
-      "if ${1:var},ok := ${2:express}; ok{",
-      "\t${3}",
-      "}${0}"
-    ],
+    "body": ["if ${1:var},ok := ${2:express}; ok{", "\t${3}", "}${0}"],
     "description": "check express ok"
   },
   "author": {
@@ -67,9 +51,7 @@
   },
   "fmt.Sprintf": {
     "prefix": "fsf",
-    "body": [
-      "fmt.Sprintf(\"${1}\",${2})${0}"
-    ],
+    "body": ["fmt.Sprintf(\"${1}\",${2})${0}"],
     "description": "fmt.Sprintf()"
   },
   "middleware": {

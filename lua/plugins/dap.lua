@@ -88,7 +88,7 @@ return {
           },
           [prefix_debug .. "G"] = {
             require("utils").create_launch_json,
-            desc = "Switch Debug Session",
+            desc = "Create Dap Launch Json",
           },
         },
       },

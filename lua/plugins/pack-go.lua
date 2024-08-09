@@ -1,5 +1,14 @@
 --TODO: https://github.com/golang/go/issues/60903
 
+-- NOTE: gopls commands
+-- GoTagAdd add tags
+-- GOTagRm remove tags
+-- GoCmt add cmt
+-- GoFillStruct	auto fill struct
+-- GoFillSwitch	fill switch
+-- GoIfErr	Add if err
+-- GoFixPlurals	change func foo(b int, a int, r int) -> func foo(b, a, r int)
+
 ---@type LazySpec
 return {
   {

@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
-    "mattn/vim-maketable",
-    cmd = "MakeTable",
-    event = "BufEnter",
-    ft = "markdown",
+  "mattn/vim-maketable",
+  cmd = "MakeTable",
+  event = "BufEnter",
+  ft = "markdown",
 }

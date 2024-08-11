@@ -8,14 +8,14 @@ local simplify_inlay_hint_handler = function(err, result, ctx, config)
     ---@diagnostic disable-next-line: undefined-field
 
     result = vim
-        .iter(result)
-        :map(function(hint)
-          local label = hint.label
-          if not (label ~= nil and #label < 5) then hint.label = {} end
-          return hint
-        end)
-        :filter(function(hint) return #hint.label > 0 end)
-        :totable()
+      .iter(result)
+      :map(function(hint)
+        local label = hint.label
+        if not (label ~= nil and #label < 5) then hint.label = {} end
+        return hint
+      end)
+      :filter(function(hint) return #hint.label > 0 end)
+      :totable()
   end
   inlay_hint_handler(err, result, ctx, config)
 end
@@ -29,22 +29,24 @@ end
 return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
+  ---@diagnostic disable-next-line: assign-type-mismatch
   opts = function(_, opts)
     local mappings = require("mapping").lsp_mappings(opts.mappings)
 
-    require("astrocore").extend_tbl(opts, {
+    return require("astrocore").extend_tbl(opts, {
       -- Configuration table of features provided by AstroLSP
       features = {
-        codelens = true,        -- enable/disable codelens refresh on start
-        inlay_hints = true,     -- enable/disable inlay hints on start
+        codelens = true, -- enable/disable codelens refresh on start
+        inlay_hints = true, -- enable/disable inlay hints on start
         semantic_tokens = true, -- enable/disable semantic token highlighting
         signature_help = false,
+        -- autoformat = false, -- enable or disable auto formatting on start
       },
       -- customize lsp formatting options
       formatting = {
         -- control auto formatting on save
         format_on_save = {
-          enabled = false,    -- enable or disable format on save globally
+          enabled = false, -- enable or disable format on save globally
           allow_filetypes = { -- enable format on save for specified filetypes only
             -- "go",
           },
@@ -113,5 +115,5 @@ return {
         [methods.textDocument_inlayHint] = simplify_inlay_hint_handler,
       },
     })
-  end
+  end,
 }

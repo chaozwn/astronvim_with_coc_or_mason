@@ -23,7 +23,6 @@ vim.filetype.add {
     ["/tmp/neomutt.*"] = "markdown",
     ["tsconfig*.json"] = "jsonc",
     [".*/%.vscode/.*%.json"] = "jsonc",
-    [".env.*"] = "sh"
+    [".env.*"] = "sh",
   },
-
 }

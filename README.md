@@ -149,7 +149,7 @@ pip install git+https://github.com/will8211/unimatrix.git
 pip install terminaltexteffects
 ```
 
-https://github.com/user-attachments/assets/38f57960-8e7d-4e5a-ab7a-3726dd8f3f19
+https://github.com/user-attachments/assets/ff8aa481-932d-431c-b1a1-ea7cc6e63920
 
 
 ### Install Bottom

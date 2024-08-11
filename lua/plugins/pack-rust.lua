@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 --WARNING: now rust-analyzer is can't use in neovim, because this issue
 -- https://github.com/rust-lang/rust-analyzer/issues/17289
 -- https://github.com/williamboman/mason.nvim/issues/1741
@@ -32,18 +34,19 @@ end
 return {
   {
     "AstroNvim/astrolsp",
+    ---@type AstroLSPOpts
     opts = {
       config = {
         rust_analyzer = {
-          on_attach = function()
+          on_attach = function(_, bufnr)
             set_mappings({
               n = {
                 ["<Leader>dc"] = {
                   function() vim.cmd.RustLsp "debuggables" end,
-                  { desc = "Rust Debuggables" },
+                  desc = "Rust Debuggables",
                 },
               },
-            }, { buffer = true })
+            }, { buffer = bufnr })
             vim.api.nvim_create_autocmd({ "TermOpen", "TermClose", "BufEnter" }, {
               pattern = "*cargo*",
               desc = "Jump to error line",
@@ -55,7 +58,7 @@ return {
                       desc = "Jump to error line",
                     },
                   },
-                }, { buffer = true })
+                }, { buffer = bufnr })
               end,
             })
           end,

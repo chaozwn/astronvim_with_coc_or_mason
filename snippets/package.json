@@ -1,0 +1,68 @@
+{
+  "name": "user_snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "language": [
+      {
+        "id": "goctl",
+        "aliases": [
+          "goctl"
+        ],
+        "extensions": [
+          ".api"
+        ],
+        "configuration": "./language-configuration-goctl.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./init/react.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./init/solid.json"
+      },
+      {
+        "language": "vue",
+        "path": "./init/vue.json"
+      },
+      {
+        "language": "goctl",
+        "path": "./init/goctl.json"
+      },
+      {
+        "language": "go",
+        "path": "./init/go.json"
+      },
+      {
+        "language": "python",
+        "path": "./init/python.json"
+      },
+      {
+        "language": "proto",
+        "path": "./init/proto3.json"
+      },
+      {
+        "language": "sql",
+        "path": "./jinja/jinja-sql.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./jinja/jinja-yaml.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./jinja/jinja-markdown.json"
+      }
+    ]
+  }
+}

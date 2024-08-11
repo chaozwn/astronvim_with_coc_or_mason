@@ -1,0 +1,106 @@
+{
+  "init": {
+    "prefix": "init",
+    "body": ["func init() {", "\t${1}", "}${0}"],
+    "description": "init function"
+  },
+  "main": {
+    "prefix": "main",
+    "body": ["package main", "", "func main() {", "\t${1}", "}${0}"],
+    "description": "main function"
+  },
+  "func_test": {
+    "prefix": "ftest",
+    "body": ["func Test${1:Name}(t *testing.T) {", "\t${2}", "}${0}"],
+    "description": "test function for golang"
+  },
+  "func_benchmark": {
+    "prefix": "fbenchmark",
+    "body": ["func Benchmark${1:Name}(b *testing.B) {", "\t${2}", "}${0}"],
+    "description": "benchmark test function for golang"
+  },
+  "for ranger": {
+    "prefix": "fori",
+    "body": [
+      "for ${1:i} := ${2:0}; ${1:i} < ${3:count}; ${1:i}${4:++} {",
+      "   ${5}",
+      "}${0}"
+    ],
+    "description": "for range in i"
+  },
+  "ErrCheck": {
+    "prefix": "iferr",
+    "body": ["if err != nil {", "\t${3}", "}${0}"],
+    "description": "check express ok"
+  },
+  "OKCheck": {
+    "prefix": "ifok",
+    "body": ["if ${1:var},ok := ${2:express}; ok{", "\t${3}", "}${0}"],
+    "description": "check express ok"
+  },
+  "author": {
+    "prefix": "todo",
+    "body": [
+      "/*",
+      "   Author  : Jayce Zhao",
+      "   Date    : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "   Email   : ${1:email}",
+      "*/$0"
+    ],
+    "description": "Author"
+  },
+  "fmt.Sprintf": {
+    "prefix": "fsf",
+    "body": ["fmt.Sprintf(\"${1}\",${2})${0}"],
+    "description": "fmt.Sprintf()"
+  },
+  "middleware": {
+    "prefix": "mwchain",
+    "body": [
+      "type Middleware func(http.Handler) http.Handler",
+      "",
+      "func Chain(h http.Handler, middlewares ...Middleware) http.Handler {",
+      "\tfor _, m := range middlewares {",
+      "\t\th = m(h)",
+      "\t}",
+      "\treturn h",
+      "}$0"
+    ],
+    "description": "base of middleware"
+  },
+  "middleFunction": {
+    "prefix": "middleware",
+    "body": [
+      "func ${1:Name}(next http.Handler) http.Handler {",
+      "\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {",
+      "\t\t${2:// coding here ......}",
+      "\t\tnext.ServeHTTP(w,r)",
+      "\t})",
+      "}$0"
+    ],
+    "description": "function of middleware"
+  },
+  "class function declaration": {
+    "prefix": "funcc",
+    "body": "func ($1) $2($3) $4 {\n\t$0\n}",
+    "description": "Snippet for class function declaration"
+  },
+  "gormSerialize": {
+    "prefix": "gorm",
+    "body": [
+      "func (c *${1}) Scan(val interface{}) error {",
+      "\terr := json.Unmarshal(val.([]byte), c)",
+      "\tif err != nil {",
+      "\t\treturn err",
+      "\t}",
+      "\treturn nil",
+      "}",
+      "",
+      "func (c ${1}) Value() (driver.Value, error) {",
+      "\tb, err := json.Marshal(c)",
+      "\treturn string(b), err",
+      "}"
+    ],
+    "description": "Snippet for gorm serialize"
+  }
+}

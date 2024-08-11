@@ -1,0 +1,176 @@
+{
+  "bool": {
+    "prefix": ["fb"],
+    "body": ["bool"],
+    "description": "bool"
+  },
+  "int": {
+    "prefix": ["fi"],
+    "body": ["int"],
+    "description": "int"
+  },
+  "int8": {
+    "prefix": ["fi8"],
+    "body": ["int8"],
+    "description": "int8"
+  },
+  "int16": {
+    "prefix": ["fi16"],
+    "body": ["int16"],
+    "description": "int16"
+  },
+  "int32": {
+    "prefix": ["fi32"],
+    "body": ["int32"],
+    "description": "int32"
+  },
+  "int64": {
+    "prefix": ["fi64"],
+    "body": ["int64"],
+    "description": "int64"
+  },
+  "uint": {
+    "prefix": ["fu"],
+    "body": ["uint"],
+    "description": "uint"
+  },
+  "uint8": {
+    "prefix": ["fu8"],
+    "body": ["uint8"],
+    "description": "uint8"
+  },
+  "uint16": {
+    "prefix": ["fu16"],
+    "body": ["uint16"],
+    "description": "uint16"
+  },
+  "uint32": {
+    "prefix": ["fu32"],
+    "body": ["uint32"],
+    "description": "uint32"
+  },
+  "uint64": {
+    "prefix": ["fu64"],
+    "body": ["uint64"],
+    "description": "uint64"
+  },
+  "uintptr": {
+    "prefix": ["fup"],
+    "body": ["uintptr"],
+    "description": "uintptr"
+  },
+  "float32": {
+    "prefix": ["ff32"],
+    "body": ["float32"],
+    "description": "float32"
+  },
+  "float64": {
+    "prefix": ["ff64"],
+    "body": ["float64"],
+    "description": "float64"
+  },
+  "complex64": {
+    "prefix": ["fc64"],
+    "body": ["complex64"],
+    "description": "complex64"
+  },
+  "complex128": {
+    "prefix": ["fc128"],
+    "body": ["complex128"],
+    "description": "complex128"
+  },
+  "string": {
+    "prefix": ["fs"],
+    "body": ["string"],
+    "description": "string"
+  },
+  "byte": {
+    "prefix": ["fby"],
+    "body": ["byte"],
+    "description": "byte"
+  },
+  "rune": {
+    "prefix": ["fr"],
+    "body": ["rune"],
+    "description": "rune"
+  },
+  "version": {
+    "prefix": ["version", "sy"],
+    "body": ["syntax = \"v${1:1}\"$0"],
+    "description": "version"
+  },
+  "single import": {
+    "prefix": "im",
+    "body": "import \"${1:package}\"",
+    "description": "Snippet for import statement"
+  },
+  "info": {
+    "prefix": ["info"],
+    "body": [
+      "info(",
+      "\ttitle: \"$1\"",
+      "\tdesc: \"$2\"",
+      "\tauthor: \"$3\"",
+      "\temail: \"326747337@qq.com\"",
+      "\tversion: \"${5:1.0}\"",
+      ")",
+      "",
+      "$0"
+    ],
+    "description": "goctl api doc info"
+  },
+  "service": {
+    "prefix": ["service"],
+    "body": ["service ${1:xxx-api} {", "\t$0", "}"],
+    "description": "route group"
+  },
+  "type": {
+    "prefix": ["type"],
+    "body": ["type $1 {", "\t$0", "}"],
+    "description": "type declaration"
+  },
+  "json": {
+    "prefix": ["json"],
+    "body": ["`json:\"$0\"`"],
+    "description": "json tag"
+  },
+  "path": {
+    "prefix": ["path"],
+    "body": ["`path:\"$0\"`"],
+    "description": "path tag"
+  },
+  "form": {
+    "prefix": ["form"],
+    "body": ["`form:\"$0\"`"],
+    "description": "form tag"
+  },
+  "doc": {
+    "prefix": ["doc"],
+    "body": ["@doc(", "    summary: $1", ")", "$0"],
+    "description": "doc"
+  },
+  "server": {
+    "prefix": ["server"],
+    "body": ["@server(", "    prefix: $1", ")", "$0"]
+  },
+  "@handler": {
+    "prefix": ["handler"],
+    "body": ["@handler $1", "$0"]
+  },
+  "post": {
+    "prefix": ["post"],
+    "body": ["post /${1:your/url/path}($2) returns($3)", "", "$0"]
+  },
+  "get": {
+    "prefix": "get",
+    "body": ["get /${1:your/url/path}($2) returns($3)", "", "$0"]
+  },
+  "delete": {
+    "prefix": ["delete"],
+    "body": ["delete /${1:your/url/path}($2) returns($3)", "", "$0"]
+  },
+  "put": {
+    "prefix": "put",
+    "body": ["put /${1:your/url/path}($2) returns($3)", "", "$0"]
+  }
+}

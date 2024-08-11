@@ -1,0 +1,55 @@
+# Reference: https://docs.sqlfluff.com/en/stable/rules.html
+[sqlfluff]
+dialect = bigquery
+templater = jinja
+# This change (from jinja to dbt templater) will make linting slower
+# because linting will first compile dbt code into data warehouse code.
+runaway_limit = 10
+max_line_length = 80
+indent_unit = space
+large_file_skip_byte_limit = 0
+exclude_rules = CP01,LT02,CV06,CV10,LT08,ST06,LT05,LT09,AM06,ST09,AL01,AL02,LT04,JJ01,LT01,RF02,LT13,AM04,RF05
+ignore = templating
+
+[sqlfluff:indentation]
+tab_space_size = 4
+
+[sqlfluff:layout:type:comma]
+spacing_before = touch
+line_position = trailing
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+
+[sqlfluff:rules:aliasing.table]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.column]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.expression]
+allow_scalar = False
+
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = lower
+
+[sqlfluff:rules:ambiguous.column_references]  # Number in group by
+group_by_and_order_by_style = implicit
+
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = true
+
+[sqlfluff:templater:jinja:macros]
+# Macros provided as builtins for dbt projects
+dbt_ref = {% macro ref(model_ref) %}{{model_ref}}{% endmacro %}
+dbt_source = {% macro source(source_name, table) %}{{source_name}}_{{table}}{% endmacro %}
+dbt_config = {% macro config() %}{% for k in kwargs %}{% endfor %}{% endmacro %}
+dbt_var = {% macro var(variable, default='') %}item{% endmacro %}
+dbt_is_incremental = {% macro is_incremental() %}True{% endmacro %}
+

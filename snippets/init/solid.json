@@ -1,0 +1,67 @@
+{
+  "ComponetProps": {
+    "prefix": [
+      "sp"
+    ],
+    "body": [
+      "import { Component, JSX } from 'solid-js'",
+      "",
+      "export interface ${0}Props {",
+      "children?: JSX.Element",
+      "class?: string",
+      "}",
+      "",
+      "const ${0}: Component<${0}Props> = (props) => {",
+      "return <div>${0}</div>",
+      "}",
+      "",
+      "export default ${0}"
+    ],
+    "description": "solid tsx function component with props"
+  },
+  "ComponetWithoutProps": {
+    "prefix": [
+      "si"
+    ],
+    "body": [
+      "const ${0} = () => {",
+      "return <div>${0}</div>",
+      "}",
+      "",
+      "export default ${0}"
+    ],
+    "description": "solid tsx function component without props"
+  },
+  "RxjsStore": {
+    "prefix": [
+      "st"
+    ],
+    "body": [
+      "import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs'",
+      "import { from } from 'solid-js'",
+      "",
+      "interface ${1} {}",
+      "",
+      "class ${2}Store {",
+      "private _store: BehaviorSubject<${1}>",
+      "",
+      "constructor() {",
+      "this._store = new BehaviorSubject<${1}>({})",
+      "}",
+      "",
+      "selectState<K extends keyof ${1}>(stateKey: K) {",
+      "return this._store.pipe(",
+      "distinctUntilChanged(),",
+      "map((state: ${1}) => state[stateKey])",
+      ")",
+      "}",
+      "",
+      "selectStateSignal<K extends keyof ${1}>(stateKey: K) {",
+      "return from(this.selectState(stateKey))",
+      "}",
+      "}",
+      "",
+      "export const ${3}Store = new ${2}Store()"
+    ]
+  }
+}

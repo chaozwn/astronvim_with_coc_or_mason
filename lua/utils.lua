@@ -89,6 +89,7 @@ function M.create_launch_json()
   vim.ui.select({
     "go",
     "node",
+    "rust",
   }, { prompt = "Select Language Debug Template", default = "go" }, function(select)
     if not select then return end
     if select == "go" then
@@ -96,6 +97,9 @@ function M.create_launch_json()
       M.get_launch_json_by_source_file(source_file)
     elseif select == "node" then
       local source_file = vim.fn.stdpath "config" .. "/.vscode/node_launch.json"
+      M.get_launch_json_by_source_file(source_file)
+    elseif select == "rust" then
+      local source_file = vim.fn.stdpath "config" .. "/.vscode/rust_launch.json"
       M.get_launch_json_by_source_file(source_file)
     end
   end)

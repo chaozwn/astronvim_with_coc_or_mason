@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "demo",
+      "type": "codelldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/target/debug/${workspaceFolderBasename}",
+      "mode": "debug",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "preLaunchTask": "build",
+      "externalConsole": true
+    }
+  ]
+}

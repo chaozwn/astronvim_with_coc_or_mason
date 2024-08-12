@@ -39,14 +39,6 @@ return {
       config = {
         rust_analyzer = {
           on_attach = function(_, bufnr)
-            set_mappings({
-              n = {
-                ["<Leader>dc"] = {
-                  function() vim.cmd.RustLsp "debuggables" end,
-                  desc = "Rust Debuggables",
-                },
-              },
-            }, { buffer = bufnr })
             vim.api.nvim_create_autocmd({ "TermOpen", "TermClose", "BufEnter" }, {
               pattern = "*cargo*",
               desc = "Jump to error line",
@@ -106,6 +98,9 @@ return {
       local final_server = require("astrocore").extend_tbl(astrolsp_opts, server)
       return {
         server = final_server,
+        dap = {
+          configuration = false,
+        },
         default_settings = {
           -- rust-analyzer language server configuration
           ["rust-analyzer"] = {

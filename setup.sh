@@ -18,6 +18,7 @@ brew install gdu
 brew install bottom
 brew install protobuf
 brew install gnu-sed
+brew install ast-grep
 
 pip install notebook nbclassic jupyter-console
 pip install git+https://github.com/will8211/unimatrix.git

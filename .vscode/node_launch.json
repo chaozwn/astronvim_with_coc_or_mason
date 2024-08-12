@@ -6,10 +6,10 @@
   "configurations": [
     {
       "name": "demo",
-      "type": "delve",
+      "type": "node",
       "request": "launch",
       "mode": "debug",
-      "program": "${workspaceFolder}/main.go",
+      "program": "${workspaceFolder}/index.js",
       "env": {},
       "args": [],
       "console": "integratedTerminal",

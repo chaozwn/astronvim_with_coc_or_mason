@@ -87,7 +87,7 @@ brew install lazydocker
 
 > rustup and mason's installation of rust-analzyer are different and may cause some [bugs](https://github.com/rust-lang/rust-analyzer/issues/17289), manual installation is recommended.
 
-```
+```shell
 rustup component add rust-analyzer
 ```
 
@@ -159,7 +159,7 @@ brew install bottom
 
 ### Neovim requirements
 
-```
+```shell
 npm install -g neovim
 pip install pynvim
 ```
@@ -193,7 +193,7 @@ return {
 
 ### Support for neovide
 
-```
+```shell
 brew install neovide
 neovide .
 ```

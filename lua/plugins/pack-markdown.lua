@@ -56,7 +56,8 @@ return {
     optional = true,
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "markdown", "markdown_inline" })
+        opts.ensure_installed =
+          utils.list_insert_unique(opts.ensure_installed, { "markdown", "markdown_inline", "html" })
       end
     end,
   },
@@ -94,8 +95,11 @@ return {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && yarn install",
-    init = function() vim.g.mkdp_filetypes = { "markdown" } end,
-    ft = { "markdown" },
+    ft = { "markdown", "markdown.mdx" },
+    init = function()
+      local plugin = require("lazy.core.config").spec.plugins["markdown-preview.nvim"]
+      vim.g.mkdp_filetypes = require("lazy.core.plugin").values(plugin, "ft", true)
+    end,
   },
   {
     "TobinPalmer/pastify.nvim",
@@ -108,30 +112,19 @@ return {
     },
   },
   {
-    "lukas-reineke/headlines.nvim",
-    opts = function()
-      local opts = {}
-      for _, ft in ipairs { "markdown", "norg", "rmd", "org" } do
-        opts[ft] = {
-          headline_highlights = {},
-          -- disable bullets for now. See https://github.com/lukas-reineke/headlines.nvim/issues/66
-          bullets = {},
-        }
-        for i = 1, 6 do
-          local hl = "Headline" .. i
-          vim.api.nvim_set_hl(0, hl, { link = "Headline", default = true })
-          table.insert(opts[ft].headline_highlights, hl)
-        end
-      end
-      return opts
-    end,
-    ft = { "markdown", "norg", "rmd", "org" },
-    config = function(_, opts)
-      -- PERF: schedule to prevent headlines slowing down opening a file
-      vim.schedule(function()
-        require("headlines").setup(opts)
-        require("headlines").refresh()
-      end)
-    end,
+    "OXY2DEV/markview.nvim",
+    ft = { "markdown", "markdown.mdx" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    opts = {
+      modes = { "n", "no", "c" }, -- Change these modes
+      hybrid_modes = { "n" }, -- Uses this feature on
+      callbacks = {
+        on_enable = function(_, win)
+          vim.wo[win].conceallevel = 2
+          vim.wo[win].concealcursor = "c"
+        end,
+      },
+      headings = { shift_width = 1 },
+    },
   },
 }

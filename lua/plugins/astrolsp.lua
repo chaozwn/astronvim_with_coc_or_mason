@@ -102,6 +102,21 @@ return {
       },
       -- Configure buffer local auto commands to add when attaching a language server
       autocmds = {
+        lsp_document_highlight = {
+          cond = "textDocument/documentHighlight",
+          {
+            -- events to trigger
+            event = { "CursorHold", "CursorHoldI" },
+            -- the rest of the autocmd options (:h nvim_create_autocmd)
+            desc = "Document Highlighting",
+            callback = function() vim.lsp.buf.document_highlight() end,
+          },
+          {
+            event = { "CursorMoved", "CursorMovedI", "BufLeave" },
+            desc = "Document Highlighting Clear",
+            callback = function() vim.lsp.buf.clear_references() end,
+          },
+        },
         -- first key is the `augroup` to add the auto commands to (:h augroup)
         lsp_codelens_refresh = {
           -- Optional condition to create/delete auto command group

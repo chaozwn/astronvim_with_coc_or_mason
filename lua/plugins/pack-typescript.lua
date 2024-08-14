@@ -66,16 +66,14 @@ return {
       config = {
         eslint = {
           on_attach = function()
-            if vim.fn.exists ":EslintFixAll" then
-              set_mappings({
-                n = {
-                  ["<Leader>lf"] = {
-                    function() vim.cmd.EslintFixAll() end,
-                    desc = "Format buffer",
-                  },
+            set_mappings({
+              n = {
+                ["<Leader>lF"] = {
+                  function() vim.cmd.EslintFixAll() end,
+                  desc = "Format buffer",
                 },
-              }, { buffer = true })
-            end
+              },
+            }, { buffer = true })
           end,
         },
         vtsls = {

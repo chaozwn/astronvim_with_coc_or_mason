@@ -63,17 +63,21 @@ return {
     ---@type AstroLSPOpts
     ---@diagnostic disable: missing-fields
     opts = {
-      autocmds = {
-        eslint_fix_on_save = {
-          cond = function(client) return client.name == "eslint" and vim.fn.exists ":EslintFixAll" > 0 end,
-          {
-            event = "BufWritePost",
-            desc = "Fix all eslint errors",
-            callback = function() vim.cmd.EslintFixAll() end,
-          },
-        },
-      },
       config = {
+        eslint = {
+          on_attach = function()
+            if vim.fn.exists ":EslintFixAll" then
+              set_mappings({
+                n = {
+                  ["<Leader>lf"] = {
+                    function() vim.cmd.EslintFixAll() end,
+                    desc = "Format buffer",
+                  },
+                },
+              }, { buffer = true })
+            end
+          end,
+        },
         vtsls = {
           on_attach = function()
             set_mappings({

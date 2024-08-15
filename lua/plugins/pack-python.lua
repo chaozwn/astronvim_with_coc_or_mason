@@ -36,6 +36,11 @@ return {
               }, { buffer = true })
             end
           end,
+          before_init = function(_, c)
+            if not c.settings then c.settings = {} end
+            if not c.settings.python then c.settings.python = {} end
+            c.settings.python.pythonPath = vim.fn.exepath "python"
+          end,
           filetypes = { "python" },
           single_file_support = true,
           root_dir = function(...)
@@ -53,11 +58,21 @@ return {
           settings = {
             basedpyright = {
               analysis = {
+                typeCheckingMode = "basic",
+                autoImportCompletions = true,
                 autoSearchPaths = true,
                 diagnosticMode = "openFilesOnly",
                 useLibraryCodeForTypes = true,
                 reportMissingTypeStubs = false,
-                typeCheckingMode = "basic",
+                diagnosticSeverityOverrides = {
+                  reportUnusedImport = "information",
+                  reportUnusedFunction = "information",
+                  reportUnusedVariable = "information",
+                  reportGeneralTypeIssues = "none",
+                  reportOptionalMemberAccess = "none",
+                  reportOptionalSubscript = "none",
+                  reportPrivateImportUsage = "none",
+                },
               },
             },
           },
@@ -116,15 +131,7 @@ return {
     "mfussenegger/nvim-dap-python",
     dependencies = "mfussenegger/nvim-dap",
     ft = "python", -- NOTE: ft: lazy-load on filetype
-    config = function(_, opts)
-      local path = require("mason-registry").get_package("debugpy"):get_install_path()
-      if vim.fn.has "win32" == 1 then
-        path = path .. "/venv/Scripts/python"
-      else
-        path = path .. "/venv/bin/python"
-      end
-      require("dap-python").setup(path, opts)
-    end,
+    config = function() require("dap-python").setup("python", {}) end,
   },
   {
     "nvim-neotest/neotest",

@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "demo",
+      "type": "debugpy",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}/main.py",
+      "env": {},
+      "args": [],
+      "console": "integratedTerminal",
+      "showLog": true,
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

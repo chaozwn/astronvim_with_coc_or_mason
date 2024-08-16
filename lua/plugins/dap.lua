@@ -10,16 +10,12 @@ return {
       mappings = {
         n = {
           [prefix_debug .. "q"] = {
-            function() require("dap").terminate() end,
-            desc = "Down Strace",
-          },
-          [prefix_debug .. "Q"] = {
-            function() require("dap").close() end,
-            desc = "Down Strace",
-          },
-          [prefix_debug .. "j"] = {
-            function() require("dap").down() end,
-            desc = "Down Strace",
+            function()
+              require("dap").close()
+              local controls = require "dapui.controls"
+              controls.refresh_control_panel()
+            end,
+            desc = "Close Session",
           },
           [prefix_debug .. "j"] = {
             function() require("dap").down() end,

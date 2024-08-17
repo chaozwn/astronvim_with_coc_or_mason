@@ -4,8 +4,6 @@ return {
     ---@type AstroCoreOpts
     opts = {
       autocmds = {
-        -- disable alpha autostart
-        alpha_autostart = false,
         restore_session = {
           {
             event = "VimEnter",
@@ -32,14 +30,10 @@ return {
                 end
               end
               if should_skip then return end
+
               -- if possible, load session
-              if not pcall(function() require("resession").load(vim.fn.getcwd(), { dir = "dirsession" }) end) then
-                -- if session was not loaded, if possible, load alpha
-                require("lazy").load { plugins = { "alpha-nvim" } }
-                if pcall(function() require("alpha").start(true) end) then
-                  vim.schedule(function() vim.cmd.doautocmd "FileType" end)
-                end
-              end
+              require("resession").load(vim.fn.getcwd(), { dir = "dirsession" })
+              -- local status = pcall(function() require("resession").load(vim.fn.getcwd(), { dir = "dirsession" }) end)
             end,
           },
         },

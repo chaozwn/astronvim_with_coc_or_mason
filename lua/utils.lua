@@ -160,6 +160,14 @@ function M.write_log(file_name, content)
   end
 end
 
+function M.write_log_append(file_name, content)
+  local file = io.open(file_name, "w")
+  if file then
+    file:write(vim.inspect(content))
+    file:close()
+  end
+end
+
 function M.save_client(client)
   if client.name then
     local file = io.open(client.name .. ".txt", "w")

@@ -12,8 +12,11 @@ return {
           [prefix_debug .. "q"] = {
             function()
               require("dap").close()
-              local controls = require "dapui.controls"
-              controls.refresh_control_panel()
+              vim.schedule(function()
+                local controls = require "dapui.controls"
+                controls.refresh_control_panel()
+                vim.cmd [[DapVirtualTextForceRefresh]]
+              end)
             end,
             desc = "Close Session",
           },
@@ -124,9 +127,9 @@ return {
       enabled_commands = true,
       only_first_definition = true,
       clear_on_continue = true,
-      virt_text_pos = "eol",
       highlight_changed_variables = true,
       all_frames = false,
+      virt_lines = true,
       show_stop_reason = true,
     },
   },

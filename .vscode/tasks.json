@@ -19,22 +19,14 @@
 {
   "tasks": [
     {
-      "type": "cppbuild",
-      "label": "C/C++: g++.exe build active file",
-      "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
-      "args": [
-        "-fdiagnostics-color=always",
-        "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
-      ],
+      "type": "shell",
+      "label": "shell demo",
+      "command": "nvim",
+      "args": [],
       "options": {
         "cwd": "${fileDirname}"
       },
-      "problemMatcher": [
-        "$gcc"
-      ],
+      "problemMatcher": [],
       "group": {
         "kind": "build",
         "isDefault": true

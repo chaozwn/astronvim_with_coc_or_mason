@@ -1,5 +1,13 @@
 local M = {}
 
+function M.is_table_empty(t)
+  if t == nil or next(t) == nil then
+    return true
+  else
+    return false
+  end
+end
+
 function M.decode_json(filename)
   -- Open the file in read mode
   local file = io.open(filename, "r")

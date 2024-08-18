@@ -31,9 +31,7 @@ return {
               end
               if should_skip then return end
 
-              -- if possible, load session
-              require("resession").load(vim.fn.getcwd(), { dir = "dirsession" })
-              -- local status = pcall(function() require("resession").load(vim.fn.getcwd(), { dir = "dirsession" }) end)
+              pcall(function() require("resession").load(vim.fn.getcwd(), { dir = "dirsession" }) end)
             end,
           },
         },

@@ -1,20 +1,5 @@
 return {
   "stevearc/overseer.nvim",
-  cmd = {
-    "OverseerOpen",
-    "OverseerClose",
-    "OverseerToggle",
-    "OverseerSaveBundle",
-    "OverseerLoadBundle",
-    "OverseerDeleteBundle",
-    "OverseerRunCmd",
-    "OverseerRun",
-    "OverseerInfo",
-    "OverseerBuild",
-    "OverseerQuickAction",
-    "OverseerTaskAction ",
-    "OverseerClearCache",
-  },
   ---@param opts overseer.Config
   opts = function(_, opts)
     local astrocore = require "astrocore"
@@ -22,7 +7,7 @@ return {
 
     return require("astrocore").extend_tbl(opts, {
       dap = true,
-      template = {},
+      templates = { "builtin", "user.run_python", "user.run_script", "user.run_goframe" },
       task_list = {
         direction = "right",
         bindings = {
@@ -49,7 +34,7 @@ return {
       "AstroNvim/astrocore",
       opts = function(_, opts)
         local maps = opts.mappings
-        local prefix = "<leader>M"
+        local prefix = "<leader>m"
         maps.n[prefix] = { desc = require("astroui").get_icon("Overseer", 1, true) .. "Overseer" }
 
         maps.n[prefix .. "t"] = { "<Cmd>OverseerToggle<CR>", desc = "Toggle Overseer" }

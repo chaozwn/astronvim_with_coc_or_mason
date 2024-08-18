@@ -1,3 +1,29 @@
+local overseer_tasks_for_status = function(status)
+  return {
+    condition = function(self)
+      if status == "INIT" then
+        return require("utils").is_table_empty(self.tasks)
+      else
+        return self.tasks[status]
+      end
+    end,
+    provider = function(self)
+      return require("astroui.status.utils").pad_string(
+        string.format("%s%d", self.symbols[status], self.tasks[status] and #self.tasks[status] or 0),
+        { left = 1 }
+      )
+    end,
+    hl = function()
+      local get_hlgroup = require("astroui").get_hlgroup
+      local fg = get_hlgroup(string.format("Overseer%s", status)).fg
+      if status == "INIT" then fg = get_hlgroup("Normal").fg end
+      return {
+        fg = fg,
+      }
+    end,
+  }
+end
+
 ---@type LazySpec
 return {
   {
@@ -130,11 +156,37 @@ return {
         -- add a component to display LSP clients, disable showing LSP progress, and use the right separator
         status.component.lsp {
           lsp_progress = false,
-          padding = { right = 1 },
           surround = { separator = "right" },
           lsp_client_names = {
             icon = { padding = { right = 1 } },
           },
+        },
+        {
+          -- define a simple component where the provider is just a folder icon
+          condition = function() return package.loaded.overseer end,
+          init = function(self)
+            local tasks = require("overseer.task_list").list_tasks { unique = true }
+            local tasks_by_status = require("overseer.util").tbl_group_by(tasks, "status")
+            self.tasks = tasks_by_status
+          end,
+          static = {
+            symbols = {
+              ["INIT"] = require("astroui.status.utils").pad_string("", { right = 1 }),
+              ["CANCELED"] = require("astroui.status.utils").pad_string("", { right = 1 }),
+              ["FAILURE"] = require("astroui.status.utils").pad_string("󰅚", { right = 1 }),
+              ["SUCCESS"] = require("astroui.status.utils").pad_string("󰄴", { right = 1 }),
+              ["RUNNING"] = require("astroui.status.utils").pad_string("󰑮", { right = 1 }),
+            },
+          },
+          on_click = {
+            name = "overseer_toggle",
+            callback = function() vim.schedule(vim.cmd.OverseerToggle) end,
+          },
+          overseer_tasks_for_status "INIT",
+          overseer_tasks_for_status "CANCELED",
+          overseer_tasks_for_status "RUNNING",
+          overseer_tasks_for_status "SUCCESS",
+          overseer_tasks_for_status "FAILURE",
         },
         status.component.virtual_env {
           padding = { right = 1 },
@@ -176,7 +228,6 @@ return {
               },
             },
           },
-          {},
         },
         -- the final component of the NvChad statusline is the navigation section
         -- this is very similar to the previous current working directory section with the icon

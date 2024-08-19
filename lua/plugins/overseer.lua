@@ -6,7 +6,7 @@ return {
     if astrocore.is_available "toggleterm.nvim" then opts.strategy = "toggleterm" end
 
     return require("astrocore").extend_tbl(opts, {
-      dap = true,
+      dap = false,
       templates = { "builtin", "user.run_python", "user.run_script", "user.run_goframe" },
       task_list = {
         direction = "right",

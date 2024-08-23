@@ -1,5 +1,8 @@
 local M = {}
 
+-- Checks if a table is empty.
+-- @param t The table to check.
+-- @return true if the table is nil or empty, false otherwise.
 function M.is_table_empty(t)
   if t == nil or next(t) == nil then
     return true

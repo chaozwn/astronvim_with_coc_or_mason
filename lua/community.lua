@@ -27,6 +27,7 @@ return {
   { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
   { import = "astrocommunity.lsp.nvim-lsp-file-operations" },
   { import = "astrocommunity.recipes.neovide" },
+  { import = "astrocommunity.recipes.vscode-icons" },
   { import = "astrocommunity.keybinding.nvcheatsheet-nvim" },
   {
     "AstroNvim/astrocore",

@@ -7,7 +7,7 @@ return {
 
     return require("astrocore").extend_tbl(opts, {
       dap = false,
-      templates = { "builtin", "user.run_python", "user.run_script", "user.run_goframe" },
+      templates = { "builtin", "user.run_python", "user.run_script" },
       task_list = {
         direction = "right",
         bindings = {

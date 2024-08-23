@@ -1,3 +1,22 @@
+// ${userHome} -用户的主文件夹路径
+// ${workspaceFolder} -在VS Code中打开的文件夹路径
+// ${workspaceFolderBasename} -在VS Code中打开的文件夹名，不带任何斜杠(/)
+// ${file} -当前打开的文件
+// ${fileWorkspaceFolder} -当前打开文件的工作空间文件夹
+// ${relativeFile} -当前打开的文件相对于工作区文件夹
+// ${relativeFileDirname} -当前打开的文件相对于工作区文件夹的dirname
+// ${fileBasename} -当前打开的文件的basename
+// ${fileBasenameNoExtension} -当前打开的文件的basename，没有文件扩展名
+// ${fileExtname} -当前打开的文件的扩展名
+// ${fileDirname} -当前打开文件的文件夹路径
+// ${fileDirnameBasename} -当前打开的文件的文件夹名称
+// ${cwd} -任务运行器在VS Code启动时的当前工作目录
+// ${lineNumber} -当前在活动文件中选择的行号
+// ${selectedText} -当前在活动文件中选择的文本
+// ${execPath}—正在运行的VS Code可执行文件的路径
+// ${defaultBuildTask} -默认构建任务的名称
+// ${pathSeparator} -操作系统用来分隔文件路径中组件的字符
+
 {
   "version": "0.2.0",
   "configurations": [

@@ -1,107 +1,27 @@
+local get_path_type = require("utils").get_path_type
+local get_extension = require("utils").get_extension
+local get_filename_without_extension = require("utils").get_filename_without_extension
+local get_immediate_parent_directory = require("utils").get_immediate_parent_directory
+local write_to_file = require("utils").write_to_file
+local select_ui = require("utils").select_ui
+local inputs = require "neo-tree.ui.inputs"
+local insert_to_file_first_line = require("utils").insert_to_file_first_line
+local get_parent_directory = require("utils").get_parent_directory
+
 local file_exists = require("utils").file_exists
 local remove_lsp_cwd = require("utils").remove_lsp_cwd
-local remove_cwd = require("utils").remove_cwd
 local get_lsp_root_dir = require("utils").get_lsp_root_dir
 
-local function get_filename_from_path(path)
-  local name = path:match "([^/]+)$" or path
-  return (name:match "(.+)%..+" or name)
-end
-
-local function get_filetype_from_path(path)
-  local match = string.match(path, "%.([^%.\\/]*)$")
-
-  if match then
-    local ext = string.lower(match)
-    -- NOTE: go
-    if ext == "go" then
-      return "go"
-    elseif ext == "api" then
-      return "api"
-    elseif ext == "proto" then
-      return "proto"
-    elseif ext == "rs" then
-      return "rust"
-    else
-      return "unknown"
-    end
-  else
-    return "unknown"
-  end
-end
-
-local function get_parent_dir(path)
-  if not path then return nil end
-
-  local parent_path = path:match "(.+)/"
-
-  if parent_path then
-    local name = parent_path:match "([^/]+)$"
-    return name
-  else
-    return "root"
-  end
-end
-
-local function is_file(path)
-  if path:sub(-1) == "/" then
-    return false
-  else
-    return true
-  end
-end
-
-local function get_filename_without_extension_from_path(path, client_name)
-  local relative_path = remove_lsp_cwd(path, client_name)
-  if relative_path == nil then return nil end
-  return get_parent_dir(relative_path)
-end
-
-local function get_parent_directory(path) return path:match "(.*/)" end
-
-local function insert_to_file_first_line(path, content)
-  local original_file = io.open(path, "r")
-  if not original_file then return end
-
-  local original_content = original_file:read "*a"
-  original_file:close()
-
-  local file = io.open(path, "w")
-  if file then
-    file:write(content)
-    file:write(original_content)
-    file:close()
-  end
-end
-
-local filetype_mapping = {
-  go = function(path)
-    local file = io.open(path, "w")
-    if file then
-      local parent_name = get_filename_without_extension_from_path(path, "gopls")
-      if parent_name ~= nil then
-        if parent_name == "root" then parent_name = "main" end
-        file:write("package " .. parent_name .. "\n")
-      end
-      file:close()
-    end
+local file_extension_mapping = {
+  go = function(file_path)
+    local parent_name = get_immediate_parent_directory(file_path)
+    if parent_name == nil then parent_name = "main" end
+    write_to_file(file_path, "package " .. parent_name .. "\n")
   end,
-  api = function(path)
-    local file = io.open(path, "w")
-    if file then
-      file:write 'syntax = "v1"'
-      file:close()
-    end
-  end,
-  proto = function(path)
-    local file = io.open(path, "w")
-    if file then
-      file:write 'syntax = "proto3";\nimport "buf/validate/validate.proto";\n'
-      file:close()
-    end
-  end,
-  rust = function(path)
-    local parent_name = get_filename_without_extension_from_path(path, "rust-analyzer")
+  api = function(file_path) write_to_file(file_path, 'syntax = "v1"') end,
+  proto = function(file_path) write_to_file(file_path, 'syntax = "proto3";\nimport "buf/validate/validate.proto";\n') end,
+  rs = function(path)
+    local parent_name = get_immediate_parent_directory(path)
     local relative_path = remove_lsp_cwd(path, "rust-analyzer")
 
     if relative_path and string.find(relative_path, "^/src/") and parent_name == "src" then
@@ -109,69 +29,62 @@ local filetype_mapping = {
       if root_dir ~= nil then
         local lib_path = root_dir .. "/src/lib.rs"
         local main_path = root_dir .. "/src/main.rs"
-        local filename = get_filename_from_path(path)
+        local filename = get_filename_without_extension(path)
         if filename ~= "lib" and filename ~= "main" then
-          vim.ui.select({
-            "src/lib.rs",
-            "src/main.rs",
-          }, { prompt = "Attach File to Module:", default = "src/main.rs" }, function(select)
+          local selections = {
+            ["lib"] = "src/lib.rs",
+            ["main"] = "src/main.rs",
+          }
+          select_ui(selections, "Attach File to Module:", function(select)
             if not select then return end
             if select == "src/lib.rs" then
               if not file_exists(lib_path) then
-                local confirm = vim.fn.confirm("File `src/lib.rs` Not Exist, Create it?", "&Yes\n&No", 1, "Question")
-                if confirm == 1 then
-                  local file = io.open(lib_path, "w")
-                  if file then
-                    filename = get_filename_from_path(path)
-                    if filename then file:write("mod " .. filename .. ";\n") end
-                    file:close()
-                  end
-                else
-                  return
-                end
+                inputs.input("Create `src/lib.rs` (Y/N): ", "Y", function()
+                  filename = get_filename_without_extension(path)
+                  write_to_file(lib_path, "mod " .. filename .. ";\n")
+                end)
               else
-                insert_to_file_first_line(lib_path, "mod " .. get_filename_from_path(path) .. ";\n")
+                insert_to_file_first_line(lib_path, "mod " .. filename .. ";\n")
               end
+              -- If a window for this lib_path already exists, refresh it
+              vim.schedule(function() vim.cmd("e " .. lib_path) end)
             elseif select == "src/main.rs" then
               if not file_exists(main_path) then
-                local choice = vim.fn.confirm("File `src/main.rs` Not Exist, Create it?", "&Yes\n&No", 2)
-                if choice and choice == 1 then
-                  local file = io.open(main_path, "w")
-                  if file then
-                    filename = get_filename_from_path(path)
-                    if filename then file:write("mod " .. filename .. ";\n") end
-                    file:close()
-                  end
-                end
+                inputs.input(
+                  "Create `src/main.rs` (Y/N): ",
+                  nil,
+                  function() write_to_file(lib_path, "mod " .. filename .. ";\n") end
+                )
               else
-                insert_to_file_first_line(main_path, "mod " .. get_filename_from_path(path) .. ";\n")
+                insert_to_file_first_line(main_path, "mod " .. filename .. ";\n")
               end
+              -- If a window for this lib_path already exists, refresh it
+              vim.schedule(function() vim.cmd("e " .. main_path) end)
             end
           end)
         end
       end
     elseif relative_path and string.find(relative_path, "^/src/") then
-      local filename = get_filename_from_path(path)
-      if filename == "mod" then return end
-      local confirm = vim.fn.confirm("Attach file to `mod.rs`?", "&Yes\n&No", 1, "Question")
-      if confirm == 1 then
-        local mod_path = get_parent_directory(path) .. "/mod.rs"
-        if not file_exists(mod_path) then
-          confirm = vim.fn.confirm("File `mod.rs` Not Exist, Create it?", "&Yes\n&No", 1, "Question")
-          if confirm == 1 then
-            local file = io.open(mod_path, "w")
-            if file then
-              if filename then file:write("mod " .. filename .. ";\n") end
-              file:close()
-            end
-          else
-            return
-          end
-        else
-          insert_to_file_first_line(mod_path, "mod " .. get_filename_from_path(path) .. ";\n")
-        end
-      else
+      local filename = get_filename_without_extension(path)
+      local mod_path = get_parent_directory(path) .. "/mod.rs"
+      if filename == "mod" then
         return
+      else
+        inputs.input("Attach file to `mod.rs` (Y/N): ", nil, function(value)
+          if string.lower(value) == "y" then
+            if not file_exists(mod_path) then
+              inputs.input("Create `mod.rs` (Y/N): ", nil, function()
+                write_to_file(mod_path, "mod " .. filename .. ";\n")
+                -- If a window for this lib_path already exists, refresh it
+                vim.schedule(function() vim.cmd("e " .. mod_path) end)
+              end)
+            else
+              insert_to_file_first_line(mod_path, "mod " .. filename .. ";\n")
+              -- If a window for this lib_path already exists, refresh it
+              vim.schedule(function() vim.cmd("e " .. mod_path) end)
+            end
+          end
+        end)
       end
     end
   end,
@@ -185,36 +98,15 @@ return {
     local neo_tree_events = require "neo-tree.events"
 
     return require("astrocore").extend_tbl(opts, {
-      commands = {
-        copy_absolute_path = function(state)
-          local absolute_path = state.tree:get_node():get_id()
-          vim.fn.setreg("+", absolute_path)
-        end,
-        copy_relative_path = function(state)
-          local absolute_path = state.tree:get_node():get_id()
-          local relative_path = remove_cwd(absolute_path)
-          vim.fn.setreg("+", relative_path)
-        end,
-        copy_filename = function(state)
-          local filename = state.tree:get_node().name
-          vim.fn.setreg("+", filename)
-        end,
-      },
-      window = {
-        mappings = {
-          ["'"] = "copy_absolute_path",
-          ['"'] = "copy_relative_path",
-          ["<C-c>"] = "copy_filename",
-        },
-      },
       event_handlers = {
         {
           event = neo_tree_events.FILE_ADDED,
-          handler = function(path)
-            if is_file(path) then
-              -- match file_type
-              local file_type = get_filetype_from_path(path)
-              filetype_mapping[file_type](path)
+          handler = function(file_path)
+            local file_type = get_path_type(file_path)
+
+            if file_type and file_type == "file" then
+              local file_extension = get_extension(file_path)
+              file_extension_mapping[file_extension](file_path)
             end
           end,
         },

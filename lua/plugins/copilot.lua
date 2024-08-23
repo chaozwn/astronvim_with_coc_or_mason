@@ -38,11 +38,11 @@ return {
           maps.n[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "Copilot Chat" }
           maps.v[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "Copilot Chat" }
 
-          maps.n[prefix .. "o"] = { ":CopilotChatOpen<CR>", desc = "Open Chat" }
-          maps.n[prefix .. "c"] = { ":CopilotChatClose<CR>", desc = "Close Chat" }
-          maps.n[prefix .. "t"] = { ":CopilotChatToggle<CR>", desc = "Toggle Chat" }
-          maps.n[prefix .. "r"] = { ":CopilotChatReset<CR>", desc = "Reset Chat" }
-          maps.n[prefix .. "s"] = { ":CopilotChatStop<CR>", desc = "Stop Chat" }
+          maps.n[prefix .. "o"] = { "<Cmd>CopilotChatOpen<CR>", desc = "Open Chat" }
+          maps.n[prefix .. "c"] = { "<Cmd>CopilotChatClose<CR>", desc = "Close Chat" }
+          maps.n[prefix .. "t"] = { "<Cmd>CopilotChatToggle<CR>", desc = "Toggle Chat" }
+          maps.n[prefix .. "r"] = { "<Cmd>CopilotChatReset<CR>", desc = "Reset Chat" }
+          maps.n[prefix .. "s"] = { "<Cmd>CopilotChatStop<CR>", desc = "Stop Chat" }
 
           maps.n[prefix .. "S"] = {
             function()

@@ -1,4 +1,183 @@
 local M = {}
+local astro = require "astrocore"
+
+function M.file_exists(filepath) return vim.fn.glob(filepath) ~= "" end
+
+local uv = vim.uv or vim.loop
+
+function M.insert_to_file_first_line(path, content)
+  local stat, fd, err_msg, original_content
+  fd, _, err_msg = uv.fs_open(path, "r", 438)
+  if not fd then
+    print("Error opening file: " .. (err_msg or "unknown error"))
+    return
+  end
+
+  stat, _, err_msg = uv.fs_fstat(fd)
+  if not stat then
+    print("Error getting file stats: " .. (err_msg or "unknown error"))
+    uv.fs_close(fd)
+    return
+  end
+
+  original_content, _, err_msg = uv.fs_read(fd, stat.size, 0)
+  if not original_content then
+    print("Error reading file: " .. (err_msg or "unknown error"))
+    uv.fs_close(fd)
+    return
+  end
+
+  uv.fs_close(fd)
+
+  fd, _, err_msg = uv.fs_open(path, "w", 438)
+  if not fd then
+    print("Error opening file for writing: " .. (err_msg or "unknown error"))
+    return
+  end
+
+  _, _, err_msg = uv.fs_write(fd, content, -1)
+  if err_msg then
+    print("Error writing to file: " .. err_msg)
+    uv.fs_close(fd)
+    return
+  end
+
+  _, _, err_msg = uv.fs_write(fd, original_content, -1)
+  if err_msg then
+    print("Error writing original content to file: " .. err_msg)
+    uv.fs_close(fd)
+    return
+  end
+
+  uv.fs_close(fd)
+end
+
+function M.write_to_file(file_path, content)
+  uv.fs_open(file_path, "w", 438, function(err, fd)
+    if err then
+      print("Error opening file: " .. err)
+      return
+    end
+    uv.fs_write(fd, content, -1, function(err)
+      if err then print("Error writing to file: " .. err) end
+      uv.fs_close(fd, function(err)
+        if err then print("Error closing file: " .. err) end
+      end)
+    end)
+  end)
+end
+
+-- Function to get the parent directory of a given file path
+-- @param filepath: The full path of the file
+-- @return: The parent directory of the file
+function M.get_parent_directory(filepath)
+  -- Use vim.fn.fnamemodify to modify the file path
+  -- ":h" means to get the head (directory path) of the file
+  return vim.fn.fnamemodify(filepath, ":h")
+end
+
+-- Function to get the immediate parent directory name of a given file path
+-- @param filepath: The full path of the file
+-- @return: The name of the parent directory or an empty string if no parent directory exists
+function M.get_immediate_parent_directory(filepath)
+  -- Use vim.fn.fnamemodify to get the head (directory path) of the file
+  local parent_path = vim.fn.fnamemodify(filepath, ":h")
+  -- Split the parent path by the directory separator and get the last part
+  local parts = vim.split(parent_path, "/")
+  -- Return the last part if it exists, otherwise return an empty string
+  return parts[#parts] or nil
+end
+
+-- Function to check if a given path is a file or directory
+-- @param path: The path to check
+-- @return: "file" if it's a file, "directory" if it's a directory, or nil if it doesn't exist
+function M.get_path_type(path)
+  local stat = vim.loop.fs_stat(path)
+  if stat then
+    return stat.type
+  else
+    return nil
+  end
+end
+
+-- Function to get the base name of a file (i.e., the file name without its extension)
+-- e.g lua/init.lua => lua/init
+-- @param filename: The full name of the file (including its extension)
+-- @return: The base name of the file
+function M.get_base_name(filename) return vim.fn.fnamemodify(filename, ":r") end
+
+-- Function to get the extension of a file
+-- e.g ./lua/init.lua => lua
+-- @param filename: The full name of the file (including its extension)
+-- @return: The extension of the file
+function M.get_extension(filename) return vim.fn.fnamemodify(filename, ":e") end
+
+-- Function to get the tail part (file name) of a file path
+-- e.g ./lua/init.lua => init.lua
+-- @param file_path: The full path of the file
+-- @return: The file name with extension
+function M.get_file_name_with_extension(file_path) return vim.fn.fnamemodify(file_path, ":t") end
+
+-- Function to get the filename without extension from a given path
+-- @param filepath: The full path of the file
+-- @return: The filename without the path and extension
+function M.get_filename_without_extension(filepath)
+  -- Use vim.fn.fnamemodify to modify the file path
+  -- ":t:r" means to get the tail (filename) and remove the extension
+  return vim.fn.fnamemodify(filepath, ":t:r")
+end
+
+-- Function to get the current working directory relative to the given file path
+-- current cwd: /Users/jayce.zhao/.config/nvim/
+-- current file_path: /Users/jayce.zhao/.config/nvim/lua/plugins/visual-multi.lua
+-- return lua/plugins/visual-multi.lua
+-- @param file_path: The full path of the file
+-- @return: The current working directory relative to the file path
+function M.get_cwd(file_path) return vim.fn.fnamemodify(file_path, ":.") end
+
+-- Function to get the file path relative to the home directory
+-- input: /Users/jayce.zhao/.config/nvim/lua/plugins/visual-multi.lua
+-- output: ~/.config/nvim/lua/plugins/visual-multi.lua
+-- @param file_path: The full path of the file
+-- @return: The file path relative to the home directory
+function M.get_home(file_path) return vim.fn.fnamemodify(file_path, ":~") end
+
+-- Function to get the URI from a file path
+-- input: /Users/jayce.zhao/.config/nvim/lua/plugins/visual-multi.lua
+-- output: file:///Users/jayce.zhao/.config/nvim/lua/plugins/visual-multi.lua
+-- @param file_path: The full path of the file
+-- @return: The URI corresponding to the file path
+function M.get_uri(file_path) return vim.uri_from_fname(file_path) end
+
+function M.on_confirm(prompt, callback)
+  vim.ui.input({ prompt = prompt .. " (Yes/No): " }, function(input)
+    if string.lower(input) == "yes" or string.lower(input) == "y" then
+      if callback then callback() end
+    end
+  end)
+end
+
+function M.select_ui(vals, prompt, callback)
+  local options = vim.tbl_filter(function(val) return vals[val] ~= "" end, vim.tbl_keys(vals))
+  if vim.tbl_isempty(options) then
+    astro.notify("No values to select", vim.log.levels.WARN)
+    return
+  end
+
+  table.sort(options)
+
+  vim.ui.select(options, {
+    prompt = prompt,
+    format_item = function(item) return ("%s: %s"):format(item, vals[item]) end,
+  }, function(choice)
+    local result = vals[choice]
+    if result then
+      if callback then callback(result) end
+    else
+      astro.notify("No item selected", vim.log.levels.WARN)
+    end
+  end)
+end
 
 -- Checks if a table is empty.
 -- @param t The table to check.
@@ -138,16 +317,6 @@ end
 
 function M.escape_pattern(text) return text:gsub("([^%w])", "%%%1") end
 
-function M.file_exists(path)
-  local file = io.open(path, "r")
-  if file then
-    io.close(file)
-    return true
-  else
-    return false
-  end
-end
-
 function M.get_lsp_root_dir(client_name)
   local clients = vim.lsp.get_clients()
 
@@ -217,17 +386,6 @@ function M.yaml_ft(path, bufnr)
   else -- return yaml if nothing else
     return "yaml"
   end
-end
-
-function M.write_to_file(content, file_path)
-  local file = io.open(file_path, "a")
-  if not file then
-    print("Unable to open file: " .. file_path)
-    return
-  end
-  file:write(vim.inspect(content))
-  file:write "\n"
-  file:close()
 end
 
 function M.better_search(key)

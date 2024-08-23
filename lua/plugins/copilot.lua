@@ -35,8 +35,8 @@ return {
           local prefix = "<Leader>P"
           local astroui = require "astroui"
 
-          maps.n[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "CopilotChat" }
-          maps.v[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "CopilotChat" }
+          maps.n[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "Copilot Chat" }
+          maps.v[prefix] = { desc = astroui.get_icon("CopilotChat", 1, true) .. "Copilot Chat" }
 
           maps.n[prefix .. "o"] = { ":CopilotChatOpen<CR>", desc = "Open Chat" }
           maps.n[prefix .. "c"] = { ":CopilotChatClose<CR>", desc = "Close Chat" }

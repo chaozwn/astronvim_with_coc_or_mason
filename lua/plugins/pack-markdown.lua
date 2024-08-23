@@ -112,19 +112,12 @@ return {
     },
   },
   {
-    "OXY2DEV/markview.nvim",
-    ft = { "markdown", "markdown.mdx" },
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    "MeanderingProgrammer/render-markdown.nvim",
     opts = {
-      modes = { "n", "no", "c" }, -- Change these modes
-      hybrid_modes = { "n" }, -- Uses this feature on
-      callbacks = {
-        on_enable = function(_, win)
-          vim.wo[win].conceallevel = 2
-          vim.wo[win].concealcursor = "c"
-        end,
+      bullet = {
+        right_pad = 1,
       },
-      headings = { shift_width = 1 },
     },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
   },
 }

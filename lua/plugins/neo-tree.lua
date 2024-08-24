@@ -106,7 +106,7 @@ return {
 
             if file_type and file_type == "file" then
               local file_extension = get_extension(file_path)
-              file_extension_mapping[file_extension](file_path)
+              if file_extension ~= "" then file_extension_mapping[file_extension](file_path) end
             end
           end,
         },

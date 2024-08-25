@@ -88,7 +88,6 @@ local file_extension_mapping = {
       end
     end
   end,
-  unknown = function() end,
 }
 
 ---@type LazySpec
@@ -106,7 +105,10 @@ return {
 
             if file_type and file_type == "file" then
               local file_extension = get_extension(file_path)
-              if file_extension ~= "" then file_extension_mapping[file_extension](file_path) end
+              if file_extension ~= "" then
+                local language_mapping = file_extension_mapping[file_extension]
+                if language_mapping then pcall(language_mapping, file_path) end
+              end
             end
           end,
         },

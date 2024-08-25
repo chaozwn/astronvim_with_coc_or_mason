@@ -126,7 +126,7 @@ return {
       enabled = true,
       enabled_commands = true,
       only_first_definition = true,
-      clear_on_continue = true,
+      clear_on_continue = false,
       highlight_changed_variables = true,
       all_frames = false,
       virt_lines = true,

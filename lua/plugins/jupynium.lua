@@ -4,6 +4,7 @@ local function get_filename_from_path(path) return path:match "([^/\\]+)$" end
 ---@type LazySpec
 return {
   "kiyoon/jupynium.nvim",
+  event = "VeryLazy",
   specs = {
     {
       "AstroNvim/astrocore",

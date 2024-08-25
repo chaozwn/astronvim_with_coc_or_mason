@@ -97,10 +97,10 @@ return {
   { "jay-babu/mason-nvim-dap.nvim", optional = true },
   {
     "Weissle/persistent-breakpoints.nvim",
-    event = "BufEnter",
+    event = "VeryLazy",
     opts = function(_, opts)
       return require("astrocore").extend_tbl(opts, {
-        load_breakpoints_event = { "BufEnter" },
+        load_breakpoints_event = { "BufReadPost" },
       })
     end,
   },

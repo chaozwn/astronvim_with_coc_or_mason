@@ -113,6 +113,8 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "markdown.mdx" },
+    event = "VeryLazy",
     opts = {
       bullet = {
         right_pad = 1,

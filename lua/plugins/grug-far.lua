@@ -59,6 +59,17 @@ return {
   ---@param opts GrugFarOptionsOverride
   -- NOTE: Wrapping opts into a function, because `astrocore` can set vim options
   opts = function(_, opts)
+    if not opts.icons then opts.icons = {} end
+    opts.icons.enabled = vim.g.icons_enabled
+    if not vim.g.icons_enabled then
+      opts.resultsSeparatorLineChar = "-"
+      opts.spinnerStates = {
+        "|",
+        "\\",
+        "-",
+        "/",
+      }
+    end
     return require("astrocore").extend_tbl(opts, {
       headerMaxWidth = 80,
       icons = {

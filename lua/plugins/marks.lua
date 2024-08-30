@@ -32,7 +32,7 @@ return {
       "TelescopePrompt",
       "alpha",
       "netrw",
-      "neo-tree",
+      "NeoTree",
     },
   },
 }

@@ -424,10 +424,7 @@ function M.toggle_btm()
       hidden = true,
       on_open = function() M.remove_keymap("t", "<Esc>") end,
       on_close = function() vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { silent = true, noremap = true }) end,
-      on_exit = function()
-        -- For Stop Term Mode
-        vim.cmd [[stopinsert]]
-      end,
+      on_exit = function() end,
     }
   end
 end

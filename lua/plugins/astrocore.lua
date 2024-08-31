@@ -10,6 +10,35 @@ return {
   ---@diagnostic disable-next-line: assign-type-mismatch
   opts = function(_, opts)
     local mappings = require("mapping").core_mappings(opts.mappings)
+    local options = {
+      opt = {
+        fillchars = {
+          fold = " ",
+          foldsep = " ",
+          diff = "╱",
+          eob = " ",
+        },
+        conceallevel = 2,
+        list = false,
+        listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
+        showbreak = "↪ ",
+        splitkeep = "screen",
+        swapfile = false,
+        wrap = true,
+        scrolloff = 5,
+      },
+      g = {},
+    }
+
+    if vim.fn.has "nvim-0.10" == 1 then
+      options.opt.smoothscroll = true
+      options.opt.foldexpr = "v:lua.require'ui'.foldexpr()"
+      options.opt.foldmethod = "expr"
+      options.opt.foldtext = ""
+    else
+      options.opt.foldmethod = "indent"
+      options.opt.foldtext = "v:lua.require'ui'.foldtext()"
+    end
 
     return require("astrocore").extend_tbl(opts, {
       -- Configure core features of AstroNvim
@@ -49,21 +78,7 @@ return {
         },
       },
       -- vim options can be configured here
-      options = {
-        opt = {
-          conceallevel = 2,
-          list = false,
-          listchars = { tab = "│→", extends = "⟩", precedes = "⟨", trail = "·", nbsp = "␣" },
-          showbreak = "↪ ",
-          splitkeep = "screen",
-          swapfile = false,
-          wrap = true,
-          scrolloff = 5,
-        },
-        g = {
-          -- resession_enabled = true,
-        },
-      },
+      options = options,
       -- Mappings can be configured through AstroCore as well.
       -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
       mappings = mappings,

@@ -135,7 +135,6 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
-    commit = "317963ac9db86ebb9f2c4010d0d978fc06d493aa",
     config = function(_, opts)
       local dap, dapui = require "dap", require "dapui"
       dap.listeners.after.event_initialized["dapui_config"] = function()

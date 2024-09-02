@@ -6,16 +6,16 @@
     "body": [
       "import { Component, JSX } from 'solid-js'",
       "",
-      "export interface ${0}Props {",
+      "export interface ${1}Props {",
       "children?: JSX.Element",
       "class?: string",
       "}",
       "",
-      "const ${0}: Component<${0}Props> = (props) => {",
-      "return <div>${0}</div>",
+      "const ${1}: Component<${1}Props> = (props) => {",
+      "return <div>${1}</div>",
       "}",
       "",
-      "export default ${0}"
+      "export default ${1}"
     ],
     "description": "solid tsx function component with props"
   },
@@ -24,11 +24,11 @@
       "si"
     ],
     "body": [
-      "const ${0} = () => {",
-      "return <div>${0}</div>",
+      "const ${1} = () => {",
+      "return <div>${1}</div>",
       "}",
       "",
-      "export default ${0}"
+      "export default ${1}"
     ],
     "description": "solid tsx function component without props"
   },

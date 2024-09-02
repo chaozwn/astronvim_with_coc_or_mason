@@ -3,45 +3,54 @@ local function has_words_before()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
-local function mapping(is_cmdline)
-  if is_cmdline == nil then is_cmdline = false end
+local function mapping()
   local cmp = require "cmp"
-  local luasnip = require "luasnip"
 
   return {
     ["<CR>"] = cmp.config.disable,
     -- ctrl + e close cmp window
     -- <C-n> and <C-p> for navigating snippets
-    ["<C-N>"] = cmp.mapping(function()
-      if luasnip.jumpable(1) then luasnip.jump(1) end
-    end, { "i", "c" }),
-    ["<C-P>"] = cmp.mapping(function()
-      if luasnip.jumpable(-1) then luasnip.jump(-1) end
-    end, { "i", "c" }),
-    ["<C-K>"] = cmp.mapping(function() cmp.select_prev_item { behavior = cmp.SelectBehavior.Select } end, { "i", "c" }),
+    ["<C-N>"] = cmp.mapping(function(fallback)
+      if vim.snippet.active { direction = 1 } then
+        vim.schedule(function() vim.snippet.jump(1) end)
+        return
+      end
+      fallback()
+    end, { "i", "s" }),
+    ["<C-P>"] = cmp.mapping(function(fallback)
+      if vim.snippet.active { direction = -1 } then
+        vim.schedule(function() vim.snippet.jump(-1) end)
+        return
+      end
+      fallback()
+    end, { "i", "s" }),
+    ["<C-K>"] = cmp.mapping(function() cmp.select_prev_item { behavior = cmp.SelectBehavior.Select } end, { "i", "s" }),
     ["<C-J>"] = cmp.mapping(function()
       if cmp.visible() then
         cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
       else
         cmp.complete()
       end
-    end, { "i", "c" }),
+    end, { "i", "s" }),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if is_cmdline then
-        if cmp.visible() then
-          cmp.confirm()
-        else
-          fallback()
-        end
-      else
-        if cmp.visible() and has_words_before() then
-          cmp.confirm { select = true }
-        else
-          fallback()
-        end
+      if vim.snippet.active { direction = 1 } then
+        vim.schedule(function() vim.snippet.jump(1) end)
+        return
       end
-    end, { "i", "c" }),
-    ["<S-Tab>"] = cmp.config.disable,
+
+      if cmp.visible() and has_words_before() then
+        cmp.confirm {}
+      else
+        fallback()
+      end
+    end, { "i", "s", "c" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if vim.snippet.active { direction = -1 } then
+        vim.schedule(function() vim.snippet.jump(-1) end)
+        return
+      end
+      fallback()
+    end, { "i", "s", "c" }),
   }
 end
 
@@ -84,14 +93,14 @@ return {
         return {
           {
             type = "/",
-            mapping = mapping(true),
+            mapping = mapping(),
             sources = {
               { name = "buffer" },
             },
           },
           {
             type = ":",
-            mapping = mapping(true),
+            mapping = mapping(),
             sources = cmp.config.sources({
               { name = "path" },
             }, {
@@ -145,7 +154,6 @@ return {
           end,
           priority = 1000,
         },
-        { name = "luasnip", priority = 750 },
         { name = "pandoc_references", priority = 725 },
         { name = "latex_symbols", priority = 700 },
         { name = "emoji", priority = 700 },

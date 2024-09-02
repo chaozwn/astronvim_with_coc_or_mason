@@ -40,8 +40,6 @@ function M.core_mappings(mappings)
     maps.n["<Leader>ww"] = { "<cmd><cr>", desc = "Save" }
     maps.n["<Leader>wc"] = { "<C-w>c", desc = "Close current screen" }
     maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
-    -- 多个窗口之间跳转
-    maps.n["<Leader>we"] = { "<C-w>=", desc = "Make all window equal" }
 
     maps.n["<TAB>"] =
       { function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }

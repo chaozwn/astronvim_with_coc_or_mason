@@ -15,14 +15,12 @@ local function mapping()
         vim.schedule(function() vim.snippet.jump(1) end)
         return
       end
-      fallback()
     end, { "i", "s" }),
     ["<C-P>"] = cmp.mapping(function(fallback)
       if vim.snippet.active { direction = -1 } then
         vim.schedule(function() vim.snippet.jump(-1) end)
         return
       end
-      fallback()
     end, { "i", "s" }),
     ["<C-K>"] = cmp.mapping(function() cmp.select_prev_item { behavior = cmp.SelectBehavior.Select } end, { "i", "s" }),
     ["<C-J>"] = cmp.mapping(function()

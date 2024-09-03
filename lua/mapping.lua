@@ -35,12 +35,6 @@ function M.core_mappings(mappings)
     -- 在visual mode 里粘贴不要复制
     maps.n["x"] = { '"_x', desc = "Cut without copy" }
 
-    -- 分屏快捷键
-    maps.n["<Leader>w"] = { desc = "󱂬 Window" }
-    maps.n["<Leader>ww"] = { "<cmd><cr>", desc = "Save" }
-    maps.n["<Leader>wc"] = { "<C-w>c", desc = "Close current screen" }
-    maps.n["<Leader>wo"] = { "<C-w>o", desc = "Close other screen" }
-
     maps.n["<TAB>"] =
       { function() require("astrocore.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
     maps.n["<S-TAB>"] = {

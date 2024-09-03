@@ -5,7 +5,7 @@ local prefix = "<Leader>w"
 return {
   {
     "anuvyklack/windows.nvim",
-    lazy=false,
+    lazy = false,
     dependencies = {
       "anuvyklack/middleclass",
       "anuvyklack/animation.nvim",
@@ -21,6 +21,9 @@ return {
           },
           mappings = {
             n = {
+              [prefix] = { desc = "󱂬 Window" },
+              [prefix .. "c"] = { "<C-w>c", desc = "Close current screen" },
+              [prefix .. "o"] = { "<C-w>o", desc = "Close other screen" },
               [prefix .. "m"] = {
                 function() vim.cmd [[WindowsMaximize]] end,
                 desc = "Maximize Window",

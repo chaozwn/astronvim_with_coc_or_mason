@@ -33,24 +33,13 @@ local function mapping()
       end
     end, { "i", "s" }),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if vim.snippet.active { direction = 1 } then
-        vim.schedule(function() vim.snippet.jump(1) end)
-        return
-      end
-
       if cmp.visible() and has_words_before() then
         cmp.confirm {}
       else
         fallback()
       end
     end, { "i", "s", "c" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if vim.snippet.active { direction = -1 } then
-        vim.schedule(function() vim.snippet.jump(-1) end)
-        return
-      end
-      fallback()
-    end, { "i", "s", "c" }),
+    ["<S-Tab>"] = cmp.config.disable,
   }
 end
 

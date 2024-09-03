@@ -5,6 +5,7 @@ local prefix = "<Leader>w"
 return {
   {
     "anuvyklack/windows.nvim",
+    lazy=false,
     dependencies = {
       "anuvyklack/middleclass",
       "anuvyklack/animation.nvim",

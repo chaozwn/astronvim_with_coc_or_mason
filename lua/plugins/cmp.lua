@@ -5,22 +5,17 @@ end
 
 local function mapping()
   local cmp = require "cmp"
+  local luasnip = require "luasnip"
 
   return {
     ["<CR>"] = cmp.config.disable,
     -- ctrl + e close cmp window
     -- <C-n> and <C-p> for navigating snippets
-    ["<C-N>"] = cmp.mapping(function(fallback)
-      if vim.snippet.active { direction = 1 } then
-        vim.schedule(function() vim.snippet.jump(1) end)
-        return
-      end
+    ["<C-N>"] = cmp.mapping(function()
+      if luasnip.jumpable(1) then luasnip.jump(1) end
     end, { "i", "s" }),
-    ["<C-P>"] = cmp.mapping(function(fallback)
-      if vim.snippet.active { direction = -1 } then
-        vim.schedule(function() vim.snippet.jump(-1) end)
-        return
-      end
+    ["<C-P>"] = cmp.mapping(function()
+      if luasnip.jumpable(-1) then luasnip.jump(-1) end
     end, { "i", "s" }),
     ["<C-K>"] = cmp.mapping(function() cmp.select_prev_item { behavior = cmp.SelectBehavior.Select } end, { "i", "s" }),
     ["<C-J>"] = cmp.mapping(function()
@@ -141,6 +136,7 @@ return {
           end,
           priority = 1000,
         },
+        { name = "luasnip", priority = 750 },
         { name = "pandoc_references", priority = 725 },
         { name = "latex_symbols", priority = 700 },
         { name = "emoji", priority = 700 },

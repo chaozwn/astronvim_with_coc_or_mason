@@ -48,7 +48,7 @@ return {
     opts = {
       ignore = {
         -- :echo "Buffer Name: " . expand('%') . ", Buffer Type: " . &buftype
-        buftype = { "quickfix", "nofile" },
+        buftype = { "quickfix", "nofile", "terminal" },
         filetype = { "NvimTree", "neo-tree", "undotree", "gundo" },
       },
     },

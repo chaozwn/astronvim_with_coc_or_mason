@@ -1,5 +1,4 @@
 local set_mappings = require("astrocore").set_mappings
-local file_exists = require("utils").file_exists
 local utils = require "utils"
 
 local function create_buf_config_file()
@@ -64,12 +63,12 @@ return {
               function()
                 local buf_path = vim.fn.getcwd() .. "/buf.yaml"
                 local buf_gen_path = vim.fn.getcwd() .. "/buf.gen.yaml"
-                if not file_exists(buf_path) then
+                if not utils.file_exists(buf_path) then
                   local confirm = vim.fn.confirm("File `buf.yaml` Not Exist, Create it?", "&Yes\n&No", 1, "Question")
                   if confirm == 1 then create_buf_config_file() end
                 end
 
-                if not file_exists(buf_gen_path) then
+                if not utils.file_exists(buf_gen_path) then
                   local confirm =
                     vim.fn.confirm("File `buf.gen.yaml` Not Exist, Create it?", "&Yes\n&No", 1, "Question")
                   if confirm == 1 then create_buf_gen_config_file() end

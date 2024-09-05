@@ -45,7 +45,13 @@ return {
         },
       },
     },
-    opts = {},
+    opts = {
+      ignore = {
+        -- :echo "Buffer Name: " . expand('%') . ", Buffer Type: " . &buftype
+        buftype = { "quickfix", "nofile" },
+        filetype = { "NvimTree", "neo-tree", "undotree", "gundo" },
+      },
+    },
     cmd = {
       "WindowsMaximize",
       "WindowsMaximizeVertically",

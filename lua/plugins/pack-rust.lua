@@ -94,7 +94,7 @@ return {
         settings = function(project_root, default_settings)
           local astrolsp_settings = astrolsp_opts.settings or {}
 
-          local merge_table = require("astrocore").extend_tbl(default_settings or {}, astrolsp_settings)
+          local merge_table = utils.extend_tbl(default_settings or {}, astrolsp_settings)
           local ra = require "rustaceanvim.config.server"
           -- load_rust_analyzer_settings merges any found settings with the passed in default settings table and then returns that table
           return ra.load_rust_analyzer_settings(project_root, {
@@ -103,7 +103,7 @@ return {
           })
         end,
       }
-      local final_server = require("astrocore").extend_tbl(astrolsp_opts, server)
+      local final_server = utils.extend_tbl(astrolsp_opts, server)
       return {
         server = final_server,
         dap = {
@@ -134,9 +134,9 @@ return {
       }
     end,
     config = function(_, opts)
-      vim.g.rustaceanvim = require("astrocore").extend_tbl(opts, vim.g.rustaceanvim)
+      vim.g.rustaceanvim = utils.extend_tbl(opts, vim.g.rustaceanvim)
       if vim.fn.executable "rust-analyzer" == 0 then
-        require("astrocore").notify(
+        utils.notify(
           "**rust-analyzer** not found in PATH, please install it.\nhttps://rust-analyzer.github.io/",
           vim.log.levels.ERROR
         )

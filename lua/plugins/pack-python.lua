@@ -21,7 +21,7 @@ return {
                   },
                   ["<leader>lV"] = {
                     function()
-                      require("astrocore").notify(
+                      utils.notify(
                         "Current Env:" .. require("venv-selector").get_active_venv(),
                         vim.log.levels.INFO
                       )

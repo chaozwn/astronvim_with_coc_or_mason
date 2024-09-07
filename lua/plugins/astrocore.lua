@@ -66,8 +66,19 @@ return {
         },
         ignore = {
           dirs = {}, -- working directories to ignore sessions in
-          filetypes = { "gitcommit", "gitrebase" }, -- filetypes to ignore sessions
-          buftypes = {}, -- buffer types to ignore sessions
+          filetypes = {
+            "gitcommit",
+            "gitrebase",
+            "neo-tree",
+            "toggleterm",
+            "dapui_scopes",
+            "dapui_breakpoints",
+            "dapui_stacks",
+            "dapui_watches",
+            "dap-repl",
+            "dapui_console",
+          }, -- filetypes to ignore sessions
+          buftypes = { "nofile", "terminal", "prompt" }, -- buffer types to ignore sessions
         },
       },
       autocmds = {

@@ -31,5 +31,6 @@ brew install im-select
 
 brew install neovide
 brew install lazydocker
+pip install pylatexenc
 brew install mercurial
 rustup component add rust-analyzer

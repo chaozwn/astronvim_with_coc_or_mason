@@ -26,8 +26,14 @@ local function mapping()
       end
     end, { "i", "s" }),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() and has_words_before() then
-        cmp.confirm {}
+      -- get current mode
+      local mode = vim.api.nvim_get_mode().mode
+      if cmp.visible() then
+        if mode == "c" then
+          cmp.confirm { select = true }
+        else
+          if has_words_before() then cmp.confirm {} end
+        end
       else
         fallback()
       end

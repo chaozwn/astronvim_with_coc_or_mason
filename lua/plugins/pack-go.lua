@@ -123,16 +123,19 @@ return {
     end,
   },
   {
-    "leoluz/nvim-dap-go",
-    ft = "go",
+    "jay-babu/mason-nvim-dap.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "delve" })
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    optional = true,
     dependencies = {
-      "mfussenegger/nvim-dap",
       {
-        "jay-babu/mason-nvim-dap.nvim",
-        optional = true,
-        opts = function(_, opts)
-          opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "delve" })
-        end,
+        "leoluz/nvim-dap-go",
+        opts = {},
       },
     },
   },

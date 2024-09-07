@@ -140,6 +140,7 @@ return {
               return true
             end
           end,
+          option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } },
           priority = 1000,
         },
         { name = "luasnip", priority = 750 },

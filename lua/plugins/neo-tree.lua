@@ -123,7 +123,6 @@ return {
         winbar = false,
       },
       filesystem = {
-        use_libuv_file_watcher = true,
         filtered_items = {
           always_show = { ".github", ".gitignore" },
           hide_dotfiles = false,

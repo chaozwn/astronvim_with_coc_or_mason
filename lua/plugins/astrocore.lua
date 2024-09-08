@@ -40,6 +40,20 @@ return {
       options.opt.foldtext = "v:lua.require'ui'.foldtext()"
     end
 
+    local filetypes = {
+      "gitcommit",
+      "gitrebase",
+      "neo-tree",
+      "toggleterm",
+      "dapui_scopes",
+      "dapui_breakpoints",
+      "dapui_stacks",
+      "dapui_watches",
+      "dap-repl",
+      "dapui_console",
+    }
+    local buftypes = { "nofile", "terminal", "prompt" }
+
     return require("astrocore").extend_tbl(opts, {
       -- Configure core features of AstroNvim
       features = {
@@ -66,26 +80,17 @@ return {
         },
         ignore = {
           dirs = {}, -- working directories to ignore sessions in
-          filetypes = {
-            "gitcommit",
-            "gitrebase",
-            "neo-tree",
-            "toggleterm",
-            "dapui_scopes",
-            "dapui_breakpoints",
-            "dapui_stacks",
-            "dapui_watches",
-            "dap-repl",
-            "dapui_console",
-          }, -- filetypes to ignore sessions
-          buftypes = { "nofile", "terminal", "prompt" }, -- buffer types to ignore sessions
+          filetypes = filetypes, -- filetypes to ignore sessions
+          buftypes = buftypes, -- buffer types to ignore sessions
         },
       },
       autocmds = {
         auto_turnoff_paste = {
-          event = "InsertLeave",
-          pattern = "*",
-          command = "set nopaste",
+          {
+            event = "InsertLeave",
+            pattern = "*",
+            command = "set nopaste",
+          },
         },
       },
       -- vim options can be configured here

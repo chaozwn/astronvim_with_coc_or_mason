@@ -1,6 +1,28 @@
 --TODO: https://github.com/golang/go/issues/60903
 local set_mappings = require("astrocore").set_mappings
 
+local function preview_stack_trace()
+  local current_line = vim.api.nvim_get_current_line()
+  local patterns_list = {
+    "([^%s]+/[^%s]+%.go):(%d+)", -- 匹配文件路径和行号
+  }
+
+  local function try_patterns(patterns, line)
+    for _, pattern in ipairs(patterns) do
+      local filepath, line_nr = string.match(line, pattern)
+      if filepath and line_nr then return filepath, tonumber(line_nr), 0 end
+    end
+    return nil, nil, nil
+  end
+
+  local filepath, line_nr, column_nr = try_patterns(patterns_list, current_line)
+  if filepath then
+    vim.cmd ":wincmd k"
+    vim.cmd("e " .. filepath)
+    vim.api.nvim_win_set_cursor(0, { line_nr, column_nr })
+  end
+end
+
 -- NOTE: gopls commands
 -- GoTagAdd add tags
 -- GOTagRm remove tags
@@ -21,6 +43,24 @@ return {
       config = {
         gopls = {
           on_attach = function(client, _)
+            vim.api.nvim_create_autocmd({ "TermOpen", "TermClose", "BufEnter" }, {
+              pattern = "*",
+              desc = "Jump to error line",
+              callback = function()
+                local buf_name = vim.api.nvim_buf_get_name(0)
+                if vim.bo.filetype == "dap-repl" and buf_name:match "%[dap%-repl%-%d+%]" then
+                  set_mappings({
+                    n = {
+                      ["gd"] = {
+                        preview_stack_trace,
+                        desc = "Jump to error line",
+                      },
+                    },
+                  }, { buffer = true })
+                end
+              end,
+            })
+
             set_mappings({
               n = {
                 ["<Leader>fi"] = {

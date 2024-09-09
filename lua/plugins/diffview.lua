@@ -30,12 +30,6 @@ return {
     end,
   },
   {
-    "lewis6991/gitsigns.nvim",
-    opts = {
-      on_attach = function() end,
-    },
-  },
-  {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       {

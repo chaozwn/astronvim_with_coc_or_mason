@@ -47,12 +47,12 @@ function M.core_mappings(mappings)
     maps.n["<Leader>lm"] = { "<Cmd>LspRestart<CR>", desc = "Lsp restart" }
     maps.n["<Leader>lg"] = { "<Cmd>LspLog<CR>", desc = "Show lsp log" }
 
-    if vim.fn.executable "lazygit" == 1 then
-      maps.n["<Leader>tl"] = {
-        require("utils").toggle_lazy_git(),
-        desc = "ToggleTerm lazygit",
-      }
-    end
+    -- if vim.fn.executable "lazygit" == 1 then
+    --   maps.n["<Leader>tl"] = {
+    --     require("utils").toggle_lazy_git(),
+    --     desc = "ToggleTerm lazygit",
+    --   }
+    -- end
 
     if vim.fn.executable "lazydocker" == 1 then
       maps.n["<Leader>td"] = {

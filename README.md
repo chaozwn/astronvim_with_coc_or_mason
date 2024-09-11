@@ -210,6 +210,12 @@ tigger command: `<leader>td`
 brew install lazydocker
 ```
 
+### Optional Input method 
+
+```shell
+brew install --cask squirrel
+```
+
 ## General Mappings
 
 | Action                      | Mappings            |

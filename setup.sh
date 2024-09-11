@@ -34,3 +34,6 @@ brew install lazydocker
 pip install pylatexenc
 brew install mercurial
 rustup component add rust-analyzer
+
+brew tap laishulu/macism
+brew install macism

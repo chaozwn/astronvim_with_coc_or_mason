@@ -122,4 +122,10 @@ return {
     },
     dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
   },
+  {
+    "mattn/vim-maketable",
+    cmd = "MakeTable",
+    event = "BufEnter",
+    ft = "markdown",
+  },
 }

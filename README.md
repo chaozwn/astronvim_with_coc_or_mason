@@ -82,6 +82,9 @@ brew install im-select
 brew install neovide
 brew install lazydocker
 pip install pylatexenc
+
+brew tap laishulu/macism
+brew install macism
 ```
 
 ### Note: for rust development

@@ -99,6 +99,7 @@ return {
             complete_function_calls = true,
             vtsls = {
               enableMoveToFileCodeAction = true,
+              -- 添加注释
               autoUseWorkspaceTsdk = true,
               experimental = {
                 completion = {

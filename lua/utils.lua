@@ -1,5 +1,13 @@
 local M = {}
 local astro = require "astrocore"
+local is_win = vim.loop.os_uname().version:find "Windows"
+
+function M.get_global_npm_path()
+  if is_win then
+    return vim.fn.system("cmd.exe /c npm root -g") 
+  end
+  return vim.fn.system("npm root -g")
+end
 
 function M.file_exists(filepath) return vim.fn.glob(filepath) ~= "" end
 

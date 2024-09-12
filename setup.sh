@@ -37,3 +37,4 @@ rustup component add rust-analyzer
 
 brew tap laishulu/macism
 brew install macism
+npm i -g @styled/typescript-styled-plugin

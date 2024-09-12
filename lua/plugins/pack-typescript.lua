@@ -106,6 +106,15 @@ return {
                   enableServerSideFuzzyMatch = true,
                 },
               },
+              tsserver = {
+                globalPlugins = {
+                  {
+                    name = "@styled/typescript-styled-plugin",
+                    location = require("utils").get_global_npm_path(),
+                    enableForWorkspaceTypeScriptVersions = true,
+                  },
+                },
+              },
             },
             typescript = {
               updateImportsOnFileMove = { enabled = "always" },

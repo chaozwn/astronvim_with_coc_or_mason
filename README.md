@@ -85,6 +85,8 @@ pip install pylatexenc
 
 brew tap laishulu/macism
 brew install macism
+
+npm i -g @styled/typescript-styled-plugin
 ```
 
 ### Note: for rust development

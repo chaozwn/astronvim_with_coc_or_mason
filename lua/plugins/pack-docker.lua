@@ -5,7 +5,11 @@ return {
   {
     "AstroNvim/astrocore",
     ---@type AstroCoreOpts
-    opts = { filetypes = { filename = { ["docker-compose.yaml"] = "yaml.docker-compose" } } },
+    opts = {
+      filetypes = {
+        filename = { ["docker-compose.yaml"] = "yaml.docker-compose", ["docker-compose.yml"] = "yaml.docker-compose" },
+      },
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter",

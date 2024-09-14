@@ -29,7 +29,6 @@ return {
                 },
               }, { buffer = true })
             end,
-            once = true,
           },
         },
       },

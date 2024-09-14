@@ -121,7 +121,6 @@ return {
                 parameterNames = true,
                 rangeVariableTypes = true,
               },
-              buildFlags = { "-tags", "integration" },
               completeUnimported = true,
               diagnosticsDelay = "500ms",
               gofumpt = true,

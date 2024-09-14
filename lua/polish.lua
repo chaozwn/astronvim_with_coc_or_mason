@@ -12,7 +12,6 @@ vim.filetype.add {
     yml = utils.yaml_ft,
     yaml = utils.yaml_ft,
     json = "jsonc",
-    api = "goctl",
     MD = "markdown",
     tpl = "gotmpl",
   },

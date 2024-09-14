@@ -1,0 +1,6 @@
+schema: 'graph/*.graphqls'
+documents: 'packages/app/src/components/**/*.{tsx,ts}'
+extensions:
+  endpoints:
+    example:
+      url: 'http://localhost:8000'

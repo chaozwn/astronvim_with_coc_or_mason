@@ -35,6 +35,11 @@ end
 ---@type LazySpec
 return {
   {
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
+    opts = { filetypes = { extension = { api = "goctl" } } },
+  },
+  {
     "AstroNvim/astrolsp",
     optional = true,
     ---@type AstroLSPOpts

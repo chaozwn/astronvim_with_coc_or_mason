@@ -14,7 +14,7 @@ return {
     ---@type AstroCoreOpts
     opts = {
       autocmds = {
-        auto_spell = {
+        auto_create_sqlfluff_config_file = {
           {
             event = "FileType",
             desc = "create completion",

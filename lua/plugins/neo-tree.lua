@@ -93,9 +93,9 @@ local file_extension_mapping = {
 ---@type LazySpec
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  deactivate = function() vim.cmd [[Neotree close]] end,
   opts = function(_, opts)
     local neo_tree_events = require "neo-tree.events"
-
     return require("astrocore").extend_tbl(opts, {
       event_handlers = {
         {

@@ -31,7 +31,7 @@ return {
               end
               if should_skip then return end
 
-              pcall(function() require("resession").load(vim.fn.getcwd(), { dir = "dirsession" }) end)
+              pcall(function() require("persistence").load() end)
             end,
           },
         },

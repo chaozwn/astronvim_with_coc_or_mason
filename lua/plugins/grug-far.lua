@@ -23,7 +23,7 @@ return {
           function()
             local file_path = vim.fn.expand "%:p"
             local file_name = vim.fn.fnamemodify(file_path, ":t")
-            require("grug-far").grug_far { prefills = { search = vim.fn.expand "<cword>", filesFilter = file_name } }
+            require("grug-far").open { prefills = { search = vim.fn.expand "<cword>", filesFilter = file_name } }
           end,
           desc = require("astroui").get_icon("GrugFar", 1, true) .. "Search and Replace",
         }

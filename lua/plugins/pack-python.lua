@@ -21,10 +21,7 @@ return {
                   },
                   ["<leader>lV"] = {
                     function()
-                      utils.notify(
-                        "Current Env:" .. require("venv-selector").get_active_venv(),
-                        vim.log.levels.INFO
-                      )
+                      utils.notify("Current Env:" .. require("venv-selector").get_active_venv(), vim.log.levels.INFO)
                     end,
                     desc = "Show Current VirtualEnv",
                   },
@@ -114,24 +111,26 @@ return {
   },
   {
     "linux-cultist/venv-selector.nvim",
-    opts = {
-      anaconda_base_path = "~/miniconda3",
-      anaconda_envs_path = "~/miniconda3/envs",
-      stay_on_this_version = true,
-      dap_enabled = true,
-      settings = {
-        options = {
-          notify_user_on_venv_activation = true,
-        },
-      },
+    ft = "python",
+    branch = "regexp",
+    enabled = vim.fn.executable "fd" == 1 or vim.fn.executable "fdfind" == 1 or vim.fn.executable "fd-find" == 1,
+    dependencies = {
+      { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
     },
-    cmd = { "VenvSelect", "VenvSelectCached" },
+    opts = {},
+    cmd = "VenvSelect",
   },
   {
     "mfussenegger/nvim-dap-python",
     dependencies = "mfussenegger/nvim-dap",
     ft = "python", -- NOTE: ft: lazy-load on filetype
-    config = function() require("dap-python").setup("python", {}) end,
+    config = function()
+      if vim.fn.has "win32" == 1 then
+        require("dap-python").setup(require("utils").get_pkg_path("debugpy", "/venv/Scripts/pythonw.exe"))
+      else
+        require("dap-python").setup(require("utils").get_pkg_path("debugpy", "/venv/bin/python"))
+      end
+    end,
   },
   {
     "nvim-neotest/neotest",

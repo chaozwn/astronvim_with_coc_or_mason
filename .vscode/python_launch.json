@@ -16,7 +16,6 @@
 // ${execPath}—正在运行的VS Code可执行文件的路径
 // ${defaultBuildTask} -默认构建任务的名称
 // ${pathSeparator} -操作系统用来分隔文件路径中组件的字符
-
 {
   "version": "0.2.0",
   "configurations": [
@@ -30,7 +29,8 @@
       "args": [],
       "console": "integratedTerminal",
       "showLog": true,
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "justMyCode": false
     }
   ]
 }

@@ -90,7 +90,7 @@ function M.lsp_mappings(mappings)
   if not mappings then mappings = require("astrocore").empty_map_table() end
   local maps = mappings
   if maps then
-    maps.i["<C-p>"] = {
+    maps.i["<C-l>"] = {
       function() vim.lsp.buf.signature_help() end,
       desc = "Signature help",
       cond = "textDocument/signatureHelp",

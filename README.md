@@ -8,6 +8,9 @@ Additionally, I utilize `yazi` as my terminal-based file manager, which seamless
 
 This streamlined combination of tools significantly enhances my productivity and provides a robust terminal experience.
 
+#### TODO: 
+- [ ] Determine whether to load the plugin based on the language type.
+
 ## Support neovim version
 
 neovim >= `0.10`, recommend `0.10.1`

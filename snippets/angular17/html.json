@@ -1,0 +1,1402 @@
+{
+  "Angular UpperCase Pipe": {
+    "prefix": "ng-pipe-uppercase",
+    "description": "Uppercase pipe",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | uppercase }}$0"
+    ]
+  },
+  "Angular LowerCase Pipe": {
+    "prefix": "ng-pipe-lowercase",
+    "description": "Lowercase pipe",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | lowercase }}$0"
+    ]
+  },
+  "Angular TitleCase Pipe": {
+    "prefix": "ng-pipe-titlecase",
+    "description": "v4: Titlecase pipe",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | titlecase }}$0"
+    ]
+  },
+  "Angular Date Pipe": {
+    "prefix": "ng-pipe-date",
+    "description": "Date pipe - Default format: 09/15/1971",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | date }}$0"
+    ]
+  },
+  "Angular Custom Date Pipe": {
+    "prefix": "ng-pipe-date-custom",
+    "description": "Date pipe - Format: \"MM/dd/yy\" = 09/15/71",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | date:\"MM/dd/yy\" }}$0"
+    ]
+  },
+  "Angular Short Date Pipe": {
+    "prefix": "ng-pipe-date-short",
+    "description": "Short date pipe - Format: 09/15/1971",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | date:shortDate }}$0"
+    ]
+  },
+  "Angular Full Date Pipe": {
+    "prefix": "ng-pipe-date-full",
+    "description": "Full date pipe - Format: Wednesday, September 15, 1971",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | date:fullDate }}$0"
+    ]
+  },
+  "Angular Percent Pipe": {
+    "prefix": "ng-pipe-percent",
+    "description": "Percent pipe - Usage: number_expression &#x7c; percent[:digitInfo]",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | percent:${digitInfo} }}$0"
+    ]
+  },
+  "Angular Decimal Pipe": {
+    "prefix": "ng-pipe-decimal",
+    "description": "Decimal pipe - Usage: number_expression &#x7c; decimal[:digitInfo]",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | decimal:${digitInfo} }}$0"
+    ]
+  },
+  "Angular Slice Pipe": {
+    "prefix": "ng-pipe-slice",
+    "description": "Slice pipe - Usage: array_or_string_expression &#x7c; slice:start[:end]",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | slice:${start}:${end} }}$0"
+    ]
+  },
+  "Angular Currency Pipe": {
+    "prefix": "ng-pipe-currency",
+    "description": "Currency pipe - Usage: money &#x7c; currency:'EUR'",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | currency:'${CURRENCY}' }}$0"
+    ]
+  },
+  "Angular Json Pipe": {
+    "prefix": "ng-pipe-json",
+    "description": "Json pipe - Usage: object &#x7c; json",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${object} | json }}$0"
+    ]
+  },
+  "Angular Async Pipe": {
+    "prefix": "ng-pipe-async",
+    "description": "Async pipe - Usage: observable_or_promise_expression &#x7c; async",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${observable} | async }}$0"
+    ]
+  },
+  "Angular Router Link": {
+    "prefix": "ng-router-link",
+    "description": "Router link",
+    "types": "typescript, html",
+    "body": [
+      "<a [routerLink]=\"[ '/${path}', ${routeParam} ]\">${name}</a>$0"
+    ]
+  },
+  "Angular Router Attribute": {
+    "prefix": "ng-router-attribute",
+    "description": "Router link",
+    "types": "typescript, html",
+    "body": [
+      "[routerLink]=\"[ '/${path}', ${routeParam} ]\"$0"
+    ]
+  },
+  "Angular Router Active Link": {
+    "prefix": "ng-router-linkActive",
+    "description": "Router active link",
+    "types": "typescript, html",
+    "body": [
+      "<a [routerLink]=\"[ '/${path}' ]\" routerLinkActive=\"active\">${name}</a>$0"
+    ]
+  },
+  "Angular Router Outlet": {
+    "prefix": "ng-router-outlet",
+    "description": "Router outlet element",
+    "types": "typescript, html",
+    "body": [
+      "<router-outlet></router-outlet>",
+      "$0"
+    ]
+  },
+  "Angular Router Outlet Name": {
+    "prefix": "ng-router-outlet-name",
+    "description": "Router outlet element with name",
+    "types": "typescript, html",
+    "body": [
+      "<router-outlet name=\"${name}\"></router-outlet>",
+      "$0"
+    ]
+  },
+  "Angular CanActivate Guard Route": {
+    "prefix": "ng-route-guard-canactivate",
+    "description": "CanActivate Guard Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${CanActivate}Guard implements CanActivate {",
+      "\tcanActivate(",
+      "\t\troute: ActivatedRouteSnapshot,",
+      "\t\tstate: RouterStateSnapshot",
+      "\t): Observable<boolean> | Promise<boolean> | boolean {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}",
+      ""
+    ]
+  },
+  "Angular CanActivateChild Guard Route": {
+    "prefix": "ng-route-guard-canactivatechild",
+    "description": "CanActivateChild Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${CanActivateChild}Guard implements CanActivateChild {",
+      "\tcanActivateChild(",
+      "\t\troute: ActivatedRouteSnapshot,",
+      "\t\tstate: RouterStateSnapshot",
+      "\t): Observable<boolean> | Promise<boolean> | boolean {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}",
+      ""
+    ]
+  },
+  "Angular Resolve Guard Route": {
+    "prefix": "ng-route-guard-resolve",
+    "description": "Resolve Guard Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${Resolve}Guard implements Resolve<${T}> {",
+      "\tresolve(",
+      "\t\troute: ActivatedRouteSnapshot,",
+      "\t\tstate: RouterStateSnapshot",
+      "\t): Observable<any> | Promise<any> | any {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}",
+      ""
+    ]
+  },
+  "Angular CanLoad Guard Route": {
+    "prefix": "ng-route-guard-canload",
+    "description": "CanLoad Guard Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { CanLoad, Route } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${CanLoad}Guard implements CanLoad {",
+      "\tcanLoad(",
+      "\t\t${route}: Route",
+      "\t): Observable<boolean> | Promise<boolean> | boolean {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}",
+      ""
+    ]
+  },
+  "Angular CanDeactivate Guard Route": {
+    "prefix": "ng-route-guard-candeactivate",
+    "description": "CanDeactivate Guard Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${CanDeactivate}Guard implements CanDeactivate<${T}> {",
+      "\tcanDeactivate(",
+      "\t\tcomponent: ${T},",
+      "\t\troute: ActivatedRouteSnapshot,",
+      "\t\tstate: RouterStateSnapshot",
+      "\t): Observable<boolean> | Promise<boolean> | boolean {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}"
+    ]
+  },
+  "Angular Container": {
+    "types": "typescript, html",
+    "prefix": "ng-container",
+    "description": "Angular Container",
+    "body": [
+      "<ng-container>${1}</ng-container>",
+      "$0"
+    ]
+  },
+  "Angular Container with *ngFor": {
+    "types": "typescript, html",
+    "prefix": "ng-container-ngfor",
+    "description": "Angular Container with *ngFor",
+    "body": [
+      "<ng-container *ngFor=\"let ${1:item} of ${2:items}\">",
+      "  ${3:content}",
+      "</ng-container>",
+      "$0"
+    ]
+  },
+  "Angular Container with *ngTemplateOutlet": {
+    "types": "typescript, html",
+    "prefix": "ng-container-template",
+    "description": "Angular Container with *ngTemplateOutlet",
+    "body": [
+      "<ng-container *ngTemplateOutlet=\"${1}\"></ng-container>",
+      "$0"
+    ]
+  },
+  "Angular Container with *ngContainerOutlet": {
+    "types": "typescript, html",
+    "prefix": "ng-container-component",
+    "description": "Angular Container with *ngContainerOutlet",
+    "body": [
+      "<ng-container *ngComponentOutlet=\"${1}\"></ng-container>",
+      "$0"
+    ]
+  },
+  "Angular template": {
+    "types": "typescript, html",
+    "prefix": "ng-template",
+    "description": "Angular template",
+    "body": [
+      "<ng-template #${1:name}></ng-template>",
+      "$0"
+    ]
+  },
+  "Angular ngModel Directive": {
+    "prefix": "ng-model",
+    "description": "ngModel directive: [(ngModel)]=\"name\"",
+    "types": "typescript, html",
+    "body": [
+      "[(ngModel)]=\"${name}\"$0"
+    ]
+  },
+  "Angular If Directive": {
+    "prefix": "ng-if",
+    "description": "If directive: *ngIf=\"expression\"",
+    "types": "typescript, html",
+    "body": [
+      "*ngIf=\"${expression}\"$0"
+    ]
+  },
+  "Angular If Else Directive": {
+    "prefix": "ng-if-else",
+    "description": "v4: If else directive: *ngIf=\"expression; else\"",
+    "types": "typescript, html",
+    "body": [
+      "<ng-container *ngIf=\"${expression}; else ${elseTemplate}\">",
+      "\t$1",
+      "</ng-container>",
+      "<ng-template #${elseTemplate}>",
+      "\t$2",
+      "</ng-template>",
+      "$0"
+    ]
+  },
+  "Angular If Then Else Directive": {
+    "prefix": "ng-if-then-else",
+    "description": "v4: If then else directive: *ngIf=\"expression; then; else\"",
+    "types": "typescript, html",
+    "body": [
+      "<ng-container *ngIf=\"${expression}; then ${thenTemplate}; else ${elseTemplate}\"></ng-container>",
+      "<ng-template #${thenTemplate}>",
+      "\t$1",
+      "</ng-template>",
+      "<ng-template #${elseTemplate}>",
+      "\t$2",
+      "</ng-template>",
+      "$0"
+    ]
+  },
+  "Angular For-loop Directive": {
+    "prefix": "ng-for",
+    "description": "For-loop directive",
+    "types": "typescript, html",
+    "body": [
+      "*ngFor=\"let ${item} of ${items}\"$0"
+    ]
+  },
+  "Angular For-loop Directive with li element": {
+    "prefix": "ng-for-li",
+    "description": "For-loop directive with li element",
+    "types": "typescript, html",
+    "body": [
+      "<li *ngFor=\"let ${item} of ${items}\">$0</li>"
+    ]
+  },
+  "Angular For-loop Directive with index": {
+    "prefix": "ng-for-index",
+    "description": "For-loop directive with index",
+    "types": "typescript, html",
+    "body": [
+      "*ngFor=\"let ${item} of ${items}; let i=index\"$0"
+    ]
+  },
+  "Angular For-loop Directive with trackBy": {
+    "prefix": "ng-for-trackBy",
+    "description": "For-loop directive with trackBy",
+    "types": "typescript, html",
+    "body": [
+      "*ngFor=\"let ${item} of ${items}; trackBy:${item}.id\"$0"
+    ]
+  },
+  "Angular Class": {
+    "prefix": "ng-class",
+    "description": "CSS class",
+    "types": "typescript, html",
+    "body": [
+      "[ngClass]=\"{'${class}': ${true}}\"$0"
+    ]
+  },
+  "Angular Style": {
+    "prefix": "ng-style",
+    "description": "CSS style",
+    "types": "typescript, html",
+    "body": [
+      "[ngStyle]=\"{'${property}': ${expression}}\"$0"
+    ]
+  },
+  "Angular Switch": {
+    "prefix": "ng-switch",
+    "description": "Switch template",
+    "types": "typescript, html",
+    "body": [
+      "<span [ngSwitch]=\"\">",
+      "<p *ngSwitchCase=\"true\">",
+      "",
+      "</p>",
+      "<p *ngSwitchCase=\"false\">",
+      "",
+      "</p>",
+      "<p *ngSwitchDefault>",
+      "",
+      "</p>",
+      "</span>"
+    ]
+  },
+  "Angular Property": {
+    "prefix": "ng-property",
+    "description": "Property: [property]=\"expression\"",
+    "types": "typescript, html",
+    "body": [
+      "[${property}]=\"${expression}\"$0"
+    ]
+  },
+  "Angular Event": {
+    "prefix": "ng-event",
+    "description": "Event: (event) = \"onEvent()\"",
+    "types": "typescript, html",
+    "body": [
+      "(${event}) = \"on${Event}()\"$0"
+    ]
+  },
+  "Angular Oneway Binding": {
+    "prefix": "ng-binding-oneway",
+    "description": "Property: [property]=\"expression\"",
+    "types": "typescript, html",
+    "body": [
+      "[${property}]=\"${expression}\"$0"
+    ]
+  },
+  "Angular Twoway Binding": {
+    "prefix": "ng-binding-twoway",
+    "description": "Two-way data binding with the NgModel",
+    "types": "typescript, html",
+    "body": [
+      "[(ngModel)]=\"${Name}\"$0"
+    ]
+  },
+  "Angular Interpolation": {
+    "prefix": "ng-interpolation",
+    "description": "Interpolation: {{ interpolation }}",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${interpolation} }}$0"
+    ]
+  },
+  "Angular 1 Loop Directive": {
+    "prefix": "ng-repeat",
+    "description": "Use ngFor instead.",
+    "types": "typescript, html",
+    "body": [
+      "*ngFor=\"let ${item} of ${items}\"$0"
+    ]
+  },
+  "Angular Click Event": {
+    "prefix": "ng-click",
+    "description": "Click event",
+    "types": "typescript, html",
+    "body": [
+      "(click)=\"${expression}\"$0"
+    ]
+  },
+  "Angular 1 Show Directive": {
+    "prefix": "ng-show",
+    "description": "Usage: Bind to the hidden property.",
+    "types": "typescript, html",
+    "body": [
+      "[hidden]=\"!${expression}\"$0"
+    ]
+  },
+  "Angular 1 Hide Directive": {
+    "prefix": "ng-hide",
+    "description": "Usage: Bind to the hidden property.",
+    "types": "typescript, html",
+    "body": [
+      "[hidden]=\"${expression}\"$0"
+    ]
+  },
+  "Angular 1 Href Directive": {
+    "prefix": "ng-href",
+    "description": "Usage: Bind to the href property.",
+    "types": "typescript, html",
+    "body": [
+      "[href]=\"${url}\"$0"
+    ]
+  },
+  "Angular 1 Src Directive": {
+    "prefix": "ng-src",
+    "description": "Usage: Bind to the src property.",
+    "types": "typescript, html",
+    "body": [
+      "[src]=\"${url}\"$0"
+    ]
+  },
+  "Angular 1 OrderBy": {
+    "prefix": "ng-orderBy",
+    "description": "For performance reasons, no comparable pipe exists in Angular 2. Instead, use component code to order or sort results. If you need the same ordering or sorting code in several templates, consider building a custom pipe.",
+    "types": "typescript, html",
+    "body": [
+      "$0"
+    ]
+  },
+  "Angular 1 Filter": {
+    "prefix": "ng-filter",
+    "description": "For performance reasons, no comparable pipe exists in Angular 2. Do all your filtering in the component. If you need the same filtering code in several templates, consider building a custom pipe.",
+    "types": "typescript, html",
+    "body": [
+      "$0"
+    ]
+  },
+  "Submit Button": {
+    "prefix": "ng-button-submit",
+    "description": "A submit button element with a click event",
+    "types": "typescript, html",
+    "body": [
+      "<button type=\"submit\">${Submit}</button>",
+      "$0"
+    ]
+  },
+  "Click Button": {
+    "prefix": "ng-button",
+    "description": "A button element with a click event",
+    "types": "typescript, html",
+    "body": [
+      "<button (click)=\"${1:onClick()}\">${2:name}</button>",
+      "$0"
+    ]
+  },
+  "ng import": {
+    "prefix": "ng-import",
+    "description": "import module or component from path;",
+    "types": "typescript, html",
+    "body": [
+      "import { ${2:moduleOrComponent} } from '${1:path}';",
+      "$0"
+    ]
+  },
+  "http get": {
+    "prefix": "ng-http-get",
+    "description": "Http observable get request",
+    "types": "typescript, html",
+    "body": [
+      "this.http.get('${url}')",
+      "\t.map((res: Response) => {",
+      "\t\tres.json();",
+      "})$0"
+    ]
+  },
+  "httpClient get": {
+    "prefix": "ng-httpClient-get",
+    "description": "HttpClient observable get request",
+    "types": "typescript, html",
+    "body": [
+      "this.http.get('${url}')$0"
+    ]
+  },
+  "http get post": {
+    "prefix": "ng-http-get-post",
+    "description": "Http observable get & post request",
+    "types": "typescript, html",
+    "body": [
+      "get${Type}(): Observable<I${Type}[]> {",
+      "\treturn this.http.get(${name})",
+      "\t\t.map((res: Response) => <I${Type}[]>res.json())",
+      "\t\t.catch(this.handleError);",
+      "}",
+      "",
+      "add${Type}(${name}: string): Observable<I${Type}> {",
+      "\tlet body = JSON.stringify({ ${name} });",
+      "\tlet headers = new Headers({ 'Content-Type': 'application/json'});",
+      "\tlet options = new RequestOptions({ headers: headers });",
+      "",
+      "\treturn this.http.post(this.${url}, body, options)",
+      "\t\t.map(this.handleResponse)",
+      "\t.catch(this.handleError);",
+      "}",
+      "private handleError(error: Response) {",
+      "\tconsole.error(error);",
+      "\treturn Observable.throw(error.json().error || 'Server error');",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Debug": {
+    "prefix": "ng-debug",
+    "description": "pre obj pipe json",
+    "types": "typescript, html",
+    "body": [
+      "<pre>{{ ${obj} | json }}</pre>$0"
+    ]
+  },
+  "Angular Debug Async": {
+    "prefix": "ng-debug-async",
+    "description": "pre obj pipe async pipe json",
+    "types": "typescript, html",
+    "body": [
+      "<pre>{{ ${obj} | async | json }}</pre>$0"
+    ]
+  },
+  "Angular Flex Layout Import": {
+    "prefix": "fx-import",
+    "description": "Flex Layout Import",
+    "types": "typescript, html",
+    "body": [
+      "import { FlexLayoutModule } from '@angular/flex-layout';",
+      "// Add ${FlexLayoutModule.forRoot()} to the @NgModule imports section"
+    ]
+  },
+  "Angular Flex Row": {
+    "prefix": "fx-row",
+    "description": "Flex Layout Row",
+    "types": "typescript, html",
+    "body": [
+      "<div fxLayout=\"row\" fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Layout": {
+    "prefix": "fx-layout",
+    "description": "Flex Layout Property",
+    "types": "typescript, html",
+    "body": [
+      "fxLayout=\"row\"$0"
+    ]
+  },
+  "Angular Flex Layout Align": {
+    "prefix": "fx-layout-align",
+    "description": "Flex Layout Align Property",
+    "types": "typescript, html",
+    "body": [
+      "fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\"$0"
+    ]
+  },
+  "Angular Flex Layout Gap": {
+    "prefix": "fx-layout-gap",
+    "description": "Flex Layout Gap Property",
+    "types": "typescript, html",
+    "body": [
+      "fxLayoutGap=\"${gap}px\"$0"
+    ]
+  },
+  "Angular Flex Reverse Row": {
+    "prefix": "fx-row-reverse",
+    "description": "Flex Layout Reverse Row",
+    "types": "typescript, html",
+    "body": [
+      "<div fxLayout=\"row-reverse\" fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Column": {
+    "prefix": "fx-col",
+    "description": "Flex Layout Column",
+    "types": "typescript, html",
+    "body": [
+      "fxLayout=\"column\" fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">$0"
+    ]
+  },
+  "Angular Flex Column with Element": {
+    "prefix": "fx-col-element",
+    "description": "Flex Layout Column with Element",
+    "types": "typescript, html",
+    "body": [
+      "<${1:div} fxLayout=\"column\" fxLayoutAlign=\"${2:|start,center,end,space-around,space-between|} ${4:|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">",
+      "\t$0",
+      "</${1:div}>"
+    ]
+  },
+  "Angular Flex Reverse Column": {
+    "prefix": "fx-col-reverse",
+    "description": "Flex Layout Reverse Column",
+    "types": "typescript, html",
+    "body": [
+      "<div fxLayout=\"column-reverse\" fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item": {
+    "prefix": "fx-item",
+    "description": "Flex Layout Item",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item Offset": {
+    "prefix": "fx-item-offset",
+    "description": "Flex Layout Item with fxFlexOffset",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\" fxFlexOffset=\"${offset}px\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item Order": {
+    "prefix": "fx-item-order",
+    "description": "Flex Layout Item with fxFlexOrder",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\" fxFlexOrder=\"${order}\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item Align": {
+    "prefix": "fx-item-align",
+    "description": "Flex Layout Item with fxFlexAlign",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\" fxFlexAlign=\"${1|start,baseline,center,end|}\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item Fill": {
+    "prefix": "fx-item-fill",
+    "description": "Flex Layout Item with fxFlexFill",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\" fxFlexFill>",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Material drag drop box": {
+    "prefix": "m-drag-drop-box",
+    "description": "Material drag drop box",
+    "types": "typescript, html",
+    "body": [
+      "<div class=\"$1{drag-drop-box}\" cdkDrag>",
+      "</div>$0"
+    ]
+  },
+  "Material toolbar": {
+    "prefix": "m-toolbar",
+    "description": "Material toolbar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-toolbar>",
+      "\t<span>${FirstRow}</span>",
+      "</mat-toolbar>$0"
+    ]
+  },
+  "Material toolbar row": {
+    "prefix": "m-toolbar-row",
+    "description": "Material toolbar row",
+    "types": "typescript, html",
+    "body": [
+      "<mat-toolbar-row>",
+      "\t<span>${FirstRow}</span>",
+      "</mat-toolbar-row>$0"
+    ]
+  },
+  "Material toolbar-multiRow": {
+    "prefix": "m-toolbar-multiRow",
+    "description": "Material Toolbar with multiple rows",
+    "types": "typescript, html",
+    "body": [
+      "<mat-toolbar>",
+      "\t<span>${FirstRow}</span>",
+      "\t<mat-toolbar-row>",
+      "\t\t<span>${SecondRow}</span>",
+      "\t</mat-toolbar-row>",
+      "\t<mat-toolbar-row>",
+      "\t\t<span>${ThirdRow}</span>",
+      "\t</mat-toolbar-row>",
+      "</mat-toolbar>$0"
+    ]
+  },
+  "Material FA Icon": {
+    "prefix": "m-icon-fontawesome",
+    "description": "Material Font Awesome Icon",
+    "types": "typescript, html",
+    "body": [
+      "<mat-icon mat-font-icon=\"fa-${icon}\" class=\"fa\"></mat-icon>$0"
+    ]
+  },
+  "Material Button": {
+    "prefix": "m-button",
+    "description": "Rectangular Material button w/ no elevation.",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-button>${text}</button>$0"
+    ]
+  },
+  "Material Raised Button": {
+    "prefix": "m-button-raised",
+    "description": "Rectangular Material button w/ elevation.",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-raised-button>${text}</button>$0"
+    ]
+  },
+  "Material Icon Button": {
+    "prefix": "m-button-icon",
+    "description": "Circular Material button with a transparent background",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-icon-button><mat-icon>${icon_name}</mat-icon></button>$0"
+    ]
+  },
+  "Material Round Button": {
+    "prefix": "m-button-fab",
+    "description": "Circular button w/ elevation.",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-fab><mat-icon>${icon_name}</mat-icon></button>$0"
+    ]
+  },
+  "Material Round Small Button": {
+    "prefix": "m-button-fab-mini",
+    "description": "Small circular button w/ elevation.",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-mini-fab><mat-icon>${icon_name}</mat-icon></button>$0"
+    ]
+  },
+  "Material Toggle Button": {
+    "prefix": "m-button-toggle",
+    "description": "Material toggle button",
+    "types": "typescript, html",
+    "body": [
+      "<mat-button-toggle>${text}</mat-button-toggle>$0"
+    ]
+  },
+  "Material Basic Card": {
+    "prefix": "m-card",
+    "description": "Material Basic Card",
+    "types": "typescript, html",
+    "body": [
+      "<mat-card>",
+      "\t$1",
+      "</mat-card>$0"
+    ]
+  },
+  "Material Card": {
+    "prefix": "m-card-full",
+    "description": "Material Card",
+    "types": "typescript, html",
+    "body": [
+      "<mat-card>",
+      "\t<mat-card-header>",
+      "\t\t<mat-card-title>${title}</mat-card-title>",
+      "\t\t<mat-card-subtitle>${subtitle}</mat-card-subtitle>",
+      "\t</mat-card-header>",
+      "\t<mat-card-content>",
+      "\t$1",
+      "\t</mat-card-content>",
+      "\t<mat-card-actions>",
+      "\t\t<button mat-button>${Ok}</button>",
+      "\t</mat-card-actions>",
+      "</mat-card>$0"
+    ]
+  },
+  "Material Radio Button": {
+    "prefix": "m-radiobutton",
+    "description": "Material Radio Button",
+    "types": "typescript, html",
+    "body": [
+      "<mat-radio-group>",
+      "\t<mat-radio-button value=\"${value1}\">${Option1}</mat-radio-button>",
+      "\t<mat-radio-button value=\"${value2}\">${Option2}</mat-radio-button>",
+      "</mat-radio-group>$0"
+    ]
+  },
+  "Material Radio Button Option": {
+    "prefix": "m-radiobutton-option",
+    "description": "Material Radio Button Option",
+    "types": "typescript, html",
+    "body": [
+      "<mat-radio-button value=\"${value}\">${Option}</mat-radio-button>$0"
+    ]
+  },
+  "Material Checkbox ngmodel": {
+    "prefix": "m-checkbox-ngmodel",
+    "description": "Material Checkbox ngmodel",
+    "types": "typescript, html",
+    "body": [
+      "<mat-checkbox [(ngModel)]=\"${property.checkedOrUnchecked}\">${text}</mat-checkbox>$0"
+    ]
+  },
+  "Material Checkbox": {
+    "prefix": "m-checkbox",
+    "description": "Material Checkbox",
+    "types": "typescript, html",
+    "body": [
+      "<mat-checkbox>${text}</mat-checkbox>$0"
+    ]
+  },
+  "Material Datepicker": {
+    "prefix": "m-datepicker",
+    "description": "Material Datepicker",
+    "types": "typescript, html",
+    "body": [
+      "<mat-form-field>",
+      "\t<input matInput [matDatepicker]=\"${picker}\" placeholder=\"${title}\">",
+      "\t<mat-datepicker-toggle matSuffix [for]=\"${picker}\"></mat-datepicker-toggle>",
+      "\t<button matSuffix [matDatepickerToggle]=\"${picker}\"></button>",
+      "\t<mat-datepicker #${picker}></mat-datepicker>",
+      "</mat-form-field>",
+      "$0"
+    ]
+  },
+  "Material Input Text": {
+    "prefix": "m-input",
+    "description": "Material Input Textbox",
+    "types": "typescript, html",
+    "body": [
+      "<mat-form-field>",
+      "\t<input matInput placeholder=\"${label}\" value=\"${value}\">",
+      "</mat-form-field>$0"
+    ]
+  },
+  "Material Chip List": {
+    "prefix": "m-chip-list",
+    "description": "Material Chip List",
+    "types": "typescript, html",
+    "body": [
+      "<mat-chip-list>",
+      "\t<mat-chip>${text}</mat-chip>",
+      "</mat-chip-list>$0"
+    ]
+  },
+  "Material Chip Stacked List": {
+    "prefix": "m-chip-list-stacked",
+    "description": "Material Chip Stacked List",
+    "types": "typescript, html",
+    "body": [
+      "<mat-chip-list class=\"mat-chip-list-stacked\">",
+      "\t<mat-chip>${text}</mat-chip>",
+      "</mat-chip-list>$0"
+    ]
+  },
+  "Material Chip": {
+    "prefix": "m-chip",
+    "description": "Material Chip",
+    "types": "typescript, html",
+    "body": [
+      "<mat-chip>${text}</mat-chip>$0"
+    ]
+  },
+  "Material Select": {
+    "prefix": "m-select",
+    "description": "Material Select",
+    "types": "typescript, html",
+    "body": [
+      "<mat-select placeholder=\"${Placeholder}\" [(ngModel)]=\"selectedValue\" name=\"${item}\">",
+      "\t<mat-option *ngFor=\"let ${item} of ${items}\" [value]=\"${item}.value\">",
+      "\t\t{{${item}.viewValue}}",
+      "\t</mat-option>",
+      "</mat-select>$0"
+    ]
+  },
+  "Material SVG Icon": {
+    "prefix": "m-icon-svg",
+    "description": "Material SVG Icon",
+    "types": "typescript, html",
+    "body": [
+      "<mat-icon svgIcon=\"${src}\"></mat-icon>$0"
+    ]
+  },
+  "Material Icon": {
+    "prefix": "m-icon",
+    "description": "Material Icon",
+    "types": "typescript, html",
+    "body": [
+      "<mat-icon>${icon}</mat-icon>$0"
+    ]
+  },
+  "Material Icon with Badge": {
+    "prefix": "m-icon-badge",
+    "description": "Material Icon with a Badge",
+    "types": "typescript, html",
+    "body": [
+      "<mat-icon",
+      "\tcolor=\"primary\"",
+      "\tmatBadge=\"${number}\"",
+      "\tmatBadgePosition=\"${2|above,below|} ${3|after,before|}\"",
+      "\tmatBadgeColor=\"accent\">",
+      "\t\t${icon}",
+      "</mat-icon>$0"
+    ]
+  },
+  "Material Slide Toggle": {
+    "prefix": "m-slide-toggle",
+    "description": "Material Slide toggle",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slide-toggle>${text}</mat-slide-toggle>$0"
+    ]
+  },
+  "Material Slider": {
+    "prefix": "m-slider",
+    "description": "Material Slider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider min=\"${min}\" max=\"${max}\" step=\"${step}\" value=\"${value}\"></mat-slider>$0"
+    ]
+  },
+  "Material Vertical Slider": {
+    "prefix": "m-slider-vertical",
+    "description": "Material Vertical Slider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider vertical min=\"${min}\" max=\"${max}\" step=\"${step}\" value=\"${value}\"></mat-slider>$0"
+    ]
+  },
+  "Material Slider Thumblabel": {
+    "prefix": "m-slider-thumbLabel",
+    "description": "Material Slider thumbLabel",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider thumbLabel tickInterval=\"${interval}\"></mat-slider>$0"
+    ]
+  },
+  "Material Slider TickInterval": {
+    "prefix": "m-slider-tickInterval",
+    "description": "Material Slider tickInterval",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider step=\"${step}\" tickInterval=\"${interval}\"></mat-slider>$0"
+    ]
+  },
+  "Material Slider TickInterval Auto": {
+    "prefix": "m-slider-tickInterval-auto",
+    "description": "Material Slider tickInterval Auto",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider tickInterval=\"auto\"></mat-slider>$0"
+    ]
+  },
+  "Material Menu": {
+    "prefix": "m-menu",
+    "description": "Material Menu",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-icon-button [matMenuTriggerFor]=\"${menu}\" aria-label=\"Example icon-button with a menu\">",
+      "\t<mat-icon>more_vert</mat-icon>",
+      "</button>",
+      "<mat-menu #${menu}=\"matMenu\">",
+      "\t<button mat-menu-item>",
+      "\t\t<mat-icon>dialpad</mat-icon>",
+      "\t\t<span>Redial</span>",
+      "\t</button>",
+      "</mat-menu>"
+    ]
+  },
+  "Material List": {
+    "prefix": "m-list",
+    "description": "Material List",
+    "types": "typescript, html",
+    "body": [
+      "<mat-list>",
+      "\t<mat-list-item>${item}</mat-list-item>$1",
+      "</mat-list>$0"
+    ]
+  },
+  "Material List ngFor": {
+    "prefix": "m-list-ngfor",
+    "description": "Material List ngFor",
+    "types": "typescript, html",
+    "body": [
+      "<mat-list>",
+      "\t<mat-list-item *ngFor=\"let ${item} of ${items}\">{{ ${item} }}</mat-list-item>$1",
+      "</mat-list>$0"
+    ]
+  },
+  "Material List Item": {
+    "prefix": "m-list-item",
+    "description": "Material List Item",
+    "types": "typescript, html",
+    "body": [
+      "<mat-list-item>${item}</mat-list-item>$0"
+    ]
+  },
+  "Material Tab Group": {
+    "prefix": "m-tab-group",
+    "description": "Material Tab Group",
+    "types": "typescript, html",
+    "body": [
+      "<mat-tab-group>",
+      "\t<mat-tab label=\"${TabHeader1}\">$1</mat-tab>",
+      "\t<mat-tab label=\"${TabTabHeader2}\">$2</mat-tab>",
+      "</mat-tab-group>$0"
+    ]
+  },
+  "Material Tab": {
+    "prefix": "m-tab",
+    "description": "Material Tab",
+    "types": "typescript, html",
+    "body": [
+      "<mat-tab label=\"${TabHeader}\">$1</mat-tab>$0"
+    ]
+  },
+  "Material Tooltip": {
+    "prefix": "m-tooltip",
+    "description": "Material Tooltip",
+    "types": "typescript, html",
+    "body": [
+      "matTooltip=\"${text}\"$0"
+    ]
+  },
+  "Material Tooltip Position": {
+    "prefix": "m-tooltip-position",
+    "description": "Material Tooltip position",
+    "types": "typescript, html",
+    "body": [
+      "[matTooltipPosition]=\"${1|above,below,left,right,before,after|}\"$0"
+    ]
+  },
+  "Material Tooltip With Position": {
+    "prefix": "m-tooltip-with-position",
+    "description": "Material Tooltip with position",
+    "types": "typescript, html",
+    "body": [
+      "matTooltip=\"${text}\" [matTooltipPosition]=\"${1|above,below,left,right,before,after|}\"$0"
+    ]
+  },
+  "Material Table": {
+    "prefix": "m-table",
+    "description": "Material Table",
+    "types": "typescript, html",
+    "body": [
+      "<table mat-table #table [dataSource]=\"${dataSource}\">",
+      "\t<ng-container matColumnDef=\"${column}\">",
+      "\t\t<th mat-header-cell *matHeaderCellDef> ${header} </th>",
+      "\t\t<td mat-cell *matCellDef=\"let row\"> {{row.${column}}} </td>",
+      "\t</ng-container>",
+      "\t<tr mat-header-row *matHeaderRowDef=\"['${column}']\"></tr>",
+      "\t<tr mat-row *matRowDef=\"let row; columns: ['${column}'];\"></tr>",
+      "</table>$0"
+    ]
+  },
+  "Material Table Column": {
+    "prefix": "m-table-column",
+    "description": "Material Table Column",
+    "types": "typescript, html",
+    "body": [
+      "<ng-container matColumnDef=\"${column}\">",
+      "\t<th mat-header-cell *matHeaderCellDef> ${header} </th>",
+      "\t<td mat-cell *matCellDef=\"let row\"> {{row.${column}}} </td>",
+      "</ng-container>$0"
+    ]
+  },
+  "Material Table Flex": {
+    "prefix": "m-table-flex",
+    "description": "Material Table Flex",
+    "types": "typescript, html",
+    "body": [
+      "<mat-table #table [dataSource]=\"${dataSource}\">",
+      "\t<ng-container matColumnDef=\"${column}\">",
+      "\t\t<mat-header-cell *matHeaderCellDef> ${header} </mat-header-cell>",
+      "\t\t<mat-cell *matCellDef=\"let row\"> {{row.${column}}} </mat-cell>",
+      "\t</ng-container>",
+      "\t<mat-header-row *matHeaderRowDef=\"['${column}']\"></mat-header-row>",
+      "\t<mat-row *matRowDef=\"let row; columns: ['${column}'];\"></mat-row>",
+      "</mat-table>$0"
+    ]
+  },
+  "Material Table Column Flex": {
+    "prefix": "m-table-column-flex",
+    "description": "Material Table Column Flex",
+    "types": "typescript, html",
+    "body": [
+      "<ng-container matColumnDef=\"${column}\">",
+      "\t<mat-header-cell *matHeaderCellDef> ${header} </mat-header-cell>",
+      "\t<mat-cell *matCellDef=\"let row\"> {{row.${column}}} </mat-cell>",
+      "</ng-container>$0"
+    ]
+  },
+  "Material Grid List": {
+    "prefix": "m-grid-list",
+    "description": "Material Grid List",
+    "types": "typescript, html",
+    "body": [
+      "<mat-grid-list cols=\"${cols}\" rowHeight=\"${height}px\">",
+      "\t<mat-grid-tile",
+      "\t\t*ngFor=\"let ${tile} of ${tiles}\"",
+      "\t\t[colspan]=\"${tile}.cols\"",
+      "\t\t[rowspan]=\"${tile}.rows\"",
+      "\t\t{{${tile}.text}}>",
+      "\t</mat-grid-tile>",
+      "</mat-grid-list>$0"
+    ]
+  },
+  "Material Paginator": {
+    "prefix": "m-paginator",
+    "description": "Material Paginator",
+    "types": "typescript, html",
+    "body": [
+      "<mat-paginator [length]=\"${length}\"",
+      "\t[pageSize]=\"${pageSize}\"",
+      "\t[pageSizeOptions]=\"${pageSizeOptions}\"",
+      "\t(page)=\"pageEvent = $${event}\">",
+      "</mat-paginator>$0"
+    ]
+  },
+  "Material Determinate Spinner": {
+    "prefix": "m-spinner",
+    "description": "Material Determinate Spinner",
+    "types": "typescript, html",
+    "body": [
+      "<mat-spinner",
+      "\t[value]=\"${value}\">",
+      "</mat-spinner>$0"
+    ]
+  },
+  "Material Indeterminate Progress Bar": {
+    "prefix": "m-progress-bar-indeterminate",
+    "description": "Material indeterminate Progress Bar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-progress-bar",
+      "\tmode=\"indeterminate\">",
+      "</mat-progress-bar>$0"
+    ]
+  },
+  "Material Query Progress Bar": {
+    "prefix": "m-progress-bar-query",
+    "description": "Material Query Progress Bar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-progress-bar",
+      "\tmode=\"query\">",
+      "</mat-progress-bar>$0"
+    ]
+  },
+  "Material Buffer Progress Bar": {
+    "prefix": "m-progress-bar-buffer",
+    "description": "Material Buffer Progress Bar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-progress-bar",
+      "\tmode=\"buffer\"",
+      "\t[color]=\"${color}\"",
+      "\t[value]=\"${value}\"",
+      "\t[bufferValue]=\"${bufferValue}\">",
+      "</mat-progress-bar>$0"
+    ]
+  },
+  "Material Determinate Progress Bar": {
+    "prefix": "m-progress-bar",
+    "description": "Material Determinate Progress Bar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-progress-bar",
+      "\tmode=\"determinate\"",
+      "\t[value]=\"${value}\">",
+      "</mat-progress-bar>$0"
+    ]
+  },
+  "Material Expansion Panel ": {
+    "prefix": "m-expansion-panel",
+    "description": "Material Expansion Panel",
+    "types": "typescript, html",
+    "body": [
+      "<mat-expansion-panel>",
+      "\t<mat-expansion-panel-header>",
+      "\t\t${title}",
+      "\t</mat-expansion-panel-header>",
+      "\t${content}",
+      "</mat-expansion-panel>$0"
+    ]
+  },
+  "Material Accordion Panel ": {
+    "prefix": "m-accordion>",
+    "description": "Material Accordion",
+    "types": "typescript, html",
+    "body": [
+      "<mat-accordion>",
+      "\t<mat-expansion-panel>",
+      "\t\t<mat-expansion-panel-header>",
+      "\t\t\t${title}",
+      "\t\t</mat-expansion-panel-header>",
+      "\t\t${content}",
+      "\t</mat-expansion-panel>",
+      "\t<mat-expansion-panel>",
+      "\t\t<mat-expansion-panel-header>",
+      "\t\t\t${title2}",
+      "\t\t</mat-expansion-panel-header>",
+      "\t\t${content2}",
+      "\t</mat-expansion-panel>",
+      "</mat-accordion>$0"
+    ]
+  },
+  "Material Vertical Stepper": {
+    "prefix": "m-stepper-vertical",
+    "description": "Material Vertical Stepper",
+    "types": "typescript, html",
+    "body": [
+      "<mat-vertical-stepper>",
+      "\t<mat-step label=\"${label1}\">",
+      "\t\t$1",
+      "\t</mat-step>",
+      "\t<mat-step label=\"${label2}\">",
+      "\t\t$2",
+      "\t</mat-step>",
+      "</mat-vertical-stepper>$0"
+    ]
+  },
+  "Material Horizontal Stepper": {
+    "prefix": "m-stepper-horizontal",
+    "description": "Material Horizontal Stepper",
+    "types": "typescript, html",
+    "body": [
+      "<mat-horizontal-stepper>",
+      "\t<mat-step label=\"${label1}\">",
+      "\t\t$1",
+      "\t</mat-step>",
+      "\t<mat-step label=\"${label2}\">",
+      "\t\t$2",
+      "\t</mat-step>",
+      "</mat-horizontal-stepper>$0"
+    ]
+  },
+  "Material Stepper Step": {
+    "prefix": "m-step",
+    "description": "Material Vertical Stepper",
+    "types": "typescript, html",
+    "body": [
+      "<mat-step label=\"${label}\">",
+      "\t$1",
+      "</mat-step>",
+      "$0"
+    ]
+  },
+  "Material Indeterminate Spinner": {
+    "prefix": "m-spinner-indeterminate",
+    "description": "Material Indeterminate Spinner",
+    "types": "typescript, html",
+    "body": [
+      "<mat-spinner",
+      "\t[mode]=\"indeterminate\">",
+      "</mat-spinner>$0"
+    ]
+  },
+  "Material Divider": {
+    "prefix": "m-divider",
+    "description": "Material Divider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-divider>",
+      "</mat-divider>$0"
+    ]
+  },
+  "Material Inset Divider": {
+    "prefix": "m-divider-inset",
+    "description": "Material Inset Divider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-divider",
+      "\t[inset]=\"true\">",
+      "</mat-divider>$0"
+    ]
+  },
+  "Material Vertical Divider": {
+    "prefix": "m-divider-vertical",
+    "description": "Material Vertical Divider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-divider",
+      "\t[vertical]=\"true\">",
+      "</mat-divider>$0"
+    ]
+  },
+  "PWA Link manifest": {
+    "prefix": "pwa-link-manifest",
+    "description": "PWA Link Manifest",
+    "types": "html",
+    "body": [
+      "<link rel=\"manifest\" href=\"./manifest.json\">$0"
+    ]
+  },
+  "Angular content": {
+    "types": "typescript, html",
+    "prefix": "ng-content",
+    "description": "Angular content",
+    "body": [
+      "<ng-content #${1:name}></ng-content>",
+      "$0"
+    ]
+	}
+}

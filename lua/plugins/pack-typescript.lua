@@ -77,7 +77,23 @@ return {
           end,
         },
         vtsls = {
-          on_attach = function()
+          on_attach = function(client, _)
+            client.server_capabilities = require("astrocore").extend_tbl(client.server_capabilities, {
+              workspace = {
+                didChangeWatchedFiles = { dynamicRegistration = true },
+                fileOperations = {
+                  didRename = {
+                    filters = {
+                      {
+                        pattern = {
+                          glob = "**/*.{ts,cts,mts,tsx,js,cjs,mjs,jsx,vue}",
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            })
             set_mappings({
               n = {
                 ["<Leader>lA"] = {
@@ -99,7 +115,6 @@ return {
             complete_function_calls = true,
             vtsls = {
               enableMoveToFileCodeAction = true,
-              -- 添加注释
               autoUseWorkspaceTsdk = true,
               experimental = {
                 completion = {

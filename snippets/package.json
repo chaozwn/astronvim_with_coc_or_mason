@@ -62,6 +62,38 @@
       {
         "language": "markdown",
         "path": "./jinja/jinja-markdown.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./angular18/typescript.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./angular18/javascript.json"
+      },
+      {
+        "language": "jsonc",
+        "path": "./angular18/jsonc.json"
+      },
+      {
+        "language": "html",
+        "path": "./angular18/html.json"
+      },
+      {
+        "language": "dockerfile",
+        "path": "./angular18/dockerfile.json"
+      },
+      {
+        "language": "html",
+        "path": "./angular17/html.json"
+      },
+      {
+        "language": "json",
+        "path": "./angular17/json.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./angular17/typescript.json"
       }
     ]
   }

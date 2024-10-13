@@ -1,0 +1,3506 @@
+{
+  "Nest DTO": {
+    "prefix": "nest-dto",
+    "description": "Nest Data Transfer Object with Swagger",
+    "types": "typescript",
+    "body": [
+      "//import { ApiModelProperty } from '@nestjs/swagger';",
+      "",
+      "export class ${ClassName_singular}Dto {",
+      "// @ApiModelProperty()",
+      "\treadonly id: string;",
+      "// @ApiModelProperty()",
+      "\treadonly name: string;",
+      "}",
+      "$0"
+    ]
+  },
+  "Nest Add Swagger to main": {
+    "prefix": "nest-swagger-main",
+    "description": "Nest Add Swagger to main.ts",
+    "types": "typescript",
+    "body": [
+      "// import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';",
+      "const options = new DocumentBuilder()",
+      "\t.setTitle('${Title}')",
+      "\t.setDescription('${desc}')",
+      "\t.setVersion('${Version:1.0}')",
+      "\t.build();",
+      "const document = SwaggerModule.createDocument(app, options);",
+      "SwaggerModule.setup('api', app, document);",
+      "$0"
+    ]
+  },
+  "Nest Controller": {
+    "prefix": "nest-controller",
+    "description": "Nest Controller",
+    "types": "typescript",
+    "body": [
+      "import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';",
+      "import { ${ClassName}Service } from './${className}.service';",
+      "import { ${ClassName_singular}Dto } from './${className_singular}.dto';",
+      "",
+      "@Controller('${className}')",
+      "export class ${ClassName}Controller {",
+      "  constructor(private ${className}Service: ${ClassName}Service) {}",
+      "",
+      "  @Get()",
+      "  get${ClassName}() {",
+      "    return this.${className}Service.get${ClassName}();",
+      "  }",
+      "",
+      "  // findOne(@Param('id') id: string):  ${ClassName_singular}Dto {",
+      "  @Get(':id')",
+      "  get${ClassName_singular}(@Param('id') id: string): ${ClassName_singular}Dto {",
+      "    return this.${className}Service.get${ClassName_singular}(id);",
+      "  }",
+      "",
+      "  @Post()",
+      "  create${ClassName_singular}(@Body() ${className_singular}: ${ClassName_singular}Dto) {",
+      "    this.${className}Service.create${ClassName_singular}(${className_singular});",
+      "  }",
+      "",
+      "  @Put()",
+      "  update${ClassName_singular}(@Body() ${className_singular}: ${ClassName_singular}Dto) {",
+      "    this.${className}Service.update${ClassName_singular}(${className_singular});",
+      "  }",
+      "",
+      "  /**",
+      "    * Delete ${className_singular}",
+      "    * @param id",
+      "    */",
+      "  @Delete()",
+      "  delete${ClassName_singular}(@Param('id') id: string) {",
+      "    this.${className}Service.delete${ClassName_singular}(id);",
+      "  }",
+      "}",
+      "$0"
+    ]
+  },
+  "Nest Service": {
+    "prefix": "nest-service",
+    "description": "Nest Service",
+    "types": "typescript",
+    "body": [
+      "import { ${ClassName_singular}Dto } from './${className_singular}.dto';",
+      "import { Injectable } from '@nestjs/common';",
+      "",
+      "@Injectable()",
+      "export class ${ClassName}Service {",
+      "",
+      "  ${className}: ${ClassName_singular}Dto[] = [{",
+      "    id: '1',",
+      "    name: 'A SPA app',",
+      "  },",
+      "  {",
+      "    id: '2',",
+      "    name: 'A Nest API',",
+      "  }];",
+      "",
+      "  get${ClassName}() {",
+      "    return this.${className};",
+      "  }",
+      "",
+      "  get${ClassName_singular}(id: string) {",
+      "    return this.get${ClassName}().filter(p => p.id === id);",
+      "}",
+      "",
+      "  create${ClassName_singular}(${className_singular}) {",
+      "    this.${className} = [...this.${className}, {...${className_singular}}];",
+      "  }",
+      "",
+      "  update${ClassName_singular}(${className_singular}) {",
+      "    this.${className} = this.${className}.map(p => {",
+      "      if (p.id === ${className_singular}.id) {",
+      "        return { ...${className_singular}};",
+      "      }",
+      "      return p;",
+      "    });",
+      "  }",
+      "",
+      "  delete${ClassName_singular}(id: string) {",
+      "    this.${className} = this.${className}.filter(p => p.id !== id);",
+      "  }",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Component": {
+    "prefix": "ng-component",
+    "description": "Component with template and style urls",
+    "types": "typescript",
+    "body": [
+      "import { Component, OnInit } from '@angular/core';",
+      "",
+      "@Component({",
+      "\tselector: '${1:app}-${2:name}',",
+      "\ttemplateUrl: './${2:name}.component.html',",
+      "\tstyleUrls: ['./${2:name}.component.${3|scss,less,css|}']",
+      "})",
+      "export class ${4:Name}Component implements OnInit {",
+      "\tconstructor($5) { }",
+      "",
+      "\tngOnInit(): void {${6: }}",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Component Inline": {
+    "prefix": "ng-component-inline",
+    "description": "Component with inline Template and Styles",
+    "types": "typescript",
+    "body": [
+      "import { Component, OnInit } from '@angular/core';",
+      "",
+      "@Component({",
+      "\tselector: '${1:app}-${2:name}',",
+      "\ttemplate: `${3}`,",
+      "\tstyles: [`${4}`]",
+      "})",
+      "export class ${5:Name}Component implements OnInit {",
+      "\tconstructor($6) { }",
+      "",
+      "\tngOnInit(): void {${7: }}",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Component With NG_VALUE_ACCESSOR": {
+    "prefix": "ng-component-value-accessor",
+    "description": "Angular Component With NG_VALUE_ACCESSOR",
+    "types": "typescript",
+    "body": [
+      "import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';",
+      "import { Component, Input, OnInit, forwardRef } from '@angular/core';",
+      "",
+      "export const ${1:COMPONENT_NAME}_VALUE_ACCESSOR: any = {",
+      "\tprovide: NG_VALUE_ACCESSOR,",
+      "\tuseExisting: forwardRef(() => ${2:ComponentName}Component),",
+      "\tmulti: true",
+      "};",
+      "",
+      "@Component({",
+      "\tselector: '${3:selector-name}',",
+      "\ttemplateUrl: './${4:name}.component.html',",
+      "\tstyleUrls: ['./${4:name}.component.css'],",
+      "\tproviders: [${1:COMPONENT_NAME}_VALUE_ACCESSOR]",
+      "})",
+      "export class ${2:ComponentName}Component implements OnInit, ControlValueAccessor {",
+      "",
+      "\tprivate _value: any;",
+      "",
+      "\tset value(value: any) {",
+      "\t\tthis._value = value;",
+      "\t\tthis.notifyValueChange();",
+      "\t}",
+      "",
+      "\tget value(): any {",
+      "\t\treturn this._value;",
+      "\t}",
+      "",
+      "\tonChange: (value) => {};",
+      "\tonTouched: () => {};",
+      "",
+      "\tconstructor() { }",
+      "",
+      "\tnotifyValueChange(): void {",
+      "\t\tif (this.onChange) {",
+      "\t\t\tthis.onChange(this.value);",
+      "\t\t}",
+      "\t}",
+      "",
+      "\tngOnInit(): void {",
+      "\t\t",
+      "\t}",
+      "",
+      "\twriteValue(obj: any): void {",
+      "\t\tthis._value = obj;",
+      "\t}",
+      "",
+      "\tregisterOnChange(fn: any): void {",
+      "\t\tthis.onChange = fn;",
+      "\t}",
+      "",
+      "\tregisterOnTouched(fn: any): void {",
+      "\t\tthis.onTouched = fn;",
+      "\t}",
+      "",
+      "\tsetDisabledState(isDisabled: boolean): void {",
+      "\t}",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Validator": {
+    "prefix": "ng-validator",
+    "description": "Angular validator snippet",
+    "types": "typescript",
+    "body": [
+      "import { Directive } from '@angular/core';",
+      "import { NG_VALIDATORS, AbstractControl, Validator, ValidationErrors } from '@angular/forms';",
+      "",
+      "@Directive({",
+      "\tselector: '[${validatorName}][ngModel]',",
+      "\tproviders: [",
+      "\t\t{ provide: NG_VALIDATORS, useExisting: ${className}, multi: true }",
+      "\t]",
+      "})",
+      "",
+      "export class ${className} implements Validator {",
+      "\tvalidate(c: AbstractControl): ValidationErrors | null {",
+      "\t\tif (valid) {",
+      "\t\t\treturn null;",
+      "\t\t}",
+      "",
+      "\t\treturn {",
+      "\t\t\t${validatorName}: {",
+      "\t\t\t\tvalid: false",
+      "\t\t\t}",
+      "\t\t};",
+      "\t}",
+      "}"
+    ]
+  },
+  "Angular Validator Function": {
+    "scope": "typescript",
+    "prefix": "ng-validator-fn",
+    "body": [
+      "export const validator = (parameters: any): ValidatorFn =>",
+      "\t(abstractControl: AbstractControl): ValidationErrors | null => {",
+      "\t\treturn null;",
+      "};"
+    ],
+    "description": "Angular Validator Function"
+  },
+    "Angular Async Validator": {
+    "prefix": "ng-async-validator",
+    "description": "Angular async validator snippet",
+    "types": "typescript",
+    "body": [
+      "import { Directive } from '@angular/core';",
+      "import { NG_ASYNC_VALIDATORS, AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';",
+      "import { Observable, of } from 'rxjs';",
+      "",
+      "@Directive({",
+      "\tselector: '[${validatorName}][ngModel]',",
+      "\tproviders: [",
+      "\t\t{ provide: NG_ASYNC_VALIDATORS, useExisting: ${className}, multi: true }",
+      "\t]",
+      "})",
+      "",
+      "export class ${className} implements AsyncValidator {",
+      "\tvalidate(c: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {",
+      "\t\tif (!c.value) return of(null);",
+      "",
+      "\t\treturn of({",
+      "\t\t\t'${validatorName}': true",
+      "\t\t});",
+      "\t}",
+      "}"
+    ]
+  },
+  "Angular Async Validator Function": {
+    "prefix": "ng-async-validator-fn",
+    "body": [
+      "export const validator = (parameters: any): AsyncValidatorFn =>",
+      "\t(abstractControl: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {",
+      "\t\treturn Promise.resolve(null);",
+      "\t};"
+    ],
+    "description": "Angular Async Validator Function"
+  },
+  "Angular Directive": {
+    "prefix": "ng-directive",
+    "description": "Directive template",
+    "types": "typescript",
+    "body": [
+      "import { Directive } from '@angular/core';",
+      "",
+      "@Directive({",
+      "\tselector: '${1:app}-${2:Name}',",
+      "})",
+      "export class ${2:Name}Directive {${3: }}$0"
+    ]
+  },
+  "Angular CSS Directive": {
+    "prefix": "ng-directive-css",
+    "description": "CSS directive",
+    "types": "typescript",
+    "body": [
+      "import { Directive, ElementRef, Input } from '@angular/core';",
+      "",
+      "@Directive({",
+      "\tselector: '[${1:app}-${2:Name}]',",
+      "})",
+      "export class ${2:Name}Directive {",
+      "\tconstructor(private elementRef: ElementRef) {}",
+      "",
+      "\tprivate ${3:name}(${4:value}: string) {",
+      "\t\tthis.elementRef.nativeElement.style.${5:property} = ${6:value};",
+      "\t}",
+      "}$0"
+    ]
+  },
+  "Angular Attribute Directive": {
+    "prefix": "ng-directive-attribute",
+    "description": "Attribute directive",
+    "types": "typescript",
+    "body": [
+      "import { Directive } from '@angular/core';",
+      "",
+      "@Directive({",
+      "\tselector: '[${1:app}-${2:Name}]',",
+      "})",
+      "export class ${2:Name}Directive {${4: }}$0"
+    ]
+  },
+  "Angular Service": {
+    "prefix": "ng-service",
+    "description": "Basic service",
+    "types": "typescript",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${Name}Service {",
+      "$0}"
+    ]
+  },
+  "Angular Bootstrapping": {
+    "prefix": "ng-bootstraping",
+    "description": "Bootstraping example",
+    "types": "typescript",
+    "body": [
+      "import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';",
+      "import { enableProdMode } from '@angular/core';",
+      "import { AppModule } from './app/app.module';",
+      "",
+      "if (environment.production) {",
+      "\tenableProdMode();",
+      "}",
+      "platformBrowserDynamic().bootstrapModule(AppModule)",
+      "\t.then(success => console.log(`Bootstrap success`))",
+      "\t.catch(err => console.error(err));",
+      "",
+      "// Move to separate file",
+      "export const environment = {",
+      "\tproduction: false",
+      "};"
+    ]
+  },
+  "Angular Feature Module": {
+    "prefix": "ng-module",
+    "description": "Feature Module",
+    "types": "typescript",
+    "body": [
+      "import { NgModule } from '@angular/core';",
+      "import { CommonModule } from '@angular/common';",
+      "",
+      "@NgModule({",
+      "\tdeclarations: [],",
+      "\timports: [ CommonModule ],",
+      "\texports: [],",
+      "\tproviders: [],",
+      "})",
+      "export class ${Feature}Module {}"
+    ]
+  },
+  "Angular Root Module": {
+    "prefix": "ng-module-root",
+    "description": "App root module",
+    "types": "typescript",
+    "body": [
+      "import { NgModule } from '@angular/core';",
+      "import { BrowserModule } from '@angular/platform-browser';",
+      "import { ${App}Component }  from './${app}.component';",
+      "",
+      "@NgModule({",
+      "\tdeclarations: [ ${App}Component ],",
+      "\timports: [ BrowserModule ],",
+      "\tproviders: [],",
+      "\tbootstrap: [ ${App}Component ]",
+      "})",
+      "export class ${App}Module {}"
+    ]
+  },
+  "Angular Material Module": {
+    "prefix": "ng-material-module",
+    "description": "App Material Module",
+    "types": "typescript",
+    "body": [
+      "import {NgModule} from '@angular/core';",
+      "import {",
+      "\tMatAutocompleteModule,",
+      "\tMatBadgeModule,",
+      "\tMatBottomSheetModule,",
+      "\tMatButtonModule,",
+      "\tMatButtonToggleModule,",
+      "\tMatCardModule,",
+      "\tMatCheckboxModule,",
+      "\tMatChipsModule,",
+      "\tMatDatepickerModule,",
+      "\tMatDialogModule,",
+      "\tMatDividerModule,",
+      "\tMatExpansionModule,",
+      "\tMatFormFieldModule,",
+      "\tMatGridListModule,",
+      "\tMatIconModule,",
+      "\tMatInputModule,",
+      "\tMatListModule,",
+      "\tMatMenuModule,",
+      "\tMatNativeDateModule,",
+      "\tMatPaginatorModule,",
+      "\tMatProgressBarModule,",
+      "\tMatProgressSpinnerModule,",
+      "\tMatRadioModule,",
+      "\tMatRippleModule,",
+      "\tMatSelectModule,",
+      "\tMatSidenavModule,",
+      "\tMatSliderModule,",
+      "\tMatSlideToggleModule,",
+      "\tMatSnackBarModule,",
+      "\tMatSortModule,",
+      "\tMatStepperModule,",
+      "\tMatTableModule,",
+      "\tMatTabsModule,",
+      "\tMatToolbarModule,",
+      "\tMatTooltipModule,",
+      "\tMatTreeModule,",
+      "} from '@angular/material';",
+      "import {A11yModule} from '@angular/cdk/a11y';",
+      "import {BidiModule} from '@angular/cdk/bidi';",
+      "import {ObserversModule} from '@angular/cdk/observers';",
+      "import {OverlayModule} from '@angular/cdk/overlay';",
+      "import {PlatformModule} from '@angular/cdk/platform';",
+      "import {PortalModule} from '@angular/cdk/portal';",
+      "import {CdkStepperModule} from '@angular/cdk/stepper';",
+      "import {CdkTableModule} from '@angular/cdk/table';",
+      "import {CdkTreeModule} from '@angular/cdk/tree';",
+      "import {DragDropModule} from '@angular/cdk/drag-drop';",
+      "",
+      "/**",
+      " * NgModule that includes all Material modules.",
+      "*/",
+      "@NgModule({",
+      "\texports: [",
+      "\t\t// CDK",
+      "\t\tA11yModule,",
+      "\t\tBidiModule,",
+      "\t\tObserversModule,",
+      "\t\tOverlayModule,",
+      "\t\tPlatformModule,",
+      "\t\tPortalModule,",
+      "\t\tCdkStepperModule,",
+      "\t\tCdkTableModule,",
+      "\t\tCdkTreeModule,",
+      "\t\tDragDropModule,",
+      "\t\t// Material",
+      "\t\tMatAutocompleteModule,",
+      "\t\tMatBadgeModule,",
+      "\t\tMatBottomSheetModule,",
+      "\t\tMatButtonModule,",
+      "\t\tMatButtonToggleModule,",
+      "\t\tMatCardModule,",
+      "\t\tMatCheckboxModule,",
+      "\t\tMatChipsModule,",
+      "\t\tMatDatepickerModule,",
+      "\t\tMatDialogModule,",
+      "\t\tMatDividerModule,",
+      "\t\tMatExpansionModule,",
+      "\t\tMatFormFieldModule,",
+      "\t\tMatGridListModule,",
+      "\t\tMatIconModule,",
+      "\t\tMatInputModule,",
+      "\t\tMatListModule,",
+      "\t\tMatMenuModule,",
+      "\t\tMatNativeDateModule,",
+      "\t\tMatPaginatorModule,",
+      "\t\tMatProgressBarModule,",
+      "\t\tMatProgressSpinnerModule,",
+      "\t\tMatRadioModule,",
+      "\t\tMatRippleModule,",
+      "\t\tMatSelectModule,",
+      "\t\tMatSidenavModule,",
+      "\t\tMatSliderModule,",
+      "\t\tMatSlideToggleModule,",
+      "\t\tMatSnackBarModule,",
+      "\t\tMatSortModule,",
+      "\t\tMatStepperModule,",
+      "\t\tMatTableModule,",
+      "\t\tMatTabsModule,",
+      "\t\tMatToolbarModule,",
+      "\t\tMatTooltipModule,",
+      "\t\tMatTreeModule,",
+      "\t]",
+      "})",
+      "export class MaterialModule {}"
+    ]
+  },
+  "Angular Pipe": {
+    "prefix": "ng-pipe",
+    "description": "Pipe template",
+    "types": "typescript",
+    "body": [
+      "import { Pipe, PipeTransform } from '@angular/core';",
+      "",
+      "@Pipe({name: '${name}'})",
+      "export class ${Name}Pipe implements PipeTransform {",
+      "\ttransform(value: any): any {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+  "Angular Pipe Example": {
+    "prefix": "ng-pipe-example",
+    "description": "Angular pipe example",
+    "types": "typescript",
+    "body": [
+      "import { Pipe, PipeTransform } from '@angular/core';",
+      "/*",
+      " * Raise the value exponentially",
+      " * Takes an exponent argument that defaults to 1.",
+      " * Usage:",
+      " *   value | exponentialStrength:exponent",
+      " * Example:",
+      " *   {{ 2 |  exponentialStrength:10}}",
+      " *   formats to: 1024",
+      "*/",
+      "@Pipe({name: 'exponentialStrength'})",
+      "export class ExponentialStrengthPipe implements PipeTransform {",
+      "\ttransform(value: number, exponent: string): number {",
+      "\t\tlet exp = parseFloat(exponent);",
+      "\t\treturn Math.pow(value, isNaN(exp) ? 1 : exp);",
+      "\t}",
+      "}"
+    ]
+  },
+  "Angular UpperCase Pipe": {
+    "prefix": "ng-pipe-uppercase",
+    "description": "Uppercase pipe",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | uppercase }}$0"
+    ]
+  },
+  "Angular LowerCase Pipe": {
+    "prefix": "ng-pipe-lowercase",
+    "description": "Lowercase pipe",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | lowercase }}$0"
+    ]
+  },
+  "Angular TitleCase Pipe": {
+    "prefix": "ng-pipe-titlecase",
+    "description": "v4: Titlecase pipe",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | titlecase }}$0"
+    ]
+  },
+  "Angular Date Pipe": {
+    "prefix": "ng-pipe-date",
+    "description": "Date pipe - Default format: 09/15/1971",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | date }}$0"
+    ]
+  },
+  "Angular Custom Date Pipe": {
+    "prefix": "ng-pipe-date-custom",
+    "description": "Date pipe - Format: \"MM/dd/yy\" = 09/15/71",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | date:\"MM/dd/yy\" }}$0"
+    ]
+  },
+  "Angular Short Date Pipe": {
+    "prefix": "ng-pipe-date-short",
+    "description": "Short date pipe - Format: 09/15/1971",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | date:shortDate }}$0"
+    ]
+  },
+  "Angular Full Date Pipe": {
+    "prefix": "ng-pipe-date-full",
+    "description": "Full date pipe - Format: Wednesday, September 15, 1971",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | date:fullDate }}$0"
+    ]
+  },
+  "Angular Percent Pipe": {
+    "prefix": "ng-pipe-percent",
+    "description": "Percent pipe - Usage: number_expression &#x7c; percent[:digitInfo]",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | percent:${digitInfo} }}$0"
+    ]
+  },
+  "Angular Decimal Pipe": {
+    "prefix": "ng-pipe-decimal",
+    "description": "Decimal pipe - Usage: number_expression &#x7c; number[:digitInfo]",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | number:${digitInfo} }}$0"
+    ]
+  },
+  "Angular Slice Pipe": {
+    "prefix": "ng-pipe-slice",
+    "description": "Slice pipe - Usage: array_or_string_expression &#x7c; slice:start[:end]",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | slice:${start}:${end} }}$0"
+    ]
+  },
+  "Angular Currency Pipe": {
+    "prefix": "ng-pipe-currency",
+    "description": "Currency pipe - Usage: money &#x7c; currency:'EUR'",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${variable} | currency:'${CURRENCY}' }}$0"
+    ]
+  },
+  "Angular Json Pipe": {
+    "prefix": "ng-pipe-json",
+    "description": "Json pipe - Usage: object &#x7c; json",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${object} | json }}$0"
+    ]
+  },
+  "Angular Async Pipe": {
+    "prefix": "ng-pipe-async",
+    "description": "Async pipe - Usage: observable_or_promise_expression &#x7c; async",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${observable} | async }}$0"
+    ]
+  },
+  "Angular Lifecycle OnChanges Hook": {
+    "prefix": "ng-ngOnChanges",
+    "description": "Lifecycle hook: Called before any other lifecycle hook",
+    "types": "typescript",
+    "body": [
+      "ngOnChanges(changes: SimpleChanges): void {",
+      "\t//Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.",
+      "\t//Add '${implements OnChanges}' to the class.",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Angular Lifecycle OnInit Hook": {
+    "prefix": "ng-onInit",
+    "description": "Lifecycle hook: Called after the constructor",
+    "types": "typescript",
+    "body": [
+      "ngOnInit(): void {",
+      "\t//Called after the constructor, initializing input properties, and the first call to ngOnChanges.",
+      "\t//Add 'implements OnInit' to the class.",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Angular Lifecycle DoCheck Hook": {
+    "prefix": "ng-doCheck",
+    "description": "Lifecycle hook: Called every time that the input properties of a component or a directive are checked",
+    "types": "typescript",
+    "body": [
+      "ngDoCheck(): void {",
+      "\t//Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.",
+      "\t//Add 'implements DoCheck' to the class.",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Angular Lifecycle AfterContentInit Hook": {
+    "prefix": "ng-afterContentInit",
+    "description": "Lifecycle hook: Called after ngOnInit when the component's or directive's content has been initialized",
+    "types": "typescript",
+    "body": [
+      "ngAfterContentInit(): void {",
+      "\t//Called after ngOnInit when the component's or directive's content has been initialized.",
+      "\t//Add 'implements AfterContentInit' to the class.",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Angular Lifecycle AfterContentChecked Hook": {
+    "prefix": "ng-afterContentChecked",
+    "description": "Lifecycle hook: Called after every check of the component's or directive's content",
+    "types": "typescript",
+    "body": [
+      "ngAfterContentChecked(): void {",
+      "\t//Called after every check of the component's or directive's content.",
+      "\t//Add 'implements AfterContentChecked' to the class.",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Angular Lifecycle AfterViewInit Hook": {
+    "prefix": "ng-afterViewInit",
+    "description": "Lifecycle hook: Called after ngAfterContentInit when the component's view has been initialized",
+    "types": "typescript",
+    "body": [
+      "ngAfterViewInit(): void {",
+      "\t//Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.",
+      "\t//Add 'implements AfterViewInit' to the class.",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Angular Lifecycle AfterViewChecked Hook": {
+    "prefix": "ng-afterViewChecked",
+    "description": "Lifecycle hook: Called after every check of the component's view. Applies to components only",
+    "types": "typescript",
+    "body": [
+      "ngAfterViewChecked(): void {",
+      "\t//Called after every check of the component's view. Applies to components only.",
+      "\t//Add 'implements AfterViewChecked' to the class.",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Angular Lifecycle OnDestroy Hook": {
+    "prefix": "ng-onDestroy",
+    "description": "Lifecycle hook: Called before the instance is destroyed",
+    "types": "typescript",
+    "body": [
+      "ngOnDestroy(): void {",
+      "\t//Called once, before the instance is destroyed.",
+      "\t//Add 'implements OnDestroy' to the class.",
+      "\t$0",
+      "}"
+    ]
+  },
+  "Wat": {
+    "prefix": "wat",
+    "description": "A lightning talk by Gary Bernhardt from CodeMash 2012. ng-wat talk by Shai Reznik in 2015",
+    "types": "typescript",
+    "body": [
+      "`M.`MMMm                 ,M' .M.    MMMMMMM MMMMMMMMM",
+      " `M.`MMMm               ,M' .MMM.   MMMMMMM MMMMMMMMM",
+      "  `M.`MMMm             ,M' :MMMMM.        M MMMM     ",
+      "   `M.`MMMm     .m    ,M' . `MMMMM.       M MMMM     ",
+      "    `M.`MMMm    MMm  ,M' .M. `MMMMM.      M MMMM     ",
+      "     `M.`MMMm .`MMMm,M' .M`M. `MMMMM.     M MMMM     ",
+      "      `M.`MMMmM.`MMMM' .M' `M. `MMMMM.    M MMMM     ",
+      "       `M.`MMM`M.`MM' .M'   `M. `MMMMM.   M MMMM     ",
+      "        `M.`M' `M,`' .MMMMMMMMM. `MMMMM.  M MMMM     ",
+      "         `M.`   `M' .M'       `M. `MMMMM. M MMMM     "
+    ]
+  },
+  "Angular Conference": {
+    "prefix": "ng-conf",
+    "description": "The World's Original Angular Conference",
+    "types": "typescript",
+    "body": [
+      "                     ,//@@@.",
+      "                .///////@@@@@@@&.",
+      "           ,////////////@@@@@@@@@@@@@/",
+      "      ./////////////////#@@@@@@@@@@@@@@@@@,",
+      " ,/////////////////.         ,&@@@@@@@@@@@@@@@@#",
+      "/////////////.                     %@@@@@@@@@@@@@",
+      "/////////.                             .%@@@@@@@@",
+      "//////.                                   /@@@@@@",
+      "///////     @@%     .@@/    .@@@@@@/      %@@@@@@",
+      ".//////     @@@@(   .@@/   @@@%. ,@@@#    @@@@@@&",
+      ".//////     @@%@@@  .@@/  &@@             @@@@@@(",
+      " //////     @@# ,@@@.@@/  @@@   &@@@@@.   @@@@@@.",
+      " //////,    @@#   %@@@@/  ,@@@    *@@#   ,@@@@@@",
+      " //////.    @@#     @@@/    @@@@@@@@,    #@@@@@@",
+      " ,//////                                 @@@@@@&",
+      " .//////                                 @@@@@@/",
+      "  //////.      @@@  @@@  @@  @ @@@@     .@@@@@@.",
+      "  //////,     @    @   @ @ @ @ @==      (@@@@@@",
+      "  .//////      @@@  @@@  @  @@ @        &@@@@@@",
+      "  .///////.                           %@@@@@@@&",
+      "   ///////////                    ,@@@@@@@@@@@(",
+      "     ,///////////,             #@@@@@@@@@@@&",
+      "        .///////////.       &@@@@@@@@@@@%",
+      "           ./////////////@@@@@@@@@@@@*",
+      "              ./////////@@@@@@@@@@,",
+      "                  ./////@@@@@@%",
+      "                     .//@@@#",
+      "",
+      "     The World's Original Angular Conference",
+      "      May 1st–3rd 2019 Salt Lake City, Utah"
+    ]
+  },
+  "Angular Girls": {
+    "prefix": "ng-girls",
+    "description": "Angular Girls",
+    "types": "typescript",
+    "body": [
+      "                         *********",
+      "                   .*******************.",
+      "              ,*****************************,",
+      "          *****************************************",
+      "   ,***************************************************,",
+      "  *******************************************************",
+      "  *************@@@@@@@@@@&*******&@@@@@@@@@@*************",
+      "  ,*********@@@@@@@@@@@@@@@@***@@@@@@@@@@@@@@@@**********",
+      "   ******(((@@@@@@@@@@@@@@@@(((@@@@@@@@@@@@@@@@(((******",
+      "   ******&@@@@@@@&*******&@@@@@@@&*******&@@@@@@@&******",
+      "   ******&@@@@@*************@@@*************@@@@@&******",
+      "   ******&@@@@@*****************************@@@@@&*****,",
+      "    *****&@@@@@*****************************@@@@@&*****",
+      "    *****&@@@@@*****************************@@@@@&*****",
+      "    ********@@@@@&***********************&@@@@@********",
+      "    ********@@@@@&***********************&@@@@@*******,",
+      "    ,**********@@@@@*******************@@@@@**********",
+      "     **********@@@@@(((*************(((@@@@@**********",
+      "     ************&@@@@@*************@@@@@&************",
+      "     ***************@@@@@&*******&@@@@@***************",
+      "     ******************@@@@@***@@@@@*****************",
+      "     ******************&&@@@&&&@@@&&*****************",
+      "      *******************&@@@@@@@&*******************",
+      "       *********************@@@*********************",
+      "           *************************************",
+      "               *****************************",
+      "                   *********************",
+      "                      ***************",
+      "                         *********",
+      "",
+      "",
+      "                      Upcoming Events:",
+      "",
+      "                Apr 30th 2019, Salt Lake City",
+      "                 May, 11th, 2019, Budapest",
+      "                May 26th, 2019 - Copenhagen",
+      "               July, 7th, 2019, Kuala Lumpur",
+      "              July 26 - 27, 2019, Kansas City",
+      "                 August 29th, 2019, Berlin",
+      "                September 18th, 2019, London"
+    ]
+  },
+  "Angular Routing": {
+    "prefix": "ng-router",
+    "description": "Router template",
+    "types": "typescript",
+    "body": [
+      "import { Routes, RouterModule } from '@angular/router';",
+      "import { NgModule } from '@angular/core';",
+      "",
+      "import { ${Home}Component } from './';",
+      "import { ${Name2}Component } from './';",
+      "import { ${Name3}Component } from './';",
+      "import { ${Name4}Component } from './';",
+      "import { PageNotFoundComponent } from './';",
+      "",
+      "const routes: Routes = [",
+      "\t{ path: '', component: ${Home}Component },",
+      "\t{ path: '${path2}', component: ${Name2}Component },",
+      "\t{ path: '${path3}', component: ${Name3}Component },",
+      "\t{ path: '${path4}', component: ${Name4}Component },",
+      "\t{ path: '**', component: PageNotFoundComponent },",
+      "",
+      "\t//{ path: 'path/:routeParam', component: MyComponent },",
+      "\t//{ path: 'staticPath', component: ... },",
+      "\t//{ path: '**', component: ... },",
+      "\t//{ path: 'oldPath', redirectTo: '/staticPath' },",
+      "\t//{ path: ..., component: ..., data: { message: 'Custom' }",
+      "];",
+      "",
+      "@NgModule({",
+      "\timports: [RouterModule.forChild(routes)],",
+      "\texports: [RouterModule]",
+      "})",
+      "export class ${Feature}RoutingModule {}",
+      "$0"
+    ]
+  },
+  "Angular App Module Routes": {
+    "prefix": "ng-router-appmodule",
+    "description": "Routes to include in root module",
+    "types": "typescript",
+    "body": [
+      "import { NgModule } from '@angular/core';",
+      "import { RouterModule, Routes } from '@angular/router';",
+      "",
+      "const routes: Routes = [",
+      "\t{ path: '', component: ${Home}Component },",
+      "\t{ path: '${path}', component: ${Feature}Component },",
+      "\t{ path: '**', component: PageNotFoundComponent },",
+      "];",
+      "",
+      "@NgModule({",
+      "\timports: [RouterModule.forRoot(routes)],",
+      "\texports: [RouterModule]",
+      "})",
+      "export class AppRoutingModule {}",
+      "$0"
+    ]
+  },
+  "Angular Feature Module Routes": {
+    "prefix": "ng-router-featuremodule",
+    "description": "Routes to include in a feature module",
+    "types": "typescript",
+    "body": [
+      "import { NgModule } from '@angular/core';",
+      "import { RouterModule, Routes } from '@angular/router';",
+      "import { CommonModule } from '@angular/common';",
+      "",
+      "const routes: Routes = [",
+      "\t{ path: '${path}', component: ${Feature}Component }",
+      "];",
+      "",
+      "@NgModule({",
+      "\timports: [CommonModule, RouterModule.forChild(routes)],",
+      "\texports: [RouterModule]",
+      "})",
+      "export class ${Feature}RoutingModule {}",
+      "$0"
+    ]
+  },
+  "Angular Route Feature": {
+    "prefix": "ng-route-feature",
+    "description": "Angular Route Feature",
+    "types": "typescript",
+    "body": [
+      "{ path: '${path}', component: ${Feature}Component },$0"
+    ]
+  },
+  "Angular Route Lazy": {
+    "prefix": "ng-route-lazy",
+    "description": "Router link",
+    "types": "typescript",
+    "body": [
+      "{ path: '${path}', loadChildren: '${lazyPath}.module#${lazyModule}Module' },$0"
+    ]
+  },
+  "Angular Route Lazy Ivy": {
+    "prefix": "ng-route-lazy-ivy",
+    "description": "Router link",
+    "types": "typescript",
+    "body": [
+      "{ path: '${path}', loadChildren: () => import('${lazyPath}.module').then(m => m.${lazyModule}Module) },$0"
+    ]
+  },
+  "Angular Router Link": {
+    "prefix": "ng-router-link",
+    "description": "Router link",
+    "types": "typescript, html",
+    "body": [
+      "<a [routerLink]=\"[ '/${path}', ${routeParam} ]\">${name}</a>$0"
+    ]
+  },
+  "Angular Router Attribute": {
+    "prefix": "ng-router-attribute",
+    "description": "Router link",
+    "types": "typescript, html",
+    "body": [
+      "[routerLink]=\"[ '/${path}', ${routeParam} ]\"$0"
+    ]
+  },
+  "Angular Router Active Link": {
+    "prefix": "ng-router-linkActive",
+    "description": "Router active link",
+    "types": "typescript, html",
+    "body": [
+      "<a [routerLink]=\"[ '/${path}' ]\" routerLinkActive=\"active\">${name}</a>$0"
+    ]
+  },
+  "Angular Router Outlet": {
+    "prefix": "ng-router-outlet",
+    "description": "Router outlet element",
+    "types": "typescript, html",
+    "body": [
+      "<router-outlet></router-outlet>",
+      "$0"
+    ]
+  },
+  "Angular Router Outlet Name": {
+    "prefix": "ng-router-outlet-name",
+    "description": "Router outlet element with name",
+    "types": "typescript, html",
+    "body": [
+      "<router-outlet name=\"${name}\"></router-outlet>",
+      "$0"
+    ]
+  },
+  "Angular CanActivate Guard Route": {
+    "prefix": "ng-route-guard-canactivate",
+    "description": "CanActivate Guard Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${CanActivate}Guard implements CanActivate {",
+      "\tcanActivate(",
+      "\t\troute: ActivatedRouteSnapshot,",
+      "\t\tstate: RouterStateSnapshot",
+      "\t): Observable<boolean> | Promise<boolean> | boolean {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}",
+      ""
+    ]
+  },
+  "Angular CanActivateChild Guard Route": {
+    "prefix": "ng-route-guard-canactivatechild",
+    "description": "CanActivateChild Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${CanActivateChild}Guard implements CanActivateChild {",
+      "\tcanActivateChild(",
+      "\t\troute: ActivatedRouteSnapshot,",
+      "\t\tstate: RouterStateSnapshot",
+      "\t): Observable<boolean> | Promise<boolean> | boolean {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}",
+      ""
+    ]
+  },
+  "Angular Resolve Guard Route": {
+    "prefix": "ng-route-guard-resolve",
+    "description": "Resolve Guard Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${Resolve}Guard implements Resolve<${T}> {",
+      "\tresolve(",
+      "\t\troute: ActivatedRouteSnapshot,",
+      "\t\tstate: RouterStateSnapshot",
+      "\t): Observable<any> | Promise<any> | any {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}",
+      ""
+    ]
+  },
+  "Angular CanLoad Guard Route": {
+    "prefix": "ng-route-guard-canload",
+    "description": "CanLoad Guard Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { CanLoad, Route } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${CanLoad}Guard implements CanLoad {",
+      "\tcanLoad(",
+      "\t\t${route}: Route",
+      "\t): Observable<boolean> | Promise<boolean> | boolean {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}",
+      ""
+    ]
+  },
+  "Angular CanDeactivate Guard Route": {
+    "prefix": "ng-route-guard-candeactivate",
+    "description": "CanDeactivate Guard Route",
+    "types": "typescript, html",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';",
+      "import { Observable } from 'rxjs';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${CanDeactivate}Guard implements CanDeactivate<${T}> {",
+      "\tcanDeactivate(",
+      "\t\tcomponent: ${T},",
+      "\t\troute: ActivatedRouteSnapshot,",
+      "\t\tstate: RouterStateSnapshot",
+      "\t): Observable<boolean> | Promise<boolean> | boolean {",
+      "\t\treturn true;$0",
+      "\t}",
+      "}"
+    ]
+  },
+	"Angular Container": {
+		"types": "typescript, html",
+    "prefix": "ng-container",
+    "description": "Angular Container",
+    "body": [
+      "<ng-container>${1}</ng-container>",
+      "$0"
+    ]
+	},
+	"Angular Container with *ngFor": {
+		"types": "typescript, html",
+    "prefix": "ng-container-ngfor",
+    "description": "Angular Container with *ngFor",
+		"body": [
+			"<ng-container *ngFor=\"let ${1:item} of ${2:items}\">",
+			"  ${3:content}",
+			"</ng-container>",
+      "$0"
+    ]
+	},
+	"Angular Container with *ngTemplateOutlet": {
+		"types": "typescript, html",
+    "prefix": "ng-container-template",
+    "description": "Angular Container with *ngTemplateOutlet",
+		"body": [
+      "<ng-container *ngTemplateOutlet=\"${1}\"></ng-container>",
+      "$0"
+    ]
+	},
+	"Angular Container with *ngContainerOutlet": {
+		"types": "typescript, html",
+    "prefix": "ng-container-component",
+    "description": "Angular Container with *ngContainerOutlet",
+		"body": [
+      "<ng-container *ngComponentOutlet=\"${1}\"></ng-container>",
+      "$0"
+      ]
+	},
+	"Angular template": {
+		"types": "typescript, html",
+    "prefix": "ng-template",
+    "description": "Angular template",
+		"body": [
+      "<ng-template #${1:name}></ng-template>",
+      "$0"
+    ]
+  },
+  
+
+  "Angular ngRx Action": {
+    "prefix": "ngrx-action",
+    "description": "ngRx Action",
+    "types": "typescript",
+    "body": [
+      "export const ${ACTION} = createAction(",
+      "\t'[${NameSpace}] ${ACTION}'",
+      ");"
+    ]
+  },  
+  "Angular ngRx Action With Payload": {
+    "prefix": "ngrx-action-payload",
+    "description": "ngRx Action with Payload",
+    "types": "typescript",
+    "body": [
+      "export const ${ACTION} = createAction(",
+      "\t'[${NameSpace}] ${ACTION}',",
+      "\tprops<{${payloadType}}>()",
+      ");"
+    ]
+  },
+  "Angular ngRx Action Set": {
+    "prefix": "ngrx-action-set",
+    "description": "ngRx Action with Success and Failure actions",
+    "types": "typescript",
+    "body": [
+      "export const ${action} = createAction(",
+      "\t'[${NameSpace}] ${actionDescription}',",
+      ");",
+      "",
+      "export const ${action2}Success = createAction(",
+      "\t'[${NameSpace}] ${action2Description} Success',",
+      "\tprops<{${payload2Type}}>()",
+      ");",
+      "",
+      "export const ${action3}Failure = createAction(",
+      "\t'[${NameSpace}] ${action3Description} Failure',",
+      "\tprops<{${payload3Type}}>()",
+      ");",
+      ""
+    ]
+  },
+  "Angular ngRx Action Creator": {
+    "prefix": "ngrx-action-creator",
+    "description": "ngRx Actions",
+    "types": "typescript",
+    "body": [
+      "import { createAction } from '@ngrx/store';",
+      "",
+      "export const ${action} = createAction(",
+      "\t'[${nameSpace}] ${actionDescription}',",
+      "\tprops<{${payloadType}}>()",
+      ");",
+      "",
+      "export const ${action2}Success = createAction(",
+      "\t'[${nameSpace}] ${action2Description} Success',",
+      "\tprops<{${payload2Type}}>()",
+      ");",
+      "",
+      "export const ${action3}Failure = createAction(",
+      "\t'[${nameSpace}] ${action3Description} Failure',",
+      "\tprops<{${payload3Type}}>()",
+      ");",
+      ""
+    ]
+  },
+  "Angular ngRx Reducer": {
+    "prefix": "ngrx-reducer",
+    "description": "ngRx Reducer",
+    "types": "typescript",
+    "body": [
+      "import { createReducer } from '@ngrx/store';",
+      "import * as ${class} from '../actions/${class}';",
+      "",
+      "export interface State {",
+      " \t\t$1",
+      "};",
+      "",
+      "const initialState: State = {",
+      "\t\t$2",
+      "};",
+      "",
+      "export const reducer = createReducer(",
+      "\tinitialState,",
+      "\ton(",
+      "\t\t${class}.${action},",
+      "\t\t(state) => ({...state}),",
+      "\t),",
+      ");"
+    ]
+  },
+  "Angular ngRx Effect": {
+    "prefix": "ngrx-effect",
+    "description": "ngRx Effect",
+    "types": "typescript",
+    "body": [
+      "${2:name}$ = this.actions$.pipe(ofType(${1:actionNamespace}.${2:name}));"
+    ]
+  },
+  "Angular ngRx Effect Creator": {
+    "prefix": "ngrx-effect-create",
+    "description": "ngRx Effects Creator",
+    "types": "typescript",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { Actions, createEffect, ofType } from '@ngrx/effects';",
+      "import * as ${class} from '../actions/${class}';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${Name}Effects {",
+      "\tconstructor(private actions$: Actions) {}",
+      "",
+      "\t${actionName}$ = this.actions$.pipe(ofType(${class}.${actionName}));",
+      "",
+      "}"
+    ]
+  },
+
+  "Angular ngRx Util Old": {
+    "prefix": "ngrx-util-old",
+    "description": "ngRx Util",
+    "types": "typescript",
+    "body": [
+      "/**",
+      "\t* This function coerces a string into a string literal type.",
+      " * Using tagged union types in TypeScript 2.0, this enables",
+      " * powerful type checking of our reducers.",
+      " * ",
+      " * Since every action label passes through this function it",
+      " * is a good place to ensure all of our action labels",
+      " * are unique.",
+      " */",
+      "",
+      "let typeCache: { [label: string]: boolean } = {};",
+      "export function type<T>(label: T | ''): T {",
+      "\tif (typeCache[<string>label]) {",
+      "\t\tthrow new Error(`Action type \"${label}\" is not unique\"`);",
+      "\t}",
+      "",
+      "\ttypeCache[<string>label] = true;",
+      "",
+      "\treturn <T>label;",
+      "}"
+    ]
+  },
+  "Angular ngRx Reducer Old": {
+    "prefix": "ngrx-reducer-old",
+    "description": "ngRx Reducer",
+    "types": "typescript",
+    "body": [
+      "import * as ${class} from '../actions/${class}';",
+      "",
+      "export interface State {",
+      " \t\t$1",
+      "};",
+      "",
+      "const initialState: State = {",
+      "\t\t$2",
+      "};",
+      "",
+      "export function reducer(state = initialState, action: ${class}.Actions ): State {",
+      "\tswitch (action.type) {",
+      "\t\tcase ${class}.ActionTypes.${TYPE}: {",
+      "\t\t\treturn {",
+      "\t\t\t\t// return new ${class} state",
+      "\t\t\t};",
+      "\t\t}",
+      "",
+      "\t\tdefault: {",
+      "\t\t\treturn state;",
+      "\t\t}",
+      "\t}",
+      "}"
+    ]
+  },
+  "Angular ngRx Actions Old": {
+    "prefix": "ngrx-actions-old",
+    "description": "ngRx Actions class",
+    "types": "typescript",
+    "body": [
+      "import { Action } from '@ngrx/store';",
+      "",
+      "/**",
+      " * For each action type in an action group, make a simple",
+      " * enum object for all of this group's action types.",
+      " */",
+      "export enum ${Class}ActionTypes {",
+      "\t${Verb1} = '[${Class}] ${Verb1}',",
+      "\t${Verb2} = '[${Class}] ${Verb2}'",
+      "};",
+      "",
+      "/**",
+      " * Every action is comprised of at least a type and an optional",
+      " * payload. Expressing actions as classes enables powerful ",
+      " * type checking in reducer functions.",
+      " */",
+      "export class ${Verb1} implements Action {",
+      "\treadonly type = ${Class}ActionTypes.${Verb1};",
+      "",
+      "\tconstructor(public payload: ${payloadType}) { }",
+      "}",
+      "",
+      "export class ${Verb2} implements Action {",
+      "\treadonly type = ${Class}ActionTypes.${Verb2};",
+      "",
+      "\tconstructor(public payload: ${payloadType2}) { }",
+      "}",
+      "",
+      "/**",
+      " * Export a type alias of all actions in this action group",
+      " * so that reducers can easily compose action types",
+      " */",
+      "export type ${Class}Actions",
+      "\t\t\t\t\t\t= ${Verb1}",
+      "\t\t\t\t\t\t| ${Verb2};",
+      ""
+    ]
+  },
+  "Angular ngRx Root Module Old": {
+    "prefix": "ngrx-module-old",
+    "description": "ngRx Root Module",
+    "types": "typescript",
+    "body": [
+      "import { NgModule } from '@angular/core';",
+      "import { BrowserModule } from '@angular/platform-browser';",
+      "import { RouterModule } from '@angular/router';",
+      "import { StoreModule } from '@ngrx/store';",
+      "import { RouterStoreModule } from '@ngrx/router-store';",
+      "import { StoreDevtoolsModule } from '@ngrx/store-devtools';",
+      "import { ${App}Component }  from './${app}.component';",
+      "",
+      "import { routes } from './routes';",
+      "import { reducer } from './reducers';",
+      "",
+      "@NgModule({",
+      "\tdeclarations: [ ${App}Component ],",
+      "\timports: [",
+      "\t\tBrowserModule,",
+      "\t\tRouterModule.forRoot(routes, { useHash: true }),",
+      "\t\tStoreModule.provideStore(reducer),",
+      "\t\tRouterStoreModule.connectRouter(),",
+      "\t\tStoreDevtoolsModule.instrumentOnlyWithExtension(),",
+      "\t],",
+      "\tproviders: [],",
+      "\tbootstrap: [ ${App}Component ]",
+      "})",
+      "export class ${App}Module {}"
+    ]
+  },
+  "Angular ngRx Action Old": {
+    "prefix": "ngrx-action-const-old",
+    "description": "ngRx Single action",
+    "types": "typescript",
+    "body": [
+      "export const ${ACTION} = '[${NameSpace}] ${ACTION}';",
+      "$0"
+    ]
+  },
+  "Angular ngRx Action Creator Old": {
+    "prefix": "ngrx-action-creator-old",
+    "description": "ngRx Single action with const",
+    "types": "typescript",
+    "body": [
+      "export const ${ACTION} = '[${NameSpace}] ${ACTION}';",
+      "$0",
+      "export class ${Class} implements Action {",
+      "\treadonly type = ${ACTION};",
+      "",
+      "\tconstructor(public payload: ${payloadType}) { }",
+      "}",
+      ""
+    ]
+  },
+  "Angular ngRx Action Creator Enum Old": {
+    "prefix": "ngrx-action-creator-enum-old",
+    "description": "ngRx Single action creator for enum",
+    "types": "typescript",
+    "body": [
+      "export class ${Verb} implements Action {",
+      "\treadonly type = ${Class}ActionTypes.${Verb};",
+      "",
+      "\tconstructor(public payload: ${payloadType}) { }",
+      "}"
+    ]
+  },
+  "Angular ngRx Enum ActionTypes Old": {
+    "prefix": "ngrx-actiontypes-enum-old",
+    "description": "ngRx enum action types",
+    "types": "typescript",
+    "body": [
+      "export enum ${Class}ActionTypes {",
+      "\t${Verb1} = '[${Class}] ${Verb1}',",
+      "\t${Verb2} = '[${Class}] ${Verb2}'",
+      "}"
+    ]
+  },
+  "Angular ngRx Enum ActionType Old": {
+    "prefix": "ngrx-actiontype-enum-old",
+    "description": "ngRx enum action type",
+    "types": "typescript",
+    "body": [
+      "${Verb} = '[${Class}] ${Verb}'$0"
+    ]
+  },
+  "Angular ngRx Effect Old": {
+    "prefix": "ngrx-effect-old",
+    "description": "ngRx Effect",
+    "types": "typescript",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import { Observable } from 'rxjs';",
+      "import { Action } from '@ngrx/store';",
+      "import { Actions, Effect, ofType } from '@ngrx/effects';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${Name}Effects {",
+      "\t@Effect() ${name}$: Observable<Action> = this.actions$.pipe(ofType('${ACTIONTYPE}'))$1;",
+      "",
+      "\tconstructor(",
+      "\t\tprivate ${actions}$: Actions",
+      "\t) {}",
+      "}"
+    ]
+  },
+  "Angular Ngxs State": {
+    "prefix": "ngxs-state",
+    "description": "Ngxs State",
+    "types": "typescript",
+    "body": [
+      "import { State } from '@ngxs/store';",
+      "import { ${Name}StateModel } from './${name}.model';",
+      "",
+      "@State<${Name}StateModel>({",
+      "\tdefaults: {",
+      "\t}",
+      "})",
+      "export class ${Name}State {}",
+      "$0"
+    ]
+  },
+  "Angular Ngxs Action": {
+    "prefix": "ngxs-action",
+    "description": "Ngxs Action",
+    "types": "typescript",
+    "body": [
+      "export class ${Action} {",
+      "\tstatic readonly type = '[${FileName}] ${Action}]';",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Ngxs Action With Payload": {
+    "prefix": "ngxs-action-payload",
+    "description": "Ngxs Action with Payload",
+    "types": "typescript",
+    "body": [
+      "export class ${Action} {",
+      "\tstatic readonly type = '[${FileName}] ${Action}]';",
+      "\tconstructor(public readonly payload?: ${type:any}) {}",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Ngxs State Model": {
+    "prefix": "ngxs-state-model",
+    "description": "Ngxs State Model",
+    "types": "typescript",
+    "body": [
+      "export interface ${Name}StateModel {$1",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Ngxs Store": {
+    "prefix": "ngxs-store",
+    "description": "Ngxs Store",
+    "types": "typescript",
+    "body": [
+      "NgxsModule.forRoot([",
+      "\t${Name}State",
+      "])",
+      "NgxsReduxDevtoolsPluginModule.forRoot(),",
+      "NgxsLoggerPluginModule.forRoot()$0"
+    ]
+  },
+  "Angular Ngxs Import Store": {
+    "prefix": "ngxs-store-import",
+    "description": "Ngxs Import Store",
+    "types": "typescript",
+    "body": [
+      "import { NgxsModule } from '@ngxs/store';",
+      "import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';",
+      "import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';",
+      "import { ${Name}State } from './${path}/${name}.state';",
+      "$0"
+    ]
+  },
+  "Angular Ngxs Select": {
+    "prefix": "ngxs-select",
+    "description": "Ngxs Select",
+    "types": "typescript",
+    "body": [
+      "import { Select } from '@ngxs/store';",
+      "",
+      "import { ${Name} State } from './${name}.state';",
+      "import { ${action} } from './${action}.actions';",
+      "",
+      "@Component({ ... })",
+      "export class ${Name}Component {",
+      " // Reads the name of the store from the store class",
+      " @Select(${Name}State) ${action}$: Observable<${type}>;",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Test Synchronous Component Old": {
+    "prefix": "t-component-sync-old",
+    "description": "Test Synchronous Component",
+    "types": "typescript",
+    "body": [
+      "beforeEach(() => {",
+      "\tfixture = TestBed.createComponent(${Name}Component);",
+      "\tcomp    = fixture.componentInstance;",
+      "\t${className}El  = fixture.debugElement.query(By.css('.${className}')); // find the element",
+      "",
+      "\t// pretend that it was wired to something that supplied a ${className}",
+      "\texpected${ClassName} = new ${ClassName}($1);",
+      "\tcomp.${className} = expected${ClassName};",
+      "\tfixture.detectChanges(); // trigger initial data binding",
+      "});",
+      "$0"
+    ]
+  },
+  "Angular Test Synchronous Component": {
+    "prefix": "t-component-sync",
+    "description": "Test Synchronous Component",
+    "types": "typescript",
+    "body": [
+      "import { ComponentFixture, TestBed } from '@angular/core/testing';",
+      "import { ${Name}Component } from './${file}.component';",
+      "import { NO_ERRORS_SCHEMA } from '@angular/core';",
+      "",
+      "describe('${Name}Component', () => {",
+      "\tlet component: ${Name}Component;",
+      "\tlet fixture: ComponentFixture<${Name}Component>;",
+      "",
+      "\tbeforeEach(() => {",
+      "\t\tTestBed.configureTestingModule({",
+      "\t\t\tdeclarations: [${Name}Component],",
+      "\t\t\timports: [",
+      "\t\t\t],",
+      "\t\t\tproviders: [",
+      "\t\t\t],",
+      "\t\t\tschemas: [NO_ERRORS_SCHEMA]",
+      "\t\t});",
+      "",
+       "\t\tfixture = TestBed.createComponent(${Name}Component);",
+      "\t\tcomponent = fixture.componentInstance;",
+      "\t});",
+      "",
+      "\tdescribe('constructor', () => {",
+      "\t\tit('should create instance', () => {",
+      "\t\t\texpect(component).toBeDefined();",
+      "\t\t});",
+      "\t});",
+      "});",
+      "$0"
+    ]
+  },
+  "Angular Test Module": {
+    "prefix": "t-module",
+    "description": "Test Module",
+    "types": "typescript",
+    "body": [
+      "import { TestBed } from '@angular/core/testing';",
+      "import { ${Name}Module } from './${name}.module';",
+      "",
+      "describe('${Name}Module', () => {",
+      "\tlet module: ${Name}Module;",
+      "",
+      "\tbeforeEach(() => {",
+      "\t\tTestBed.configureTestingModule({",
+      "\t\t\tproviders: [${Name}Module]",
+      "\t\t});",
+      "\t\t",
+      "\t\tmodule = TestBed.get(${Name}Module);",
+      "\t});",
+      "",
+      "\tit('should load module', () => {",
+      "\t\texpect(module).toBeDefined();",
+      "\t});",
+      "});",
+      "$0"
+    ]
+  },
+  "Angular Test Async Component": {
+    "prefix": "t-component-async",
+    "description": "Test Async Component",
+    "types": "typescript",
+    "body": [
+      "// async beforeEach",
+      "beforeEach( async(() => {",
+      "\tTestBed.configureTestingModule({",
+      "\t\tdeclarations: [ ${Name}Component ],",
+      "\t})",
+      "\t.compileComponents(); // compile template and css",
+      "}));",
+      "$0"
+    ]
+  },
+  "Angular Test Directive": {
+    "prefix": "t-directive",
+    "description": "Test a directive",
+    "types": "typescript",
+    "body": [
+      "describe('${Name}Directive', () => {",
+      "\tit('should create an instance', () => {",
+      "\t\tconst directive = new ${Name}Directive();",
+      "\t\texpect(directive).toBeTruthy();",
+      "\t});",
+      "});",
+      "$0"
+    ]
+  },
+  "Angular Test Service": {
+    "prefix": "t-service",
+    "description": "Test a service",
+    "types": "typescript",
+    "body": [
+      "import { TestBed, inject } from '@angular/core/testing';",
+      "import { ${Name}Service } from './${name}.service';",
+      "",
+      "describe('${Name}Service', () => {",
+      "\tbeforeEach(() => {",
+      "\t\tTestBed.configureTestingModule({",
+      "\t\t\tproviders: [${Name}Service]",
+      "\t\t});",
+      "\t});",
+      "it('should be created', inject([${Name}Service], (service: ${Name}Service) => {",
+      "\texpect(service).toBeTruthy();",
+      "\t}));",
+      "});",
+      "$0"
+    ]
+  },
+  "Angular Test Pipe": {
+    "prefix": "t-pipe",
+    "description": "Test a pipe",
+    "types": "typescript",
+    "body": [
+      "import {${Name}Pipe} from './${filename}pipe';",
+      "",
+      "describe('${Name}Pipe', () => {",
+      "\tlet pipe:InitCapsPipe;",
+      "\tbeforeEach(() => {",
+      "\t\tpipe = new ${Name}Pipe();",
+      "\t});",
+      "",
+      "\tit('should transforms \"${input}\" to \"${output}\"', () => {",
+      "\t\texpect(pipe.transform('${input}')).toBe('${output}');",
+      "\t});",
+      "});",
+      "$0"
+    ]
+  },
+  "Angular ngModel Directive": {
+    "prefix": "ng-model",
+    "description": "ngModel directive: [(ngModel)]=\"name\"",
+    "types": "typescript, html",
+    "body": [
+      "[(ngModel)]=\"${name}\"$0"
+    ]
+  },
+  "Angular If Directive": {
+    "prefix": "ng-if",
+    "description": "If directive: *ngIf=\"expression\"",
+    "types": "typescript, html",
+    "body": [
+      "*ngIf=\"${expression}\"$0"
+    ]
+  },
+  "Angular If Else Directive": {
+    "prefix": "ng-if-else",
+    "description": "v4: If else directive: *ngIf=\"expression; else\"",
+    "types": "typescript, html",
+    "body": [
+      "<ng-container *ngIf=\"${expression}; else ${elseTemplate}\">",
+      "\t$1",
+      "</ng-container>",
+      "<ng-template #${elseTemplate}>",
+      "\t$2",
+      "</ng-template>",
+      "$0"
+    ]
+  },
+  "Angular If Then Else Directive": {
+    "prefix": "ng-if-then-else",
+    "description": "v4: If then else directive: *ngIf=\"expression; then; else\"",
+    "types": "typescript, html",
+    "body": [
+      "<ng-container *ngIf=\"${expression}; then ${thenTemplate}; else ${elseTemplate}\"></ng-container>",
+      "<ng-template #${thenTemplate}>",
+      "\t$1",
+      "</ng-template>",
+      "<ng-template #${elseTemplate}>",
+      "\t$2",
+      "</ng-template>",
+      "$0"
+    ]
+  },
+  "Angular For-loop Directive": {
+    "prefix": "ng-for",
+    "description": "For-loop directive",
+    "types": "typescript, html",
+    "body": [
+      "*ngFor=\"let ${item} of ${items}\"$0"
+    ]
+  },
+  "Angular For-loop Directive with li element": {
+    "prefix": "ng-for-li",
+    "description": "For-loop directive with li element",
+    "types": "typescript, html",
+    "body": [
+      "<li *ngFor=\"let ${item} of ${items}\">$0</li>"
+    ]
+  },
+  "Angular For-loop Directive with index": {
+    "prefix": "ng-for-index",
+    "description": "For-loop directive with index",
+    "types": "typescript, html",
+    "body": [
+      "*ngFor=\"let ${item} of ${items}; let i=index\"$0"
+    ]
+  },
+  "Angular For-loop Directive with trackBy": {
+    "prefix": "ng-for-trackBy",
+    "description": "For-loop directive with trackBy",
+    "types": "typescript, html",
+    "body": [
+      "*ngFor=\"let ${item} of ${items}; trackBy:${item}.id\"$0"
+    ]
+  },
+  "Angular Class": {
+    "prefix": "ng-class",
+    "description": "CSS class",
+    "types": "typescript, html",
+    "body": [
+      "[ngClass]=\"{'${class}': ${true}}\"$0"
+    ]
+  },
+  "Angular Style": {
+    "prefix": "ng-style",
+    "description": "CSS style",
+    "types": "typescript, html",
+    "body": [
+      "[ngStyle]=\"{'${property}': ${expression}}\"$0"
+    ]
+  },
+  "Angular Switch": {
+    "prefix": "ng-switch",
+    "description": "Switch template",
+    "types": "typescript, html",
+    "body": [
+      "<${container} [ngSwitch]=\"\">",
+      "<${element} *ngSwitchCase=\"true\">",
+      "",
+      "</${element}>",
+      "<${element} *ngSwitchCase=\"false\">",
+      "",
+      "</${element}>",
+      "<${element} *ngSwitchDefault>",
+      "",
+      "</${element}>",
+      "</${container}>"
+    ]
+  },
+  "Angular Property": {
+    "prefix": "ng-property",
+    "description": "Property: [property]=\"expression\"",
+    "types": "typescript, html",
+    "body": [
+      "[${property}]=\"${expression}\"$0"
+    ]
+  },
+  "Angular Event": {
+    "prefix": "ng-event",
+    "description": "Event: (event) = \"onEvent()\"",
+    "types": "typescript, html",
+    "body": [
+      "(${event}) = \"on${Event}()\"$0"
+    ]
+  },
+  "Angular Input Property": {
+    "prefix": "ng-input",
+    "description": "Class Input Property",
+    "types": "typescript",
+    "body": [
+      "@Input() ${class}: ${Class};$0"
+    ]
+  },
+  "Angular Output Event": {
+    "prefix": "ng-output",
+    "description": "Class Output Event",
+    "types": "typescript",
+    "body": [
+      "@Output() ${methodName} = new EventEmitter<${Class}>();$0"
+    ]
+  },
+  "Angular Oneway Binding": {
+    "prefix": "ng-binding-oneway",
+    "description": "Property: [property]=\"expression\"",
+    "types": "typescript, html",
+    "body": [
+      "[${property}]=\"${expression}\"$0"
+    ]
+  },
+  "Angular Twoway Binding": {
+    "prefix": "ng-binding-twoway",
+    "description": "Two-way data binding with the NgModel",
+    "types": "typescript, html",
+    "body": [
+      "[(ngModel)]=\"${Name}\"$0"
+    ]
+  },
+  "Angular Interpolation": {
+    "prefix": "ng-interpolation",
+    "description": "Interpolation: {{ interpolation }}",
+    "types": "typescript, html",
+    "body": [
+      "{{ ${interpolation} }}$0"
+    ]
+  },
+  "Angular 1 Loop Directive": {
+    "prefix": "ng-repeat",
+    "description": "Use ngFor instead.",
+    "types": "typescript, html",
+    "body": [
+      "*ngFor=\"let ${item} of ${items}\"$0"
+    ]
+  },
+  "Angular Click Event": {
+    "prefix": "ng-click",
+    "description": "Click event",
+    "types": "typescript, html",
+    "body": [
+      "(click)=\"${expression}\"$0"
+    ]
+  },
+  "Angular 1 Controller": {
+    "prefix": "ng-controller",
+    "description": "Use component instead.",
+    "types": "typescript",
+    "body": [
+      "import { Component, OnInit } from '@angular/core';",
+      "",
+      "@Component({",
+      "\tselector: '${selector}',",
+      "\ttemplateUrl: './${name}.component.html',",
+      "\tstyleUrls: ['./${name}.component.css']",
+      "})",
+      "export class ${Name}Component implements OnInit {",
+      "\tconstructor() { $1}",
+      "",
+      "\tngOnInit(): void { $2}",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular 1 Show Directive": {
+    "prefix": "ng-show",
+    "description": "Usage: Bind to the hidden property.",
+    "types": "typescript, html",
+    "body": [
+      "[hidden]=\"!${expression}\"$0"
+    ]
+  },
+  "Angular 1 Hide Directive": {
+    "prefix": "ng-hide",
+    "description": "Usage: Bind to the hidden property.",
+    "types": "typescript, html",
+    "body": [
+      "[hidden]=\"${expression}\"$0"
+    ]
+  },
+  "Angular 1 Href Directive": {
+    "prefix": "ng-href",
+    "description": "Usage: Bind to the href property.",
+    "types": "typescript, html",
+    "body": [
+      "[href]=\"${url}\"$0"
+    ]
+  },
+  "Angular 1 Src Directive": {
+    "prefix": "ng-src",
+    "description": "Usage: Bind to the src property.",
+    "types": "typescript, html",
+    "body": [
+      "[src]=\"${url}\"$0"
+    ]
+  },
+  "Angular 1 OrderBy": {
+    "prefix": "ng-orderBy",
+    "description": "For performance reasons, no comparable pipe exists in Angular 2. Instead, use component code to order or sort results. If you need the same ordering or sorting code in several templates, consider building a custom pipe.",
+    "types": "typescript, html",
+    "body": [
+      "$0"
+    ]
+  },
+  "Angular 1 Filter": {
+    "prefix": "ng-filter",
+    "description": "For performance reasons, no comparable pipe exists in Angular 2. Do all your filtering in the component. If you need the same filtering code in several templates, consider building a custom pipe.",
+    "types": "typescript, html",
+    "body": [
+      "$0"
+    ]
+  },
+  "Submit Button": {
+    "prefix": "ng-button-submit",
+    "description": "A submit button element with a click event",
+    "types": "typescript, html",
+    "body": [
+      "<button type=\"submit\">${Submit}</button>",
+      "$0"
+    ]
+  },
+  "Click Button": {
+    "prefix": "ng-button",
+    "description": "A button element with a click event",
+    "types": "typescript, html",
+    "body": [
+      "<button (click)=\"${1:onClick()}\">${2:name}</button>",
+      "$0"
+    ]
+  },
+  "ng import": {
+    "prefix": "ng-import",
+    "description": "import module or component from path;",
+    "types": "typescript, html",
+    "body": [
+      "import { ${2:moduleOrComponent} } from '${1:path}';",
+      "$0"
+    ]
+  },
+  "http get": {
+    "prefix": "ng-http-get",
+    "description": "Http observable get request",
+    "types": "typescript, html",
+    "body": [
+      "this.http.get('${url}')",
+      "\t.map((res: Response) => {",
+      "\t\tres.json();",
+      "})$0"
+    ]
+  },
+  "httpClient get": {
+    "prefix": "ng-httpClient-get",
+    "description": "HttpClient observable get request",
+    "types": "typescript, html",
+    "body": [
+      "this.http.get('${url}')$0"
+    ]
+  },
+  "http get post": {
+    "prefix": "ng-http-get-post",
+    "description": "Http observable get & post request",
+    "types": "typescript, html",
+    "body": [
+      "get${Type}(): Observable<I${Type}[]> {",
+      "\treturn this.http.get(${name})",
+      "\t\t.map((res: Response) => <I${Type}[]>res.json())",
+      "\t\t.catch(this.handleError);",
+      "}",
+      "",
+      "add${Type}(${name}: string): Observable<I${Type}> {",
+      "\tlet body = JSON.stringify({ ${name} });",
+      "\tlet headers = new Headers({ 'Content-Type': 'application/json'});",
+      "\tlet options = new RequestOptions({ headers: headers });",
+      "",
+      "\treturn this.http.post(this.${url}, body, options)",
+      "\t\t.map(this.handleResponse)",
+      "\t.catch(this.handleError);",
+      "}",
+      "private handleError(error: Response) {",
+      "\tconsole.error(error);",
+      "\treturn Observable.throw(error.json().error || 'Server error');",
+      "}",
+      "$0"
+    ]
+  },
+  "Angular Debug": {
+    "prefix": "ng-debug",
+    "description": "pre obj pipe json",
+    "types": "typescript, html",
+    "body": [
+      "<pre>{{ ${obj} | json }}</pre>$0"
+    ]
+  },
+  "Angular Debug Async": {
+    "prefix": "ng-debug-async",
+    "description": "pre obj pipe async pipe json",
+    "types": "typescript, html",
+    "body": [
+      "<pre>{{ ${obj} | async | json }}</pre>$0"
+    ]
+  },
+  "Angular Flex Layout Import": {
+    "prefix": "fx-import",
+    "description": "Flex Layout Import",
+    "types": "typescript, html",
+    "body": [
+      "import { FlexLayoutModule } from '@angular/flex-layout';",
+      "// Add ${FlexLayoutModule.forRoot()} to the @NgModule imports section"
+    ]
+  },
+  "Angular Flex Row": {
+    "prefix": "fx-row",
+    "description": "Flex Layout Row",
+    "types": "typescript, html",
+    "body": [
+      "<div fxLayout=\"row\" fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Layout": {
+    "prefix": "fx-layout",
+    "description": "Flex Layout Property",
+    "types": "typescript, html",
+    "body": [
+      "fxLayout=\"row\"$0"
+    ]
+  },
+  "Angular Flex Layout Align": {
+    "prefix": "fx-layout-align",
+    "description": "Flex Layout Align Property",
+    "types": "typescript, html",
+    "body": [
+      "fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\"$0"
+    ]
+  },
+  "Angular Flex Layout Gap": {
+    "prefix": "fx-layout-gap",
+    "description": "Flex Layout Gap Property",
+    "types": "typescript, html",
+    "body": [
+      "fxLayoutGap=\"${gap}px\"$0"
+    ]
+  },
+  "Angular Flex Reverse Row": {
+    "prefix": "fx-row-reverse",
+    "description": "Flex Layout Reverse Row",
+    "types": "typescript, html",
+    "body": [
+      "<div fxLayout=\"row-reverse\" fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Column": {
+    "prefix": "fx-col",
+    "description": "Flex Layout Column",
+    "types": "typescript, html",
+    "body": [
+      "fxLayout=\"column\" fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">$0"
+    ]
+  },
+  "Angular Flex Column with Element": {
+    "prefix": "fx-col-element",
+    "description": "Flex Layout Column with Element",
+    "types": "typescript, html",
+    "body": [
+      "<${1:div} fxLayout=\"column\" fxLayoutAlign=\"${2:|start,center,end,space-around,space-between|} ${4:|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">",
+      "\t$0",
+      "</${1:div}>"
+    ]
+  },
+  "Angular Flex Reverse Column": {
+    "prefix": "fx-col-reverse",
+    "description": "Flex Layout Reverse Column",
+    "types": "typescript, html",
+    "body": [
+      "<div fxLayout=\"column-reverse\" fxLayoutAlign=\"${1|start,center,end,space-around,space-between|} ${2|start,center,end,stretch|}\" fxLayoutGap=\"${gap}px\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item": {
+    "prefix": "fx-item",
+    "description": "Flex Layout Item",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item Offset": {
+    "prefix": "fx-item-offset",
+    "description": "Flex Layout Item with fxFlexOffset",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\" fxFlexOffset=\"${offset}px\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item Order": {
+    "prefix": "fx-item-order",
+    "description": "Flex Layout Item with fxFlexOrder",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\" fxFlexOrder=\"${order}\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item Align": {
+    "prefix": "fx-item-align",
+    "description": "Flex Layout Item with fxFlexAlign",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\" fxFlexAlign=\"${1|start,baseline,center,end|}\">",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Angular Flex Item Fill": {
+    "prefix": "fx-item-fill",
+    "description": "Flex Layout Item with fxFlexFill",
+    "types": "typescript, html",
+    "body": [
+      "<div fxFlex=\"${value}%\" fxFlexFill>",
+      "\t$0",
+      "</div>"
+    ]
+  },
+  "Material drag drop box": {
+    "prefix": "m-drag-drop-box",
+    "description": "Material drag drop box",
+    "types": "typescript, html",
+    "body": [
+      "<div class=\"$1{drag-drop-box}\" cdkDrag>",
+      "</div>$0"
+    ]
+  },
+  "Material toolbar": {
+    "prefix": "m-toolbar",
+    "description": "Material toolbar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-toolbar>",
+      "\t<span>${FirstRow}</span>",
+      "</mat-toolbar>$0"
+    ]
+  },
+  "Material toolbar row": {
+    "prefix": "m-toolbar-row",
+    "description": "Material toolbar row",
+    "types": "typescript, html",
+    "body": [
+      "<mat-toolbar-row>",
+      "\t<span>${FirstRow}</span>",
+      "</mat-toolbar-row>$0"
+    ]
+  },
+  "Material toolbar-multiRow": {
+    "prefix": "m-toolbar-multiRow",
+    "description": "Material Toolbar with multiple rows",
+    "types": "typescript, html",
+    "body": [
+      "<mat-toolbar>",
+      "\t<span>${FirstRow}</span>",
+      "\t<mat-toolbar-row>",
+      "\t\t<span>${SecondRow}</span>",
+      "\t</mat-toolbar-row>",
+      "\t<mat-toolbar-row>",
+      "\t\t<span>${ThirdRow}</span>",
+      "\t</mat-toolbar-row>",
+      "</mat-toolbar>$0"
+    ]
+  },
+  "Material FA Icon": {
+    "prefix": "m-icon-fontawesome",
+    "description": "Material Font Awesome Icon",
+    "types": "typescript, html",
+    "body": [
+      "<mat-icon mat-font-icon=\"fa-${icon}\" class=\"fa\"></mat-icon>$0"
+    ]
+  },
+  "Material Button": {
+    "prefix": "m-button",
+    "description": "Rectangular Material button w/ no elevation.",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-button>${text}</button>$0"
+    ]
+  },
+  "Material Raised Button": {
+    "prefix": "m-button-raised",
+    "description": "Rectangular Material button w/ elevation.",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-raised-button>${text}</button>$0"
+    ]
+  },
+  "Material Icon Button": {
+    "prefix": "m-button-icon",
+    "description": "Circular Material button with a transparent background",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-icon-button><mat-icon>${icon_name}</mat-icon></button>$0"
+    ]
+  },
+  "Material Round Button": {
+    "prefix": "m-button-fab",
+    "description": "Circular button w/ elevation.",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-fab><mat-icon>${icon_name}</mat-icon></button>$0"
+    ]
+  },
+  "Material Round Small Button": {
+    "prefix": "m-button-fab-mini",
+    "description": "Small circular button w/ elevation.",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-mini-fab><mat-icon>${icon_name}</mat-icon></button>$0"
+    ]
+  },
+  "Material Toggle Button": {
+    "prefix": "m-button-toggle",
+    "description": "Material toggle button",
+    "types": "typescript, html",
+    "body": [
+      "<mat-button-toggle>${text}</mat-button-toggle>$0"
+    ]
+  },
+  "Material Basic Card": {
+    "prefix": "m-card",
+    "description": "Material Basic Card",
+    "types": "typescript, html",
+    "body": [
+      "<mat-card>",
+      "\t$1",
+      "</mat-card>$0"
+    ]
+  },
+  "Material Card": {
+    "prefix": "m-card-full",
+    "description": "Material Card",
+    "types": "typescript, html",
+    "body": [
+      "<mat-card>",
+      "\t<mat-card-header>",
+      "\t\t<mat-card-title>${title}</mat-card-title>",
+      "\t\t<mat-card-subtitle>${subtitle}</mat-card-subtitle>",
+      "\t</mat-card-header>",
+      "\t<mat-card-content>",
+      "\t$1",
+      "\t</mat-card-content>",
+      "\t<mat-card-actions>",
+      "\t\t<button mat-button>${Ok}</button>",
+      "\t</mat-card-actions>",
+      "</mat-card>$0"
+    ]
+  },
+  "Material Radio Button": {
+    "prefix": "m-radiobutton",
+    "description": "Material Radio Button",
+    "types": "typescript, html",
+    "body": [
+      "<mat-radio-group>",
+      "\t<mat-radio-button value=\"${value1}\">${Option1}</mat-radio-button>",
+      "\t<mat-radio-button value=\"${value2}\">${Option2}</mat-radio-button>",
+      "</mat-radio-group>$0"
+    ]
+  },
+  "Material Radio Button Option": {
+    "prefix": "m-radiobutton-option",
+    "description": "Material Radio Button Option",
+    "types": "typescript, html",
+    "body": [
+      "<mat-radio-button value=\"${value}\">${Option}</mat-radio-button>$0"
+    ]
+  },
+  "Material Checkbox ngmodel": {
+    "prefix": "m-checkbox-ngmodel",
+    "description": "Material Checkbox ngmodel",
+    "types": "typescript, html",
+    "body": [
+      "<mat-checkbox [(ngModel)]=\"${property.checkedOrUnchecked}\">${text}</mat-checkbox>$0"
+    ]
+  },
+  "Material Checkbox": {
+    "prefix": "m-checkbox",
+    "description": "Material Checkbox",
+    "types": "typescript, html",
+    "body": [
+      "<mat-checkbox>${text}</mat-checkbox>$0"
+    ]
+  },
+  "Material Datepicker": {
+    "prefix": "m-datepicker",
+    "description": "Material Datepicker",
+    "types": "typescript, html",
+    "body": [
+      "<mat-form-field>",
+      "\t<input matInput [matDatepicker]=\"${picker}\" placeholder=\"${title}\">",
+      "\t<mat-datepicker-toggle matSuffix [for]=\"${picker}\"></mat-datepicker-toggle>",
+      "\t<button matSuffix [matDatepickerToggle]=\"${picker}\"></button>",
+      "\t<mat-datepicker #${picker}></mat-datepicker>",
+      "</mat-form-field>",
+      "$0"
+    ]
+  },
+  "Material Input Text": {
+    "prefix": "m-input",
+    "description": "Material Input Textbox",
+    "types": "typescript, html",
+    "body": [
+      "<mat-form-field>",
+      "\t<input matInput placeholder=\"${label}\" value=\"${value}\">",
+      "</mat-form-field>$0"
+    ]
+  },
+  "Material Chip List": {
+    "prefix": "m-chip-list",
+    "description": "Material Chip List",
+    "types": "typescript, html",
+    "body": [
+      "<mat-chip-list>",
+      "\t<mat-chip>${text}</mat-chip>",
+      "</mat-chip-list>$0"
+    ]
+  },
+  "Material Chip Stacked List": {
+    "prefix": "m-chip-list-stacked",
+    "description": "Material Chip Stacked List",
+    "types": "typescript, html",
+    "body": [
+      "<mat-chip-list class=\"mat-chip-list-stacked\">",
+      "\t<mat-chip>${text}</mat-chip>",
+      "</mat-chip-list>$0"
+    ]
+  },
+  "Material Chip": {
+    "prefix": "m-chip",
+    "description": "Material Chip",
+    "types": "typescript, html",
+    "body": [
+      "<mat-chip>${text}</mat-chip>$0"
+    ]
+  },
+  "Material Select": {
+    "prefix": "m-select",
+    "description": "Material Select",
+    "types": "typescript, html",
+    "body": [
+      "<mat-select placeholder=\"${Placeholder}\" [(ngModel)]=\"selectedValue\" name=\"${item}\">",
+      "\t<mat-option *ngFor=\"let ${item} of ${items}\" [value]=\"${item}.value\">",
+      "\t\t{{${item}.viewValue}}",
+      "\t</mat-option>",
+      "</mat-select>$0"
+    ]
+  },
+  "Material SVG Icon": {
+    "prefix": "m-icon-svg",
+    "description": "Material SVG Icon",
+    "types": "typescript, html",
+    "body": [
+      "<mat-icon svgIcon=\"${src}\"></mat-icon>$0"
+    ]
+  },
+  "Material Icon": {
+    "prefix": "m-icon",
+    "description": "Material Icon",
+    "types": "typescript, html",
+    "body": [
+      "<mat-icon>${icon}</mat-icon>$0"
+    ]
+  },
+  "Material Icon with Badge": {
+    "prefix": "m-icon-badge",
+    "description": "Material Icon with a Badge",
+    "types": "typescript, html",
+    "body": [
+      "<mat-icon",
+      "\tcolor=\"primary\"",
+      "\tmatBadge=\"${number}\"",
+      "\tmatBadgePosition=\"${2|above,below|} ${3|after,before|}\"",
+      "\tmatBadgeColor=\"accent\">",
+      "\t\t${icon}",
+      "</mat-icon>$0"
+    ]
+  },
+  "Material Slide Toggle": {
+    "prefix": "m-slide-toggle",
+    "description": "Material Slide toggle",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slide-toggle>${text}</mat-slide-toggle>$0"
+    ]
+  },
+  "Material Slider": {
+    "prefix": "m-slider",
+    "description": "Material Slider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider min=\"${min}\" max=\"${max}\" step=\"${step}\" value=\"${value}\"></mat-slider>$0"
+    ]
+  },
+  "Material Vertical Slider": {
+    "prefix": "m-slider-vertical",
+    "description": "Material Vertical Slider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider vertical min=\"${min}\" max=\"${max}\" step=\"${step}\" value=\"${value}\"></mat-slider>$0"
+    ]
+  },
+  "Material Slider Thumblabel": {
+    "prefix": "m-slider-thumbLabel",
+    "description": "Material Slider thumbLabel",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider thumbLabel tickInterval=\"${interval}\"></mat-slider>$0"
+    ]
+  },
+  "Material Slider TickInterval": {
+    "prefix": "m-slider-tickInterval",
+    "description": "Material Slider tickInterval",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider step=\"${step}\" tickInterval=\"${interval}\"></mat-slider>$0"
+    ]
+  },
+  "Material Slider TickInterval Auto": {
+    "prefix": "m-slider-tickInterval-auto",
+    "description": "Material Slider tickInterval Auto",
+    "types": "typescript, html",
+    "body": [
+      "<mat-slider tickInterval=\"auto\"></mat-slider>$0"
+    ]
+  },
+  "Material Menu": {
+    "prefix": "m-menu",
+    "description": "Material Menu",
+    "types": "typescript, html",
+    "body": [
+      "<button mat-icon-button [matMenuTriggerFor]=\"${menu}\" aria-label=\"Example icon-button with a menu\">",
+      "\t<mat-icon>more_vert</mat-icon>",
+      "</button>",
+      "<mat-menu #${menu}=\"matMenu\">",
+      "\t<button mat-menu-item>",
+      "\t\t<mat-icon>dialpad</mat-icon>",
+      "\t\t<span>Redial</span>",
+      "\t</button>",
+      "</mat-menu>"
+    ]
+  },
+  "Material List": {
+    "prefix": "m-list",
+    "description": "Material List",
+    "types": "typescript, html",
+    "body": [
+      "<mat-list>",
+      "\t<mat-list-item>${item}</mat-list-item>$1",
+      "</mat-list>$0"
+    ]
+  },
+  "Material List ngFor": {
+    "prefix": "m-list-ngfor",
+    "description": "Material List ngFor",
+    "types": "typescript, html",
+    "body": [
+      "<mat-list>",
+      "\t<mat-list-item *ngFor=\"let ${item} of ${items}\">{{ ${item} }}</mat-list-item>$1",
+      "</mat-list>$0"
+    ]
+  },
+  "Material List Item": {
+    "prefix": "m-list-item",
+    "description": "Material List Item",
+    "types": "typescript, html",
+    "body": [
+      "<mat-list-item>${item}</mat-list-item>$0"
+    ]
+  },
+  "Material Tab Group": {
+    "prefix": "m-tab-group",
+    "description": "Material Tab Group",
+    "types": "typescript, html",
+    "body": [
+      "<mat-tab-group>",
+      "\t<mat-tab label=\"${TabHeader1}\">$1</mat-tab>",
+      "\t<mat-tab label=\"${TabTabHeader2}\">$2</mat-tab>",
+      "</mat-tab-group>$0"
+    ]
+  },
+  "Material Tab": {
+    "prefix": "m-tab",
+    "description": "Material Tab",
+    "types": "typescript, html",
+    "body": [
+      "<mat-tab label=\"${TabHeader}\">$1</mat-tab>$0"
+    ]
+  },
+  "Material Tooltip": {
+    "prefix": "m-tooltip",
+    "description": "Material Tooltip",
+    "types": "typescript, html",
+    "body": [
+      "matTooltip=\"${text}\"$0"
+    ]
+  },
+  "Material Tooltip Position": {
+    "prefix": "m-tooltip-position",
+    "description": "Material Tooltip position",
+    "types": "typescript, html",
+    "body": [
+      "[matTooltipPosition]=\"${1|above,below,left,right,before,after|}\"$0"
+    ]
+  },
+  "Material Tooltip With Position": {
+    "prefix": "m-tooltip-with-position",
+    "description": "Material Tooltip with position",
+    "types": "typescript, html",
+    "body": [
+      "matTooltip=\"${text}\" [matTooltipPosition]=\"${1|above,below,left,right,before,after|}\"$0"
+    ]
+  },
+  "Material Table": {
+    "prefix": "m-table",
+    "description": "Material Table",
+    "types": "typescript, html",
+    "body": [
+      "<table mat-table #table [dataSource]=\"${dataSource}\">",
+      "\t<ng-container matColumnDef=\"${column}\">",
+      "\t\t<th mat-header-cell> ${header} </th>",
+      "\t\t<td mat-cell> {{row.${column}}} </td>",
+      "\t</ng-container>",
+      "\t<tr mat-header-row *matHeaderRowDef=\"['${column}']\"></tr>",
+      "\t<tr mat-row *matRowDef=\"let row; columns: ['${column}'];\"></tr>",
+      "</table>$0"
+    ]
+  },
+  "Material Table Column": {
+    "prefix": "m-table-column",
+    "description": "Material Table Column",
+    "types": "typescript, html",
+    "body": [
+      "<ng-container matColumnDef=\"${column}\">",
+      "\t<th mat-header-cell> ${header} </th>",
+      "\t<td mat-cell> {{row.${column}}} </td>",
+      "</ng-container>$0"
+    ]
+  },
+  "Material Grid List": {
+    "prefix": "m-grid-list",
+    "description": "Material Grid List",
+    "types": "typescript, html",
+    "body": [
+      "<mat-grid-list cols=\"${cols}\" rowHeight=\"${height}px\">",
+      "\t<mat-grid-tile",
+      "\t\t*ngFor=\"let ${tile} of ${tiles}\"",
+      "\t\t[colspan]=\"${tile}.cols\"",
+      "\t\t[rowspan]=\"${tile}.rows\"",
+      "\t\t{{${tile}.text}}>",
+      "\t</mat-grid-tile>",
+      "</mat-grid-list>$0"
+    ]
+  },
+  "Material Paginator": {
+    "prefix": "m-paginator",
+    "description": "Material Paginator",
+    "types": "typescript, html",
+    "body": [
+      "<mat-paginator [length]=\"${length}\"",
+      "\t[pageSize]=\"${pageSize}\"",
+      "\t[pageSizeOptions]=\"${pageSizeOptions}\"",
+      "\t(page)=\"pageEvent = $${event}\">",
+      "</mat-paginator>$0"
+    ]
+  },
+  "Material Determinate Spinner": {
+    "prefix": "m-spinner",
+    "description": "Material Determinate Spinner",
+    "types": "typescript, html",
+    "body": [
+      "<mat-spinner",
+      "\t[value]=\"${value}\">",
+      "</mat-spinner>$0"
+    ]
+  },
+  "Material Indeterminate Progress Bar": {
+    "prefix": "m-progress-bar-indeterminate",
+    "description": "Material indeterminate Progress Bar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-progress-bar",
+      "\tmode=\"indeterminate\">",
+      "</mat-progress-bar>$0"
+    ]
+  },
+  "Material Query Progress Bar": {
+    "prefix": "m-progress-bar-query",
+    "description": "Material Query Progress Bar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-progress-bar",
+      "\tmode=\"query\">",
+      "</mat-progress-bar>$0"
+    ]
+  },
+  "Material Buffer Progress Bar": {
+    "prefix": "m-progress-bar-buffer",
+    "description": "Material Buffer Progress Bar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-progress-bar",
+      "\tmode=\"buffer\"",
+      "\t[color]=\"${color}\"",
+      "\t[value]=\"${value}\"",
+      "\t[bufferValue]=\"${bufferValue}\">",
+      "</mat-progress-bar>$0"
+    ]
+  },
+  "Material Determinate Progress Bar": {
+    "prefix": "m-progress-bar",
+    "description": "Material Determinate Progress Bar",
+    "types": "typescript, html",
+    "body": [
+      "<mat-progress-bar",
+      "\tmode=\"determinate\"",
+      "\t[value]=\"${value}\">",
+      "</mat-progress-bar>$0"
+    ]
+  },
+  "Material Expansion Panel ": {
+    "prefix": "m-expansion-panel",
+    "description": "Material Expansion Panel",
+    "types": "typescript, html",
+    "body": [
+      "<mat-expansion-panel>",
+      "\t<mat-expansion-panel-header>",
+      "\t\t${title}",
+      "\t</mat-expansion-panel-header>",
+      "\t${content}",
+      "</mat-expansion-panel>$0"
+    ]
+  },
+  "Material Accordion Panel ": {
+    "prefix": "m-accordion>",
+    "description": "Material Accordion",
+    "types": "typescript, html",
+    "body": [
+      "<mat-accordion>",
+      "\t<mat-expansion-panel>",
+      "\t\t<mat-expansion-panel-header>",
+      "\t\t\t${title}",
+      "\t\t</mat-expansion-panel-header>",
+      "\t\t${content}",
+      "\t</mat-expansion-panel>",
+      "\t<mat-expansion-panel>",
+      "\t\t<mat-expansion-panel-header>",
+      "\t\t\t${title2}",
+      "\t\t</mat-expansion-panel-header>",
+      "\t\t${content2}",
+      "\t</mat-expansion-panel>",
+      "</mat-accordion>$0"
+    ]
+  },
+  "Material Vertical Stepper": {
+    "prefix": "m-stepper-vertical",
+    "description": "Material Vertical Stepper",
+    "types": "typescript, html",
+    "body": [
+      "<mat-vertical-stepper>",
+      "\t<mat-step label=\"${label1}\">",
+      "\t\t$1",
+      "\t</mat-step>",
+      "\t<mat-step label=\"${label2}\">",
+      "\t\t$2",
+      "\t</mat-step>",
+      "</mat-vertical-stepper>$0"
+    ]
+  },
+  "Material Horizontal Stepper": {
+    "prefix": "m-stepper-horizontal",
+    "description": "Material Horizontal Stepper",
+    "types": "typescript, html",
+    "body": [
+      "<mat-horizontal-stepper>",
+      "\t<mat-step label=\"${label1}\">",
+      "\t\t$1",
+      "\t</mat-step>",
+      "\t<mat-step label=\"${label2}\">",
+      "\t\t$2",
+      "\t</mat-step>",
+      "</mat-horizontal-stepper>$0"
+    ]
+  },
+  "Material Stepper Step": {
+    "prefix": "m-step",
+    "description": "Material Vertical Stepper",
+    "types": "typescript, html",
+    "body": [
+      "<mat-step label=\"${label}\">",
+      "\t$1",
+      "</mat-step>",
+      "$0"
+    ]
+  },
+  "Material Indeterminate Spinner": {
+    "prefix": "m-spinner-indeterminate",
+    "description": "Material Indeterminate Spinner",
+    "types": "typescript, html",
+    "body": [
+      "<mat-spinner",
+      "\tmode=\"indeterminate\">",
+      "</mat-spinner>$0"
+    ]
+  },
+  "Material Divider": {
+    "prefix": "m-divider",
+    "description": "Material Divider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-divider>",
+      "</mat-divider>$0"
+    ]
+  },
+  "Material Inset Divider": {
+    "prefix": "m-divider-inset",
+    "description": "Material Inset Divider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-divider",
+      "\t[inset]=\"true\">",
+      "</mat-divider>$0"
+    ]
+  },
+  "Material Vertical Divider": {
+    "prefix": "m-divider-vertical",
+    "description": "Material Vertical Divider",
+    "types": "typescript, html",
+    "body": [
+      "<mat-divider",
+      "\t[vertical]=\"true\">",
+      "</mat-divider>$0"
+    ]
+  },
+  "RxJS Import Observable": {
+    "prefix": "rx-import-observable",
+    "description": "RxJS Import Observable",
+    "types": "typescript, javascript",
+    "body": [
+      "import { Observable } from 'rxjs';",
+      "$0"
+    ]
+  },
+  "RxJS Import Subject": {
+    "prefix": "rx-import-subject",
+    "description": "RxJS Import Subject",
+    "types": "typescript, javascript",
+    "body": [
+      "import { Subject } from 'rxjs';",
+      "$0"
+    ]
+  },
+  "RxJS Import an Operator": {
+    "prefix": "rx-import-operator",
+    "description": "RxJS Import an Operator",
+    "types": "typescript, javascript",
+    "body": [
+      "import { ${1:switchMap} } from 'rxjs/operators';",
+      "$0"
+    ]
+  },
+  "RxJS MergeMap Example": {
+    "prefix": "rx-mergeMap",
+    "description": "RxJS MergeMap Example",
+    "types": "typescript, javascript",
+    "body": [
+      "getItems(ids: number[]): Observable<Item> {",
+      "\treturn from(ids).pipe(",
+      "\t\tmergeMap(id => <Observable<Item>> this.httpClient.get(`item/${id}`))",
+      "\t);",
+      "}",
+      "$0"
+    ]
+  },
+  "Test Describe": {
+    "prefix": "t-describe",
+    "description": "Describe",
+    "types": "typescript",
+    "body": [
+      "describe('${1:Description}', () => {",
+      "\t$0",
+      "});"
+    ]
+  },
+  "Test Describe, It & Expect": {
+    "prefix": "t-describe-it",
+    "description": "Describe, It & Expect",
+    "types": "typescript",
+    "body": [
+      "describe('${1:Description}', () => {",
+      "\tit('${2:Test}', () => {",
+      "\t\texpect($3).toBe($4);",
+      "\t});",
+      "});",
+      "$0"
+    ]
+  },
+  "Test It and Expect": {
+    "prefix": "t-ite",
+    "description": "It and Expect",
+    "types": "typescript",
+    "body": [
+      "it('${1:Test}', () => {",
+      "\texpect($2).toBe$3($4);",
+      "});",
+      "$0"
+    ]
+  },
+  "Test It": {
+    "prefix": "t-it",
+    "description": "It",
+    "types": "typescript",
+    "body": [
+      "it('${1:Test}', () => {",
+      "\t$2",
+      "});",
+      "$0"
+    ]
+  },
+  "Test beforeEach": {
+    "prefix": "t-beforeEach",
+    "description": "beforeEach",
+    "types": "typescript",
+    "body": [
+      "beforeEach(() => {",
+      "\t$1",
+      "});",
+      "$0"
+    ]
+  },
+  "Test afterEach Example": {
+    "prefix": "t-afterEach",
+    "description": "afterEach",
+    "types": "typescript",
+    "body": [
+      "afterEach(() => {",
+      "\t$1",
+      "});",
+      "$0"
+    ]
+  },
+  "Test beforeAll": {
+    "prefix": "t-beforeAll",
+    "description": "beforeAll",
+    "types": "typescript",
+    "body": [
+      "beforeAll(() => {",
+      "\t$1",
+      "});",
+      "$0"
+    ]
+  },
+  "Test afterAll": {
+    "prefix": "t-afterAll",
+    "description": "afterAll",
+    "types": "typescript",
+    "body": [
+      "afterAll(() => {",
+      "\t$1",
+      "});",
+      "$0"
+    ]
+  },
+  "Test Expect toBe": {
+    "prefix": "e-tb",
+    "description": "Expect toBe",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBe($2);",
+      "$0"
+    ]
+  },
+  "Test Expect Not toBe": {
+    "prefix": "e-ntb",
+    "description": "Expect Not toBe",
+    "types": "typescript",
+    "body": [
+      "expect($1).not.toBe($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toBeFalsy": {
+    "prefix": "e-tbf",
+    "description": "Expect toBe Falsy",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeFalsy();",
+      "$0"
+    ]
+  },
+  "Test Expect not toBeFalsy": {
+    "prefix": "e-ntbf",
+    "description": "Expect not toBe Falsy",
+    "types": "typescript",
+    "body": [
+      "expect($1).not.toBeFalsy();",
+      "$0"
+    ]
+  },
+  "Test Expect toBeTruthy": {
+    "prefix": "e-tbt",
+    "description": "Expect toBe Truthy",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeTruthy();",
+      "$0"
+    ]
+  },
+  "Test Expect not toBeTruthy": {
+    "prefix": "e-ntbt",
+    "description": "Expect not toBe Truthy",
+    "types": "typescript",
+    "body": [
+      "expect($1).not.toBeTruthy();",
+      "$0"
+    ]
+  },
+  "Test Expect toBeDefined": {
+    "prefix": "e-tbd",
+    "description": "Expect toBe Defined",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeDefined();",
+      "$0"
+    ]
+  },
+  "Test Expect not toBeDefined": {
+    "prefix": "e-ntbd",
+    "description": "Expect not toBe Defined",
+    "types": "typescript",
+    "body": [
+      "expect($1).not.toBeDefined();",
+      "$0"
+    ]
+  },
+  "Test Expect toBeUndefined": {
+    "prefix": "e-tbu",
+    "description": "Expect toBe Undefined",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeUndefined();",
+      "$0"
+    ]
+  },
+  "Test Expect not toBeUndefined": {
+    "prefix": "e-ntbu",
+    "description": "Expect not toBe Undefined",
+    "types": "typescript",
+    "body": [
+      "expect($1).not.toBeUndefined();",
+      "$0"
+    ]
+  },
+  "Test Expect toMatch": {
+    "prefix": "e-tm",
+    "description": "Expect toMatch",
+    "types": "typescript",
+    "body": [
+      "expect($1).toMatch(\"$2\");",
+      "$0"
+    ]
+  },
+  "Test Expect Not toMatch": {
+    "prefix": "e-ntm",
+    "description": "Expect Not toMatch",
+    "types": "typescript",
+    "body": [
+      "expect($1).not.toMatch(\"$2\");",
+      "$0"
+    ]
+  },
+  "Test Expect toMatch regex": {
+    "prefix": "e-tmr",
+    "description": "Expect toMatch regex",
+    "types": "typescript",
+    "body": [
+      "expect($1).toMatch(\\$2\\);",
+      "$0"
+    ]
+  },
+  "Test Expect Not toMatch regex": {
+    "prefix": "e-ntmr",
+    "description": "Expect Not toMatch regex",
+    "types": "typescript",
+    "body": [
+      "expect($1).not.toMatch(\\$2\\);",
+      "$0"
+    ]
+  },
+  "Test Expect toMatchObject": {
+    "prefix": "e-tmo",
+    "description": "Expect toMatchObject",
+    "types": "typescript",
+    "body": [
+      "expect($1).toMatchObject($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toContain": {
+    "prefix": "e-tc",
+    "description": "Expect toContain",
+    "types": "typescript",
+    "body": [
+      "expect($1).toContain($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toBeNull": {
+    "prefix": "e-tbn",
+    "description": "Expect toBeNull",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeNull();",
+      "$0"
+    ]
+  },
+  "Test Expect Not toBeNull": {
+    "prefix": "e-ntbn",
+    "description": "Expect Not toBeNull",
+    "types": "typescript",
+    "body": [
+      "expect($1).not.toBeNull();",
+      "$0"
+    ]
+  },
+  "Test Expect toBeGreaterThan": {
+    "prefix": "e-tbgt",
+    "description": "Expect toBeGreaterThan",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeGreaterThan($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toBeGreaterThanOrEqual": {
+    "prefix": "e-tbgtoe",
+    "description": "Expect toBeGreaterThanOrEqual",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeGreaterThanOrEqual($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toBeLessThanOrEqual": {
+    "prefix": "e-tbltoe",
+    "description": "Expect toBeLessThanOrEqual",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeLessThanOrEqual($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toBeLessThan": {
+    "prefix": "e-tblt",
+    "description": "Expect toBeLessThan",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeLessThan($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toBeInstanceOf": {
+    "prefix": "e-tbio",
+    "description": "Expect toBeInstanceOf",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeInstanceOf($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toBeCloseTo": {
+    "prefix": "e-tbct",
+    "description": "Expect toBeCloseTo",
+    "types": "typescript",
+    "body": [
+      "expect($1).toBeCloseTo($2,$3);",
+      "$0"
+    ]
+  },
+  "Test Expect toHaveBeenCalled": {
+    "prefix": "e-thbc",
+    "description": "Expect toHaveBeenCalled",
+    "types": "typescript",
+    "body": [
+      "expect($1).toHaveBeenCalled();",
+      "$0"
+    ]
+  },
+  "Test Expect Not toHaveBeenCalled": {
+    "prefix": "e-nthbc",
+    "description": "Expect Not toHaveBeenCalled",
+    "types": "typescript",
+    "body": [
+      "expect($1).not.toHaveBeenCalled();",
+      "$0"
+    ]
+  },
+  "Test Expect toHaveReturnedTimes()": {
+    "prefix": "e-thrt",
+    "description": "Expect toHaveReturnedTimes(2)",
+    "types": "typescript",
+    "body": [
+      "expect($1).toHaveReturnedTimes($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toHaveReturnedWith()": {
+    "prefix": "e-thrw",
+    "description": "Expect toHaveLastReturnedWith(value)",
+    "types": "typescript",
+    "body": [
+      "expect($1).toHaveLastReturnedWith($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toHaveNthReturnedWith()": {
+    "prefix": "e-thnrw",
+    "description": "Expect toHaveNthReturnedWith(nthCall, value)",
+    "types": "typescript",
+    "body": [
+      "expect($1).toHaveNthReturnedWith($2, $3);",
+      "$0"
+    ]
+  },
+  "Test Expect toHaveLastReturnedWith()": {
+    "prefix": "e-thlrw",
+    "description": "Expect toHaveLastReturnedWith(value)",
+    "types": "typescript",
+    "body": [
+      "expect($1).toHaveLastReturnedWith($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toHaveBeenCalledWith": {
+    "prefix": "e-thbcw",
+    "description": "Expect toHaveBeenCalledWith",
+    "types": "typescript",
+    "body": [
+      "expect($1).toHaveBeenCalledWith($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toHaveProperty": {
+    "prefix": "e-thp",
+    "description": "Expect toHaveProperty",
+    "types": "typescript",
+    "body": [
+      "expect($1).toHaveProperty($2);",
+      "$0"
+    ]
+  },
+  "Test Expect toStrictEqual": {
+    "prefix": "e-tse",
+    "description": "Expect toStrictEqual",
+    "types": "typescript",
+    "body": [
+      "expect($1).toStrictEqual($2);",
+      "$0"
+    ]
+  },
+  "Test ExpectAsync toBeResolved": {
+    "prefix": "e-atbr",
+    "description": "ExpectAsync toBeResolved",
+    "types": "typescript",
+    "body": [
+      "expectAsync($1).toBeResolved();",
+      "$0"
+    ]
+  },
+  "Jest Test Expect toMatchSnapshot": {
+    "prefix": "e-tms",
+    "description": "Jest Expect toMatchSnapshot",
+    "types": "typescript",
+    "body": [
+      "expect($1).toMatchSnapshot();",
+      "$0"
+    ]
+  },
+
+  "Angular Http Interceptor": {
+    "prefix": "ng-http-interceptor",
+    "description": "Intercept an outgoing HttpRequest and optionally transform it or the response.",
+    "types": "typescript",
+    "body": [
+      "import { Injectable } from '@angular/core';",
+      "import {",
+      "\tHttpEvent, HttpInterceptor, HttpHandler, HttpRequest",
+      "} from '@angular/common/http';",
+      "",
+      "@Injectable({",
+      "\tprovidedIn: 'root'",
+      "})",
+      "export class ${1:Name}Interceptor implements HttpInterceptor {",
+      "\tintercept(req: HttpRequest<any>, next: HttpHandler) {",
+      "\t\treturn next.handle(req);",
+      "\t}",
+      "}"
+    ]
+  },
+  "Register Service Worker": {
+    "prefix": "sw-register",
+    "description": "Register Service Worker",
+    "types": "typescript, javascript",
+    "body": [
+      "if ('serviceWorker' in navigator) {",
+      "\twindow.addEventListener('load', () => {",
+      "\tnavigator.serviceWorker.register('/sw.js');",
+      "});",
+      "}$0"
+    ]
+  },
+  "Register Service Worker and Check": {
+    "prefix": "sw-register-and-check",
+    "description": "Register Service Worker and Check",
+    "types": "typescript, javascript",
+    "body": [
+      "if ('serviceWorker' in navigator) {",
+      "if('serviceWorker' in window.navigator) {",
+      "\twindow.addEventListener('load', () => {",
+      "\t\twindow.navigator.serviceWorker.register('/sw.js', { scope: '/' }).then((registration) => {",
+      "\t\t\tconsole.log('ServiceWorker registration successful with scope: ', registration.scope);",
+      "\t\t}).catch((error) => {",
+      "\t\t\tconsole.error('ServiceWorker registration failed: ', error);",
+      "\t\t});",
+      "\t});",
+      "}$0"
+    ]
+  },
+
+  "Nx Cheat Sheet": {
+    "prefix": "nx-cheatsheet",
+    "description": "Nx Cheat Sheet",
+    "types": "typescript",
+    "body": [
+      "\/*",
+      "  Install Nx",
+      "  npm install -g @nrwl\/schematics",
+      "  or",
+      "  yarn global add @nrwl\/schematics",
+      "",
+      "  Generate a Project",
+      "  create-nx-workspace ${1:<appname>}",
+      "",
+      "  Generate an Nx Application",
+      "  ng generate app ${1:<appname>}",
+      "",
+      "  Generate an Nx Library",
+      "  ng generate lib ${2:<libname>}",
+      "",
+      "",
+      "  Command Line Options for App",
+      "  —-routing  (adds routing)",
+      "  —-directory <path>",
+      "  ",
+      "",
+      "  Command Line Options for Lib",
+      "  —-routing",
+      "  —-parent-module <path> and <module>",
+      "  —-lazy",
+      "  —-ngmodule   (generate a regular lib instead of an ng module",
+      "  —-directory <dirname>",
+      "",
+      "  Serve an Nx Application",
+      "  ng serve --app=${1:<appname>}",
+      "",
+      "",
+      "  Examples",
+      "",
+      "  Generate an Application",
+      "  ng generate app ${1:<appname>} --routing",
+      "",
+      "  Generate a lazy loaded Angular module lib with routing",
+      "  ng generate lib ${2:<libname>} --routing --lazy --parentModule=apps/${1:<appname>}/src/${1:<appname>}.module.ts",
+      "",
+      "",
+      "  Note: Use option --dry-run to first check what will be generated.",
+      "        You can always add --help to learn more about the commands.",
+      "",
+      "  For more info: https:\/\/nrwl.io\/nx\/",
+      "",
+      " *\/"
+    ]
+  },
+  "Nx NgRx Cheat Sheet": {
+    "prefix": "nx-ngrx-cheatsheet",
+    "description": "Nx Cheat Sheet",
+    "types": "typescript",
+    "body": [
+      "/*",
+      "\tRoot",
+      "",
+      "\tGenerate a new root level store",
+      "\tng generate ngrx app --module=apps/${1:appname}/src/app/app.module.ts  --root",
+      "",
+      "\tGenerate all the configuration in app.module.ts, without creating a store",
+      "\tng generate ngrx app --module=apps/${1:appname}/src/app/app.module.ts  --onlyEmptyRoot",
+      "",
+      "\tFeature",
+      "",
+      "\tGenerate a new feature level store in an existing library",
+      "\tng generate ngrx ${1:featurename} --module=libs/${2:<libname>}/src/${3:<modulename>}.module.ts",
+      "",
+      "\tNgRx Help",
+      "\tng generate ngrx [name] <options...>",
+      "\t\t--dry-run Run through without making any changes.",
+      "\t\taliases:  -d -dryRun",
+      "\t\t--force Forces overwriting of files.",
+      "\t\taliases:  -f -force",
+      "\t\t--app Specifies app name to use.",
+      "\t\taliases:  -a -app",
+      "\t\t--collection Schematics collection to use.",
+      "\t\taliases:  -c -collection",
+      "\t\t--lint-fix Use lint to fix files after generation.",
+      "\t\taliases:  -lf -lintFix",
+      "\t\t--module (string) Path to an Angular module (e.g., src/app/app.module.ts).",
+      "\t\t--only-add-files (boolean) Only add new NgRx files, without changing the module file (e.g., --onlyAddFiles).",
+      "\t\t--root (boolean) Add StoreModule.forRoot and EffectsModule.forRoot instead of forFeature (e.g., --root).",
+      "\t\t--only-empty-root (boolean) Do not generate any files. Only generate StoreModule.forRoot and EffectsModule.forRoot (e.g., --onlyEmptyRoot).",
+      "\t\t--skip-package-json (boolean) Do not add ngrx dependencies to package.json (e.g., --skipPackageJson)",
+      "\t\t--directory (string) (Default: +state) The store directory name (e.g., +state)",
+      "",
+      "\tFor more info: https://nrwl.io/nx/guide-setting-up-ngrx",
+      "",
+      " */"
+    ]
+  },
+  "Cli Cheat Sheet": {
+    "prefix": "cli-cheatsheet",
+    "description": "Cli Cheat Sheet",
+    "types": "typescript",
+    "body": [
+      "/*",
+      "\tInstall Angular Cli",
+      "\tnpm install -g @angular/cli",
+      "",
+      "\tUsage",
+      "\tng help",
+      "",
+      "\tGenerate and serve an Angular project via a development server",
+      "\tng new PROJECT-NAME",
+      "\tcd PROJECT-NAME",
+      "\tng serve",
+      "",
+      "\tGenerate Component",
+      "\tYou can use the ng generate (or just ng g)",
+      "\tExamples",
+      "\t\tComponent: ng g component my-new-component",
+      "\t\tDirective: ng g directive my-new-directive",
+      "\t\tPipe:      ng g pipe my-new-pipe",
+      "\t\tService:   ng g service my-new-service",
+      "\t\tClass:     ng g class my-new-class",
+      "\t\tGuard:     ng g guard my-new-guard",
+      "\t\tInterface: ng g interface my-new-interface",
+      "\t\tEnum:      ng g enum my-new-enum",
+      "\t\tModule:    ng g module my-module",
+      "",
+      "\tBundling",
+      "\tAll builds make use of bundling, and using the --prod flag in ng build --prod or ng serve --prod will also make use of uglifying and tree-shaking functionality.",
+      "\tng build --prod",
+      "\tng serve --prod",
+      "",
+      "\tRun unit tests",
+      "\tng test",
+      "",
+      "\tRun tests with coverage. The report will be in the coverage/ directory",
+      "\tng test --code-coverage",
+      "",
+      "\tTests will execute after a build is executed via Karma, and it will automatically watch your files for changes.",
+      "\tYou can run tests a single time via --watch=false or --single-run.",
+      "",
+      "\tRun end-to-end tests",
+      "\tng e2e",
+      "",
+      "\tBefore running the tests make sure you are serving the app via ng serve. End-to-end tests are run via Protractor.",
+      "",
+      "\tLint you app code using tslint",
+      "\tng lint",
+      "",
+      "\tOpen the official Angular API documentation for a given keyword on angular.io.",
+      "\tng doc [search term]",
+      "",
+      "\tFor more info: https://cli.angular.io",
+      "",
+      " */"
+    ]
+  },
+  
+  "Angular content": {
+	"types": "typescript, html",
+    "prefix": "ng-content",
+    "description": "Angular content",
+	"body": [
+      "<ng-content #${1:name}></ng-content>",
+      "$0"
+    ]
+  }
+}

@@ -1,6 +1,9 @@
 local utils = require "astrocore"
 local is_available = utils.is_available
 
+-- test filter
+-- string.find('"lua/plugins/noice.lua" 169L, 6262B 已写入', '%s已写入%s')
+
 ---@type LazySpec
 return {
   {
@@ -155,8 +158,10 @@ return {
           { filter = { event = "msg_show", find = "DB: Query%s" }, opts = { skip = true } },
           { filter = { event = "msg_show", find = "%swritten" }, opts = { skip = true } },
           { filter = { event = "msg_show", find = "%schange;%s" }, opts = { skip = true } },
+          { filter = { event = "msg_show", find = "%s已写入" }, opts = { skip = true } },
+          { filter = { event = "msg_show", find = ".*行发生改变.*" }, opts = { skip = true } },
           {
-            filter = { event = "lsp", find = "%-32603: Invalid offset%" },
+            filter = { event = "msg_show", find = "%-32603: Invalid offset" },
             opts = { skip = true },
           },
         },

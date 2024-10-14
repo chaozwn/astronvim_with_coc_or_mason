@@ -31,6 +31,10 @@ return {
               angular = {
                 provideAutocomplete = true,
                 validate = true,
+                suggest = {
+                  includeAutomaticOptionalChainCompletions = true,
+                  includeCompletionsWithSnippetText = true,
+                },
               },
             },
           },

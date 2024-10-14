@@ -19,8 +19,6 @@ function M.core_mappings(mappings)
 
     maps.n["n"] = { "nzz" }
     maps.n["N"] = { "Nzz" }
-    maps.v["n"] = { "nzz" }
-    maps.v["N"] = { "Nzz" }
 
     -- close search highlight
     maps.n["<Leader>nh"] = { ":nohlsearch<CR>", desc = "Close search highlight", silent = true }

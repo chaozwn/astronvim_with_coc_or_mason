@@ -1,5 +1,6 @@
 local M = {}
 local utils = require "utils"
+local system = vim.loop.os_uname().sysname
 
 function M.core_mappings(mappings)
   if not mappings then mappings = require("astrocore").empty_map_table() end
@@ -13,9 +14,11 @@ function M.core_mappings(mappings)
     maps.v["K"] = { ":move '<-2<CR>gv-gv", desc = "Move line up", silent = true }
     maps.v["J"] = { ":move '>+1<CR>gv-gv", desc = "Move line down", silent = true }
 
-    maps.i["<C-S>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
-    maps.x["<C-S>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
-    maps.n["<C-S>"] = { "<Cmd>w<cr>", desc = "Save file", silent = true }
+    if system == "Darwin" then
+      maps.i["<D-s>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
+      maps.x["<D-s>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
+      maps.n["<D-s>"] = { "<Cmd>w<cr>", desc = "Save file", silent = true }
+    end
 
     maps.n["n"] = { "nzz" }
     maps.n["N"] = { "Nzz" }
@@ -88,7 +91,8 @@ function M.lsp_mappings(mappings)
   if not mappings then mappings = require("astrocore").empty_map_table() end
   local maps = mappings
   if maps then
-    maps.i["<C-l>"] = {
+    -- TODO: remove in astronvim v5
+    maps.i["<C-s>"] = {
       function() vim.lsp.buf.signature_help() end,
       desc = "Signature help",
       cond = "textDocument/signatureHelp",

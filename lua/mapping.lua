@@ -97,6 +97,11 @@ function M.lsp_mappings(mappings)
       desc = "Signature help",
       cond = "textDocument/signatureHelp",
     }
+    maps.n["<C-s>"] = {
+      function() vim.lsp.buf.signature_help() end,
+      desc = "Signature help",
+      cond = "textDocument/signatureHelp",
+    }
     maps.n["gK"] = false
     maps.n["gk"] = maps.n["<Leader>lh"]
   end

@@ -18,6 +18,8 @@ function M.core_mappings(mappings)
       maps.i["<D-s>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
       maps.x["<D-s>"] = { "<esc>:w<cr>a", desc = "Save file", silent = true }
       maps.n["<D-s>"] = { "<Cmd>w<cr>", desc = "Save file", silent = true }
+
+      maps.n["<D-a>"] = { "ggVG", desc = "Select all", silent = true }
     end
 
     maps.n["n"] = { "nzz" }
